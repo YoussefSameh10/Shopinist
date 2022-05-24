@@ -1,0 +1,6 @@
+framework module Pods_Shopinist {
+  umbrella header "Pods-Shopinist-umbrella.h"
+
+  export *
+  module * { export * }
+}
