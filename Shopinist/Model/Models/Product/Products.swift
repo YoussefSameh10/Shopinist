@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Products
-class Products: Codable {
+struct Products: Codable {
     
     var products: [Product]?
 
