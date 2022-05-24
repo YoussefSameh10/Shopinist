@@ -13,32 +13,8 @@ enum ProductOptionName: String, Codable {
     case size = "Size"
 }
 
-
 enum ProductType: String, Codable {
     case accessories = "ACCESSORIES"
     case shoes = "SHOES"
     case tShirts = "T-SHIRTS"
-}
-
-
-enum ProductStatus: String, Codable {
-    case active = "active"
-    case draft = "draft"
-    case archived = "archived"
-}
-
-
-enum FulfillmentService: String, Codable {
-    case manual = "manual"
-}
-
-
-enum InventoryManagement: String, Codable {
-    case shopify = "shopify"
-}
-
-
-enum InventoryPolicy: String, Codable {
-    case deny = "deny"
-    case allow = "continue"
 }

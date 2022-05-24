@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Option
-class ProductOption: Codable {
+struct ProductOption: Codable {
     var id, productID: Int?
     var name: ProductOptionName?
     var values: [String]?
@@ -18,12 +18,5 @@ class ProductOption: Codable {
         case id
         case productID = "product_id"
         case name, values
-    }
-
-    init(id: Int?, productID: Int?, name: ProductOptionName?, position: Int?, values: [String]?) {
-        self.id = id
-        self.productID = productID
-        self.name = name
-        self.values = values
     }
 }
