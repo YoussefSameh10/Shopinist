@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = .purple
+        initTabBarController()
+       
         
+    }
+    
+    func initTabBarController(){
+        
+        self.view.backgroundColor = .purple
+
         tabBarController?.tabBar.items?[0].title = "Home"
         tabBarController?.tabBar.items?[1].title = "Categories"
         tabBarController?.tabBar.items?[2].title = "Profile"
@@ -25,6 +33,7 @@ class HomeViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
     }
+
     
 }
 
