@@ -16,6 +16,13 @@
 		8AE32BD6283D5A3A003DA57B /* ProductOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE32BD5283D5A3A003DA57B /* ProductOption.swift */; };
 		8AE32BD8283D5AB5003DA57B /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE32BD7283D5AB5003DA57B /* Variant.swift */; };
 		8AE32BDA283D5ADC003DA57B /* ProductEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE32BD9283D5ADC003DA57B /* ProductEnums.swift */; };
+		8AE9733D283E77A200725A9B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE9733C283E77A200725A9B /* NetworkManager.swift */; };
+		8AE97340283E788A00725A9B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE9733F283E788A00725A9B /* Constants.swift */; };
+		8AE97342283E796E00725A9B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE97341283E796E00725A9B /* Errors.swift */; };
+		8AE97344283E798100725A9B /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE97343283E798100725A9B /* EndPoints.swift */; };
+		8AE97346283ED0FD00725A9B /* PostCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE97345283ED0FD00725A9B /* PostCustomer.swift */; };
+		8AE97348283ED14400725A9B /* PostOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE97347283ED14400725A9B /* PostOrder.swift */; };
+		8AE9734A283ED80B00725A9B /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE97349283ED80B00725A9B /* NetworkManagerProtocol.swift */; };
 		D54E7D9133BBE30465871C2F /* Pods_Shopinist_ShopinistUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F4F3BBECD0C42DE6CAD0DD8 /* Pods_Shopinist_ShopinistUITests.framework */; };
 		E883F39F283C20A600C19953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883F39E283C20A600C19953 /* AppDelegate.swift */; };
 		E883F3A1283C20A600C19953 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883F3A0283C20A600C19953 /* SceneDelegate.swift */; };
@@ -71,6 +78,13 @@
 		8AE32BD5283D5A3A003DA57B /* ProductOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOption.swift; sourceTree = "<group>"; };
 		8AE32BD7283D5AB5003DA57B /* Variant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variant.swift; sourceTree = "<group>"; };
 		8AE32BD9283D5ADC003DA57B /* ProductEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEnums.swift; sourceTree = "<group>"; };
+		8AE9733C283E77A200725A9B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8AE9733F283E788A00725A9B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8AE97341283E796E00725A9B /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		8AE97343283E798100725A9B /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		8AE97345283ED0FD00725A9B /* PostCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCustomer.swift; sourceTree = "<group>"; };
+		8AE97347283ED14400725A9B /* PostOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOrder.swift; sourceTree = "<group>"; };
+		8AE97349283ED80B00725A9B /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		A2A2D22ECC1FD94D3E3538B5 /* Pods-Shopinist-ShopinistUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopinist-ShopinistUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shopinist-ShopinistUITests/Pods-Shopinist-ShopinistUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A898624C9DE6FEA32AEDCFA7 /* Pods-Shopinist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopinist.release.xcconfig"; path = "Target Support Files/Pods-Shopinist/Pods-Shopinist.release.xcconfig"; sourceTree = "<group>"; };
 		CB4752F052018B015C7B81E5 /* Pods-ShopinistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopinistTests.release.xcconfig"; path = "Target Support Files/Pods-ShopinistTests/Pods-ShopinistTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +160,7 @@
 		8AE32BC4283D42A6003DA57B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8AE9733A283E774D00725A9B /* Services */,
 				8AE32BC5283D42B0003DA57B /* Models */,
 			);
 			path = Model;
@@ -182,6 +197,33 @@
 				8AE32BC8283D434F003DA57B /* Categories.swift */,
 			);
 			name = Category;
+			sourceTree = "<group>";
+		};
+		8AE9733A283E774D00725A9B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8AE9733B283E776800725A9B /* NetworkServices */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8AE9733B283E776800725A9B /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				8AE9733C283E77A200725A9B /* NetworkManager.swift */,
+				8AE97341283E796E00725A9B /* Errors.swift */,
+				8AE97343283E798100725A9B /* EndPoints.swift */,
+				8AE97349283ED80B00725A9B /* NetworkManagerProtocol.swift */,
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		8AE9733E283E787B00725A9B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8AE9733F283E788A00725A9B /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		BFBC4CC816B05181B79904E6 /* Pods */ = {
@@ -222,6 +264,7 @@
 		E883F39D283C20A600C19953 /* Shopinist */ = {
 			isa = PBXGroup;
 			children = (
+				8AE9733E283E787B00725A9B /* Utils */,
 				8AE32BC4283D42A6003DA57B /* Model */,
 				E883F3E6283C4D7000C19953 /* AppDelegate */,
 				E883F3DA283C3C9D00C19953 /* Modules */,
@@ -351,6 +394,7 @@
 				E8B77137283D7299008D17CA /* Customers.swift */,
 				E8B77139283D8430008D17CA /* Customer.swift */,
 				E8B7713B283D8459008D17CA /* Address.swift */,
+				8AE97345283ED0FD00725A9B /* PostCustomer.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -363,6 +407,7 @@
 				E8B77142283D9310008D17CA /* OrderItem.swift */,
 				E8B77144283D9340008D17CA /* OrderFinancialStatus.swift */,
 				E8B77148283D9F79008D17CA /* DiscountCode.swift */,
+				8AE97347283ED14400725A9B /* PostOrder.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -608,6 +653,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AE97344283E798100725A9B /* EndPoints.swift in Sources */,
+				8AE9733D283E77A200725A9B /* NetworkManager.swift in Sources */,
 				8AE32BD8283D5AB5003DA57B /* Variant.swift in Sources */,
 				8AE32BD6283D5A3A003DA57B /* ProductOption.swift in Sources */,
 				8AE32BCF283D4CC6003DA57B /* Products.swift in Sources */,
@@ -616,6 +663,7 @@
 				8AE32BDA283D5ADC003DA57B /* ProductEnums.swift in Sources */,
 				8AE32BCB283D43AF003DA57B /* Category.swift in Sources */,
 				E8B7713F283D84EC008D17CA /* Orders.swift in Sources */,
+				8AE9734A283ED80B00725A9B /* NetworkManagerProtocol.swift in Sources */,
 				E883F3A3283C20A600C19953 /* HomeViewController.swift in Sources */,
 				E883F39F283C20A600C19953 /* AppDelegate.swift in Sources */,
 				8AE32BC9283D434F003DA57B /* Categories.swift in Sources */,
@@ -623,13 +671,17 @@
 				E8B77145283D9340008D17CA /* OrderFinancialStatus.swift in Sources */,
 				E883F3D7283C2C0A00C19953 /* CategoriesViewController.swift in Sources */,
 				E8B7713A283D8430008D17CA /* Customer.swift in Sources */,
+				8AE97342283E796E00725A9B /* Errors.swift in Sources */,
 				E8B7713C283D8459008D17CA /* Address.swift in Sources */,
 				8AE32BD1283D59C0003DA57B /* Product.swift in Sources */,
 				E8B77149283D9F79008D17CA /* DiscountCode.swift in Sources */,
 				E8B77143283D9310008D17CA /* OrderItem.swift in Sources */,
 				E883F3E2283C464B00C19953 /* ProfileViewController.swift in Sources */,
 				E8B77138283D7299008D17CA /* Customers.swift in Sources */,
+				8AE97348283ED14400725A9B /* PostOrder.swift in Sources */,
 				E883F3A9283C20A600C19953 /* Shopinist.xcdatamodeld in Sources */,
+				8AE97346283ED0FD00725A9B /* PostCustomer.swift in Sources */,
+				8AE97340283E788A00725A9B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
