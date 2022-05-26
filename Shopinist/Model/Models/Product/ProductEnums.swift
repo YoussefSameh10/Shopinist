@@ -18,3 +18,10 @@ enum ProductType: String, Codable {
     case shoes = "SHOES"
     case tShirts = "T-SHIRTS"
 }
+
+enum ProductCategory : String {
+    case Men = "400221307115"
+    case Women = "400221339883"
+    case Kids = "400221372651"
+    case Sales = "400221405419"
+}

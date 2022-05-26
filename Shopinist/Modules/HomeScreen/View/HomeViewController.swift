@@ -17,7 +17,13 @@ class HomeViewController: UIViewController {
         
         initTabBarController()
        
-        
+    }
+    
+    
+    @IBAction func goToProductsDetails(_ sender: UIButton) {
+        // let destcVC = ViewController(nibName: "MyViewController", bundle: nil)
+        let destVc = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        self.navigationController?.pushViewController(destVc, animated: true)
     }
     
     func initTabBarController(){
