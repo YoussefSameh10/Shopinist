@@ -13,9 +13,6 @@ struct Products: Codable {
     
     var products: [Product]?
 
-    init(products: [Product]?) {
-        self.products = products
-    }
 }
 
 

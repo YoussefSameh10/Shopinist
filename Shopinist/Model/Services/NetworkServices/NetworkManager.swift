@@ -25,10 +25,10 @@ class NetworkManager : NetworkManagerProtocol{
     
     //MARK: - HttpMethod
     
-    func getRequest<T: Decodable>(fromEndpoint: EndPoints,parameters: Parameters? , ofType : T.Type) -> Future<T,Error> {
+    func getRequest<T: Decodable>(fromEndpoint: String,parameters: Parameters? , ofType : T.Type) -> Future<T,Error> {
         
         return Future { promise in
-            guard let url = URL(string: "\(BASE_URL)\(fromEndpoint.rawValue)") else {
+            guard let url = URL(string: "\(BASE_URL)\(fromEndpoint)") else {
                 promise(.failure(Errors.invalidUrl))
                 return
             }
@@ -60,10 +60,10 @@ class NetworkManager : NetworkManagerProtocol{
     }
     
     
-    func postRequest<T: Decodable>(fromEndpoint: EndPoints, httpBody: Data, httpMethod : HTTPMethod , ofType : T.Type) -> Future<T,Error> {
+    func postRequest<T: Decodable>(fromEndpoint: String, httpBody: Data, httpMethod : HTTPMethod , ofType : T.Type) -> Future<T,Error> {
         
         return Future { promise in
-            guard let url = URL(string: "\(BASE_URL)\(fromEndpoint.rawValue)") else {
+            guard let url = URL(string: "\(BASE_URL)\(fromEndpoint)") else {
                 promise(.failure(Errors.invalidUrl))
                 return
             }

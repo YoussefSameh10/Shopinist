@@ -8,6 +8,29 @@
 
 import Foundation
 
-enum EndPoints : String {
-    case getAllCustomers = "/admin/api/2021-04/customers.json"
+enum EndPoints {
+    
+    case getAllCustomers
+    
+    //MARK: - Products EndPoints
+    
+    case getAllProducts
+    case getProductsOfCategory(categoryId : String)
+
+    
+    var endPoint : String {
+        switch self {
+        case .getAllCustomers:
+            return "/admin/api/2021-04/customers.json"
+        case .getAllProducts:
+            return "/admin/api/2022-04/products.json"
+        case .getProductsOfCategory(categoryId: let categoryId):
+            return "/admin/api/2022-04/collections/\(categoryId)/products.json"
+
+        
+        }
+    }
+
 }
+
+
