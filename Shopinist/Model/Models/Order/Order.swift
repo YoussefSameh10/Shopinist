@@ -13,7 +13,7 @@ struct Order: Codable {
     var id: Int?
     var customer: Customer?
     var orderItems: [OrderItem]?
-    var cancelReason: String
+    var cancelReason: String?
     var currentTotalPrice: String?
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var discountCodes: [DiscountCode]?
@@ -36,5 +36,9 @@ struct Order: Codable {
         case totalPrice = "total_price"
     }
     
+    init(customer: Customer, orderItems: [OrderItem]) {
+        self.customer = customer
+        self.orderItems = orderItems
+    }
 }
 
