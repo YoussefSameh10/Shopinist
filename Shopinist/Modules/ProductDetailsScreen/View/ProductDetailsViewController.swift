@@ -16,7 +16,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     
     private var cancellables : Set<AnyCancellable> = []
     var observer : AnyCancellable?
-    let viewModel = ProductDetailsViewModel()
+    var viewModel: ProductDetailsViewModel! = nil
     
     
     
@@ -64,7 +64,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         
         if collectionView == self.productImagesCollectionView {
             
-            return (viewModel.products?[0].images?.count) ?? 0
+            return (viewModel.product?.images?.count) ?? 0
             
         }else{
             return 8
@@ -108,14 +108,16 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     fileprivate func initViewModel() {
-        viewModel.getAllProducts()
+        /*viewModel.getAllProducts()
         viewModel.$response.sink { products in
             print("products controller \(products?.products?.count)")
             self.productImagesCollectionView.reloadData()
-        }.store(in: &cancellables)
+        }.store(in: &cancellables)*/
     }
     
     fileprivate func setUIDesigns() {
+        self.navigationController?.navigationBar.isHidden = false
+        productDescriptionLabel.text = viewModel.product?.description
         colorView.layer.borderWidth = 10
         colorView.layer.borderColor = UIColor.gray.cgColor
         //viewModel.products?[0].options?[0].name?.rawValue

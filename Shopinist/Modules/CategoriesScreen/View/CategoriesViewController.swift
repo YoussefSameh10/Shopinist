@@ -149,5 +149,11 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        productDetailsVC.viewModel = ProductDetailsViewModel(product: (viewModel.shownProductsList?[indexPath.row])!)
+        self.navigationController?.pushViewController(productDetailsVC, animated: true)
+    }
+    
 }
 
