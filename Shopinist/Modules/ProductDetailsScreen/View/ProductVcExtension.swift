@@ -19,7 +19,7 @@ extension ProductDetailsViewController {
         let nib = UINib(nibName: "ProductCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "productCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
-        cell.productImageView.kf.setImage(with : URL(string: (viewModel.products?[0].images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
+        cell.productImageView.kf.setImage(with : URL(string: (viewModel.product?.images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
         return cell
         
     }
@@ -38,7 +38,7 @@ extension ProductDetailsViewController {
     
     func didSelectProductImageCell(_ indexPath: IndexPath) -> DownloadTask? {
         
-        return productMainImageView.kf.setImage(with : URL(string: (viewModel.products?[0].images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
+        return productMainImageView.kf.setImage(with : URL(string: (viewModel.product?.images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
     }
     
 }
