@@ -8,6 +8,7 @@ target 'Shopinist' do
   # Pods for Shopinist
   pod 'Kingfisher', '~> 5.0'
   pod 'Alamofire', '~> 5.5'
+  pod 'RESegmentedControl'
 
   target 'ShopinistTests' do
     inherit! :search_paths
