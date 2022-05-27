@@ -3,20 +3,24 @@ PODS:
   - Kingfisher (5.15.8):
     - Kingfisher/Core (= 5.15.8)
   - Kingfisher/Core (5.15.8)
+  - RESegmentedControl (0.5.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
   - Kingfisher (~> 5.0)
+  - RESegmentedControl
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - RESegmentedControl
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  RESegmentedControl: 96aa84d861d3715128188c66faf1222d41df756e
 
-PODFILE CHECKSUM: a7772f53a5d4561a690a179e4e3222245b20f329
+PODFILE CHECKSUM: 24a69330983c779819e70e6250ea5be9cc41d97a
 
 COCOAPODS: 1.8.4
