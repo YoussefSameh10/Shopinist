@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
+                <outlet property="adBtn" destination="84L-OL-tsm" id="Rmb-lk-qak"/>
+                <outlet property="brandsCV" destination="1nU-Ce-yxU" id="zWr-FC-zTW"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yhR-Mf-FF3"/>
             </connections>
         </placeholder>
@@ -19,53 +19,74 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Rn-FX-4fG" customClass="CornerView" customModule="Shopinist" customModuleProvider="target">
-                    <rect key="frame" x="85.5" y="357.5" width="243" height="181"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Mohammad," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jR0-Kh-Xsr">
+                    <rect key="frame" x="16" y="76" width="382" height="30.5"/>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="28"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get something?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTt-R6-OZL">
+                    <rect key="frame" x="16" y="114.5" width="382" height="18.5"/>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84L-OL-tsm">
+                    <rect key="frame" x="16" y="149" width="382" height="150"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="181" id="GkN-Ws-zVP"/>
-                        <constraint firstAttribute="width" constant="243" id="gzy-bp-KBd"/>
+                        <constraint firstAttribute="height" constant="150" id="Ili-Uw-qb4"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftTopRadius">
-                            <real key="value" value="90"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightTopRadius">
-                            <real key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightBottomRadius">
-                            <real key="value" value="90"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftBottomRadius">
-                            <real key="value" value="40"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ut-kW-asr">
-                    <rect key="frame" x="97" y="225" width="213" height="62"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="go to product details"/>
+                    <state key="normal" image="adsImg"/>
                     <connections>
-                        <action selector="goToProductsDetails:" destination="-1" eventType="touchUpInside" id="rpt-6N-xWK"/>
+                        <action selector="redirectToAdvertisment:" destination="-1" eventType="touchUpInside" id="wFY-p3-Wou"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kz8-G2-9iz">
+                    <rect key="frame" x="16" y="315" width="382" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="kbi-lT-NGt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="28"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1nU-Ce-yxU">
+                    <rect key="frame" x="16" y="373" width="382" height="473"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gcy-bz-eKj">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="0Rn-FX-4fG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="F3d-3d-eNH"/>
-                <constraint firstItem="0Rn-FX-4fG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="pdu-1N-tFi"/>
+                <constraint firstItem="Kz8-G2-9iz" firstAttribute="leading" secondItem="84L-OL-tsm" secondAttribute="leading" id="CSY-9T-lwb"/>
+                <constraint firstItem="aTt-R6-OZL" firstAttribute="trailing" secondItem="1nU-Ce-yxU" secondAttribute="trailing" id="DqK-VI-LMG"/>
+                <constraint firstItem="aTt-R6-OZL" firstAttribute="leading" secondItem="jR0-Kh-Xsr" secondAttribute="leading" id="H1I-K9-Fpz"/>
+                <constraint firstItem="Kz8-G2-9iz" firstAttribute="top" secondItem="84L-OL-tsm" secondAttribute="bottom" constant="16" id="HXD-UZ-lgK"/>
+                <constraint firstItem="84L-OL-tsm" firstAttribute="leading" secondItem="jR0-Kh-Xsr" secondAttribute="leading" id="JCk-rT-did"/>
+                <constraint firstItem="aTt-R6-OZL" firstAttribute="trailing" secondItem="jR0-Kh-Xsr" secondAttribute="trailing" id="Ktd-xv-2py"/>
+                <constraint firstItem="aTt-R6-OZL" firstAttribute="trailing" secondItem="jR0-Kh-Xsr" secondAttribute="trailing" id="Kyo-1c-X4S"/>
+                <constraint firstItem="84L-OL-tsm" firstAttribute="top" secondItem="aTt-R6-OZL" secondAttribute="bottom" constant="16" id="P14-Ih-rh7"/>
+                <constraint firstItem="jR0-Kh-Xsr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="SZb-GH-GEV"/>
+                <constraint firstItem="aTt-R6-OZL" firstAttribute="leading" secondItem="1nU-Ce-yxU" secondAttribute="leading" id="UdQ-la-4Xr"/>
+                <constraint firstItem="Kz8-G2-9iz" firstAttribute="trailing" secondItem="84L-OL-tsm" secondAttribute="trailing" id="WgK-0e-qjm"/>
+                <constraint firstItem="84L-OL-tsm" firstAttribute="trailing" secondItem="jR0-Kh-Xsr" secondAttribute="trailing" id="acx-qR-WCd"/>
+                <constraint firstItem="1nU-Ce-yxU" firstAttribute="top" secondItem="Kz8-G2-9iz" secondAttribute="bottom" constant="8" id="fLX-OD-0Lh"/>
+                <constraint firstItem="jR0-Kh-Xsr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ltM-Zf-mfB"/>
+                <constraint firstItem="aTt-R6-OZL" firstAttribute="top" secondItem="jR0-Kh-Xsr" secondAttribute="bottom" constant="8" id="rTg-UD-tLF"/>
+                <constraint firstItem="jR0-Kh-Xsr" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="rTp-yJ-jKW"/>
+                <constraint firstItem="aTt-R6-OZL" firstAttribute="leading" secondItem="jR0-Kh-Xsr" secondAttribute="leading" id="rmj-NF-9fx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1nU-Ce-yxU" secondAttribute="bottom" constant="16" id="zW0-EE-UhV"/>
             </constraints>
-            <point key="canvasLocation" x="173.91304347826087" y="204.91071428571428"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-310.14492753623193" y="-125.22321428571428"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="adsImg" width="1024" height="512"/>
     </resources>
 </document>
