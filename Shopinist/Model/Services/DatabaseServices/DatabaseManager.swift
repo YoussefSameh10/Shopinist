@@ -20,7 +20,7 @@ class DatabaseManager: DatabaseManagerProtocol {
     private init(appDelegate: AppDelegate){
         self.appDelegate = appDelegate
         self.viewContext = self.appDelegate.persistentContainer.viewContext
-        self.entity = NSEntityDescription.entity(forEntityName: "LeagueModel", in: self.viewContext)
+        self.entity = NSEntityDescription.entity(forEntityName: "StoredProduct", in: self.viewContext)
     }
     
     static func getInstance(appDelegate: AppDelegate) -> DatabaseManagerProtocol {
@@ -29,7 +29,5 @@ class DatabaseManager: DatabaseManagerProtocol {
         }
         return instance!
     }
-    
-    
     
 }
