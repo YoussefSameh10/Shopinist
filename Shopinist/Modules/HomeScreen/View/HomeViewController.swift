@@ -89,7 +89,7 @@ class HomeViewController: UIViewController {
     }
     
     private func initViewModel(){
-        viewModel = HomeViewModel(productsRepo: ProductsRepo.getInstance())
+        viewModel = HomeViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()))
     }
     
     private func setUpBinding(){
