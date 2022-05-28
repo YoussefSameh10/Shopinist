@@ -17,6 +17,11 @@ class CategoriesViewController: UIViewController{
     
     private var observer: AnyCancellable?
     
+    private var searchController: UISearchController!
+    var isSearchBarEmpty: Bool {
+        return searchController?.searchBar.text?.isEmpty ?? true
+    }
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noProductsLabel: UILabel!
     @IBOutlet weak var mainSegmentedControl: RESegmentedControl!
@@ -24,7 +29,7 @@ class CategoriesViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         initViewModel()
         initView()
     }
@@ -37,6 +42,7 @@ class CategoriesViewController: UIViewController{
         setupCollectionView()
         listenForChangesInProductsList()
         setupSegmentControls()
+        setupSearchController()
     }
     
     private func setupCollectionView() {
@@ -54,21 +60,34 @@ class CategoriesViewController: UIViewController{
     
     private func listenForChangesInProductsList() {
         observer = viewModel.$observableProductsList.sink { (productsList) in
-            self.viewModel.productsList = productsList
-            self.viewModel.shownProductsList = productsList
-            if(productsList == nil) {
-                self.collectionView.isHidden = true
-                self.noProductsLabel.isHidden = false
+            
+            var list: [Product]!
+            if self.isSearchBarEmpty {
+                list = self.viewModel.shownProductsList ?? []
             }
             else {
-                self.collectionView.isHidden = false
-                self.noProductsLabel.isHidden = true
-                self.collectionView.reloadData()
+                list = self.viewModel.searchedProductsList ?? []
+            }
+            
+            if(list == nil || list?.isEmpty ?? true) {
+                self.showEmptyScreen()
+            }
+            else {
+                self.showPopulatedScreen()
             }
         }
     }
     
+    private func showEmptyScreen() {
+        self.collectionView.isHidden = true
+        self.noProductsLabel.isHidden = false
+    }
     
+    private func showPopulatedScreen() {
+        self.collectionView.isHidden = false
+        self.noProductsLabel.isHidden = true
+        self.collectionView.reloadData()
+    }
     
     private func setupSegmentControls() {
         
@@ -98,11 +117,34 @@ class CategoriesViewController: UIViewController{
         }
         
         var preset = MaterialPreset(backgroundColor: .white, tintColor: .black)
+        preset.segmentItemBorderColor = CGColor(srgbRed: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
+        preset.segmentBorderWidth = 0.0
+        preset.segmentItemBorderWidth = 2.0
         preset.textColor = .gray
-        preset.segmentBorderColor = CGColor(srgbRed: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        preset.segmentItemStyle.cornerRadius = 10
+        preset.segmentStyle.cornerRadius = 10
+        preset.segmentSpacing = 16
         
         subSegmentedControl.configure(segmentItems: segmentItems, preset: preset)
     }
+    
+    private func setupSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Products"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
+    }
+    
+    private func filterProductsForSearchText(_ searchText: String) {
+        viewModel.searchedProductsList = viewModel.shownProductsList?.filter { (product: Product) -> Bool in
+            return product.title!.lowercased().contains(searchText.lowercased())
+        }
+        collectionView.reloadData()
+    }
+    
     
     @IBAction func changeMainCategory(_ sender: Any) {
         if mainSegmentedControl.selectedSegmentIndex == 0 {
@@ -117,16 +159,36 @@ class CategoriesViewController: UIViewController{
         else {
             viewModel.getProductsByCategory(category: .Sales)
         }
+        filterProductsForSearchText(searchController.searchBar.text ?? "")
     }
     
     @IBAction func changeSubCategory(_ sender: Any) {
         if subSegmentedControl.selectedSegmentIndex == 0 {
+            viewModel.subCategory = nil
         }
         else if subSegmentedControl.selectedSegmentIndex == 1 {
+            viewModel.subCategory = .shoes
         }
         else if subSegmentedControl.selectedSegmentIndex == 2 {
+            viewModel.subCategory = .tShirts
         }
         else {
+            viewModel.subCategory = .accessories
+        }
+        filterProductsForSearchText(searchController.searchBar.text ?? "")
+        var list: [Product]!
+        if self.isSearchBarEmpty {
+            list = self.viewModel.shownProductsList ?? []
+        }
+        else {
+            list = self.viewModel.searchedProductsList ?? []
+        }
+        if list.isEmpty ?? true {
+            showEmptyScreen()
+        }
+        else {
+            showPopulatedScreen()
+            collectionView.reloadData()
         }
     }
 }
@@ -134,7 +196,12 @@ class CategoriesViewController: UIViewController{
 extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.productsList?.count ?? 0
+        if isSearchBarEmpty {
+            return viewModel.shownProductsList?.count ?? 0
+        }
+        else {
+            return viewModel.searchedProductsList?.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -142,18 +209,40 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
         collectionView.register(nib, forCellWithReuseIdentifier: "Cell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoriesCollectionViewCell
         
-        cell.titleLabel.text = Formatter.formatProductName(productTitle: viewModel.productsList![indexPath.row].title ?? "")
-        cell.priceLabel.text = viewModel.productsList![indexPath.row].variants?[0].price ?? "PRICE"
-        cell.productImageView.kf.setImage(with: URL(string: viewModel.productsList![indexPath.row].images![0].src!))
+        var product: Product!
+        if isSearchBarEmpty {
+            product = viewModel.shownProductsList?[indexPath.row]
+        }
+        else {
+            product = viewModel.searchedProductsList?[indexPath.row]
+        }
+        
+        cell.titleLabel.text = Formatter.formatProductName(productTitle: product.title ?? "")
+        cell.priceLabel.text = product.variants?[0].price ?? "PRICE"
+        cell.productImageView.kf.setImage(with: URL(string: product.images![0].src!))
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        var product: Product!
+        if isSearchBarEmpty {
+            product = viewModel.shownProductsList?[indexPath.row]
+        }
+        else {
+            product = viewModel.searchedProductsList?[indexPath.row]
+        }
+        
         let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
-        productDetailsVC.viewModel = ProductDetailsViewModel(product: (viewModel.shownProductsList?[indexPath.row])!)
+        productDetailsVC.viewModel = ProductDetailsViewModel(product: product)
         self.navigationController?.pushViewController(productDetailsVC, animated: true)
     }
     
 }
 
+extension CategoriesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterProductsForSearchText(searchController.searchBar.text ?? "")
+    }
+}
