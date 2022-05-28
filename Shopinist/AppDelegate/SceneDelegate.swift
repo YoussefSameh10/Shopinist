@@ -28,9 +28,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         let navController = UINavigationController(rootViewController: tabBarController)
-        
+        let catNavC = UINavigationController(rootViewController: categoriesVC)
         tabBarController.addChild(homeVC)
-        tabBarController.addChild(categoriesVC)
+        tabBarController.addChild(catNavC)
         tabBarController.addChild(profileVC)
         
         window?.rootViewController = navController

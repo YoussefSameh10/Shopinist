@@ -17,6 +17,13 @@ class CategoriesViewModel {
     @Published var observableProductsList: [Product]?
     var productsList: [Product]?
     var shownProductsList: [Product]?
+    var searchedProductsList: [Product]?
+    
+    var subCategory: ProductType? {
+        didSet {
+            filterProductBySubCategory()
+        }
+    }
 
     init(productRepo: ProductsRepoProtocol) {
         self.productRepo = productRepo
@@ -33,17 +40,21 @@ class CategoriesViewModel {
                     print("Error: \(error)")
                 }
         }, receiveValue: { (response) in
+            self.productsList = response.products
+            self.shownProductsList = response.products
+            self.filterProductBySubCategory()
             self.observableProductsList = response.products
         })
     }
     
-    func filterProductBySubCategory(category: ProductType?) {
-        if(category == nil) {
+    private func filterProductBySubCategory() {
+        if(subCategory == nil) {
             shownProductsList = productsList
         }
         else {
+            shownProductsList = []
             productsList?.forEach({ (product) in
-                if(product.productType == category) {
+                if(product.productType == subCategory) {
                     shownProductsList?.append(product)
                 }
             })

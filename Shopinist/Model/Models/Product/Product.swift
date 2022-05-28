@@ -20,7 +20,6 @@ struct Product: Codable {
     var images: [ProductImage]?
     
     
-    
     enum CodingKeys: String, CodingKey {
         
         case id, title
