@@ -20,7 +20,7 @@ extension ProductDetailsViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "productCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
         cell.productImageView.kf.setImage(with : URL(string: (viewModel.product?.images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
-        //setCellDesgin(cell)
+        setCellDesgin(cell)
         return cell
         
     }
