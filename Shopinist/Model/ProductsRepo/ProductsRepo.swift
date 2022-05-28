@@ -11,14 +11,16 @@ import Combine
 
 class ProductsRepo : ProductsRepoProtocol {
     
-    private var networkManager = NetworkManager.getInstance()
     private static var instance : ProductsRepo?
+    private var networkManager: NetworkManagerProtocol
     
-    private init(){}
+    private init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
+    }
     
-    static func getInstance() -> ProductsRepo{
+    static func getInstance(networkManager: NetworkManagerProtocol) -> ProductsRepo{
         if instance == nil{
-            instance = ProductsRepo()
+            instance = ProductsRepo(networkManager: networkManager)
         }
         return instance!
     }

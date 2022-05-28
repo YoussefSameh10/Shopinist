@@ -30,10 +30,9 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var productMainImageView: CornerImageView!
     @IBOutlet weak var productSizeCollectionView: UICollectionView!
     
-    @IBOutlet weak var productColorLabel: UILabel!
     @IBOutlet weak var productDescriptionLabel: UILabel!
     @IBOutlet weak var colorView: CornerView!
-    
+    @IBOutlet weak var productColorButton: UIButton!
     
     // MARK: - View did Load
 
@@ -46,17 +45,47 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         
     }
     
-    // MARK: - Actions
+    // MARK: - Functions
     
-    @IBAction func FavouriteButton(_ sender: Any) {
-        print("added to fav")
+    fileprivate func setCollectionViewDelegateAndDataSource() {
+        productImagesCollectionView.delegate = self
+        productImagesCollectionView.dataSource = self
+        productSizeCollectionView.delegate = self
+        productSizeCollectionView.dataSource = self
+        
+        productSizeCollectionView.reloadData()
+
     }
     
-    @IBAction func AddToCartButton(_ sender: Any) {
-        print("added to cart")
+    fileprivate func initViewModel() {
+        /*viewModel.getAllProducts()
+        viewModel.$response.sink { products in
+            print("products controller \(products?.products?.count)")
+            self.productImagesCollectionView.reloadData()
+        }.store(in: &cancellables)*/
     }
     
+    fileprivate func setUIDesigns() {
+        
+        self.navigationController?.navigationBar.isHidden = false
+        productTitleLabel.text = viewModel.product?.title
+        productDescriptionLabel.text = viewModel.product?.description
+        productMainImageView.kf.setImage(with : URL(string: (viewModel.product?.images![0].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
+        
+       //productColorButton.setTitle(viewModel.product?.options![0].name, for: .normal)
+        productColorButton.setTitle("Black", for: .normal)
+        productColorButton.layer.borderWidth = 1
+        productColorButton.layer.borderColor = UIColor.gray.cgColor
+        productColorButton.layer.cornerRadius = 10
+        
+       
+       
+        //viewModel.products?[0].options?[0].name?.rawValue
+        //productTitleLabel.text = viewModel.products?[0].title!
+        //productPriceLabel.text = viewModel.products?[0].variants?[0].price
+    }
     
+   
     // MARK: - CollectionV dataSource and Delegate
     
     
@@ -95,35 +124,18 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDelegate, 
         }
     }
     
-    // MARK: - Functions
+    // MARK: - Actions
     
-    fileprivate func setCollectionViewDelegateAndDataSource() {
-        productImagesCollectionView.delegate = self
-        productImagesCollectionView.dataSource = self
-        productSizeCollectionView.delegate = self
-        productSizeCollectionView.dataSource = self
-        
-        productSizeCollectionView.reloadData()
+    @IBAction func FavouriteButton(_ sender: Any) {
+        print("added to fav")
+    }
+    
+    @IBAction func AddToCartButton(_ sender: Any) {
+        print("added to cart")
+    }
+    
+    
 
-    }
-    
-    fileprivate func initViewModel() {
-        /*viewModel.getAllProducts()
-        viewModel.$response.sink { products in
-            print("products controller \(products?.products?.count)")
-            self.productImagesCollectionView.reloadData()
-        }.store(in: &cancellables)*/
-    }
-    
-    fileprivate func setUIDesigns() {
-        self.navigationController?.navigationBar.isHidden = false
-        productDescriptionLabel.text = viewModel.product?.description
-        colorView.layer.borderWidth = 10
-        colorView.layer.borderColor = UIColor.gray.cgColor
-        //viewModel.products?[0].options?[0].name?.rawValue
-        //productTitleLabel.text = viewModel.products?[0].title!
-        //productPriceLabel.text = viewModel.products?[0].variants?[0].price
-    }
     
 }
 

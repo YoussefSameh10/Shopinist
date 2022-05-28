@@ -11,8 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
-                <outlet property="colorView" destination="aNm-Y3-ji7" id="7Am-1a-dmQ"/>
-                <outlet property="productColorLabel" destination="1WI-gw-5a6" id="Ogr-c6-UvP"/>
+                <outlet property="productColorButton" destination="5Rv-5M-cau" id="Hgz-XP-LHm"/>
                 <outlet property="productDescriptionLabel" destination="pjj-Rf-Cgt" id="435-iW-p9c"/>
                 <outlet property="productImagesCollectionView" destination="CjD-cA-cao" id="XF2-yX-b91"/>
                 <outlet property="productMainImageView" destination="vEW-TB-rdG" id="h9Y-uA-NVD"/>
@@ -28,64 +27,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADIDAS | CLASSIC BACKPACK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Me-VP-oiU">
-                    <rect key="frame" x="16" y="60" width="282" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADIDAS | CLASSIC BACKPACK" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Me-VP-oiU">
+                    <rect key="frame" x="16" y="60" width="334" height="27.5"/>
                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="800 EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04d-vP-qmG">
-                    <rect key="frame" x="16" y="104" width="88" height="29"/>
+                    <rect key="frame" x="16" y="103.5" width="87.5" height="28.5"/>
                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KI-eI-pQp" customClass="CornerView" customModule="Shopinist" customModuleProvider="target">
-                    <rect key="frame" x="82" y="169" width="250" height="180"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shoes_photo_" translatesAutoresizingMaskIntoConstraints="NO" id="vEW-TB-rdG" customClass="CornerImageView" customModule="Shopinist" customModuleProvider="target">
-                            <rect key="frame" x="39" y="31" width="173" height="124"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="leftTopRadius">
-                                    <real key="value" value="40"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="rightTopRadius">
-                                    <real key="value" value="40"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="rightBottomRadius">
-                                    <real key="value" value="40"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="leftBottomRadius">
-                                    <real key="value" value="40"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </imageView>
-                    </subviews>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="180" id="ojc-Hf-MAm"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftTopRadius">
-                            <real key="value" value="80"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightBottomRadius">
-                            <real key="value" value="80"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftBottomRadius">
-                            <real key="value" value="30"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightTopRadius">
-                            <real key="value" value="30"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CjD-cA-cao">
-                    <rect key="frame" x="50" y="365" width="314" height="52"/>
+                    <rect key="frame" x="50" y="302.5" width="314" height="52"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="Wdj-7V-SIj"/>
@@ -99,24 +54,26 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcS-eW-qEZ">
-                    <rect key="frame" x="366" y="58.5" width="40" height="31"/>
+                    <rect key="frame" x="366" y="43" width="40" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="79t-jn-1Ng"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="         "/>
+                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="         ">
+                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="FavouriteButton:" destination="-1" eventType="touchUpInside" id="9K1-s9-Bts"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUO-rf-iVk">
-                    <rect key="frame" x="16" y="441" width="56" height="29"/>
+                    <rect key="frame" x="16" y="378.5" width="56" height="40"/>
                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="colors: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v8-aQ-JYn">
-                    <rect key="frame" x="16" y="494" width="76" height="29"/>
+                    <rect key="frame" x="16" y="442.5" width="75.5" height="28.5"/>
                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -138,48 +95,52 @@
                         <action selector="AddToCartButton:" destination="-1" eventType="touchUpInside" id="QGq-hM-OhG"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vTe-XX-fy4">
-                    <rect key="frame" x="16" y="140.5" width="22" height="20"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.2 reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvE-8j-lma">
-                    <rect key="frame" x="70" y="139" width="96" height="22"/>
-                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AT6-su-xUs">
-                    <rect key="frame" x="98" y="425" width="281" height="45"/>
+                    <rect key="frame" x="98" y="378.5" width="281" height="40"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="93T-AP-3A7"/>
+                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SMj-rE-15q">
                         <size key="itemSize" width="128" height="128"/>
+                        <size key="estimatedItemSize" width="30" height="30"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjj-Rf-Cgt">
-                    <rect key="frame" x="16" y="555" width="382" height="135"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="135" id="C1d-4S-POi"/>
-                    </constraints>
-                    <string key="text">This women\'s backpack has a glam look, thanks to a faux-leather build with an allover fur print. The front zip pocket keeps small things within reach, while an interior divider reins in potential chaos.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNm-Y3-ji7" customClass="CornerView" customModule="Shopinist" customModuleProvider="target">
-                    <rect key="frame" x="115" y="478" width="78" height="61"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="2cm-K6-dup">
+                    <rect key="frame" x="16" y="498.5" width="149.5" height="22"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Blue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WI-gw-5a6">
-                            <rect key="frame" x="15" y="25" width="33" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vTe-XX-fy4">
+                            <rect key="frame" x="0.0" y="-0.5" width="22" height="22"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.2 reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvE-8j-lma">
+                            <rect key="frame" x="54" y="0.0" width="95.5" height="22"/>
                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rv-5M-cau">
+                    <rect key="frame" x="115.5" y="438.5" width="67" height="36"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Black">
+                        <fontDescription key="titleFontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                </button>
+                <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoes_photo_" translatesAutoresizingMaskIntoConstraints="NO" id="vEW-TB-rdG" customClass="CornerImageView" customModule="Shopinist" customModuleProvider="target">
+                    <rect key="frame" x="92" y="112.5" width="230" height="190"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="230" id="hQg-NA-j2X"/>
+                        <constraint firstAttribute="height" constant="190" id="rO5-kf-PVl"/>
+                    </constraints>
+                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="leftTopRadius">
                             <real key="value" value="40"/>
@@ -194,45 +155,51 @@
                             <real key="value" value="40"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                </view>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjj-Rf-Cgt">
+                    <rect key="frame" x="16" y="528.5" width="382" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="yMg-Fv-U0k"/>
+                    </constraints>
+                    <string key="text">This women\'s backpack has a glam look, thanks to a faux-leather build with an allover fur print. The front zip pocket keeps small things within reach, while an interior divider reins in potential chaos.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="vEW-TB-rdG" firstAttribute="top" secondItem="LcS-eW-qEZ" secondAttribute="bottom" constant="38.5" id="0cv-XM-pfd"/>
                 <constraint firstItem="6v8-aQ-JYn" firstAttribute="top" secondItem="kUO-rf-iVk" secondAttribute="bottom" constant="24" id="0us-g0-b1m"/>
-                <constraint firstItem="5KI-eI-pQp" firstAttribute="top" secondItem="LvE-8j-lma" secondAttribute="bottom" constant="8" id="3a0-Ti-Raf"/>
                 <constraint firstItem="04d-vP-qmG" firstAttribute="top" secondItem="2Me-VP-oiU" secondAttribute="bottom" constant="16" id="5hC-8c-fjd"/>
-                <constraint firstItem="aNm-Y3-ji7" firstAttribute="centerY" secondItem="6v8-aQ-JYn" secondAttribute="centerY" id="5pL-bc-tIj"/>
                 <constraint firstItem="fwY-9O-3Br" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="8w9-bJ-GXr"/>
-                <constraint firstItem="vTe-XX-fy4" firstAttribute="top" secondItem="04d-vP-qmG" secondAttribute="bottom" constant="8" id="9EU-YR-EB1"/>
-                <constraint firstItem="LcS-eW-qEZ" firstAttribute="centerY" secondItem="2Me-VP-oiU" secondAttribute="centerY" id="AL9-yJ-ZY4"/>
+                <constraint firstItem="LcS-eW-qEZ" firstAttribute="bottom" secondItem="2Me-VP-oiU" secondAttribute="centerY" id="AL9-yJ-ZY4"/>
                 <constraint firstItem="2Me-VP-oiU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="CMu-nG-Oky"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5KI-eI-pQp" secondAttribute="trailing" constant="82" id="EbV-gx-TEf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AT6-su-xUs" secondAttribute="trailing" constant="35" id="GVW-bt-JGP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fwY-9O-3Br" secondAttribute="trailing" constant="16" id="Gzu-0f-7aq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pjj-Rf-Cgt" secondAttribute="trailing" constant="16" id="HL0-Eb-VjG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fwY-9O-3Br" secondAttribute="bottom" constant="28" id="HdW-13-HOE"/>
+                <constraint firstItem="2cm-K6-dup" firstAttribute="leading" secondItem="6v8-aQ-JYn" secondAttribute="leading" id="IQA-oa-VKx"/>
                 <constraint firstItem="CjD-cA-cao" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="IRv-Xo-DG5"/>
-                <constraint firstItem="CjD-cA-cao" firstAttribute="top" secondItem="5KI-eI-pQp" secondAttribute="bottom" constant="16" id="OAK-Bg-7mX"/>
-                <constraint firstItem="LvE-8j-lma" firstAttribute="leading" secondItem="vTe-XX-fy4" secondAttribute="trailing" constant="32" id="OrV-nh-io4"/>
+                <constraint firstItem="AT6-su-xUs" firstAttribute="centerY" secondItem="kUO-rf-iVk" secondAttribute="centerY" id="Naq-d3-p6K"/>
+                <constraint firstItem="5Rv-5M-cau" firstAttribute="centerY" secondItem="6v8-aQ-JYn" secondAttribute="centerY" id="Rgh-SN-uCY"/>
+                <constraint firstItem="LcS-eW-qEZ" firstAttribute="leading" secondItem="2Me-VP-oiU" secondAttribute="trailing" constant="16" id="V2b-3S-o23"/>
                 <constraint firstItem="pjj-Rf-Cgt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="XqT-3t-qI4"/>
-                <constraint firstItem="vTe-XX-fy4" firstAttribute="leading" secondItem="04d-vP-qmG" secondAttribute="leading" id="aGT-zS-0d0"/>
                 <constraint firstItem="AT6-su-xUs" firstAttribute="bottom" secondItem="kUO-rf-iVk" secondAttribute="bottom" id="brI-HW-eX1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LcS-eW-qEZ" secondAttribute="trailing" constant="8" id="btt-h9-cSG"/>
+                <constraint firstItem="kUO-rf-iVk" firstAttribute="leading" secondItem="04d-vP-qmG" secondAttribute="leading" id="buG-qO-EbG"/>
+                <constraint firstItem="5Rv-5M-cau" firstAttribute="leading" secondItem="6v8-aQ-JYn" secondAttribute="trailing" constant="24" id="dXX-Vi-6io"/>
+                <constraint firstItem="CjD-cA-cao" firstAttribute="top" secondItem="vEW-TB-rdG" secondAttribute="bottom" id="f0e-cK-njQ"/>
+                <constraint firstItem="2cm-K6-dup" firstAttribute="top" secondItem="5Rv-5M-cau" secondAttribute="bottom" constant="24" id="ghM-0h-isV"/>
                 <constraint firstItem="AT6-su-xUs" firstAttribute="leading" secondItem="kUO-rf-iVk" secondAttribute="trailing" constant="26" id="jaa-zN-XA9"/>
                 <constraint firstItem="kUO-rf-iVk" firstAttribute="top" secondItem="CjD-cA-cao" secondAttribute="bottom" constant="24" id="mHi-75-hvT"/>
                 <constraint firstItem="6v8-aQ-JYn" firstAttribute="leading" secondItem="kUO-rf-iVk" secondAttribute="leading" id="nrP-nd-DQT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CjD-cA-cao" secondAttribute="trailing" constant="50" id="nzN-Jg-LqS"/>
-                <constraint firstItem="aNm-Y3-ji7" firstAttribute="leading" secondItem="6v8-aQ-JYn" secondAttribute="trailing" constant="23" id="pGI-Uo-tCj"/>
-                <constraint firstItem="aNm-Y3-ji7" firstAttribute="top" secondItem="AT6-su-xUs" secondAttribute="bottom" constant="8" symbolic="YES" id="pXN-KU-pUO"/>
                 <constraint firstItem="2Me-VP-oiU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qOj-bI-1AU"/>
-                <constraint firstItem="5KI-eI-pQp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="82" id="sK0-Gf-aHF"/>
                 <constraint firstItem="04d-vP-qmG" firstAttribute="leading" secondItem="2Me-VP-oiU" secondAttribute="leading" id="tXy-cE-UMI"/>
-                <constraint firstItem="pjj-Rf-Cgt" firstAttribute="top" secondItem="aNm-Y3-ji7" secondAttribute="bottom" constant="16" id="vWc-nu-DHb"/>
-                <constraint firstItem="AT6-su-xUs" firstAttribute="top" secondItem="CjD-cA-cao" secondAttribute="bottom" constant="8" symbolic="YES" id="xHM-yn-Xt2"/>
-                <constraint firstItem="kUO-rf-iVk" firstAttribute="leading" secondItem="vTe-XX-fy4" secondAttribute="leading" id="xhp-L4-wUP"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aNm-Y3-ji7" secondAttribute="trailing" constant="221" id="y8U-9z-Xfy"/>
-                <constraint firstItem="LvE-8j-lma" firstAttribute="bottom" secondItem="vTe-XX-fy4" secondAttribute="bottom" id="yPq-da-6dX"/>
+                <constraint firstItem="vEW-TB-rdG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="x7w-bB-uLO"/>
+                <constraint firstItem="pjj-Rf-Cgt" firstAttribute="top" secondItem="2cm-K6-dup" secondAttribute="bottom" constant="8" id="xXZ-sY-Lcn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fwY-9O-3Br" secondAttribute="bottom" constant="28" id="yph-NQ-PyX"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="81.696428571428569"/>
