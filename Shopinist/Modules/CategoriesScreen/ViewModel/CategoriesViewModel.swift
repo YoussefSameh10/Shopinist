@@ -34,7 +34,7 @@ class CategoriesViewModel {
                 }
         }, receiveValue: { (response) in
             self.observableProductsList = response.products
-        })
+            })
     }
     
     func filterProductBySubCategory(category: ProductType?) {
