@@ -44,7 +44,7 @@ class CategoriesViewModel {
             self.shownProductsList = response.products
             self.filterProductBySubCategory()
             self.observableProductsList = response.products
-            })
+        })
     }
     
     private func filterProductBySubCategory() {
