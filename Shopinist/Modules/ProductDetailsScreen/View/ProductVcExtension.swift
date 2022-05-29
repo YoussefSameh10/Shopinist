@@ -10,7 +10,47 @@ import Foundation
 import UIKit
 import Kingfisher
 
-extension ProductDetailsViewController {
+extension ProductDetailsViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    // MARK: - CollectionV dataSource and Delegate
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == self.productImagesCollectionView {
+            
+            return (viewModel.product?.images?.count) ?? 0
+            
+        }else{
+            return 8
+        }
+    }
+    
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == self.productImagesCollectionView {
+            return drawProductImageCell(collectionView, indexPath)
+        }
+        else{
+            return drawProductSizeCell(collectionView, indexPath)
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == self.productImagesCollectionView {
+        
+            didSelectProductImageCell(indexPath)
+        }
+        else
+        {
+            
+        }
+    }
+    
     
     // MARK: - Collection View Functions
     
@@ -19,7 +59,7 @@ extension ProductDetailsViewController {
         let nib = UINib(nibName: "ProductCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "productCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
-        cell.productImageView.kf.setImage(with : URL(string: (viewModel.product?.images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
+        cell.productImage = (viewModel.product?.images![indexPath.row].src!)!
         setCellDesgin(cell)
         return cell
         
@@ -37,7 +77,7 @@ extension ProductDetailsViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "productSizeCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productSizeCell", for: indexPath) as! ProductSizeCollectionViewCell
         //cell.productSizeLabel.text = viewModel.products?[0].options?[0].name?.rawValue
-        cell.productSizeLabel.text = "9"
+        cell.productSize = "77"
         setCellDesgin(cell)
         print("size cell  -------")
         return cell
@@ -45,6 +85,8 @@ extension ProductDetailsViewController {
     }
     
     func didSelectProductImageCell(_ indexPath: IndexPath) -> DownloadTask? {
+        
+        
         
         return productMainImageView.kf.setImage(with : URL(string: (viewModel.product?.images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
     }
