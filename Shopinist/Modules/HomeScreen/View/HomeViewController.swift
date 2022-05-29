@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
     }
     
     private func initUI(){
+    
         adBtn.layer.cornerRadius = 25
         adBtn.layer.masksToBounds = true
         adBtn.imageView?.contentMode = .scaleToFill

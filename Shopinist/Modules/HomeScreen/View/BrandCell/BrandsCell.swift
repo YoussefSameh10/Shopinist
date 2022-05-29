@@ -21,6 +21,8 @@ class BrandsCell: UICollectionViewCell {
     private func initUI(){
         brandImg.layer.cornerRadius = 25
         brandImg.layer.masksToBounds = true
+        brandImg.layer.borderWidth = 0.5
+        brandImg.layer.borderColor = UIColor.black.cgColor
     }
     func getNibName() -> String{
         return "brandsCell"
