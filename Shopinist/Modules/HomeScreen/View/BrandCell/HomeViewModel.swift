@@ -40,7 +40,6 @@ class HomeViewModel{
         }
         
         let result : [String] = Array(brandsSet)
-        print(result)
         return result
     }
 }
