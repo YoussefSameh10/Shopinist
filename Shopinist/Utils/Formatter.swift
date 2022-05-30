@@ -25,15 +25,15 @@ class Formatter {
         
         return storedProducts.map { storedProduct -> Product in
             var product = Product()
-            product.id! = Int(storedProduct.id)
+            product.id = Int(storedProduct.id)
             product.title = storedProduct.title
-            product.options![0].values![0] = storedProduct.size!
-            product.options![1].values![0] = storedProduct.color!
+            //product.options![0].values![0] = storedProduct.size ?? ""
+            //product.options![1].values![0] = storedProduct.color ?? ""
             product.description! = storedProduct.details!
-            let images : [String] =  formatStoredProductImage(storedProduct: storedProduct)
-            for image in images {
-                product.images?.append(ProductImage(src: image))
-            }
+//            let images : [String] =  formatStoredProductImage(storedProduct: storedProduct)
+//            for image in images {
+//                product.images?.append(ProductImage(src: image))
+//            }
             return product
         }
         

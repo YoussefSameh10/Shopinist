@@ -70,7 +70,7 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
         let nib = UINib(nibName: "ProductCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "productCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
-        cell.productImageView.kf.setImage(with : URL(string: (viewModel.product?.images![indexPath.row].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
+        cell.productImage = (viewModel.product?.images![indexPath.row].src!)!
         setCellDesgin(cell)
         return cell
         
@@ -88,7 +88,7 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
         collectionView.register(nib, forCellWithReuseIdentifier: "productSizeCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productSizeCell", for: indexPath) as! ProductSizeCollectionViewCell
         //cell.productSizeLabel.text = viewModel.products?[0].options?[0].name?.rawValue
-        cell.productSizeLabel.text = "9"
+        cell.productSize = "7"
         setCellDesgin(cell)
         print("size cell  -------")
         return cell

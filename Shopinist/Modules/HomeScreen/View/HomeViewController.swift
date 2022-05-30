@@ -71,11 +71,11 @@ class HomeViewController: UIViewController {
             while(true){
                 DispatchQueue.main.async {
                     let indx = (self.pageIndex + 1) % 3
-                    print("Hi I am in thread !!, currentPage = \(self.pageIndex), and next = \(indx)")
-                    print("currentPage before edit: \(self.adPageControl.currentPage)")
+                    //print("Hi I am in thread !!, currentPage = \(self.pageIndex), and next = \(indx)")
+                    //print("currentPage before edit: \(self.adPageControl.currentPage)")
                     self.pageIndex = indx
                     self.adPageControl.currentPage = indx
-                    print("currentPage after edit: \(self.adPageControl.currentPage)")
+                    //print("currentPage after edit: \(self.adPageControl.currentPage)")
                     self.adBtn.setImage(UIImage(named: "banner\(indx + 1)"), for: .normal)
                 }
                 sleep(5)
