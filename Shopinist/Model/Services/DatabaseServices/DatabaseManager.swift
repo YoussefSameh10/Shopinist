@@ -16,7 +16,7 @@ class DatabaseManager: DatabaseManagerProtocol {
     var entity : NSEntityDescription!
     
     private static var instance: DatabaseManagerProtocol?
-
+    
     private init(appDelegate: AppDelegate){
         self.appDelegate = appDelegate
         self.viewContext = self.appDelegate.persistentContainer.viewContext
@@ -57,6 +57,36 @@ class DatabaseManager: DatabaseManagerProtocol {
             print(error.localizedDescription)
         }
     }
+    
+    func getAllFavourites() -> [Product] {
+        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
+        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", true)
+        var favouritesProducts : [StoredProduct]?
+        do{
+            favouritesProducts = try viewContext.fetch(fetchRequest)
+        }catch let error {
+            print(error.localizedDescription)
+        }
+        var products : [Product]
+        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
+        return products
+    }
+    
+    func getCartProduct() -> [Product] {
+        
+        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
+        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", false)
+        var cartProducts : [StoredProduct]?
+        do{
+            cartProducts =  try viewContext.fetch(fetchRequest)
+        }catch let error {
+            print(error.localizedDescription)
+        }
+        var products : [Product]
+        products = Formatter.convertStoredProductsToProducts(storedProducts: cartProducts!)
+        return products
+    }
+    
 }
 
 extension DatabaseManager {
@@ -83,42 +113,42 @@ extension DatabaseManager {
             print(error.localizedDescription)
             return []
         }
-=======
-    func remove(product : Product, isFav :Bool){
-        let productToDelete = productToStoredProduct(product: product)
-        productToDelete.isFavorite = isFav
-        self.viewContext.delete(productToDelete)
-        do{
-            try self.viewContext.save()
-        }
-        catch{
-            print("Item didn't delete successfully !!")
-        }
-    }
-    
-    func add(product : Product, isFav : Bool) {
-        let storedProduct = productToStoredProduct(product: product)
-        storedProduct.setValue(isFav, forKey: "isFavorite")
         
-        let isFound = false
-        if (isFound){
-            storedProduct.setValue(storedProduct.count + 1, forKey: "count")
-            if (isFav == false){
-                //TODO: Update
-            }
-        }
-        else{
-            do
-            {
+        func remove(product : Product, isFav :Bool){
+            let productToDelete = productToStoredProduct(product: product)
+            productToDelete.isFavorite = isFav
+            self.viewContext.delete(productToDelete)
+            do{
                 try self.viewContext.save()
             }
-            catch
-            {
-                print("Cannot be added !!!")
+            catch{
+                print("Item didn't delete successfully !!")
+            }
+        }
+        
+        func add(product : Product, isFav : Bool) {
+            let storedProduct = productToStoredProduct(product: product)
+            storedProduct.setValue(isFav, forKey: "isFavorite")
+            
+            let isFound = false
+            if (isFound){
+                storedProduct.setValue(storedProduct.count + 1, forKey: "count")
+                if (isFav == false){
+                    //TODO: Update
+                }
+            }
+            else{
+                do
+                {
+                    try self.viewContext.save()
+                }
+                catch
+                {
+                    print("Cannot be added !!!")
+                }
             }
         }
     }
-    
     private func productToStoredProduct(product: Product) -> StoredProduct {
         let storedProduct = StoredProduct(entity: self.entity, insertInto: viewContext)
         storedProduct.id = Int64(product.id!)

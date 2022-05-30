@@ -10,7 +10,58 @@ import Foundation
 import UIKit
 import Kingfisher
 
-extension ProductDetailsViewController {
+extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
+    
+    
+    func setCollectionViewDelegateAndDataSource() {
+        productImagesCollectionView.delegate = self
+        productImagesCollectionView.dataSource = self
+        productSizeCollectionView.delegate = self
+        productSizeCollectionView.dataSource = self
+        
+        productSizeCollectionView.reloadData()
+
+    }
+    
+    // MARK: - CollectionV dataSource and Delegate
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == self.productImagesCollectionView {
+            
+            return (viewModel.product?.images?.count) ?? 0
+            
+        }else{
+            return 8
+        }
+    }
+    
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == self.productImagesCollectionView {
+            return drawProductImageCell(collectionView, indexPath)
+        }
+        else{
+            return drawProductSizeCell(collectionView, indexPath)
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == self.productImagesCollectionView {
+        
+            didSelectProductImageCell(indexPath)
+        }
+        else
+        {
+            
+        }
+    }
+    
+    
     
     // MARK: - Collection View Functions
     
