@@ -18,4 +18,6 @@ protocol DatabaseManagerProtocol {
     //update
     func updateProductCountInCart(product: Product, count: Int)
     //delete
+    func add(product : Product, isFav : String)
+    func remove(product : Product, isFav :String)
 }

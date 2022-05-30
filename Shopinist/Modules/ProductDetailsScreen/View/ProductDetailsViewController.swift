@@ -82,11 +82,20 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func FavouriteButton(_ sender: Any) {
         print("added to fav")
+        viewModel.addToFav()
+        viewModel.addToCart()
+        //viewModel.removeFavFromDb()
     }
     
     @IBAction func AddToCartButton(_ sender: Any) {
         print("added to cart")
+        //viewModel.addToCart()
+        viewModel.getFavProducts()
+        viewModel.getCartProducts()
+        
     }
+    
+   
     
     
 

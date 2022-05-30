@@ -11,6 +11,8 @@ import CoreData
 
 class DatabaseManager: DatabaseManagerProtocol {
     
+    // MARK: - Variables
+    
     var appDelegate: AppDelegate!
     var viewContext : NSManagedObjectContext!
     var entity : NSEntityDescription!
@@ -58,9 +60,11 @@ class DatabaseManager: DatabaseManagerProtocol {
         }
     }
     
+    // MARK: - getAllFavourites
+    
     func getAllFavourites() -> [Product] {
         let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
-        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", true)
+        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", "true")
         var favouritesProducts : [StoredProduct]?
         do{
             favouritesProducts = try viewContext.fetch(fetchRequest)
@@ -75,7 +79,7 @@ class DatabaseManager: DatabaseManagerProtocol {
     func getCartProduct() -> [Product] {
         
         let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
-        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", false)
+        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", "false")
         var cartProducts : [StoredProduct]?
         do{
             cartProducts =  try viewContext.fetch(fetchRequest)
@@ -114,49 +118,67 @@ extension DatabaseManager {
             return []
         }
         
-        func remove(product : Product, isFav :Bool){
-            let productToDelete = productToStoredProduct(product: product)
-            productToDelete.isFavorite = isFav
-            self.viewContext.delete(productToDelete)
-            do{
-                try self.viewContext.save()
-            }
-            catch{
-                print("Item didn't delete successfully !!")
+    }
+    
+    // MARK: - Remove Product From DB
+    
+    func remove(product : Product, isFav :String){
+        let productToDelete = productToStoredProduct(product: product)
+        //productToDelete.isFavorite = isFav
+        self.viewContext.delete(productToDelete)
+        do{
+            try self.viewContext.save()
+        }
+        catch{
+            print("Item didn't delete successfully !!")
+        }
+    }
+    
+    // MARK: - Add Product To DB
+    
+    func add(product : Product, isFav : String) {
+        var storedProduct = productToStoredProduct(product: product)
+        
+        storedProduct.setValue(isFav, forKey: "isFavorite")
+        
+        
+        //var imgStr = product.images!.reduce(""){ $0.src! + "|" + $1.src!}
+        let isFound = false
+//        do
+//        {
+//            try self.viewContext.save()
+//        }
+//        catch
+//        {
+//            print("Cannot be added !!!")
+//        }
+        if (isFound){
+            storedProduct.setValue(storedProduct.count + 1, forKey: "count")
+            if (isFav == "false"){
+                //TODO: Update
             }
         }
-        
-        func add(product : Product, isFav : Bool) {
-            let storedProduct = productToStoredProduct(product: product)
-            storedProduct.setValue(isFav, forKey: "isFavorite")
-            
-            let isFound = false
-            if (isFound){
-                storedProduct.setValue(storedProduct.count + 1, forKey: "count")
-                if (isFav == false){
-                    //TODO: Update
-                }
+        else{
+            do
+            {
+                try self.viewContext.save()
             }
-            else{
-                do
-                {
-                    try self.viewContext.save()
-                }
-                catch
-                {
-                    print("Cannot be added !!!")
-                }
+            catch
+            {
+                print("Cannot be added !!!")
             }
         }
     }
+    
     private func productToStoredProduct(product: Product) -> StoredProduct {
         let storedProduct = StoredProduct(entity: self.entity, insertInto: viewContext)
         storedProduct.id = Int64(product.id!)
         storedProduct.title = product.title!
-        storedProduct.color = product.options![1].values![0]
-        storedProduct.size = product.options![0].values![0]
+        storedProduct.color = product.options?[1].values?[0] ?? ""
+        storedProduct.size = product.options?[0].values?[0] ?? ""
         storedProduct.details = product.description!
-        storedProduct.isFavorite = false
+        //storedProduct.isFavorite = true
+        
         
         //var imgStr = product.images!.reduce(""){ $0.src! + "|" + $1.src!}
         
