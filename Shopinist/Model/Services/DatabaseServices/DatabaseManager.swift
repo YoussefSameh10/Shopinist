@@ -31,6 +31,7 @@ class DatabaseManager: DatabaseManagerProtocol{
     }
     
 
+
     func getAllFavourites() -> [Product] {
         let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
         fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", true)
@@ -64,4 +65,63 @@ class DatabaseManager: DatabaseManagerProtocol{
     
     
     
+
+    func remove(product : Product, isFav :Bool){
+        let productToDelete = productToStoredProduct(product: product)
+        productToDelete.isFavorite = isFav
+        self.viewContext.delete(productToDelete)
+        do{
+            try self.viewContext.save()
+        }
+        catch{
+            print("Item didn't delete successfully !!")
+        }
+    }
+    
+    func add(product : Product, isFav : Bool) {
+        let storedProduct = productToStoredProduct(product: product)
+        storedProduct.setValue(isFav, forKey: "isFavorite")
+        
+        let isFound = false
+        if (isFound){
+            storedProduct.setValue(storedProduct.count + 1, forKey: "count")
+            if (isFav == false){
+                //TODO: Update
+            }
+        }
+        else{
+            do
+            {
+                try self.viewContext.save()
+            }
+            catch
+            {
+                print("Cannot be added !!!")
+            }
+        }
+    }
+    
+    private func productToStoredProduct(product: Product) -> StoredProduct {
+        let storedProduct = StoredProduct(entity: self.entity, insertInto: viewContext)
+        storedProduct.id = Int64(product.id!)
+        storedProduct.title = product.title!
+        storedProduct.color = product.options![1].values![0]
+        storedProduct.size = product.options![0].values![0]
+        storedProduct.details = product.description!
+        storedProduct.isFavorite = false
+        
+        //var imgStr = product.images!.reduce(""){ $0.src! + "|" + $1.src!}
+        
+        var imagesStr = ""
+        for image in product.images! {
+            imagesStr.append(contentsOf: image.src!)
+            imagesStr.append("|")
+        }
+        
+        imagesStr.removeLast()
+        
+        storedProduct.images = imagesStr
+        return storedProduct
+    }
+
 }
