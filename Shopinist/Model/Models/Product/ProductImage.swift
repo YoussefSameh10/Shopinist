@@ -12,6 +12,10 @@ import Foundation
 struct ProductImage: Codable {
     var id, productID: Int?
     var src: String?
+    
+    init(src : String){
+        self.src = src
+    }
 
     enum CodingKeys: String, CodingKey {
         case id

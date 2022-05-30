@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class DatabaseManager: DatabaseManagerProtocol {
+class DatabaseManager: DatabaseManagerProtocol{
     
     var appDelegate: AppDelegate!
     var viewContext : NSManagedObjectContext!
@@ -29,5 +29,39 @@ class DatabaseManager: DatabaseManagerProtocol {
         }
         return instance!
     }
+    
+
+    func getAllFavourites() -> [Product] {
+        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
+        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", true)
+        var favouritesProducts : [StoredProduct]?
+        do{
+             favouritesProducts = try viewContext.fetch(fetchRequest)
+        }catch let error {
+            print(error.localizedDescription)
+        }
+        var products : [Product]
+        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
+        return products
+    }
+    
+    func getCartProduct() -> [Product] {
+        
+        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
+        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", false)
+        var cartProducts : [StoredProduct]?
+        do{
+             cartProducts =  try viewContext.fetch(fetchRequest)
+        }catch let error {
+            print(error.localizedDescription)
+        }
+        var products : [Product]
+        products = Formatter.convertStoredProductsToProducts(storedProducts: cartProducts!)
+        return products
+    }
+    
+    
+    
+    
     
 }

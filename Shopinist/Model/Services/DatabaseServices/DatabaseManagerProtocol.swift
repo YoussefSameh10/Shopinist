@@ -14,4 +14,6 @@ protocol DatabaseManagerProtocol {
     //add
     //update
     //delete
+    func getAllFavourites() -> [Product]
+    func getCartProduct() -> [Product]
 }
