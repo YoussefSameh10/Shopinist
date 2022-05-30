@@ -13,14 +13,16 @@ class ProductsRepo : ProductsRepoProtocol {
     
     private static var instance : ProductsRepo?
     private var networkManager: NetworkManagerProtocol
+    private var databseManager : DatabaseManagerProtocol
     
-    private init(networkManager: NetworkManagerProtocol) {
+    private init(networkManager: NetworkManagerProtocol , databseManager : DatabaseManagerProtocol) {
         self.networkManager = networkManager
+        self.databseManager = databseManager
     }
     
-    static func getInstance(networkManager: NetworkManagerProtocol) -> ProductsRepo{
+    static func getInstance(networkManager: NetworkManagerProtocol ,  databseManager : DatabaseManagerProtocol) -> ProductsRepo{
         if instance == nil{
-            instance = ProductsRepo(networkManager: networkManager)
+            instance = ProductsRepo(networkManager: networkManager, databseManager: databseManager)
         }
         return instance!
     }
