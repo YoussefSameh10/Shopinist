@@ -14,15 +14,17 @@ class HomeViewController: UIViewController {
     //MARK:- Outlets
     @IBOutlet weak var adBtn: UIButton!
     @IBOutlet weak var brandsCV: UICollectionView!
+    @IBOutlet weak var adPageControl: UIPageControl!
     
     //MARK:- Variables
+    private var pageIndex : Int = -1
     private var viewModel : HomeViewModel?
     private var cancellables : Set<AnyCancellable> = []
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        pageIndex = -1
         initViewModel()
         initUI()
         setUpBinding()
@@ -34,6 +36,13 @@ class HomeViewController: UIViewController {
         if let url = URL(string: "https://www.amazon.com") {
             UIApplication.shared.open(url)
         }
+    }
+    
+    @IBAction func pageValueChanged(_ sender: UIPageControl) {
+        print("Current Page: \(adPageControl.currentPage)")
+        pageIndex = adPageControl.currentPage
+        adBtn.setImage(UIImage(named: "banner\(pageIndex + 1)"), for: .normal)
+        
     }
     
     @IBAction func goToProductsDetails(_ sender: UIButton) {
@@ -56,11 +65,32 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    private func initUI(){
+    private func changeImageAutomatically(){
+        DispatchQueue.global(qos: .background).async {
+            while(true){
+                DispatchQueue.main.async {
+                    let indx = (self.pageIndex + 1) % 3
+                    print("Hi I am in thread !!, currentPage = \(self.pageIndex), and next = \(indx)")
+                    print("currentPage before edit: \(self.adPageControl.currentPage)")
+                    self.pageIndex = indx
+                    self.adPageControl.currentPage = indx
+                    print("currentPage after edit: \(self.adPageControl.currentPage)")
+                    self.adBtn.setImage(UIImage(named: "banner\(indx + 1)"), for: .normal)
+                }
+                sleep(5)
+            }
+        }
+    }
     
+    private func initUI(){
+        changeImageAutomatically()
+//        adPageControl.currentPage = pageIndex + 1
+//        adBtn.setImage(UIImage(named: "banner\(pageIndex + 1)"), for: .normal)
+        
         adBtn.layer.cornerRadius = 25
         adBtn.layer.masksToBounds = true
         adBtn.imageView?.contentMode = .scaleToFill
+        
         
         initCollectionView(brandsCV, height: Float(brandsCV.bounds.height / 3), width: Float(UIScreen.main.bounds.width / 2 - 24), radius: 25, spacing:4, isHorizontal: false)
         
@@ -104,7 +134,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = self.viewModel?.brands?.count ?? 0
-        print("itemsCount: \(count)")
         return count
     }
     
