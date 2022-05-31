@@ -20,11 +20,15 @@ class ProductDetailsViewController: UIViewController {
     
     
     
+    
     // MARK: - Outlets
     
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productReviewsLabel: UILabel!
+    
+    @IBOutlet weak var favouriteButtonImage: UIButton!
+    
     
     @IBOutlet weak var productImagesCollectionView: UICollectionView!
     @IBOutlet weak var productMainImageView: CornerImageView!
@@ -38,6 +42,14 @@ class ProductDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        viewModel.getCartProducts()
+        print("*****\(viewModel.isInFavourite())")
+        if(viewModel.isInFavourite()){
+            favouriteButtonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }else{
+            favouriteButtonImage.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
         
         setCollectionViewDelegateAndDataSource()
         setUIDesigns()
@@ -82,16 +94,27 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func FavouriteButton(_ sender: Any) {
         print("added to fav")
-        viewModel.addToFav()
-        viewModel.addToCart()
-        //viewModel.removeFavFromDb()
+        var isFav = viewModel.isInFavourite()
+        if(!isFav){
+            viewModel.addToFav()
+            favouriteButtonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+    
+        }else{
+            viewModel.removeFavFromDb()
+            favouriteButtonImage.setImage(UIImage(systemName: "heart"), for: .normal)
+
+        }
     }
     
     @IBAction func AddToCartButton(_ sender: Any) {
         print("added to cart")
-        //viewModel.addToCart()
+        viewModel.addToCart()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.getFavProducts()
-        viewModel.getCartProducts()
         
     }
     

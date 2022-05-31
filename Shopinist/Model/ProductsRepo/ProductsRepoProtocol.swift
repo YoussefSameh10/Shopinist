@@ -13,5 +13,18 @@ protocol ProductsRepoProtocol {
     
     func getAllProducts() -> Future<Products,Error>
     func getAllProductsOfCategory(category : ProductCategory) -> Future<Products,Error>
+    func addProductIntoFavouritesDb(product : Product)
+    
+    func addProductIntoCartDb(product : Product)
+    
+    func getAllFavouritesFromDb() -> [Product]
+    
+    func isInFavourites(id:Int) -> Bool
+    
+    func getCartProductsFromDb() -> [Product]
+    
+    func removeFavProductFromDb(product : Product)
+    
+    func removeCartProductFromDb(product : Product)
     
 }

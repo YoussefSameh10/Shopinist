@@ -32,16 +32,20 @@ class DatabaseManager: DatabaseManagerProtocol {
         return instance!
     }
     
+    // MARK: - Check
+    
     func isInFavorites(id: Int) -> Bool {
-        return isProductExists(id: id, isFavorite: true)
+        return isProductExists(id: id, isFavorite: "true")
     }
     
     func isInCart(id: Int) -> Bool {
-        return isProductExists(id: id, isFavorite: false)
+        return isProductExists(id: id, isFavorite: "false")
     }
     
+    // MARK: - UpdateProduct
+    
     func updateProductCountInCart(product: Product, count: Int) {
-        let products = getProducts(id: product.id!, isFavorite: false)
+        let products = getProducts(id: product.id!, isFavorite: "false")
         if products.isEmpty {
             return
         }
@@ -76,6 +80,8 @@ class DatabaseManager: DatabaseManagerProtocol {
         return products
     }
     
+    // MARK: - getCartProducts
+    
     func getCartProduct() -> [Product] {
         
         let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
@@ -95,20 +101,28 @@ class DatabaseManager: DatabaseManagerProtocol {
 
 extension DatabaseManager {
     
-    private func isProductExists(id: Int, isFavorite: Bool) -> Bool {
+    private func isProductExists(id: Int, isFavorite: String) -> Bool {
         if getProducts(id: id, isFavorite: isFavorite).isEmpty {
             return false
         }
         return true
     }
     
-    private func getProducts(id: Int, isFavorite: Bool) -> [StoredProduct] {
+    // MARK: - getProductWithId
+    
+    func getProducts(id: Int, isFavorite: String) -> [StoredProduct] {
         let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
-        fetchRequest.predicate = NSPredicate(format: "id == %@ && isFavorite == %@", id, isFavorite)
+        let predict1 = NSPredicate(format: "id == %@", NSNumber(integerLiteral: id))
+        let perdicate2 = NSPredicate(format: "isFavorite == %@", isFavorite)
+        let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predict1,perdicate2])
+        fetchRequest.predicate = compundPredicate
+        //fetchRequest.predicate = NSPredicate(format: "id == %@ AND isFavorite == %@", id, isFavorite)
         var products: [StoredProduct] = []
         do{
             products = try viewContext.fetch(fetchRequest)
             if products.count > 0 {
+                print("****** get product from db \(products[0].id)")
+                            print("****** id param \(id)")
                 return products
             }
             return []
@@ -123,9 +137,16 @@ extension DatabaseManager {
     // MARK: - Remove Product From DB
     
     func remove(product : Product, isFav :String){
-        let productToDelete = productToStoredProduct(product: product)
-        //productToDelete.isFavorite = isFav
-        self.viewContext.delete(productToDelete)
+        print(product.id)
+        //var productToDelete = productToStoredProduct(product: product)
+        var productToDelete = getProducts(id: product.id!, isFavorite: isFav)
+        productToDelete[0].setValue(isFav, forKey: "isFavorite")
+        print(productToDelete[0].title)
+        print(productToDelete[0].id)
+        print(productToDelete[0].isFavorite)
+        self.viewContext.delete(productToDelete[0])
+        print("*** product removed *** ")
+
         do{
             try self.viewContext.save()
         }
@@ -162,6 +183,8 @@ extension DatabaseManager {
             do
             {
                 try self.viewContext.save()
+                print("*** product added *** ")
+                print("productc added = \(product.title) **** \(product.id)")
             }
             catch
             {
@@ -169,6 +192,8 @@ extension DatabaseManager {
             }
         }
     }
+    
+    // MARK: - MapProductToStoredProduct
     
     private func productToStoredProduct(product: Product) -> StoredProduct {
         let storedProduct = StoredProduct(entity: self.entity, insertInto: viewContext)
