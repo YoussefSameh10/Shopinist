@@ -13,14 +13,17 @@ class ProductsRepo : ProductsRepoProtocol {
     
     private static var instance : ProductsRepo?
     private var networkManager: NetworkManagerProtocol
+    private var databaseManager : DatabaseManagerProtocol
     
-    private init(networkManager: NetworkManagerProtocol) {
+    
+    private init(networkManager: NetworkManagerProtocol , databseManager : DatabaseManagerProtocol) {
         self.networkManager = networkManager
+        self.databaseManager = databseManager
     }
     
-    static func getInstance(networkManager: NetworkManagerProtocol) -> ProductsRepo{
+    static func getInstance(networkManager: NetworkManagerProtocol ,  databseManager : DatabaseManagerProtocol) -> ProductsRepo{
         if instance == nil{
-            instance = ProductsRepo(networkManager: networkManager)
+            instance = ProductsRepo(networkManager: networkManager, databseManager: databseManager)
         }
         return instance!
     }
@@ -37,6 +40,29 @@ class ProductsRepo : ProductsRepoProtocol {
         return networkCall
     }
     
+    func addProductIntoFavouritesDb(product : Product){
+        databaseManager.add(product: product, isFav: "true")
+    }
+    
+    func addProductIntoCartDb(product : Product){
+        databaseManager.add(product: product, isFav: "false")
+    }
+    
+    func getFavouritesFromDb() -> [Product]{
+        return databaseManager.getAllFavourites()
+    }
+    
+    func getCartProductsFromDb() -> [Product]{
+        return databaseManager.getCartProduct()
+    }
+    
+    func removeFavProductFromDb(product : Product){
+        databaseManager.remove(product: product, isFav: "true")
+    }
+    
+    func removeCartProductFromDb(product : Product){
+        databaseManager.remove(product: product, isFav: "false")
+    }
     
     
 }

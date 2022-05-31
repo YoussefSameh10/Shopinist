@@ -13,6 +13,12 @@ class ProductSizeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var productSizeLabel: UILabel!
     
+    var productSize : String  = "" {
+        didSet {
+            productSizeLabel.text = productSize
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

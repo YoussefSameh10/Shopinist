@@ -13,6 +13,9 @@ import RESegmentedControl
 
 class CategoriesViewController: UIViewController{
     
+    var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
+
+    
     private var viewModel: CategoriesViewModel!
     private let networkManager : NetworkManagerProtocol? = nil
     
@@ -36,7 +39,7 @@ class CategoriesViewController: UIViewController{
     }
     
     private func initViewModel() {
-        viewModel = CategoriesViewModel(productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()))
+        viewModel = CategoriesViewModel(productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(),databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)))
     }
     
     private func initView() {

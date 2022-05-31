@@ -19,7 +19,13 @@ struct Product: Codable {
     var options: [ProductOption]?
     var images: [ProductImage]?
     
-    
+    init(){
+        self.id = 0
+        self.title = ""
+        self.description = ""
+        self.vendor = ""
+        self.options = []
+    }
     
     enum CodingKeys: String, CodingKey {
         

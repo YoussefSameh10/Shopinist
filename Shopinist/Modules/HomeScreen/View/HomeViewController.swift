@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     private var pageIndex : Int = -1
     private var viewModel : HomeViewModel?
     private var cancellables : Set<AnyCancellable> = []
+    private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
@@ -125,7 +126,7 @@ class HomeViewController: UIViewController {
     }
     
     private func initViewModel(){
-        viewModel = HomeViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()))
+        viewModel = HomeViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(),databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)))
     }
     
     private func setUpBinding(){
