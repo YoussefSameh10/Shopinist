@@ -33,7 +33,7 @@ class NetworkManager : NetworkManagerProtocol{
                 return
             }
             AF.request(url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination:.queryString), headers: nil).responseJSON { (response) in
-                print(response.request)
+//                print(response.request)
                 if let error = response.error {
                     promise(.failure(error))
                 }
