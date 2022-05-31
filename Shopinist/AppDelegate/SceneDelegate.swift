@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Three main tabs
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        let categoriesVC = CategoriesViewController(nibName: "CategoriesViewController", bundle: nil)
+        let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController", bundle: nil)
         let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
         
         let tabBarController = UITabBarController()
