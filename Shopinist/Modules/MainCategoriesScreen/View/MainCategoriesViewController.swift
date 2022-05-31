@@ -10,22 +10,25 @@ import UIKit
 
 class MainCategoriesViewController: UIViewController  {
 
-    let images = [
-        "men",
-        "women",
-        "kids",
-        "sales"
-    ]
+    var viewModel: MainCategoriesViewModelProtocol!
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideNavBar()
+        initViewModel()
         setupCollectionView()
     }
     
+    override func viewDidLayoutSubviews() {
+        hideNavBar()
+    }
+    
+    private func initViewModel() {
+        viewModel = MainCategoriesViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()))
+    }
+    
     private func hideNavBar() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setupCollectionView() {
@@ -50,26 +53,32 @@ extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionVi
         let nib = UINib(nibName: "MainCategoryCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "Cell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MainCategoryCell
-        cell.image = images[indexPath.row]
-        cell.name = images[indexPath.row].capitalized
+        cell.image = viewModel.titles[indexPath.row]
+        cell.name = viewModel.titles[indexPath.row].capitalized
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let categoriesVC = CategoriesViewController(nibName: "CategoriesViewController", bundle: nil)
+        var category: ProductCategory!
         if(indexPath.row == 0) {
-            categoriesVC.initViewModel(category: .Men)
+            viewModel.category = .Men
+            category = .Men
         }
         else if(indexPath.row == 1) {
-            categoriesVC.initViewModel(category: .Women)
+            viewModel.category = .Women
+            category = .Women
         }
         else if(indexPath.row == 2) {
-            categoriesVC.initViewModel(category: .Kids)
+            viewModel.category = .Kids
+            category = .Kids
         }
         else {
-            categoriesVC.initViewModel(category: .Sales)
+            viewModel.category = .Sales
+            category = .Sales
         }
         
+        categoriesVC.initViewModel(products: viewModel.filteredProducts ?? [], category: category)
         self.navigationController?.pushViewController(categoriesVC, animated: true)
         
     }

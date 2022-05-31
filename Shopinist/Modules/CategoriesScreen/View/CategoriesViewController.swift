@@ -33,9 +33,10 @@ class CategoriesViewController: UIViewController{
         initView()
     }
         
-    func initViewModel(category: ProductCategory) {
+    func initViewModel(products: [Product], category: ProductCategory) {
         viewModel = CategoriesViewModel(
             productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()),
+            products: products,
             category: category
         )
     }
@@ -49,8 +50,8 @@ class CategoriesViewController: UIViewController{
     }
     
     private func showNavBar() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        var title = "Title"
+        navigationController?.navigationBar.isHidden = false
+        var title = ""
         if(viewModel.category == .Men) {
             title = "Men"
         }
@@ -60,10 +61,13 @@ class CategoriesViewController: UIViewController{
         else if(viewModel.category == .Kids) {
             title = "Kids"
         }
-        else {
+        else if viewModel.category == .Sales {
             title = "Sales"
         }
-        navigationController?.navigationBar.topItem?.title = title
+        else {
+            title = ""
+        }
+        self.title = title
         navigationController?.navigationBar.tintColor = .black
     }
     

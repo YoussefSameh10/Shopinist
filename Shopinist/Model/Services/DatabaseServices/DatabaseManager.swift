@@ -16,7 +16,7 @@ class DatabaseManager: DatabaseManagerProtocol {
     var entity : NSEntityDescription!
     
     private static var instance: DatabaseManagerProtocol?
-
+    
     private init(appDelegate: AppDelegate){
         self.appDelegate = appDelegate
         self.viewContext = self.appDelegate.persistentContainer.viewContext
@@ -57,33 +57,7 @@ class DatabaseManager: DatabaseManagerProtocol {
             print(error.localizedDescription)
         }
     }
-}
-
-extension DatabaseManager {
     
-    private func isProductExists(id: Int, isFavorite: Bool) -> Bool {
-        if getProducts(id: id, isFavorite: isFavorite).isEmpty {
-            return false
-        }
-        return true
-    }
-    
-    private func getProducts(id: Int, isFavorite: Bool) -> [StoredProduct] {
-        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
-        fetchRequest.predicate = NSPredicate(format: "id == %@ && isFavorite == %@", id, isFavorite)
-        var products: [StoredProduct] = []
-        do{
-            products = try viewContext.fetch(fetchRequest)
-            if products.count > 0 {
-                return products
-            }
-            return []
-        }
-        catch let error{
-            print(error.localizedDescription)
-            return []
-        }
-=======
     func remove(product : Product, isFav :Bool){
         let productToDelete = productToStoredProduct(product: product)
         productToDelete.isFavorite = isFav
@@ -140,5 +114,33 @@ extension DatabaseManager {
         
         storedProduct.images = imagesStr
         return storedProduct
+    }
+}
+
+extension DatabaseManager {
+    
+    private func isProductExists(id: Int, isFavorite: Bool) -> Bool {
+        if getProducts(id: id, isFavorite: isFavorite).isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    private func getProducts(id: Int, isFavorite: Bool) -> [StoredProduct] {
+        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
+        fetchRequest.predicate = NSPredicate(format: "id == %@ && isFavorite == %@", id, isFavorite)
+        var products: [StoredProduct] = []
+        do{
+            products = try viewContext.fetch(fetchRequest)
+            if products.count > 0 {
+                return products
+            }
+            return []
+        }
+        catch let error{
+            print(error.localizedDescription)
+            return []
+        }
+        
     }
 }

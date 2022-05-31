@@ -16,17 +16,19 @@ class CategoriesViewModel {
     private var observer: AnyCancellable?
     var productsList: [Product]?
     @Published var searchedProductsList: [Product]?
-    var category: ProductCategory
+    var category: ProductCategory?
     var subCategory: ProductType? {
         didSet {
             filterProductsForSearchText(searchText: "")
         }
     }
 
-    init(productRepo: ProductsRepoProtocol, category: ProductCategory) {
+    init(productRepo: ProductsRepoProtocol, products: [Product], category: ProductCategory) {
         self.productRepo = productRepo
         self.category = category
-        getProductsByCategory(category: category)
+        productsList = products
+        filterProductBySubCategory()
+        searchedProductsList = products
     }
     
     func filterProductsForSearchText(searchText: String) {
@@ -38,24 +40,6 @@ class CategoriesViewModel {
                 return product.title!.lowercased().contains(searchText.lowercased())
             }
         }
-    }
-    
-    private func getProductsByCategory(category: ProductCategory) {
-        observer = productRepo.getAllProductsOfCategory(category: category).sink(
-            receiveCompletion: { (completion) in
-                switch completion {
-                case .finished:
-                    print("Finished")
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-        }, receiveValue: { [weak self] (response) in
-            self?.productsList = response.products
-            //self.shownProductsList = response.products
-            self?.filterProductBySubCategory()
-            //self.observableProductsList = response.products
-            self?.searchedProductsList = response.products
-        })
     }
     
     private func filterProductBySubCategory() {
