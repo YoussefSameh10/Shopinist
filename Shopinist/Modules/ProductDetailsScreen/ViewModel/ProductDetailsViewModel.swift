@@ -16,8 +16,8 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
     var product : Product?
     var productRepo : ProductsRepoProtocol
-    var favProducts : [Product]?
-    var cartProducts : [Product]?
+    var favProducts : [StoredProduct]?
+    var cartProducts : [StoredProduct]?
     
     
     
@@ -47,13 +47,13 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
     func getFavProducts(){
         favProducts = productRepo.getAllFavouritesFromDb()
-        //print("fav count = \(favProducts?.count)")
+        print("*** fav count = \(favProducts?.count) ***")
         //print("fav item name = \(favProducts?[0].title)")
     }
     
     func getCartProducts(){
         cartProducts = productRepo.getCartProductsFromDb()
-        print("cart count = \(cartProducts?.count)")
+        print("*** cart count = \(cartProducts?.count) ***")
     }
     
     func removeCartProductFromDb(){

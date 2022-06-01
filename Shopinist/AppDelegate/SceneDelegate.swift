@@ -23,7 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Three main tabs
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+
+        let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", bundle: nil)
+
         let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController", bundle: nil)
+
         let cartVC = CartViewController(nibName: "CartViewController", bundle: nil)
 
         let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
@@ -36,6 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.addChild(catNavC)
         tabBarController.addChild(cartVC)
         tabBarController.addChild(profileVC)
+        tabBarController.addChild(favouritesVC)
         
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

@@ -48,7 +48,7 @@ class ProductsRepo : ProductsRepoProtocol {
         databaseManager.add(product: product, isFav: "false")
     }
     
-    func getAllFavouritesFromDb() -> [Product]{
+    func getAllFavouritesFromDb() -> [StoredProduct]{
         return databaseManager.getAllFavourites()
     }
     
@@ -56,7 +56,7 @@ class ProductsRepo : ProductsRepoProtocol {
         return databaseManager.isInFavorites(id: id)
     }
     
-    func getCartProductsFromDb() -> [Product]{
+    func getCartProductsFromDb() -> [StoredProduct]{
         return databaseManager.getCartProduct()
     }
     

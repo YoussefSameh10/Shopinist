@@ -66,12 +66,15 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.items?[1].title = "Categories"
         tabBarController?.tabBar.items?[2].title = "Cart"
         tabBarController?.tabBar.items?[3].title = "Profile"
+        tabBarController?.tabBar.items?[4].title = "Favourites"
         
         
         tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house.fill")
         tabBarController?.tabBar.items?[1].image = UIImage(systemName: "square.grid.2x2.fill")
         tabBarController?.tabBar.items?[2].image = UIImage(systemName: "cart.fill")
         tabBarController?.tabBar.items?[3].image = UIImage(systemName: "person.fill")
+        tabBarController?.tabBar.items?[4].image = UIImage(systemName: "heart.fill")
+        
         
         self.navigationController?.navigationBar.isHidden = true
     }
