@@ -1,5 +1,5 @@
 //
-//  CartItemsManagerProtocol.swift
+//  CartItemsRepoProtocol.swift
 //  Shopinist
 //
 //  Created by Mohamed AMR on 6/1/22.
@@ -8,11 +8,9 @@
 
 import Foundation
 
-protocol CartItemsManagerProtocol{
+protocol CartItemsRepoProtocol {
     func getAllItems() -> [CartProduct]?
-    //func getItem(id : Int, size: String, color:String) -> CartProduct?
     func add(cartItem : Product, size: String, color: String)
     func remove(id : Int, size: String, color: String)
-    //func check(id : Int, size: String, color: String) -> Bool
     func update(id: Int, size: String, color: String, count: Int)
 }
