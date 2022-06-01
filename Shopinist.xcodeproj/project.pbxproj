@@ -81,6 +81,8 @@
 		E8B77145283D9340008D17CA /* OrderFinancialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B77144283D9340008D17CA /* OrderFinancialStatus.swift */; };
 		E8B77149283D9F79008D17CA /* DiscountCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B77148283D9F79008D17CA /* DiscountCode.swift */; };
 		F37DD77543640EFA6D87D5BD /* Pods_Shopinist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9600F205194413823AED15 /* Pods_Shopinist.framework */; };
+		F75C3CD928479829006E2E43 /* CartItemsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75C3CD828479829006E2E43 /* CartItemsManager.swift */; };
+		F75C3CDB28479837006E2E43 /* CartItemsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75C3CDA28479837006E2E43 /* CartItemsManagerProtocol.swift */; };
 		F761908C2845F58600EA3AEC /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F761908A2845F58600EA3AEC /* CartTableViewCell.swift */; };
 		F761908D2845F58600EA3AEC /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F761908B2845F58600EA3AEC /* CartTableViewCell.xib */; };
 		F76781D92842124600AC5696 /* CustomerRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76781D82842124600AC5696 /* CustomerRepoProtocol.swift */; };
@@ -201,6 +203,8 @@
 		E8B77144283D9340008D17CA /* OrderFinancialStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFinancialStatus.swift; sourceTree = "<group>"; };
 		E8B77148283D9F79008D17CA /* DiscountCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCode.swift; sourceTree = "<group>"; };
 		E8CA000228414F8C009216B7 /* RESegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RESegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F75C3CD828479829006E2E43 /* CartItemsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemsManager.swift; sourceTree = "<group>"; };
+		F75C3CDA28479837006E2E43 /* CartItemsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemsManagerProtocol.swift; sourceTree = "<group>"; };
 		F761908A2845F58600EA3AEC /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		F761908B2845F58600EA3AEC /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
 		F76781D82842124600AC5696 /* CustomerRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepoProtocol.swift; sourceTree = "<group>"; };
@@ -682,6 +686,8 @@
 			children = (
 				E88C7E2D2842D76900800389 /* DatabaseManagerProtocol.swift */,
 				E88C7E2F2842D7BB00800389 /* DatabaseManager.swift */,
+				F75C3CD828479829006E2E43 /* CartItemsManager.swift */,
+				F75C3CDA28479837006E2E43 /* CartItemsManagerProtocol.swift */,
 			);
 			path = DatabaseServices;
 			sourceTree = "<group>";
@@ -1041,6 +1047,7 @@
 				8A15D99A28460491006B9C96 /* ProductDetailsViewModelProtocol.swift in Sources */,
 				8A1AD976284154E400A0202B /* ProductSizeCollectionViewCell.swift in Sources */,
 				8AE32BCF283D4CC6003DA57B /* Products.swift in Sources */,
+				F75C3CD928479829006E2E43 /* CartItemsManager.swift in Sources */,
 				E8B77141283D92D8008D17CA /* Order.swift in Sources */,
 				E80F4697283FEE21000D4826 /* CategoriesViewModel.swift in Sources */,
 				E85DD38C2846B85F003A7723 /* MainCategoriesViewModel.swift in Sources */,
@@ -1063,6 +1070,7 @@
 				8AE32BC9283D434F003DA57B /* Categories.swift in Sources */,
 				E883F3A1283C20A600C19953 /* SceneDelegate.swift in Sources */,
 				E80F469A28401387000D4826 /* CategoriesCollectionViewCell.swift in Sources */,
+				F75C3CDB28479837006E2E43 /* CartItemsManagerProtocol.swift in Sources */,
 				E8B77145283D9340008D17CA /* OrderFinancialStatus.swift in Sources */,
 				E883F3D7283C2C0A00C19953 /* CategoriesViewController.swift in Sources */,
 				E8B7713A283D8430008D17CA /* Customer.swift in Sources */,
