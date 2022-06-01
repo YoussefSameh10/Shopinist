@@ -83,7 +83,7 @@ extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionVi
         let categoriesVC = CategoriesViewController(
             nibName: "CategoriesViewController",
             viewModel: CategoriesViewModel(
-                productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()),
+                productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)),
                 products: viewModel.filteredProducts ?? [],
                 category: category
             )
