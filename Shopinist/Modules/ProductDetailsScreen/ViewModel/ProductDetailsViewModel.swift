@@ -15,13 +15,13 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     var product : Product?
-    var productRepo : ProductsRepoProtocol
-    var favProducts : [StoredProduct]?
+    var productRepo : FavouritesProductRepoProtocol
+    var favProducts : [Product]?
     var cartProducts : [StoredProduct]?
     
     
     
-    init(product: Product , productRepo : ProductsRepoProtocol) {
+    init(product: Product , productRepo : FavouritesProductRepoProtocol) {
         self.product = product
         self.productRepo = productRepo
         
@@ -32,9 +32,9 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         productRepo.addProductIntoFavouritesDb(product: product!)
     }
     
-    func addToCart(){
-        productRepo.addProductIntoCartDb(product: product!)
-    }
+//    func addToCart(){
+//        productRepo.addProductIntoCartDb(product: product!)
+//    }
     
     func isInFavourite() -> Bool{
         return productRepo.isInFavourites(id: (product?.id)!)
@@ -52,13 +52,13 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         //print("fav item name = \(favProducts?[0].title)")
     }
     
-    func getCartProducts(){
-        cartProducts = productRepo.getCartProductsFromDb()
-        print("*** cart count = \(cartProducts?.count) ***")
-    }
-    
-    func removeCartProductFromDb(){
-        productRepo.removeCartProductFromDb(product: product!)
-    }
+//    func getCartProducts(){
+//        cartProducts = productRepo.getCartProductsFromDb()
+//        print("*** cart count = \(cartProducts?.count) ***")
+//    }
+//    
+//    func removeCartProductFromDb(){
+//        productRepo.removeCartProductFromDb(product: product!)
+//    }
     
 }
