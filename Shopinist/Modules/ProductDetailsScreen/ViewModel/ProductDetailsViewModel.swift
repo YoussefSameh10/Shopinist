@@ -21,9 +21,10 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
     
     
-    init(product: Product) {
+    init(product: Product , productRepo : ProductsRepoProtocol) {
         self.product = product
-        productRepo  = ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate))
+        self.productRepo = productRepo
+        
     }
     
     

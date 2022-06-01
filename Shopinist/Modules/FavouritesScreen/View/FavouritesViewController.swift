@@ -10,11 +10,29 @@ import UIKit
 
 class FavouritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
+
     // MARK: - Outlets
     
     @IBOutlet weak var favouritesTableView: UITableView!
     
+    // MARK: - Variables
+    
+    var viewModel : FavouritesViewModelProtocol!
+    
+    
+    // MARK: - Init
+    
+    init(nibName : String? , viewModel : FavouritesViewModelProtocol ){
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    
+    // MARK: - LifeCycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()

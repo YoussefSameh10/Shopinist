@@ -11,15 +11,17 @@ import Foundation
 
 class FavouritesViewModel : FavouritesViewModelProtocol {
     
-    var ProducrRepo : ProductsRepoProtocol
+    
+    var productRepo : ProductsRepoProtocol
     var products : [Product]?
     
-    init(productRepo : ProductsRepoProtocol){
-        self.ProducrRepo = productRepo
+    init(productRepo : ProductsRepoProtocol) {
+        self.productRepo = productRepo
     }
     
+    
     func getFavouritesFromDB(){
-        ProducrRepo.getAllFavouritesFromDb()
+        productRepo.getAllFavouritesFromDb()
     }
     
 }
