@@ -14,12 +14,8 @@ class ProductDetailsViewController: UIViewController {
     
     // MARK: - Vairables
     
-    private var cancellables : Set<AnyCancellable> = []
-    var observer : AnyCancellable?
-    var viewModel: ProductDetailsViewModel! = nil
     
-    
-    
+    var viewModel: ProductDetailsViewModelProtocol!
     
     // MARK: - Outlets
     
@@ -38,6 +34,19 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productColorButton: UIButton!
     
     @IBOutlet weak var productDescriptionTextView: UITextView!
+    
+    // MARK: - Init
+    
+    init(nibName : String? , viewModel : ProductDetailsViewModelProtocol){
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    
     // MARK: - View did Load
 
     override func viewDidLoad() {
@@ -53,21 +62,10 @@ class ProductDetailsViewController: UIViewController {
         
         setCollectionViewDelegateAndDataSource()
         setUIDesigns()
-        initViewModel()
         
     }
     
     // MARK: - Functions
-    
-    
-    
-    fileprivate func initViewModel() {
-        /*viewModel.getAllProducts()
-        viewModel.$response.sink { products in
-            print("products controller \(products?.products?.count)")
-            self.productImagesCollectionView.reloadData()
-        }.store(in: &cancellables)*/
-    }
     
     fileprivate func setUIDesigns() {
         

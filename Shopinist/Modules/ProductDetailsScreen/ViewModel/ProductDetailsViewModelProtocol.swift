@@ -9,6 +9,9 @@
 import Foundation
 
 protocol ProductDetailsViewModelProtocol {
+    
+    var product : Product? {get}
+    
     func addToFav()
     
     func addToCart()

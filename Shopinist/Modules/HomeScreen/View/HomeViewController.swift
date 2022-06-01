@@ -50,14 +50,7 @@ class HomeViewController: UIViewController {
         adBtn.setImage(UIImage(named: "banner\(pageIndex + 1)"), for: .normal)
         
     }
-    
-    @IBAction func goToProductsDetails(_ sender: UIButton) {
-        // let destcVC = ViewController(nibName: "MyViewController", bundle: nil)
-        let destVc = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
-        self.navigationController?.pushViewController(destVc, animated: true)
-    }
-    
-    
+        
     //MARK:- Functions
     private func initTabBarController(){
         

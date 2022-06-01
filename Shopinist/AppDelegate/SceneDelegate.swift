@@ -11,6 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -24,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //Three main tabs
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
 
-        let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", bundle: nil)
+        let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", viewModel: FavouritesViewModel(productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate))))
 
         let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController", bundle: nil)
 
