@@ -17,11 +17,11 @@ protocol ProductsRepoProtocol {
     
     func addProductIntoCartDb(product : Product)
     
-    func getAllFavouritesFromDb() -> [Product]
+    func getAllFavouritesFromDb() -> [StoredProduct]
     
     func isInFavourites(id:Int) -> Bool
     
-    func getCartProductsFromDb() -> [Product]
+    func getCartProductsFromDb() -> [StoredProduct]
     
     func removeFavProductFromDb(product : Product)
     

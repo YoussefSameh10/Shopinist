@@ -66,7 +66,7 @@ class DatabaseManager: DatabaseManagerProtocol {
     
     // MARK: - getAllFavourites
     
-    func getAllFavourites() -> [Product] {
+    func getAllFavourites() -> [StoredProduct] {
         let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
         fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", "true")
         var favouritesProducts : [StoredProduct]?
@@ -75,14 +75,14 @@ class DatabaseManager: DatabaseManagerProtocol {
         }catch let error {
             print(error.localizedDescription)
         }
-        var products : [Product]
-        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
-        return products
+//        var products : [Product]
+//        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
+        return favouritesProducts!
     }
     
     // MARK: - getCartProducts
     
-    func getCartProduct() -> [Product] {
+    func getCartProduct() -> [StoredProduct] {
         
         let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
         fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", "false")
@@ -94,10 +94,12 @@ class DatabaseManager: DatabaseManagerProtocol {
         }
         var products : [Product]
         products = Formatter.convertStoredProductsToProducts(storedProducts: cartProducts!)
-        return products
+        return cartProducts!
     }
     
 }
+
+    // MARK: - Extnesion
 
 extension DatabaseManager {
     

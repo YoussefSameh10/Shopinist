@@ -115,7 +115,7 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.getFavProducts()
-        
+        viewModel.getCartProducts()
     }
     
    
