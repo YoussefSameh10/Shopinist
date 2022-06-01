@@ -12,7 +12,6 @@
                 <outlet property="collectionView" destination="Jau-LN-O66" id="d7K-Xc-6sd"/>
                 <outlet property="mainSegmentedControl" destination="n3S-jZ-ZOG" id="tRl-4o-MBl"/>
                 <outlet property="noProductsLabel" destination="oOT-Ha-UAK" id="A2A-nj-cYu"/>
-                <outlet property="subSegmentedControl" destination="Bqk-rb-k1z" id="RA2-95-mZF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jau-LN-O66">
-                    <rect key="frame" x="16" y="172" width="382" height="690"/>
+                    <rect key="frame" x="16" y="116" width="382" height="746"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2dI-FO-iv4">
                         <size key="itemSize" width="128" height="128"/>
@@ -36,7 +35,7 @@
                     </connections>
                 </collectionView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Available Products" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOT-Ha-UAK">
-                    <rect key="frame" x="16" y="440.5" width="382" height="153"/>
+                    <rect key="frame" x="16" y="412.5" width="382" height="153"/>
                     <fontDescription key="fontDescription" type="system" pointSize="64"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -51,32 +50,19 @@
                         <action selector="changeMainCategory:" destination="-1" eventType="valueChanged" id="Owf-o8-Qxk"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqk-rb-k1z" customClass="RESegmentedControl" customModule="RESegmentedControl">
-                    <rect key="frame" x="16" y="116" width="382" height="40"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="cnw-b1-vaC"/>
-                    </constraints>
-                    <connections>
-                        <action selector="changeSubCategory:" destination="-1" eventType="valueChanged" id="Qa8-nx-GSX"/>
-                    </connections>
-                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Jau-LN-O66" secondAttribute="bottom" id="3Ji-O2-xdp"/>
-                <constraint firstItem="Jau-LN-O66" firstAttribute="top" secondItem="Bqk-rb-k1z" secondAttribute="bottom" constant="16" id="5PJ-In-3dh"/>
-                <constraint firstItem="Bqk-rb-k1z" firstAttribute="trailing" secondItem="n3S-jZ-ZOG" secondAttribute="trailing" id="8QW-tu-AAc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="n3S-jZ-ZOG" secondAttribute="trailing" constant="16" id="Emo-Iv-61y"/>
                 <constraint firstItem="oOT-Ha-UAK" firstAttribute="leading" secondItem="Jau-LN-O66" secondAttribute="leading" id="JIK-63-qwW"/>
                 <constraint firstItem="oOT-Ha-UAK" firstAttribute="centerY" secondItem="Jau-LN-O66" secondAttribute="centerY" id="Mm4-xj-Dwi"/>
                 <constraint firstItem="n3S-jZ-ZOG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NeL-9D-r84"/>
                 <constraint firstItem="Jau-LN-O66" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="PAv-vQ-EZp"/>
                 <constraint firstItem="n3S-jZ-ZOG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="Ta5-3b-HPs"/>
-                <constraint firstItem="Bqk-rb-k1z" firstAttribute="top" secondItem="n3S-jZ-ZOG" secondAttribute="bottom" constant="16" id="UQm-77-waV"/>
+                <constraint firstItem="Jau-LN-O66" firstAttribute="top" secondItem="n3S-jZ-ZOG" secondAttribute="bottom" constant="16" id="gsH-BS-Hqt"/>
                 <constraint firstItem="oOT-Ha-UAK" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="hcO-WD-1py"/>
                 <constraint firstItem="oOT-Ha-UAK" firstAttribute="trailing" secondItem="Jau-LN-O66" secondAttribute="trailing" id="tHi-Oq-WBF"/>
-                <constraint firstItem="Bqk-rb-k1z" firstAttribute="leading" secondItem="n3S-jZ-ZOG" secondAttribute="leading" id="yPx-s7-fRO"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
