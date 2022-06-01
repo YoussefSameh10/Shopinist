@@ -106,14 +106,13 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func AddToCartButton(_ sender: Any) {
         print("added to cart")
-        //viewModel.addToCart()
-        
-        
+        viewModel.addToCart(size: "8", color: "blue")
+        viewModel.getCartProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.getFavProducts()
-
+        
     }
     
    

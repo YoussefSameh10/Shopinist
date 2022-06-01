@@ -24,7 +24,7 @@ class CartItemsManager : CartItemsManagerProtocol{
     private init(appDelegate: AppDelegate){
         self.appDelegate = appDelegate
         self.viewContext = self.appDelegate.persistentContainer.viewContext
-        self.entity = NSEntityDescription.entity(forEntityName: "StoredProduct", in: self.viewContext)
+        self.entity = NSEntityDescription.entity(forEntityName: "CartProduct", in: self.viewContext)
     }
     
     static func getInstance(appDelegate: AppDelegate) -> CartItemsManagerProtocol {
@@ -60,11 +60,12 @@ class CartItemsManager : CartItemsManagerProtocol{
         fetchRequest.predicate = compundPredicate
         
         do{
-            let returnedProducts = try viewContext.fetch(fetchRequest)
-            if (returnedProducts.count > 0) {
-                print("****** cartProduct from db \(returnedProducts[0].id)")
+            var returnedProducts  : [CartProduct]?
+            returnedProducts = try viewContext.fetch(fetchRequest)
+            if (returnedProducts?.count ?? -1 > 0 ) {
+                print("****** cartProduct from db \(returnedProducts![0].id)")
                 print("****** id param \(id)")
-                return returnedProducts[0]
+                return returnedProducts![0]
             }
             return nil
         }
@@ -75,18 +76,19 @@ class CartItemsManager : CartItemsManagerProtocol{
     }
     
     func add(cartItem: Product, size:String, color:String) {
-        let isFound = check(id: cartItem.id ?? 0, size: size, color: color)
-        
-        if (isFound){
-            let returnedProduct = getItem(id: cartItem.id ?? 0, size: size, color: color)
-            update(id: cartItem.id ?? 0, size: size, color: size, count: Int(returnedProduct?.count ?? 1) + 1)
-            print("Cart Item updated Successfully !!")
-            return
-        }
-        let _ = convertProductToCartProduct(product: cartItem, size: size, color: color)
+//        let isFound = check(id: cartItem.id ?? 0, size: size, color: color)
+//        
+//        if (isFound){
+//            let returnedProduct = getItem(id: cartItem.id ?? 0, size: size, color: color)
+//            update(id: cartItem.id ?? 0, size: size, color: size, count: Int(returnedProduct?.count ?? 1) + 1)
+//            print("Cart Item updated Successfully !!")
+//            return
+//        }
+        let x = convertProductToCartProduct(product: cartItem, size: size, color: color)
         do
         {
             try self.viewContext.save()
+            print("cart item added")
         }
         catch
         {
@@ -147,7 +149,7 @@ class CartItemsManager : CartItemsManagerProtocol{
         cartProduct.vendor = product.vendor!
         cartProduct.email = ""
         cartProduct.count = Int64(count)
-        cartProduct.image = product.images?[0].src!
+        //cartProduct.image = product.images?[0].src!
         cartProduct.color = color
         cartProduct.size = size
         cartProduct.details = product.description!

@@ -16,12 +16,10 @@ class CategoriesRouter: CategoriesRouterProtocol {
             nibName: "ProductDetailsViewController",
             viewModel: ProductDetailsViewModel(
                 product: product,
-                productRepo: ProductsRepo.getInstance(
-                    networkManager: NetworkManager.getInstance(),
-                    databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)
-                )
+                productRepo: FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: appDelegate))
             )
         )
+        
         
         viewController?.navigationController?.pushViewController(productDetailsVC, animated: true)
     }

@@ -191,7 +191,7 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         
-        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", viewModel: ProductDetailsViewModel(product: viewModel.getProductAt(index: indexPath.row)!, productRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)) ))
+        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", viewModel: ProductDetailsViewModel(product: viewModel.getProductAt(index: indexPath.row)!, productRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: appDelegate)) ))
 
         
 

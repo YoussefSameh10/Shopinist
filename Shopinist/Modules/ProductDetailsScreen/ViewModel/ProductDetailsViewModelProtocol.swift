@@ -14,7 +14,7 @@ protocol ProductDetailsViewModelProtocol {
     
     func addToFav()
     
-    //func addToCart()
+    func addToCart(size : String , color : String)
     
     func isInFavourite() -> Bool
     
@@ -22,8 +22,6 @@ protocol ProductDetailsViewModelProtocol {
         
     func getFavProducts()
     
-//    func getCartProducts()
-//
-//    func removeCartProductFromDb()
+    func getCartProducts()
     
 }
