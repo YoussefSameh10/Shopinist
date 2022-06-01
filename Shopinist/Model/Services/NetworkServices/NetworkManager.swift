@@ -32,6 +32,7 @@ class NetworkManager : NetworkManagerProtocol{
                 promise(.failure(Errors.invalidUrl))
                 return
             }
+            
             AF.request(url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination:.queryString), headers: nil).responseJSON { (response) in
 //                print(response.request)
                 if let error = response.error {
@@ -58,7 +59,6 @@ class NetworkManager : NetworkManagerProtocol{
             }
         }
     }
-    
     
     func postRequest<T: Decodable>(fromEndpoint: String, httpBody: Data, httpMethod : HTTPMethod , ofType : T.Type) -> Future<T,Error> {
         
@@ -92,7 +92,6 @@ class NetworkManager : NetworkManagerProtocol{
             }.resume()
         }
     }
-    
 }
 
 

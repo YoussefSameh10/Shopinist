@@ -9,13 +9,16 @@
 import Foundation
 import Combine
 
-class CategoriesViewModel {
+class CategoriesViewModel: CategoriesViewModelProtocol {
+    
+    
     
     private let productRepo: ProductsRepoProtocol
     
     private var observer: AnyCancellable?
     var productsList: [Product]?
-    @Published var searchedProductsList: [Product]?
+    @Published private var searchedProducts: [Product]?
+    var searchedProductsList: Published<[Product]?>.Publisher {$searchedProducts}
     var category: ProductCategory?
     var subCategory: ProductType? {
         didSet {
@@ -28,7 +31,7 @@ class CategoriesViewModel {
         self.category = category
         productsList = products
         filterProductBySubCategory()
-        searchedProductsList = products
+        searchedProducts = products
     }
     
     func filterProductsForSearchText(searchText: String) {
@@ -36,20 +39,36 @@ class CategoriesViewModel {
         filterProductBySubCategory()
         
         if !searchText.isEmpty {
-            searchedProductsList = searchedProductsList?.filter { (product: Product) -> Bool in
+            searchedProducts = searchedProducts?.filter { (product: Product) -> Bool in
                 return product.title!.lowercased().contains(searchText.lowercased())
             }
         }
     }
     
+    func isProductsListEmpty() -> Bool {
+        return searchedProducts?.isEmpty ?? true
+    }
+    
+    func getProductsCount() -> Int {
+        return searchedProducts?.count ?? 0
+    }
+    
+    func getProductAt(index: Int) -> Product? {
+        return searchedProducts![index]
+    }
+    
+    
+}
+
+extension CategoriesViewModel {
     private func filterProductBySubCategory() {
         if(subCategory == nil) {
-            searchedProductsList = productsList
+            searchedProducts = productsList
         }
         else {
-            searchedProductsList = []
+            searchedProducts = []
             
-            searchedProductsList = productsList?.filter({ product in
+            searchedProducts = productsList?.filter({ product in
                 if product.productType == subCategory {
                     return true
                 }

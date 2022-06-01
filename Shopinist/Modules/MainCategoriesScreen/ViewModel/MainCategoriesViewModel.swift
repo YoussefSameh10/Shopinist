@@ -61,7 +61,7 @@ class MainCategoriesViewModel: MainCategoriesViewModelProtocol {
     
     private func getKeywordForCategory() -> String {
         if category == ProductCategory.Men {
-            return "men"
+            return " men"
         }
         else if category == ProductCategory.Women {
             return "women"
