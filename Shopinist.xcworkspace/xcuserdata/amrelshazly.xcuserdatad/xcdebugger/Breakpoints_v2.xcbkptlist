@@ -7,64 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A7D8A70C-86FD-448C-9B64-DEBA0114C7C1"
+            uuid = "8C07FD79-5B55-4E69-94B4-7DFAFCE99B32"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/ProductDetailsScreen/ViewModel/ProductDetailsViewModel.swift"
+            filePath = "Shopinist/Model/Services/DatabaseServices/CartItemsManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "addToFav()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "getItem(id:size:color:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5AFD37C0-483E-46E9-B226-C190F7A44499"
+            uuid = "85016875-CD12-4418-881F-827BFF899CE3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Model/Services/DatabaseServices/FavouritesDB/FavouritesDataBaseManager.swift"
+            filePath = "Shopinist/Model/Services/DatabaseServices/CartItemsManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "addToFavDb(product:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "add(cartItem:size:color:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "94FABF4D-94ED-4C8A-8151-B9D7F9A5ABA9"
+            uuid = "1F519D4D-FC7D-431F-A6F9-A0CFAB0AE32F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Model/Services/DatabaseServices/FavouritesDB/FavouritesDataBaseManager.swift"
+            filePath = "Shopinist/Model/Services/DatabaseServices/CartItemsManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "FavouritesDataBaseManager"
-            landmarkType = "3">
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "add(cartItem:size:color:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "27FDACB6-7FFF-4187-BFA1-DC03451ED8FC"
+            uuid = "D9109212-385E-4155-AEEE-3AD2A6DC04DE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/ProductDetailsScreen/View/ProductDetailsViewController.swift"
+            filePath = "Shopinist/Model/Services/DatabaseServices/CartItemsManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "FavouriteButton(_:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "getAllItems()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

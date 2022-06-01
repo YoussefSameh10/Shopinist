@@ -16,14 +16,16 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
     var product : Product?
     var productRepo : FavouritesProductRepoProtocol
+    var cartRepo : CartItemsRepoProtocol
     var favProducts : [Product]?
-    var cartProducts : [StoredProduct]?
+    var cartProducts : [CartProduct]?
     
     
     
-    init(product: Product , productRepo : FavouritesProductRepoProtocol) {
+    init(product: Product , productRepo : FavouritesProductRepoProtocol , cartRepo : CartItemsRepoProtocol) {
         self.product = product
         self.productRepo = productRepo
+        self.cartRepo = cartRepo
         
     }
     
@@ -32,9 +34,9 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         productRepo.addProductIntoFavouritesDb(product: product!)
     }
     
-//    func addToCart(){
-//        productRepo.addProductIntoCartDb(product: product!)
-//    }
+    func addToCart(size : String , color : String){
+        cartRepo.add(cartItem: product!, size: size, color: color)
+    }
     
     func isInFavourite() -> Bool{
         return productRepo.isInFavourites(id: (product?.id)!)
@@ -52,11 +54,14 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         //print("fav item name = \(favProducts?[0].title)")
     }
     
-//    func getCartProducts(){
-//        cartProducts = productRepo.getCartProductsFromDb()
-//        print("*** cart count = \(cartProducts?.count) ***")
-//    }
-//    
+    func getCartProducts(){
+        cartProducts = cartRepo.getAllItems()
+        if cartProducts != nil {
+            print("*** cart count = \(cartProducts?.count) ***")
+            print("*** cart count = \(cartProducts?[0]) ***")
+        }
+    }
+    
 //    func removeCartProductFromDb(){
 //        productRepo.removeCartProductFromDb(product: product!)
 //    }
