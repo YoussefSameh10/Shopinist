@@ -21,7 +21,7 @@ class Formatter {
         return images
     }
     
-    static func convertStoredProductsToProducts(storedProducts: [StoredProduct]) -> [Product] {
+    static func convertStoredProductsToProducts(storedProducts: [FavoriteProduct]) -> [Product] {
         
         return storedProducts.map { storedProduct -> Product in
             var product = Product()

@@ -64,7 +64,7 @@ class DatabaseManager: DatabaseManagerProtocol {
             print(error.localizedDescription)
         }
     }
-
+    
     
     // MARK: - getAllFavourites
     
@@ -77,31 +77,31 @@ class DatabaseManager: DatabaseManagerProtocol {
         }catch let error {
             print(error.localizedDescription)
         }
-//        var products : [Product]
-//        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
+        //        var products : [Product]
+        //        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
         return favouritesProducts!
     }
     
     // MARK: - getCartProducts
     
-    func getCartProduct() -> [StoredProduct] {
-        
-        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
-        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", "false")
-        var cartProducts : [StoredProduct]?
-        do{
-            cartProducts =  try viewContext.fetch(fetchRequest)
-        }catch let error {
-            print(error.localizedDescription)
-        }
-        var products : [Product]
-        products = Formatter.convertStoredProductsToProducts(storedProducts: cartProducts!)
-        return cartProducts!
-    }
+//    func getCartProduct() -> [StoredProduct] {
+//        
+//        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
+//        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", "false")
+//        var cartProducts : [StoredProduct]?
+//        do{
+//            cartProducts =  try viewContext.fetch(fetchRequest)
+//        }catch let error {
+//            print(error.localizedDescription)
+//        }
+//        var products : [Product]
+//        products = Formatter.convertStoredProductsToProducts(storedProducts: cartProducts!)
+//        return cartProducts!
+//    }
     
 }
 
-    // MARK: - Extnesion
+// MARK: - Extnesion
 
 extension DatabaseManager {
     
@@ -150,7 +150,7 @@ extension DatabaseManager {
         print(productToDelete[0].isFavorite)
         self.viewContext.delete(productToDelete[0])
         print("*** product removed *** ")
-
+        
         do{
             try self.viewContext.save()
         }
@@ -162,20 +162,9 @@ extension DatabaseManager {
     // MARK: - Add Product To DB
     
     func add(product : Product, isFav : String) {
-        var storedProduct = productToStoredProduct(product: product)
+        
+        let storedProduct = productToStoredProduct(product: product)
         storedProduct.setValue(isFav, forKey: "isFavorite")
-        
-        let isFoundInFavorite = isProductExists(id: product.id ?? 0, isFavorite: "true")
-        let isFoundInCart = isProductExists(id: product.id ?? 0, isFavorite: "false")
-        
-        if (isFoundInFavorite)
-        {
-            return
-        }
-        if (isFoundInCart){
-            let foundProducts = getProducts(id: product.id ?? 0, isFavorite: "false")
-                updateProductCountInCart(product: product, count: Int(foundProducts[0].count))
-        }
         do
         {
             try self.viewContext.save()

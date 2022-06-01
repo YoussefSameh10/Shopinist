@@ -14,18 +14,16 @@ protocol ProductDetailsViewModelProtocol {
     
     func addToFav()
     
-    func addToCart()
+    //func addToCart()
     
     func isInFavourite() -> Bool
     
     func removeFavFromDb()
-    
-    // ************** just for test core data then remove it **********
-    
+        
     func getFavProducts()
     
-    func getCartProducts()
-    
-    func removeCartProductFromDb()
+//    func getCartProducts()
+//
+//    func removeCartProductFromDb()
     
 }

@@ -52,7 +52,7 @@ class ProductDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        viewModel.getCartProducts()
+        //viewModel.getCartProducts()
         print("*****\(viewModel.isInFavourite())")
         if(viewModel.isInFavourite()){
             favouriteButtonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -106,14 +106,14 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func AddToCartButton(_ sender: Any) {
         print("added to cart")
-        viewModel.addToCart()
+        //viewModel.addToCart()
         
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.getFavProducts()
-        viewModel.getCartProducts()
+
     }
     
    

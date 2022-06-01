@@ -20,8 +20,8 @@ class FavouritesViewModel : FavouritesViewModelProtocol {
     }
     
     
-    func getFavouritesFromDB(){
-        productRepo.getAllFavouritesFromDb()
-    }
+//    func getFavouritesFromDB(){
+//        productRepo.getAllFavouritesFromDb()
+//    }
     
 }

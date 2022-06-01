@@ -10,7 +10,7 @@ import Foundation
 
 protocol DatabaseManagerProtocol {
     func getAllFavourites() -> [StoredProduct]
-    func getCartProduct() -> [StoredProduct]
+    //func getCartProduct() -> [StoredProduct]
     //getOne(for checking purposes)
     func isInFavorites(id: Int) -> Bool
     func isInCart(id: Int) -> Bool
