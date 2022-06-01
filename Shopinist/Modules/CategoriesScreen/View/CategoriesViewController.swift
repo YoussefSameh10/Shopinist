@@ -14,6 +14,7 @@ import RESegmentedControl
 class CategoriesViewController: UIViewController{
     
     private var viewModel: CategoriesViewModelProtocol!
+
     private let networkManager : NetworkManagerProtocol? = nil
     
     private var observer: AnyCancellable?

@@ -9,7 +9,8 @@
 import Foundation
 
 protocol DatabaseManagerProtocol {
-    //getAllFavorites/Cart
+    func getAllFavourites() -> [StoredProduct]
+    func getCartProduct() -> [StoredProduct]
     //getOne(for checking purposes)
     func isInFavorites(id: Int) -> Bool
     func isInCart(id: Int) -> Bool
@@ -17,4 +18,6 @@ protocol DatabaseManagerProtocol {
     //update
     func updateProductCountInCart(product: Product, count: Int)
     //delete
+    func add(product : Product, isFav : String)
+    func remove(product : Product, isFav :String)
 }

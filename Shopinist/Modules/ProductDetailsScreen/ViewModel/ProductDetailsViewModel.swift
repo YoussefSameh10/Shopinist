@@ -8,13 +8,56 @@
 
 import Foundation
 import Combine
+import UIKit
 
-class ProductDetailsViewModel {
+class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
+    
+    var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     var product : Product?
+    var productRepo : ProductsRepoProtocol
+    var favProducts : [StoredProduct]?
+    var cartProducts : [StoredProduct]?
+    
+    
     
     init(product: Product) {
         self.product = product
+        productRepo  = ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate))
+    }
+    
+    
+    func addToFav(){
+        productRepo.addProductIntoFavouritesDb(product: product!)
+    }
+    
+    func addToCart(){
+        productRepo.addProductIntoCartDb(product: product!)
+    }
+    
+    func isInFavourite() -> Bool{
+        return productRepo.isInFavourites(id: (product?.id)!)
+    }
+    
+    func removeFavFromDb(){
+        productRepo.removeFavProductFromDb(product: product!)
+    }
+    
+    // ************** just for test core data then remove it **********
+    
+    func getFavProducts(){
+        favProducts = productRepo.getAllFavouritesFromDb()
+        print("*** fav count = \(favProducts?.count) ***")
+        //print("fav item name = \(favProducts?[0].title)")
+    }
+    
+    func getCartProducts(){
+        cartProducts = productRepo.getCartProductsFromDb()
+        print("*** cart count = \(cartProducts?.count) ***")
+    }
+    
+    func removeCartProductFromDb(){
+        productRepo.removeCartProductFromDb(product: product!)
     }
     
 }
