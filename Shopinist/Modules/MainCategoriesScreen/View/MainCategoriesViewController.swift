@@ -10,6 +10,8 @@ import UIKit
 
 class MainCategoriesViewController: UIViewController  {
 
+    var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
+
     var viewModel: MainCategoriesViewModelProtocol!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -24,7 +26,7 @@ class MainCategoriesViewController: UIViewController  {
     }
     
     private func initViewModel() {
-        viewModel = MainCategoriesViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()))
+        viewModel = MainCategoriesViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)))
     }
     
     private func hideNavBar() {
