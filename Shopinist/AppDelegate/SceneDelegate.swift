@@ -27,7 +27,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", viewModel: FavouritesViewModel(productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate))))
 
-        let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController", bundle: nil)
+        let categoriesVC = MainCategoriesViewController(
+            nibName: "MainCategoriesViewController",
+            viewModel: MainCategoriesViewModel(
+                productsRepo: ProductsRepo.getInstance(
+                    networkManager: NetworkManager.getInstance(),
+                    databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)
+                )
+            ),
+            router: MainCategoriesRouter()
+        )
 
         let cartVC = CartViewController(nibName: "CartViewController", bundle: nil)
 

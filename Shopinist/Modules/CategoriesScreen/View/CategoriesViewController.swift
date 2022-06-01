@@ -16,6 +16,7 @@ class CategoriesViewController: UIViewController{
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
 
     private var viewModel: CategoriesViewModelProtocol!
+    private var router: CategoriesRouterProtocol!
 
     private let networkManager : NetworkManagerProtocol? = nil
     
@@ -31,9 +32,11 @@ class CategoriesViewController: UIViewController{
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
     
     
-    init(nibName: String?, viewModel: CategoriesViewModelProtocol) {
+    init(nibName: String?, viewModel: CategoriesViewModelProtocol, router: CategoriesRouterProtocol) {
         super.init(nibName: nibName, bundle: nil)
         self.viewModel = viewModel
+        self.router = router
+        self.router.viewController = self
     }
     
     required init?(coder: NSCoder) {
@@ -186,7 +189,16 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", viewModel: ProductDetailsViewModel(product: viewModel.getProductAt(index: indexPath.row)!, productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate))))
+        let productDetailsVC = ProductDetailsViewController(
+            nibName: "ProductDetailsViewController",
+            viewModel: ProductDetailsViewModel(
+                product: viewModel.getProductAt(index: indexPath.row)!,
+                productRepo: ProductsRepo.getInstance(
+                    networkManager: NetworkManager.getInstance(),
+                    databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)
+                )
+            )
+        )
         
 
         self.navigationController?.pushViewController(productDetailsVC, animated: true)
