@@ -9,54 +9,70 @@
 import Foundation
 import Combine
 
-class CategoriesViewModel {
+class CategoriesViewModel: CategoriesViewModelProtocol {
+    
+    
     
     private let productRepo: ProductsRepoProtocol
     
     private var observer: AnyCancellable?
-    @Published var observableProductsList: [Product]?
     var productsList: [Product]?
-    var shownProductsList: [Product]?
-    var searchedProductsList: [Product]?
-    
+    @Published private var searchedProducts: [Product]?
+    var searchedProductsList: Published<[Product]?>.Publisher {$searchedProducts}
+    var category: ProductCategory?
     var subCategory: ProductType? {
         didSet {
-            filterProductBySubCategory()
+            filterProductsForSearchText(searchText: "")
         }
     }
 
-    init(productRepo: ProductsRepoProtocol) {
+    init(productRepo: ProductsRepoProtocol, products: [Product], category: ProductCategory) {
         self.productRepo = productRepo
-        getProductsByCategory(category: .Men)
+        self.category = category
+        productsList = products
+        filterProductBySubCategory()
+        searchedProducts = products
     }
     
-    func getProductsByCategory(category: ProductCategory) {
-        observer = productRepo.getAllProductsOfCategory(category: category).sink(
-            receiveCompletion: { (completion) in
-                switch completion {
-                case .finished:
-                    print("Finished")
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-        }, receiveValue: { (response) in
-            self.productsList = response.products
-            self.shownProductsList = response.products
-            self.filterProductBySubCategory()
-            self.observableProductsList = response.products
-        })
+    func filterProductsForSearchText(searchText: String) {
+        
+        filterProductBySubCategory()
+        
+        if !searchText.isEmpty {
+            searchedProducts = searchedProducts?.filter { (product: Product) -> Bool in
+                return product.title!.lowercased().contains(searchText.lowercased())
+            }
+        }
     }
     
+    func isProductsListEmpty() -> Bool {
+        return searchedProducts?.isEmpty ?? true
+    }
+    
+    func getProductsCount() -> Int {
+        return searchedProducts?.count ?? 0
+    }
+    
+    func getProductAt(index: Int) -> Product? {
+        return searchedProducts![index]
+    }
+    
+    
+}
+
+extension CategoriesViewModel {
     private func filterProductBySubCategory() {
         if(subCategory == nil) {
-            shownProductsList = productsList
+            searchedProducts = productsList
         }
         else {
-            shownProductsList = []
-            productsList?.forEach({ (product) in
-                if(product.productType == subCategory) {
-                    shownProductsList?.append(product)
+            searchedProducts = []
+            
+            searchedProducts = productsList?.filter({ product in
+                if product.productType == subCategory {
+                    return true
                 }
+                return false
             })
         }
     }
