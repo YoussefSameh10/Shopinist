@@ -20,5 +20,113 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "00FDD1B2-B31D-4F8B-B2B1-B33002542256"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shopinist/Modules/HomeScreen/View/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "HomeViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "00FDD1B2-B31D-4F8B-B2B1-B33002542256 - a31927bd16b40d01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopinist.HomeViewController.(pageIndex in _FEB705B53064A789FBA82AA9044F4B29).getter : Swift.Int"
+                  moduleName = "Shopinist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamedamr/Desktop/Shopinist/Shopinist/Modules/HomeScreen/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "110">
+               </Location>
+               <Location
+                  uuid = "00FDD1B2-B31D-4F8B-B2B1-B33002542256 - 16d9c4bedbf5eae9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopinist.HomeViewController.(pageIndex in _FEB705B53064A789FBA82AA9044F4B29).setter : Swift.Int"
+                  moduleName = "Shopinist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamedamr/Desktop/Shopinist/Shopinist/Modules/HomeScreen/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "118">
+               </Location>
+               <Location
+                  uuid = "00FDD1B2-B31D-4F8B-B2B1-B33002542256 - 35098270a9b9cb0f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopinist.HomeViewController.(pageIndex in _FEB705B53064A789FBA82AA9044F4B29).modify : Swift.Int"
+                  moduleName = "Shopinist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamedamr/Desktop/Shopinist/Shopinist/Modules/HomeScreen/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "00FDD1B2-B31D-4F8B-B2B1-B33002542256 - d98ba310f764efb7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopinist.HomeViewController.(pageIndex in _FEB705B53064A789FBA82AA9044F4B29).modify : Swift.Int with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Shopinist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamedamr/Desktop/Shopinist/Shopinist/Modules/HomeScreen/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "00FDD1B2-B31D-4F8B-B2B1-B33002542256 - 6e137bde42044692"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopinist.HomeViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Shopinist.HomeViewController"
+                  moduleName = "Shopinist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamedamr/Desktop/Shopinist/Shopinist/Modules/HomeScreen/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "646">
+               </Location>
+               <Location
+                  uuid = "00FDD1B2-B31D-4F8B-B2B1-B33002542256 - 5125825ae97f755"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopinist.HomeViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Shopinist.HomeViewController&gt;"
+                  moduleName = "Shopinist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohamedamr/Desktop/Shopinist/Shopinist/Modules/HomeScreen/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "587">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

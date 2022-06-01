@@ -13,14 +13,17 @@ class ProductsRepo : ProductsRepoProtocol {
     
     private static var instance : ProductsRepo?
     private var networkManager: NetworkManagerProtocol
+    private var databaseManager : DatabaseManagerProtocol
     
-    private init(networkManager: NetworkManagerProtocol) {
+    
+    private init(networkManager: NetworkManagerProtocol , databseManager : DatabaseManagerProtocol) {
         self.networkManager = networkManager
+        self.databaseManager = databseManager
     }
     
-    static func getInstance(networkManager: NetworkManagerProtocol) -> ProductsRepo{
+    static func getInstance(networkManager: NetworkManagerProtocol ,  databseManager : DatabaseManagerProtocol) -> ProductsRepo{
         if instance == nil{
-            instance = ProductsRepo(networkManager: networkManager)
+            instance = ProductsRepo(networkManager: networkManager, databseManager: databseManager)
         }
         return instance!
     }
@@ -36,6 +39,35 @@ class ProductsRepo : ProductsRepoProtocol {
         let networkCall = networkManager.getRequest(fromEndpoint:EndPoints.getProductsOfCategory(categoryId: category.rawValue).endPoint, parameters: nil, ofType: Products.self)
         return networkCall
     }
+    
+    func addProductIntoFavouritesDb(product : Product){
+        databaseManager.add(product: product, isFav: "true")
+    }
+    
+    func addProductIntoCartDb(product : Product){
+        databaseManager.add(product: product, isFav: "false")
+    }
+    
+    func getAllFavouritesFromDb() -> [Product]{
+        return databaseManager.getAllFavourites()
+    }
+    
+    func isInFavourites(id:Int) -> Bool {
+        return databaseManager.isInFavorites(id: id)
+    }
+    
+    func getCartProductsFromDb() -> [Product]{
+        return databaseManager.getCartProduct()
+    }
+    
+    func removeFavProductFromDb(product : Product){
+        databaseManager.remove(product: product, isFav: "true")
+    }
+    
+    func removeCartProductFromDb(product : Product){
+        databaseManager.remove(product: product, isFav: "false")
+    }
+    
     
     
     

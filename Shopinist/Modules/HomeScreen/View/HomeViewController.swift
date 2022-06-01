@@ -14,26 +14,41 @@ class HomeViewController: UIViewController {
     //MARK:- Outlets
     @IBOutlet weak var adBtn: UIButton!
     @IBOutlet weak var brandsCV: UICollectionView!
+    @IBOutlet weak var adPageControl: UIPageControl!
     
     //MARK:- Variables
+    private var isThreadOn = true
+    private var pageIndex : Int = -1
     private var viewModel : HomeViewModel?
     private var cancellables : Set<AnyCancellable> = []
+    private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        isThreadOn = true
+        pageIndex = -1
         initViewModel()
         initUI()
         setUpBinding()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        isThreadOn = false
+    }
     
     //MARK:- Actions
     @IBAction func redirectToAdvertisment(_ sender: UIButton) {
         if let url = URL(string: "https://www.amazon.com") {
             UIApplication.shared.open(url)
         }
+    }
+    
+    @IBAction func pageValueChanged(_ sender: UIPageControl) {
+        print("Current Page: \(adPageControl.currentPage)")
+        pageIndex = adPageControl.currentPage
+        adBtn.setImage(UIImage(named: "banner\(pageIndex + 1)"), for: .normal)
+        
     }
     
     @IBAction func goToProductsDetails(_ sender: UIButton) {
@@ -46,20 +61,42 @@ class HomeViewController: UIViewController {
     //MARK:- Functions
     private func initTabBarController(){
         
+        tabBarController?.tabBar.tintColor = UIColor.black
         tabBarController?.tabBar.items?[0].title = "Home"
         tabBarController?.tabBar.items?[1].title = "Categories"
-        tabBarController?.tabBar.items?[2].title = "Profile"
+        tabBarController?.tabBar.items?[2].title = "Cart"
+        tabBarController?.tabBar.items?[3].title = "Profile"
+        
+        
         tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house.fill")
         tabBarController?.tabBar.items?[1].image = UIImage(systemName: "square.grid.2x2.fill")
-        tabBarController?.tabBar.items?[2].image = UIImage(systemName: "person.fill")
+        tabBarController?.tabBar.items?[2].image = UIImage(systemName: "cart.fill")
+        tabBarController?.tabBar.items?[3].image = UIImage(systemName: "person.fill")
         
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    private func changeImageAutomatically(){
+        DispatchQueue.global(qos: .background).async {
+            while(self.isThreadOn){
+                DispatchQueue.main.async {
+                    let indx = (self.pageIndex + 1) % 3
+                    self.pageIndex = indx
+                    self.adPageControl.currentPage = indx
+                    self.adBtn.setImage(UIImage(named: "banner\(indx + 1)"), for: .normal)
+                }
+                sleep(5)
+            }
+        }
+    }
+    
     private func initUI(){
+        changeImageAutomatically()
+        
         adBtn.layer.cornerRadius = 25
         adBtn.layer.masksToBounds = true
         adBtn.imageView?.contentMode = .scaleToFill
+        
         
         initCollectionView(brandsCV, height: Float(brandsCV.bounds.height / 3), width: Float(UIScreen.main.bounds.width / 2 - 24), radius: 25, spacing:4, isHorizontal: false)
         
@@ -89,7 +126,7 @@ class HomeViewController: UIViewController {
     }
     
     private func initViewModel(){
-        viewModel = HomeViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()))
+        viewModel = HomeViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(),databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)))
     }
     
     private func setUpBinding(){
@@ -103,7 +140,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = self.viewModel?.brands?.count ?? 0
-        print("itemsCount: \(count)")
         return count
     }
     
