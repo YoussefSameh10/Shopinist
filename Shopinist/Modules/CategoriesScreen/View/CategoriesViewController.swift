@@ -13,6 +13,8 @@ import RESegmentedControl
 
 class CategoriesViewController: UIViewController{
     
+    private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
+
     private var viewModel: CategoriesViewModelProtocol!
 
     private let networkManager : NetworkManagerProtocol? = nil
