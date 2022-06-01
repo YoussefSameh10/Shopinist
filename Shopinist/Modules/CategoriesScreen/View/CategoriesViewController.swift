@@ -13,7 +13,7 @@ import RESegmentedControl
 
 class CategoriesViewController: UIViewController{
     
-    private var viewModel: CategoriesViewModel!
+    private var viewModel: CategoriesViewModelProtocol!
     private let networkManager : NetworkManagerProtocol? = nil
     
     private var observer: AnyCancellable?
@@ -27,18 +27,20 @@ class CategoriesViewController: UIViewController{
     @IBOutlet private weak var noProductsLabel: UILabel!
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
     
+    
+    init(nibName: String?, viewModel: CategoriesViewModelProtocol) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initView()
-    }
-        
-    func initViewModel(products: [Product], category: ProductCategory) {
-        viewModel = CategoriesViewModel(
-            productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()),
-            products: products,
-            category: category
-        )
     }
     
     private func initView() {

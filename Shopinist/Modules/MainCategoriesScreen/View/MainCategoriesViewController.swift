@@ -59,7 +59,7 @@ extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let categoriesVC = CategoriesViewController(nibName: "CategoriesViewController", bundle: nil)
+        
         var category: ProductCategory!
         if(indexPath.row == 0) {
             viewModel.category = .Men
@@ -78,7 +78,15 @@ extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionVi
             category = .Sales
         }
         
-        categoriesVC.initViewModel(products: viewModel.filteredProducts ?? [], category: category)
+        let categoriesVC = CategoriesViewController(
+            nibName: "CategoriesViewController",
+            viewModel: CategoriesViewModel(
+                productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()),
+                products: viewModel.filteredProducts ?? [],
+                category: category
+            )
+        )
+        
         self.navigationController?.pushViewController(categoriesVC, animated: true)
         
     }

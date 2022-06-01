@@ -14,6 +14,7 @@ protocol CategoriesViewModelProtocol {
     var category: ProductCategory? {get}
     var subCategory: ProductType? {get set}
     
+    func isProductsListEmpty() -> Bool
     func filterProductsForSearchText(searchText: String)
     func getProductsCount() -> Int
     func getProductAt(index: Int) -> Product?
