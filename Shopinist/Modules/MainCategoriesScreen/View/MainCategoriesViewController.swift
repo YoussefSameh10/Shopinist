@@ -8,13 +8,26 @@
 
 import UIKit
 
-class MainCategoriesViewController: UIViewController  {
+class MainCategoriesViewController: UIViewController {
 
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
 
     var viewModel: MainCategoriesViewModelProtocol!
+    var router: MainCategoriesRouterProtocol!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    init(nibName: String?, viewModel: MainCategoriesViewModelProtocol, router: MainCategoriesRouterProtocol) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+        self.router = router
+        self.router.viewController = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewModel()
@@ -80,16 +93,10 @@ extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionVi
             category = .Sales
         }
         
-        let categoriesVC = CategoriesViewController(
-            nibName: "CategoriesViewController",
-            viewModel: CategoriesViewModel(
-                productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)),
-                products: viewModel.filteredProducts ?? [],
-                category: category
-            )
+        router.navigateToCategoriesScreen(
+            appDelegate: appDelegate,
+            products: viewModel.filteredProducts ?? [],
+            category: category
         )
-        
-        self.navigationController?.pushViewController(categoriesVC, animated: true)
-        
     }
 }
