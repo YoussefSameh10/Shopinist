@@ -36,9 +36,20 @@ class Formatter {
 //            }
             return product
         }
+    }
+    
+    static func convertCartProductToProduct(cartProduct: CartProduct) -> Product {
+        var product = Product()
         
+        product.id = Int(cartProduct.id)
+        product.title = cartProduct.title
+        product.description = cartProduct.details
+        product.vendor = cartProduct.vendor
+        product.tags = cartProduct.tags
+        product.options = [ProductOption(id: nil, productID: nil, name: .color, values: [cartProduct.color!])]
+        product.images = [ProductImage(id: nil, productID: nil, src: cartProduct.image)]
         
-        
+        return product
     }
     
 }
