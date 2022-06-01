@@ -10,12 +10,12 @@ import Foundation
 import Combine
 import UIKit
 
-class ProductDetailsViewModel {
+class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     var product : Product?
-    var productRepo : ProductsRepo
+    var productRepo : ProductsRepoProtocol
     var favProducts : [Product]?
     var cartProducts : [Product]?
     
@@ -35,18 +35,25 @@ class ProductDetailsViewModel {
         productRepo.addProductIntoCartDb(product: product!)
     }
     
+    func isInFavourite() -> Bool{
+        return productRepo.isInFavourites(id: (product?.id)!)
+    }
+    
+    func removeFavFromDb(){
+        productRepo.removeFavProductFromDb(product: product!)
+    }
+    
+    // ************** just for test core data then remove it **********
+    
     func getFavProducts(){
-        favProducts = productRepo.getFavouritesFromDb()
-        print("fav count = \(favProducts?.count)")
+        favProducts = productRepo.getAllFavouritesFromDb()
+        //print("fav count = \(favProducts?.count)")
+        //print("fav item name = \(favProducts?[0].title)")
     }
     
     func getCartProducts(){
         cartProducts = productRepo.getCartProductsFromDb()
         print("cart count = \(cartProducts?.count)")
-    }
-    
-    func removeFavFromDb(){
-        productRepo.removeFavProductFromDb(product: product!)
     }
     
     func removeCartProductFromDb(){

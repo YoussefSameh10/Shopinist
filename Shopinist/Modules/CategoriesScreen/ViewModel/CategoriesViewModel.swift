@@ -14,49 +14,46 @@ class CategoriesViewModel {
     private let productRepo: ProductsRepoProtocol
     
     private var observer: AnyCancellable?
-    @Published var observableProductsList: [Product]?
     var productsList: [Product]?
-    var shownProductsList: [Product]?
-    var searchedProductsList: [Product]?
-    
+    @Published var searchedProductsList: [Product]?
+    var category: ProductCategory?
     var subCategory: ProductType? {
         didSet {
-            filterProductBySubCategory()
+            filterProductsForSearchText(searchText: "")
         }
     }
 
-    init(productRepo: ProductsRepoProtocol) {
+    init(productRepo: ProductsRepoProtocol, products: [Product], category: ProductCategory) {
         self.productRepo = productRepo
-        getProductsByCategory(category: .Men)
+        self.category = category
+        productsList = products
+        filterProductBySubCategory()
+        searchedProductsList = products
     }
     
-    func getProductsByCategory(category: ProductCategory) {
-        observer = productRepo.getAllProductsOfCategory(category: category).sink(
-            receiveCompletion: { (completion) in
-                switch completion {
-                case .finished:
-                    print("Finished")
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-        }, receiveValue: { (response) in
-            self.productsList = response.products
-            self.shownProductsList = response.products
-            self.filterProductBySubCategory()
-            self.observableProductsList = response.products
-        })
+    func filterProductsForSearchText(searchText: String) {
+        
+        filterProductBySubCategory()
+        
+        if !searchText.isEmpty {
+            searchedProductsList = searchedProductsList?.filter { (product: Product) -> Bool in
+                return product.title!.lowercased().contains(searchText.lowercased())
+            }
+        }
     }
     
     private func filterProductBySubCategory() {
         if(subCategory == nil) {
-            shownProductsList = productsList
+            searchedProductsList = productsList
         }
         else {
-            shownProductsList = []
-            productsList?.forEach({ (product) in
-                if(product.productType == subCategory) {
-                    shownProductsList?.append(product)
+            searchedProductsList = []
+            
+            searchedProductsList = productsList?.filter({ product in
+                if product.productType == subCategory {
+                    return true
                 }
+                return false
             })
         }
     }

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
+                <outlet property="favouriteButtonImage" destination="LcS-eW-qEZ" id="BwE-EZ-yO8"/>
                 <outlet property="productColorButton" destination="5Rv-5M-cau" id="Hgz-XP-LHm"/>
                 <outlet property="productDescriptionTextView" destination="mdE-wj-HXA" id="4Ue-Rz-VhL"/>
                 <outlet property="productImagesCollectionView" destination="CjD-cA-cao" id="XF2-yX-b91"/>
@@ -54,7 +55,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="         ">
-                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="baseForegroundColor" systemColor="systemRedColor"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="FavouriteButton:" destination="-1" eventType="touchUpInside" id="9K1-s9-Bts"/>
@@ -220,6 +221,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
