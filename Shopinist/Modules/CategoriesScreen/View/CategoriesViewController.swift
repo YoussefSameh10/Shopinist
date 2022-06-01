@@ -84,7 +84,7 @@ class CategoriesViewController: UIViewController{
     }
     
     private func listenForChangesInProductsList() {
-        observer = viewModel.$searchedProductsList.sink { (productsList) in
+        observer = viewModel.searchedProductsList.sink { (productsList) in
             if(productsList == nil || productsList?.isEmpty ?? true) {
                 self.showEmptyScreen()
             }
@@ -149,7 +149,7 @@ class CategoriesViewController: UIViewController{
         }
         searchController.searchBar.text = ""
         filterProductsForSearchText(searchController.searchBar.text ?? "")
-        if viewModel.searchedProductsList?.isEmpty ?? true {
+        if viewModel.isProductsListEmpty() {
             showEmptyScreen()
         }
         else {
@@ -165,7 +165,7 @@ class CategoriesViewController: UIViewController{
 extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.searchedProductsList?.count ?? 0
+        return viewModel.getProductsCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -173,16 +173,18 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
         collectionView.register(nib, forCellWithReuseIdentifier: "Cell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoriesCollectionViewCell
         
-        cell.titleLabel.text = Formatter.formatProductName(productTitle: viewModel.searchedProductsList?[indexPath.row].title ?? "")
-        cell.priceLabel.text = viewModel.searchedProductsList?[indexPath.row].variants?[0].price ?? "PRICE"
-        cell.productImageView.kf.setImage(with: URL(string: (viewModel.searchedProductsList?[indexPath.row].images![0].src!) ?? ""))
+        cell.titleLabel.text = Formatter.formatProductName(productTitle: viewModel.getProductAt(index: indexPath.row)?.title ?? "")
+        cell.priceLabel.text = viewModel.getProductAt(index: indexPath.row)?.variants?[0].price ?? "PRICE"
+        cell.productImageView.kf.setImage(with: URL(string: (viewModel.getProductAt(index: indexPath.row)?.images![0].src!) ?? ""))
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
-        productDetailsVC.viewModel = ProductDetailsViewModel(product: (viewModel.searchedProductsList?[indexPath.row])!)
+        productDetailsVC.viewModel = ProductDetailsViewModel(product: (viewModel.getProductAt(index: indexPath.row)
+            
+            )!)
         self.navigationController?.pushViewController(productDetailsVC, animated: true)
     }
     

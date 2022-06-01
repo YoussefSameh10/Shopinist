@@ -47,6 +47,7 @@
 		E85DD3892844D512003A7723 /* MainCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85DD3872844D512003A7723 /* MainCategoryCell.xib */; };
 		E85DD38C2846B85F003A7723 /* MainCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85DD38B2846B85F003A7723 /* MainCategoriesViewModel.swift */; };
 		E85DD38E2846B87E003A7723 /* MainCategoriesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85DD38D2846B87E003A7723 /* MainCategoriesViewModelProtocol.swift */; };
+		E8628190284742DA0003B1B8 /* CategoriesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862818F284742DA0003B1B8 /* CategoriesViewModelProtocol.swift */; };
 		E883F39F283C20A600C19953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883F39E283C20A600C19953 /* AppDelegate.swift */; };
 		E883F3A1283C20A600C19953 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883F3A0283C20A600C19953 /* SceneDelegate.swift */; };
 		E883F3A3283C20A600C19953 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883F3A2283C20A600C19953 /* HomeViewController.swift */; };
@@ -147,6 +148,7 @@
 		E85DD3872844D512003A7723 /* MainCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCategoryCell.xib; sourceTree = "<group>"; };
 		E85DD38B2846B85F003A7723 /* MainCategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoriesViewModel.swift; sourceTree = "<group>"; };
 		E85DD38D2846B87E003A7723 /* MainCategoriesViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoriesViewModelProtocol.swift; sourceTree = "<group>"; };
+		E862818F284742DA0003B1B8 /* CategoriesViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelProtocol.swift; sourceTree = "<group>"; };
 		E883F39B283C20A600C19953 /* Shopinist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopinist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E883F39E283C20A600C19953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E883F3A0283C20A600C19953 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				E80F4696283FEE21000D4826 /* CategoriesViewModel.swift */,
+				E862818F284742DA0003B1B8 /* CategoriesViewModelProtocol.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -933,6 +936,7 @@
 				E85DD38C2846B85F003A7723 /* MainCategoriesViewModel.swift in Sources */,
 				8AE32BD4283D5A12003DA57B /* ProductImage.swift in Sources */,
 				F76782162842336C00AC5696 /* BrandsCell.swift in Sources */,
+				E8628190284742DA0003B1B8 /* CategoriesViewModelProtocol.swift in Sources */,
 				F76781E02842177100AC5696 /* adsCell.swift in Sources */,
 				F76781DC284212C000AC5696 /* CustomerRepo.swift in Sources */,
 				8AE32BDA283D5ADC003DA57B /* ProductEnums.swift in Sources */,
