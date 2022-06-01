@@ -38,7 +38,7 @@ class CategoriesViewController: UIViewController{
         
     func initViewModel(products: [Product], category: ProductCategory) {
         viewModel = CategoriesViewModel(
-            productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance()),
+            productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)),
             products: products,
             category: category
         )

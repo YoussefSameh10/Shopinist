@@ -51,7 +51,8 @@ class DatabaseManager: DatabaseManagerProtocol {
         }
         
         if count == 0 {
-            //delete
+            remove(product: product, isFav: "false")
+            return
         }
         
         let product = products[0]
@@ -123,7 +124,7 @@ extension DatabaseManager {
             products = try viewContext.fetch(fetchRequest)
             if products.count > 0 {
                 print("****** get product from db \(products[0].id)")
-                            print("****** id param \(id)")
+                print("****** id param \(id)")
                 return products
             }
             return []
@@ -160,37 +161,28 @@ extension DatabaseManager {
     
     func add(product : Product, isFav : String) {
         var storedProduct = productToStoredProduct(product: product)
-        
         storedProduct.setValue(isFav, forKey: "isFavorite")
         
+        let isFoundInFavorite = isProductExists(id: product.id ?? 0, isFavorite: "true")
+        let isFoundInCart = isProductExists(id: product.id ?? 0, isFavorite: "false")
         
-        //var imgStr = product.images!.reduce(""){ $0.src! + "|" + $1.src!}
-        let isFound = false
-//        do
-//        {
-//            try self.viewContext.save()
-//        }
-//        catch
-//        {
-//            print("Cannot be added !!!")
-//        }
-        if (isFound){
-            storedProduct.setValue(storedProduct.count + 1, forKey: "count")
-            if (isFav == "false"){
-                //TODO: Update
-            }
+        if (isFoundInFavorite)
+        {
+            return
         }
-        else{
-            do
-            {
-                try self.viewContext.save()
-                print("*** product added *** ")
-                print("productc added = \(product.title) **** \(product.id)")
-            }
-            catch
-            {
-                print("Cannot be added !!!")
-            }
+        if (isFoundInCart){
+            let foundProducts = getProducts(id: product.id ?? 0, isFavorite: "false")
+                updateProductCountInCart(product: product, count: Int(foundProducts[0].count))
+        }
+        do
+        {
+            try self.viewContext.save()
+            print("*** product added *** ")
+            print("productc added = \(product.title) **** \(product.id)")
+        }
+        catch
+        {
+            print("Cannot be added !!!")
         }
     }
     
@@ -221,30 +213,3 @@ extension DatabaseManager {
     }
 }
 
-extension DatabaseManager {
-    
-    private func isProductExists(id: Int, isFavorite: Bool) -> Bool {
-        if getProducts(id: id, isFavorite: isFavorite).isEmpty {
-            return false
-        }
-        return true
-    }
-    
-    private func getProducts(id: Int, isFavorite: Bool) -> [StoredProduct] {
-        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
-        fetchRequest.predicate = NSPredicate(format: "id == %@ && isFavorite == %@", id, isFavorite)
-        var products: [StoredProduct] = []
-        do{
-            products = try viewContext.fetch(fetchRequest)
-            if products.count > 0 {
-                return products
-            }
-            return []
-        }
-        catch let error{
-            print(error.localizedDescription)
-            return []
-        }
-        
-    }
-}
