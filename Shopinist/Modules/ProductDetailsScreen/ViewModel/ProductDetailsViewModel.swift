@@ -35,6 +35,7 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     }
     
     func addToCart(size : String , color : String){
+        print("addToCart: size = \(size), color = \(color)")
         cartRepo.add(cartItem: product!, size: size, color: color)
     }
     
@@ -58,7 +59,10 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         cartProducts = cartRepo.getAllItems()
         if cartProducts != nil {
             print("*** cart count = \(cartProducts?.count) ***")
-            print("*** cart count = \(cartProducts?[0]) ***")
+            print("\n\n\nCart Products : \n")
+            cartProducts?.forEach({ (cartProduct) in
+                print("\(cartProduct.id) : \(cartProduct.count) : \(cartProduct.size) : \(cartProduct.color) \n\n" )
+            })
         }
     }
     

@@ -104,8 +104,8 @@
 		F767821928425FDF00AC5696 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767821828425FDF00AC5696 /* HomeViewModel.swift */; };
 		F7E8E1E82844F961000DAB50 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E1E62844F961000DAB50 /* CartViewController.swift */; };
 		F7E8E1E92844F961000DAB50 /* CartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E1E72844F961000DAB50 /* CartViewController.xib */; };
-		F7E8E1EC28451299000DAB50 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E1EA28451299000DAB50 /* CartCell.swift */; };
-		F7E8E1ED28451299000DAB50 /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E8E1EB28451299000DAB50 /* CartCell.xib */; };
+		F7F5BF1F2848CFF60042EBE7 /* CartViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5BF1E2848CFF60042EBE7 /* CartViewModelProtocol.swift */; };
+		F7F5BF212848E0660042EBE7 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5BF202848E0660042EBE7 /* CartViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,8 +236,8 @@
 		F767821828425FDF00AC5696 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Shopinist/Modules/HomeScreen/View/BrandCell/HomeViewModel.swift; sourceTree = SOURCE_ROOT; };
 		F7E8E1E62844F961000DAB50 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		F7E8E1E72844F961000DAB50 /* CartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
-		F7E8E1EA28451299000DAB50 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
-		F7E8E1EB28451299000DAB50 /* CartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
+		F7F5BF1E2848CFF60042EBE7 /* CartViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewModelProtocol.swift; path = Shopinist/Modules/CartScreen/CartViewModelProtocol.swift; sourceTree = SOURCE_ROOT; };
+		F7F5BF202848E0660042EBE7 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewModel.swift; path = Shopinist/Modules/CartScreen/CartViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,11 +409,8 @@
 		8AE32BC4283D42A6003DA57B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-
 				8A29CD022847A1700020AD49 /* FavouriteProductsRepo */,
-
 				F75C3CDC2847B7CA006E2E43 /* CartItemsRepo */,
-
 				F76781D72842122800AC5696 /* CustomerRepo */,
 				E80F4691283FEDF5000D4826 /* OrderRepo */,
 				8ADCF80F283EF5AA0017F2F7 /* ProductsRepo */,
@@ -747,11 +744,10 @@
 		E88C7E2C2842D74500800389 /* DatabaseServices */ = {
 			isa = PBXGroup;
 			children = (
+				F7FCA0062848A18800ABCC3C /* CartItemsDB */,
 				8A29CCFD284799210020AD49 /* FavouritesDB */,
 				E88C7E2D2842D76900800389 /* DatabaseManagerProtocol.swift */,
 				E88C7E2F2842D7BB00800389 /* DatabaseManager.swift */,
-				F75C3CD828479829006E2E43 /* CartItemsManager.swift */,
-				F75C3CDA28479837006E2E43 /* CartItemsManagerProtocol.swift */,
 			);
 			path = DatabaseServices;
 			sourceTree = "<group>";
@@ -838,6 +834,8 @@
 		F7E8E1E02844D214000DAB50 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F7F5BF1E2848CFF60042EBE7 /* CartViewModelProtocol.swift */,
+				F7F5BF202848E0660042EBE7 /* CartViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -845,12 +843,19 @@
 		F7E8E1E52844D734000DAB50 /* CartItemCell */ = {
 			isa = PBXGroup;
 			children = (
-				F7E8E1EA28451299000DAB50 /* CartCell.swift */,
-				F7E8E1EB28451299000DAB50 /* CartCell.xib */,
 				F761908A2845F58600EA3AEC /* CartTableViewCell.swift */,
 				F761908B2845F58600EA3AEC /* CartTableViewCell.xib */,
 			);
 			path = CartItemCell;
+			sourceTree = "<group>";
+		};
+		F7FCA0062848A18800ABCC3C /* CartItemsDB */ = {
+			isa = PBXGroup;
+			children = (
+				F75C3CD828479829006E2E43 /* CartItemsManager.swift */,
+				F75C3CDA28479837006E2E43 /* CartItemsManagerProtocol.swift */,
+			);
+			path = CartItemsDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -963,7 +968,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E883F3D8283C2C0A00C19953 /* CategoriesViewController.xib in Resources */,
-				F7E8E1ED28451299000DAB50 /* CartCell.xib in Resources */,
 				E883F3AE283C20AA00C19953 /* LaunchScreen.storyboard in Resources */,
 				8A15D9A528467511006B9C96 /* FavouriteTableViewCell.xib in Resources */,
 				E85DD37C2844A43E003A7723 /* MainCategoriesViewController.xib in Resources */,
@@ -1125,6 +1129,7 @@
 				E80F4697283FEE21000D4826 /* CategoriesViewModel.swift in Sources */,
 				E85DD38C2846B85F003A7723 /* MainCategoriesViewModel.swift in Sources */,
 				8AE32BD4283D5A12003DA57B /* ProductImage.swift in Sources */,
+				F7F5BF1F2848CFF60042EBE7 /* CartViewModelProtocol.swift in Sources */,
 				E862819A2847AB9C0003B1B8 /* CategoriesRouterProtocol.swift in Sources */,
 				F76782162842336C00AC5696 /* BrandsCell.swift in Sources */,
 				E8628190284742DA0003B1B8 /* CategoriesViewModelProtocol.swift in Sources */,
@@ -1148,6 +1153,7 @@
 				E883F3A1283C20A600C19953 /* SceneDelegate.swift in Sources */,
 				E80F469A28401387000D4826 /* CategoriesCollectionViewCell.swift in Sources */,
 				F75C3CDB28479837006E2E43 /* CartItemsManagerProtocol.swift in Sources */,
+				F7F5BF212848E0660042EBE7 /* CartViewModel.swift in Sources */,
 				E8B77145283D9340008D17CA /* OrderFinancialStatus.swift in Sources */,
 				F75C3CDE2847B7EB006E2E43 /* CartItemsRepo.swift in Sources */,
 				E883F3D7283C2C0A00C19953 /* CategoriesViewController.swift in Sources */,
@@ -1168,7 +1174,6 @@
 				8A11C83C283FAC5F0091594D /* ProductDetailsViewController.swift in Sources */,
 				E85DD38E2846B87E003A7723 /* MainCategoriesViewModelProtocol.swift in Sources */,
 				E8B77143283D9310008D17CA /* OrderItem.swift in Sources */,
-				F7E8E1EC28451299000DAB50 /* CartCell.swift in Sources */,
 				E88C7E2B2842D71E00800389 /* StoredProduct.swift in Sources */,
 				8A1B946F2840516800A1BCF5 /* UIImageView.swift in Sources */,
 				E85DD3882844D512003A7723 /* MainCategoryCell.swift in Sources */,

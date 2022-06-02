@@ -101,7 +101,7 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func AddToCartButton(_ sender: Any) {
         print("added to cart")
-        viewModel.addToCart(size: "8", color: "blue")
+        viewModel.addToCart(size: "9", color: "blue")
         viewModel.getCartProducts()
     }
     
