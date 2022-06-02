@@ -7,6 +7,7 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
         <attribute name="size" optional="YES" attributeType="String"/>
         <attribute name="tags" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -38,7 +39,7 @@
         <attribute name="vendor" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CartProduct" positionX="-54" positionY="63" width="128" height="193"/>
+        <element name="CartProduct" positionX="-54" positionY="63" width="128" height="208"/>
         <element name="FavoriteProduct" positionX="-63" positionY="54" width="128" height="179"/>
         <element name="StoredProduct" positionX="-63" positionY="-18" width="128" height="194"/>
     </elements>

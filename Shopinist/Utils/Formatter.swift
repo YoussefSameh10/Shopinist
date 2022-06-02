@@ -86,7 +86,7 @@ class Formatter {
         product.tags = cartProduct.tags
         product.options = [ProductOption(id: nil, productID: nil, name: .color, values: [cartProduct.color!])]
         product.images = [ProductImage(id: nil, productID: nil, src: cartProduct.image)]
-        
+        product.variants = [Variant(id: nil, productID: nil, price: cartProduct.price, productSize: nil, productColor: nil, inventoryQuantity: nil)]
         return product
     }
     
