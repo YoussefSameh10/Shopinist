@@ -103,16 +103,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0340995A-7B0F-4227-BEDB-7D429B1413EF"
+            uuid = "60291A78-C071-47F5-9B8D-CC8FB2019FA5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Utils/Formatter.swift"
+            filePath = "Shopinist/Model/Services/DatabaseServices/FavouritesDB/FavouritesDataBaseManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "convertFavouriteProductsToProducts(favouriteProducts:)"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "productToFavouriteProduct(product:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
