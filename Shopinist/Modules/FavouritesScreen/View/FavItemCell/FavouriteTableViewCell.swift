@@ -51,7 +51,7 @@ class FavouriteTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: - LifeCycle MEthods
+    // MARK: - LifeCycle Methods
     
     override func awakeFromNib() {
         super.awakeFromNib()

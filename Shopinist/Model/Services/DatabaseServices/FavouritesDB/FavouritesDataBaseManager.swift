@@ -46,6 +46,7 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
         {
             try self.viewContext.save()
             print("*** product added *** ")
+            print(storedProduct)
             print("productc added = \(product.title) **** \(product.id)")
         }
         catch
