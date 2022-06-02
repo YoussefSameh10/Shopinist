@@ -73,7 +73,7 @@ class ProductDetailsViewController: UIViewController {
         productTitleLabel.text = viewModel.product?.title
         productDescriptionTextView.text = viewModel.product?.description
         productMainImageView.kf.setImage(with : URL(string: (viewModel.product?.images![0].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
-        productPriceLabel.text = "\(viewModel.product?.variants![0].price ?? "") EGP"
+        //productPriceLabel.text = "\(viewModel.product?.variants![0].price ?? "") EGP"
        
         productColorButton.setTitle(viewModel.product?.options![1].values![0], for: .normal)
         productColorButton.layer.borderWidth = 1
