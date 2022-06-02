@@ -11,9 +11,9 @@ import Foundation
 
 class FavouritesViewModel : FavouritesViewModelProtocol {
     
+    var products: [Product]?
     
     var favouritesRepo : FavouritesProductRepoProtocol
-    var products : [Product]?
     
     init(favouritesRepo : FavouritesProductRepoProtocol) {
         self.favouritesRepo = favouritesRepo
@@ -21,7 +21,8 @@ class FavouritesViewModel : FavouritesViewModelProtocol {
     
     
     func getFavouritesFromDB() -> [Product]{
-        return favouritesRepo.getAllFavouritesFromDb()
+        products = favouritesRepo.getAllFavouritesFromDb()
+        return products!
     }
     
     func removeFavouritesItemFromRepo(product : Product){

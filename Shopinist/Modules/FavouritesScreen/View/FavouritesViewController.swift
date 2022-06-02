@@ -18,7 +18,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Variables
     
     var viewModel : FavouritesViewModelProtocol!
-    
+    var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     // MARK: - Init
     
@@ -64,8 +64,8 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouritesCell", for: indexPath) as! FavouriteTableViewCell
-        cell.favItemTitle = viewModel.getFavouritesFromDB()[indexPath.row].title!
-        //cell.favItemImage = viewModel.getFavouritesFromDB()[indexPath.row].images![0].src!
+        cell.favItemTitle = viewModel.products![indexPath.row].title!
+        cell.favItemImage = viewModel.products![indexPath.row].images![0].src!
         print("*****************")
         print(viewModel.getFavouritesFromDB()[0])
         return cell
@@ -73,6 +73,15 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("did select row")
+        var product = viewModel.products![indexPath.row]
+        let productDetailsVC = ProductDetailsViewController(
+            nibName: "ProductDetailsViewController",
+            viewModel: ProductDetailsViewModel(
+                product:product,
+                productRepo: FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: appDelegate))
+            )
+        )
+        self.navigationController?.pushViewController(productDetailsVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

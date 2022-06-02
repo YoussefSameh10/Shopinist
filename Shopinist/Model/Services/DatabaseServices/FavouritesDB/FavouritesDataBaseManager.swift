@@ -41,13 +41,17 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     
     func addToFavDb(product : Product) {
         
-        let storedProduct = productToStoredProduct(product: product)
+        let favProduct = productToFavouriteProduct(product: product)
         do
         {
             try self.viewContext.save()
             print("*** product added *** ")
-            print(storedProduct)
-            print("productc added = \(product.title) **** \(product.id)")
+            //print(favProduct)
+            
+            print("productc added = \(favProduct.title) **** \(favProduct.sizes)")
+            print("productc added = \(favProduct.title) **** \(favProduct.colors)")
+            print("fav product price = \(favProduct.price)")
+
         }
         catch
         {
@@ -56,14 +60,25 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     }
     
     
-    private func productToStoredProduct(product: Product) -> FavoriteProduct {
+    private func productToFavouriteProduct(product: Product) -> FavoriteProduct {
         
-        let storedProduct = FavoriteProduct(entity: self.entity, insertInto: viewContext)
-        storedProduct.id = Int64(product.id!)
-        storedProduct.title = product.title!
-        storedProduct.colors = product.options?[1].values?[0] ?? ""
-        storedProduct.sizes = product.options?[0].values?[0] ?? ""
-        storedProduct.details = product.description!
+        let favouriteProduct = FavoriteProduct(entity: self.entity, insertInto: viewContext)
+        favouriteProduct.id = Int64(product.id!)
+        favouriteProduct.title = product.title!
+        favouriteProduct.price = product.variants![0].price
+        favouriteProduct.details = product.description!
+
+        // color
+        favouriteProduct.colors = product.options?[1].values?[0] ?? ""
+        
+        // size
+        var sizesStr = ""
+        for size in product.options![0].values! {
+            sizesStr.append(contentsOf: size)
+            sizesStr.append("|")
+        }
+        sizesStr.removeLast()
+        favouriteProduct.sizes = sizesStr
         
         var imagesStr = ""
         for image in product.images! {
@@ -73,8 +88,8 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
         
         imagesStr.removeLast()
         
-        storedProduct.images = imagesStr
-        return storedProduct
+        favouriteProduct.images = imagesStr
+        return favouriteProduct
     }
     
     
@@ -86,15 +101,6 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
         }
         return true
     }
-    
-    
-    //    private func isProductExists(id: Int, isFavorite: String) -> Bool {
-    //        if getProducts(id: id).isEmpty {
-    //            return false
-    //        }
-    //        return true
-    //    }
-    
     
     // MARK: - getAllFavourites
     
@@ -108,7 +114,9 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
             print(error.localizedDescription)
         }
         var products : [Product]
-        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
+        products = Formatter.convertFavouriteProductsToProducts(favouriteProducts: favouritesProducts!)
+        //print(products[0])
+
         return products
     }
     

@@ -381,13 +381,6 @@
 			path = ProductCells;
 			sourceTree = "<group>";
 		};
-		8AC33DDB28415DCF00B80E16 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		8ADCF80F283EF5AA0017F2F7 /* ProductsRepo */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,7 +598,6 @@
 		E883F39D283C20A600C19953 /* Shopinist */ = {
 			isa = PBXGroup;
 			children = (
-				8AC33DDB28415DCF00B80E16 /* Cells */,
 				8AE9733E283E787B00725A9B /* Utils */,
 				8AE32BC4283D42A6003DA57B /* Model */,
 				E883F3E6283C4D7000C19953 /* AppDelegate */,
