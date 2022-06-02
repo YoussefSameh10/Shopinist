@@ -47,7 +47,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     
-    // MARK: - View did Load
+    // MARK: - LifeCycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +65,16 @@ class ProductDetailsViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("*****\(viewModel.isInFavourite())")
+        if(viewModel.isInFavourite()){
+            favouriteButtonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }else{
+            favouriteButtonImage.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
+    
+    
     // MARK: - Functions
     
     fileprivate func setUIDesigns() {
@@ -73,7 +83,7 @@ class ProductDetailsViewController: UIViewController {
         productTitleLabel.text = viewModel.product?.title
         productDescriptionTextView.text = viewModel.product?.description
         productMainImageView.kf.setImage(with : URL(string: (viewModel.product?.images![0].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
-        //productPriceLabel.text = "\(viewModel.product?.variants![0].price ?? "") EGP"
+        productPriceLabel.text = "\(viewModel.product?.variants![0].price ?? "") EGP"
        
         productColorButton.setTitle(viewModel.product?.options![1].values![0], for: .normal)
         productColorButton.layer.borderWidth = 1
@@ -105,10 +115,7 @@ class ProductDetailsViewController: UIViewController {
         viewModel.getCartProducts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        viewModel.getFavProducts()
-        
-    }
+   
     
    
     

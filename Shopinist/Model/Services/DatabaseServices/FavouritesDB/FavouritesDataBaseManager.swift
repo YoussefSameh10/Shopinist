@@ -47,9 +47,10 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
             try self.viewContext.save()
             print("*** product added *** ")
             //print(favProduct)
-            print("productc added = \(favProduct.title) **** \(product.id)")
+            
             print("productc added = \(favProduct.title) **** \(favProduct.sizes)")
             print("productc added = \(favProduct.title) **** \(favProduct.colors)")
+            print("fav product price = \(favProduct.price)")
 
         }
         catch
@@ -64,6 +65,7 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
         let favouriteProduct = FavoriteProduct(entity: self.entity, insertInto: viewContext)
         favouriteProduct.id = Int64(product.id!)
         favouriteProduct.title = product.title!
+        favouriteProduct.price = product.variants![0].price
         favouriteProduct.details = product.description!
 
         // color
@@ -113,7 +115,7 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
         }
         var products : [Product]
         products = Formatter.convertFavouriteProductsToProducts(favouriteProducts: favouritesProducts!)
-        print(products[0])
+        //print(products[0])
 
         return products
     }

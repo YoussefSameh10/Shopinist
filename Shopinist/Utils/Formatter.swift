@@ -52,6 +52,17 @@ class Formatter {
             //sizes.append(favouriteProduct.sizes!)
             
             product.id = Int(favouriteProduct.id)
+            if !favouriteProduct.price!.isEmpty {
+                print(favouriteProduct.price)
+            }
+            else{
+                print("noooooooo priceeeeee")
+            }
+            print(favouriteProduct.price)
+            product.variants = []
+            product.variants?.append(Variant(price: favouriteProduct.price))
+            //product.variants![0].price = favouriteProduct.price
+            //print("after convert \(product.variants![0].price)")
             product.title = favouriteProduct.title
             product.options?.append(ProductOption(name: .size, values:sizes))
             product.options?.append(ProductOption(name: .color, values:colors))
