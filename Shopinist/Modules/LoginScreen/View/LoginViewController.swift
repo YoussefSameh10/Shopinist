@@ -8,25 +8,76 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import Combine
 
 class LoginViewController: UIViewController {
-
+    
+    private var viewModel: LoginViewModelProtocol!
+    private var router: LoginRouterProtocol!
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init(nibName: String?, viewModel: LoginViewModelProtocol, router: LoginRouterProtocol) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+        self.router = router
+        self.router.viewController = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     
     @IBOutlet weak var signinButton: UIButton!
     
+    @IBOutlet weak var signupButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSigninButton()
+        listenForResponse()
     }
     
     private func setupSigninButton() {
         signinButton.layer.cornerRadius = 25
+        signupButton.titleLabel?.textAlignment = .center
         invalidateButton()
     }
+    
+    private func listenForResponse() {
+        viewModel.isValidLogin.sink(
+            receiveCompletion: { (completion) in
+                switch completion {
+                    case .finished:
+                        print("Finished")
+                    case .failure:
+                        print("Failed")
+                }
+            },
+            receiveValue: { (response) in
+                guard let response = response else {
+                    return
+                }
+                if response {
+                    self.router.navigateToHome()
+                }
+                else {
+                    self.showErrorAlert()
+                }
+            }
+        ).store(in: &cancellables)
+    }
 
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "Couldn't log in. Please check your credentials", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func textFieldDidChange(_ sender: Any) {
         validateTextFields()
     }
@@ -59,10 +110,10 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signin(_ sender: Any) {
+        viewModel.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     @IBAction func navigateToRegister(_ sender: Any) {
-        let registerVC = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
-        self.navigationController?.pushViewController(registerVC, animated: true)
+        router.navigateToRegister()
     }
     
 

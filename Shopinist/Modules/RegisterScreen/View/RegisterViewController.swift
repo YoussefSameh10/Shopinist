@@ -8,24 +8,44 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import Combine
 
 class RegisterViewController: UIViewController {
+    
+    var viewModel: RegisterViewModelProtocol?
+    var router: RegisterRouterProtocol?
+    
+    var cancellables: Set<AnyCancellable> = []
     
     @IBOutlet weak var nameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var addressTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var phoneTextField: SkyFloatingLabelTextField!
     
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var signinButton: UIButton!
+    
+    init(nibName: String?, viewModel: RegisterViewModelProtocol, router: RegisterRouterProtocol) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+        self.router = router
+        self.router?.viewController = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideNavBar()
         setupButtons()
-        setupTextFields()
+        listenForResponse()
+        
+        if viewModel?.isCustomerLoggedIn() ?? false {
+            router?.navigateToHome()
+        }
     }
     
     private func hideNavBar() {
@@ -34,21 +54,8 @@ class RegisterViewController: UIViewController {
     
     private func setupButtons() {
         signupButton.layer.cornerRadius = 25
-        
+        signinButton.titleLabel?.textAlignment = .center
         invalidateButton()
-    }
-    
-    
-    
-    private func setupTextFields() {
-        let textFields = [nameTextField, emailTextField, passwordTextField, confirmPasswordTextField, addressTextField, phoneTextField]
-        
-        for textField in textFields {
-//            textField?.layer.cornerRadius = 15
-//            textField?.layer.masksToBounds = true
-//            textField?.layer.borderWidth = 1
-//            textField?.layer.sublayerTransform = CATransform3DMakeTranslation(8, 0, 0)
-        }
     }
     
     private func validateButton() {
@@ -68,12 +75,18 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func signup(_ sender: Any) {
-        print("SIGNUP")
+        viewModel?.registerCustomer(
+            name: nameTextField.text!,
+            email: emailTextField.text!,
+            password: passwordTextField.text!,
+            address: addressTextField.text!
+        )
+        
+        
     }
     
     @IBAction func navigateToLogin(_ sender: Any) {
-        let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        router?.navigateToLogin()
     }
     
     @IBAction func textFieldDidChange(_ sender: SkyFloatingLabelTextField) {
@@ -84,7 +97,6 @@ class RegisterViewController: UIViewController {
         if !(nameTextField.text?.isEmpty ?? false)
             && !(emailTextField.text?.isEmpty ?? false)
             && !(addressTextField.text?.isEmpty ?? false)
-            && !(phoneTextField.text?.isEmpty ?? false)
             && validatePassword(){
             
             validateButton()
@@ -92,7 +104,6 @@ class RegisterViewController: UIViewController {
         else {
             invalidateButton()
         }
-        
     }
     
     private func validatePassword() -> Bool {
@@ -104,5 +115,37 @@ class RegisterViewController: UIViewController {
         else {
             return false
         }
+    }
+    
+    private func listenForResponse() {
+        viewModel?.validEmail
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { (completion) in
+                    switch completion {
+                        case .finished:
+                            print("Finished")
+                        case .failure:
+                            print("Failed")
+                    }
+                },
+                receiveValue: { (response) in
+                    guard let response = response else {
+                        return
+                    }
+                    if response == true {
+                        self.router?.navigateToHome()
+                    }
+                    else {
+                        self.showErrorAlert()
+                    }
+                }
+            ).store(in: &cancellables)
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Error", message: "This email is already used.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }

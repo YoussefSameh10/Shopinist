@@ -9,5 +9,6 @@
 import Foundation
 
 protocol LoginViewModelProtocol {
-    
+    var isValidLogin: Published<Bool?>.Publisher {get}
+    func login(email: String, password: String)
 }

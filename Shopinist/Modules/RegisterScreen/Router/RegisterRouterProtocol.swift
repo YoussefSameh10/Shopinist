@@ -9,5 +9,8 @@
 import Foundation
 
 protocol RegisterRouterProtocol {
+    var viewController: RegisterViewController? {get set}
     
+    func navigateToHome()
+    func navigateToLogin()
 }

@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import Combine
 
 protocol RegisterViewModelProtocol {
+    var validEmail: Published<Bool?>.Publisher {get}
     
+    func registerCustomer(name: String, email: String, password: String, address: String)
+    func isCustomerLoggedIn() -> Bool
 }

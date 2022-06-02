@@ -12,6 +12,7 @@
                 <outlet property="emailTextField" destination="ZMv-AK-PYo" id="MuV-5Q-bui"/>
                 <outlet property="passwordTextField" destination="gsb-aK-CGr" id="dMk-EW-lzc"/>
                 <outlet property="signinButton" destination="RG3-2O-hN0" id="Oma-jq-afG"/>
+                <outlet property="signupButton" destination="Cmt-cy-ATH" id="GWe-Nl-x9y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background3" translatesAutoresizingMaskIntoConstraints="NO" id="mY2-Nu-ayO">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background3" translatesAutoresizingMaskIntoConstraints="NO" id="mY2-Nu-ayO">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>

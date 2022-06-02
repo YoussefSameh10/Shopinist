@@ -14,7 +14,6 @@
                 <outlet property="emailTextField" destination="ZPc-62-VAk" id="BHz-6w-0pM"/>
                 <outlet property="nameTextField" destination="mzk-Ih-SZb" id="TT4-Xk-5in"/>
                 <outlet property="passwordTextField" destination="tSb-av-SrH" id="fLx-2P-oL9"/>
-                <outlet property="phoneTextField" destination="3wg-JW-CDe" id="bhE-oh-n4L"/>
                 <outlet property="signinButton" destination="thm-y3-HSm" id="aYE-Va-V2h"/>
                 <outlet property="signupButton" destination="s2h-M5-FUI" id="uCH-jg-Zfq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background4" translatesAutoresizingMaskIntoConstraints="NO" id="yQ3-HY-8Ot">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background4" translatesAutoresizingMaskIntoConstraints="NO" id="yQ3-HY-8Ot">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mzk-Ih-SZb" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
@@ -215,43 +214,8 @@
                         <action selector="textFieldDidChange:" destination="-1" eventType="editingChanged" id="HOC-Jv-r2h"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3wg-JW-CDe" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                    <rect key="frame" x="16" y="556.5" width="382" height="46"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                    <textInputTraits key="textInputTraits" textContentType="tel"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Enter your phone"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Phone"/>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
-                            <color key="value" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Phone"/>
-                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="textFieldDidChange:" destination="-1" eventType="editingChanged" id="2Uw-M4-UeH"/>
-                    </connections>
-                </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-M5-FUI">
-                    <rect key="frame" x="80" y="666.5" width="254" height="70"/>
+                    <rect key="frame" x="80" y="588.5" width="254" height="70"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="c73-KX-eh7"/>
@@ -266,7 +230,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="thm-y3-HSm">
-                    <rect key="frame" x="80" y="768.5" width="254" height="56"/>
+                    <rect key="frame" x="80" y="690.5" width="254" height="56"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="ERt-Ob-s9Z"/>
@@ -298,22 +262,19 @@
                 <constraint firstItem="yQ3-HY-8Ot" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fnc-A7-02a"/>
                 <constraint firstItem="thm-y3-HSm" firstAttribute="top" secondItem="s2h-M5-FUI" secondAttribute="bottom" constant="32" id="GJp-sf-1vM"/>
                 <constraint firstItem="kZI-c1-TLf" firstAttribute="leading" secondItem="mra-RU-bbv" secondAttribute="leading" id="JnJ-6m-BXc"/>
+                <constraint firstItem="s2h-M5-FUI" firstAttribute="top" secondItem="kT2-OX-erA" secondAttribute="bottom" constant="64" id="KsM-Oc-4R3"/>
                 <constraint firstItem="kZI-c1-TLf" firstAttribute="top" secondItem="mra-RU-bbv" secondAttribute="bottom" constant="16" id="L4q-cX-yWR"/>
                 <constraint firstItem="WBZ-ri-HzV" firstAttribute="leading" secondItem="tSb-av-SrH" secondAttribute="leading" id="LWu-z2-lQA"/>
                 <constraint firstItem="tSb-av-SrH" firstAttribute="trailing" secondItem="ZPc-62-VAk" secondAttribute="trailing" id="POF-G1-Ye1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mra-RU-bbv" secondAttribute="trailing" constant="16" id="Wbn-rh-AWZ"/>
                 <constraint firstItem="ZPc-62-VAk" firstAttribute="top" secondItem="mzk-Ih-SZb" secondAttribute="bottom" constant="32" id="aDm-33-cwU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="s2h-M5-FUI" secondAttribute="trailing" constant="80" id="cXP-lh-AH7"/>
-                <constraint firstItem="3wg-JW-CDe" firstAttribute="top" secondItem="kT2-OX-erA" secondAttribute="bottom" constant="32" id="eOx-6n-O6v"/>
                 <constraint firstItem="kT2-OX-erA" firstAttribute="leading" secondItem="WBZ-ri-HzV" secondAttribute="leading" id="eyi-my-2Kz"/>
-                <constraint firstItem="3wg-JW-CDe" firstAttribute="leading" secondItem="kT2-OX-erA" secondAttribute="leading" id="hQP-rh-ZoR"/>
                 <constraint firstItem="kT2-OX-erA" firstAttribute="top" secondItem="WBZ-ri-HzV" secondAttribute="bottom" constant="32" id="idb-2R-p7L"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yQ3-HY-8Ot" secondAttribute="trailing" id="ifh-0K-mQ7"/>
                 <constraint firstAttribute="bottom" secondItem="yQ3-HY-8Ot" secondAttribute="bottom" id="nqF-DT-U8E"/>
                 <constraint firstItem="kT2-OX-erA" firstAttribute="trailing" secondItem="WBZ-ri-HzV" secondAttribute="trailing" id="pWd-C2-WTi"/>
                 <constraint firstItem="ZPc-62-VAk" firstAttribute="trailing" secondItem="mzk-Ih-SZb" secondAttribute="trailing" id="s6g-ko-7kY"/>
-                <constraint firstItem="3wg-JW-CDe" firstAttribute="trailing" secondItem="kT2-OX-erA" secondAttribute="trailing" id="w6i-IX-HbH"/>
-                <constraint firstItem="s2h-M5-FUI" firstAttribute="top" secondItem="3wg-JW-CDe" secondAttribute="bottom" constant="64" id="wyU-xs-1Vm"/>
                 <constraint firstItem="mra-RU-bbv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="xnW-ku-TJ8"/>
                 <constraint firstItem="thm-y3-HSm" firstAttribute="leading" secondItem="s2h-M5-FUI" secondAttribute="leading" id="yjN-2k-knH"/>
                 <constraint firstItem="tSb-av-SrH" firstAttribute="leading" secondItem="ZPc-62-VAk" secondAttribute="leading" id="z5R-F8-VUi"/>
