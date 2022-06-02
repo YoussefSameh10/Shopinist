@@ -11,6 +11,8 @@ import Foundation
 
 protocol FavouritesViewModelProtocol {
     
+    var products : [Product]? {get}
+    
     func getFavouritesFromDB() -> [Product]
     
     func removeFavouritesItemFromRepo(product : Product)
