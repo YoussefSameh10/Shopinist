@@ -41,6 +41,12 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        favouritesTableView.reloadData()
+    }
+    
+    // MARK: - Functionss
+    
     func setTableDelegateAndDataSource(){
         favouritesTableView.delegate = self
         favouritesTableView.dataSource = self
@@ -49,7 +55,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return viewModel.getFavouritesFromDB().count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 135
@@ -58,9 +64,38 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouritesCell", for: indexPath) as! FavouriteTableViewCell
+        cell.favItemTitle = viewModel.getFavouritesFromDB()[indexPath.row].title!
+        //cell.favItemImage = viewModel.getFavouritesFromDB()[indexPath.row].images![0].src!
+        print("*****************")
+        print(viewModel.getFavouritesFromDB()[0])
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("did select row")
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            viewModel.removeFavouritesItemFromRepo(product: viewModel.getFavouritesFromDB()[indexPath.row])
+            favouritesTableView.deleteRows(at: [indexPath], with: .automatic)
+            favouritesTableView.reloadData()
+            
+//            let alert  = UIAlertController(title: "Warning", message: "Press OK To Remove This Item From Favourites", preferredStyle: .alert)
+//            let action = UIAlertAction(title: "OK", style: .destructive) { [weak self] action  in
+//                self!.viewModel.removeFavouritesItemFromRepo(product: self!.viewModel.getFavouritesFromDB()[indexPath.row])
+//                self!.favouritesTableView.deleteRows(at: [indexPath], with: .automatic)
+//                self!.favouritesTableView.reloadData()
+//            }
+//            alert.addAction(action)
+            
+        }
+        
+    }
+    
+
 
 
 }
