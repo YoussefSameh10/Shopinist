@@ -15,15 +15,18 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     var product : Product?
-    var productRepo : ProductsRepoProtocol
+    var productRepo : FavouritesProductRepoProtocol
+    var cartRepo : CartItemsRepoProtocol
     var favProducts : [Product]?
-    var cartProducts : [Product]?
+    var cartProducts : [CartProduct]?
     
     
     
-    init(product: Product) {
+    init(product: Product , productRepo : FavouritesProductRepoProtocol , cartRepo : CartItemsRepoProtocol) {
         self.product = product
-        productRepo  = ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate))
+        self.productRepo = productRepo
+        self.cartRepo = cartRepo
+        
     }
     
     
@@ -31,8 +34,9 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         productRepo.addProductIntoFavouritesDb(product: product!)
     }
     
-    func addToCart(){
-        productRepo.addProductIntoCartDb(product: product!)
+    func addToCart(size : String , color : String){
+        print("addToCart: size = \(size), color = \(color)")
+        cartRepo.add(cartItem: product!, size: size, color: color)
     }
     
     func isInFavourite() -> Bool{
@@ -47,17 +51,23 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
     func getFavProducts(){
         favProducts = productRepo.getAllFavouritesFromDb()
-        //print("fav count = \(favProducts?.count)")
+        print("*** fav count = \(favProducts?.count) ***")
         //print("fav item name = \(favProducts?[0].title)")
     }
     
     func getCartProducts(){
-        cartProducts = productRepo.getCartProductsFromDb()
-        print("cart count = \(cartProducts?.count)")
+        cartProducts = cartRepo.getAllItems()
+        if cartProducts != nil {
+            print("*** cart count = \(cartProducts?.count) ***")
+            print("\n\n\nCart Products : \n")
+            cartProducts?.forEach({ (cartProduct) in
+                print("\(cartProduct.id) : \(cartProduct.count) : \(cartProduct.size) : \(cartProduct.color) \n\n" )
+            })
+        }
     }
     
-    func removeCartProductFromDb(){
-        productRepo.removeCartProductFromDb(product: product!)
-    }
+//    func removeCartProductFromDb(){
+//        productRepo.removeCartProductFromDb(product: product!)
+//    }
     
 }

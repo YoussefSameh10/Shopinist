@@ -33,7 +33,7 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
             return (viewModel.product?.images?.count) ?? 0
             
         }else{
-            return 8
+            return (viewModel.product?.options?[0].values!.count)!
         }
     }
     
@@ -87,8 +87,8 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
         let nib = UINib(nibName: "ProductSizeCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "productSizeCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productSizeCell", for: indexPath) as! ProductSizeCollectionViewCell
-        //cell.productSizeLabel.text = viewModel.products?[0].options?[0].name?.rawValue
-        cell.productSize = "7"
+        cell.productSizeLabel.text = viewModel.product?.options?[0].values![indexPath.row]
+        //cell.productSize = "7"
         setCellDesgin(cell)
         print("size cell  -------")
         return cell

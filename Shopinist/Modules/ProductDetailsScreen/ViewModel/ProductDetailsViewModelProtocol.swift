@@ -9,20 +9,19 @@
 import Foundation
 
 protocol ProductDetailsViewModelProtocol {
+    
+    var product : Product? {get}
+    
     func addToFav()
     
-    func addToCart()
+    func addToCart(size : String , color : String)
     
     func isInFavourite() -> Bool
     
     func removeFavFromDb()
-    
-    // ************** just for test core data then remove it **********
-    
+        
     func getFavProducts()
     
     func getCartProducts()
-    
-    func removeCartProductFromDb()
     
 }

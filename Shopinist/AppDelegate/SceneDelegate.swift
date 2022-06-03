@@ -11,6 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -23,10 +24,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Three main tabs
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController", bundle: nil)
+
+        let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", viewModel: FavouritesViewModel(favouritesRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate))))
+
+        let categoriesVC = MainCategoriesViewController(
+            nibName: "MainCategoriesViewController",
+            viewModel: MainCategoriesViewModel(
+                productsRepo: ProductsRepo.getInstance(
+                    networkManager: NetworkManager.getInstance(),
+                    databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)
+                )
+            ),
+            router: MainCategoriesRouter()
+        )
+
         let cartVC = CartViewController(nibName: "CartViewController", bundle: nil)
 
-        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", viewModel: ProfileViewModel(orderRepo: OrderRepo.getInstance(networkManager: NetworkManager.getInstance())))
         
         
         let tabBarController = UITabBarController()
@@ -36,6 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.addChild(catNavC)
         tabBarController.addChild(cartVC)
         tabBarController.addChild(profileVC)
+        tabBarController.addChild(favouritesVC)
         
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

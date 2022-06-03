@@ -13,10 +13,11 @@ import RESegmentedControl
 
 class CategoriesViewController: UIViewController{
     
-    var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
+    private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
 
-    
-    private var viewModel: CategoriesViewModel!
+    private var viewModel: CategoriesViewModelProtocol!
+    private var router: CategoriesRouterProtocol!
+
     private let networkManager : NetworkManagerProtocol? = nil
     
     private var observer: AnyCancellable?
@@ -30,18 +31,22 @@ class CategoriesViewController: UIViewController{
     @IBOutlet private weak var noProductsLabel: UILabel!
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
     
+    
+    init(nibName: String?, viewModel: CategoriesViewModelProtocol, router: CategoriesRouterProtocol) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+        self.router = router
+        self.router.viewController = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initView()
-    }
-        
-    func initViewModel(products: [Product], category: ProductCategory) {
-        viewModel = CategoriesViewModel(
-            productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)),
-            products: products,
-            category: category
-        )
     }
     
     private func initView() {
@@ -184,10 +189,12 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
-        productDetailsVC.viewModel = ProductDetailsViewModel(product: (viewModel.getProductAt(index: indexPath.row)
-            
-            )!)
+
+        
+        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", viewModel: ProductDetailsViewModel(product: viewModel.getProductAt(index: indexPath.row)!, productRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: appDelegate)) ))
+
+        
+
         self.navigationController?.pushViewController(productDetailsVC, animated: true)
     }
     

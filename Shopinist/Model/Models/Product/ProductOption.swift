@@ -10,9 +10,24 @@ import Foundation
 
 // MARK: - Option
 struct ProductOption: Codable {
+    
     var id, productID: Int?
     var name: ProductOptionName?
     var values: [String]?
+
+    init(){}
+    
+    init(name : ProductOptionName , values : [String]){
+        self.name = name
+        self.values = values
+    }
+    
+    init(id: Int? = nil, productID: Int? = nil, name: ProductOptionName? = nil, values: [String]? = nil) {
+        self.id = id
+        self.productID = productID
+        self.name = name
+        self.values = values
+    }
 
     enum CodingKeys: String, CodingKey {
         case id

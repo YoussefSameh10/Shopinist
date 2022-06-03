@@ -14,12 +14,8 @@ class ProductDetailsViewController: UIViewController {
     
     // MARK: - Vairables
     
-    private var cancellables : Set<AnyCancellable> = []
-    var observer : AnyCancellable?
-    var viewModel: ProductDetailsViewModel! = nil
     
-    
-    
+    var viewModel: ProductDetailsViewModelProtocol!
     
     // MARK: - Outlets
     
@@ -38,12 +34,25 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productColorButton: UIButton!
     
     @IBOutlet weak var productDescriptionTextView: UITextView!
-    // MARK: - View did Load
+    
+    // MARK: - Init
+    
+    init(nibName : String? , viewModel : ProductDetailsViewModelProtocol){
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    
+    // MARK: - LifeCycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        viewModel.getCartProducts()
+        //viewModel.getCartProducts()
         print("*****\(viewModel.isInFavourite())")
         if(viewModel.isInFavourite()){
             favouriteButtonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -53,21 +62,20 @@ class ProductDetailsViewController: UIViewController {
         
         setCollectionViewDelegateAndDataSource()
         setUIDesigns()
-        initViewModel()
         
     }
     
-    // MARK: - Functions
-    
-    
-    
-    fileprivate func initViewModel() {
-        /*viewModel.getAllProducts()
-        viewModel.$response.sink { products in
-            print("products controller \(products?.products?.count)")
-            self.productImagesCollectionView.reloadData()
-        }.store(in: &cancellables)*/
+    override func viewWillAppear(_ animated: Bool) {
+        print("*****\(viewModel.isInFavourite())")
+        if(viewModel.isInFavourite()){
+            favouriteButtonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }else{
+            favouriteButtonImage.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
+    
+    
+    // MARK: - Functions
     
     fileprivate func setUIDesigns() {
         
@@ -75,18 +83,13 @@ class ProductDetailsViewController: UIViewController {
         productTitleLabel.text = viewModel.product?.title
         productDescriptionTextView.text = viewModel.product?.description
         productMainImageView.kf.setImage(with : URL(string: (viewModel.product?.images![0].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
-        
-       //productColorButton.setTitle(viewModel.product?.options![0].name, for: .normal)
-        productColorButton.setTitle("Black", for: .normal)
+        productPriceLabel.text = "\(viewModel.product?.variants![0].price ?? "") EGP"
+       
+        productColorButton.setTitle(viewModel.product?.options![1].values![0], for: .normal)
         productColorButton.layer.borderWidth = 1
         productColorButton.layer.borderColor = UIColor.gray.cgColor
         productColorButton.layer.cornerRadius = 10
-        
-       
-       
-        //viewModel.products?[0].options?[0].name?.rawValue
-        //productTitleLabel.text = viewModel.products?[0].title!
-        //productPriceLabel.text = viewModel.products?[0].variants?[0].price
+
     }
     
     
@@ -108,15 +111,11 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func AddToCartButton(_ sender: Any) {
         print("added to cart")
-        viewModel.addToCart()
-        
-        
+        viewModel.addToCart(size: "9", color: "blue")
+        viewModel.getCartProducts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        viewModel.getFavProducts()
-        
-    }
+   
     
    
     

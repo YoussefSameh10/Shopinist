@@ -15,30 +15,79 @@ class Formatter {
         return String(parts[parts.count - 1])
     }
     
-    static func formatStoredProductImage(storedProduct : StoredProduct) -> [String]{
+    static func formatStringToArray(str : String) -> [String]{
         
-        let images : [String] = storedProduct.images?.split(separator: "|") as! [String]
-        return images
+        let images = str.split(separator: "|")
+        var imagesStr : [String] = []
+//        imagesStr = String(images)
+        for image in images {
+            imagesStr.append(String(image))
+        }
+        return imagesStr
     }
     
-    static func convertStoredProductsToProducts(storedProducts: [StoredProduct]) -> [Product] {
+    
         
-        return storedProducts.map { storedProduct -> Product in
+    static func separateStringArray(stringArray : [String]) -> String {
+        var str = ""
+        for element in stringArray {
+            str.append(contentsOf: element)
+            str.append("|")
+        }
+        str.removeLast()
+        return str
+    }
+    
+    static func convertFavouriteProductsToProducts(favouriteProducts: [FavoriteProduct]) -> [Product] {
+        
+        
+        
+        return favouriteProducts.map { favouriteProduct -> Product in
             var product = Product()
-            product.id = Int(storedProduct.id)
-            product.title = storedProduct.title
-            //product.options![0].values![0] = storedProduct.size ?? ""
-            //product.options![1].values![0] = storedProduct.color ?? ""
-            product.description! = storedProduct.details!
-//            let images : [String] =  formatStoredProductImage(storedProduct: storedProduct)
-//            for image in images {
-//                product.images?.append(ProductImage(src: image))
-//            }
+            var colors : [String] = []
+            var sizes : [String] = []
+            colors.append(favouriteProduct.colors!)
+            print("**** fav product sizes converted **** \(favouriteProduct.sizes)")
+            sizes = formatStringToArray(str: favouriteProduct.sizes!)
+            //sizes.append(favouriteProduct.sizes!)
+            
+            product.id = Int(favouriteProduct.id)
+            if !favouriteProduct.price!.isEmpty {
+                print(favouriteProduct.price)
+            }
+            else{
+                print("noooooooo priceeeeee")
+            }
+            print(favouriteProduct.price)
+            product.variants = []
+            product.variants?.append(Variant(price: favouriteProduct.price))
+            //product.variants![0].price = favouriteProduct.price
+            //print("after convert \(product.variants![0].price)")
+            product.title = favouriteProduct.title
+            product.options?.append(ProductOption(name: .size, values:sizes))
+            product.options?.append(ProductOption(name: .color, values:colors))
+            product.description! = favouriteProduct.details!
+            let images : [String] = formatStringToArray(str: (favouriteProduct.images)!)
+            product.images = []
+            for image in images {
+                product.images?.append(ProductImage(src: image))
+            }
             return product
         }
+    }
+    
+    static func convertCartProductToProduct(cartProduct: CartProduct) -> Product {
+        var product = Product()
         
-        
-        
+        product.id = Int(cartProduct.id)
+        product.title = cartProduct.title
+        product.description = cartProduct.details
+        product.vendor = cartProduct.vendor
+        product.tags = cartProduct.tags
+        product.options = [ProductOption(id: nil, productID: nil, name: .color, values: [cartProduct.color!])]
+        product.images = [ProductImage(id: nil, productID: nil, src: cartProduct.image)]
+        product.variants = [Variant(id: nil, productID: nil, price: cartProduct.price, productSize: nil, productColor: nil, inventoryQuantity: nil)]
+        return product
     }
     
 }
