@@ -42,10 +42,6 @@ class RegisterViewController: UIViewController {
         hideNavBar()
         setupButtons()
         listenForResponse()
-        
-        if viewModel?.isCustomerLoggedIn() ?? false {
-            router?.navigateToHome()
-        }
     }
     
     private func hideNavBar() {

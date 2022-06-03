@@ -45,17 +45,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         
-        let registerVC = RegisterViewController(
-            nibName: "RegisterViewController",
-            viewModel: RegisterViewModel(
-                repo: CustomerRepo.getInstance(
-                    networkManager: NetworkManager.getInstance()
-                )
-            ),
-            router: RegisterRouter()
-        )
+//        let registerVC = RegisterViewController(
+//            nibName: "RegisterViewController",
+//            viewModel: RegisterViewModel(
+//                repo: CustomerRepo.getInstance(
+//                    networkManager: NetworkManager.getInstance()
+//                )
+//            ),
+//            router: RegisterRouter()
+//        )
         
-        let navController = UINavigationController(rootViewController: registerVC)
+        let navController = UINavigationController(rootViewController: tabBarController)
         let catNavC = UINavigationController(rootViewController: categoriesVC)
         tabBarController.addChild(homeVC)
         tabBarController.addChild(catNavC)

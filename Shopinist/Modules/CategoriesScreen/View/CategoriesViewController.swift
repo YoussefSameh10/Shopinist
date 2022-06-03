@@ -58,6 +58,11 @@ class CategoriesViewController: UIViewController{
     }
     
     private func showNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .search,
+                target: self,
+                action: #selector(showSearchBar)
+        )
         navigationController?.navigationBar.isHidden = false
         var title = ""
         if(viewModel.category == .Men) {
@@ -77,6 +82,10 @@ class CategoriesViewController: UIViewController{
         }
         self.title = title
         navigationController?.navigationBar.tintColor = .black
+    }
+    
+    @objc private func showSearchBar() {
+        navigationItem.searchController?.searchBar.isHidden = false
     }
     
     private func setupCollectionView() {
@@ -131,6 +140,7 @@ class CategoriesViewController: UIViewController{
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Products"
         navigationItem.searchController = searchController
+        navigationItem.searchController?.searchBar.isHidden = true
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
     }
