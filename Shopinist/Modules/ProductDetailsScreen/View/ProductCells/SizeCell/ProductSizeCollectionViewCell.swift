@@ -22,6 +22,9 @@ class ProductSizeCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.lightGray
+        selectedBackgroundView = backgroundView
     }
 
 }

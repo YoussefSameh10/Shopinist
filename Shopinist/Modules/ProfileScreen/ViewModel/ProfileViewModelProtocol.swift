@@ -11,5 +11,10 @@ import Foundation
 
 protocol ProfileViewModelProtocol {
     
-
+    var customerOrders: Published<[Order]?>.Publisher {get}
+    
+    func getCustomerOrdersList()
+    func switchToUSD()
+    func switchToEGP()
+    
 }
