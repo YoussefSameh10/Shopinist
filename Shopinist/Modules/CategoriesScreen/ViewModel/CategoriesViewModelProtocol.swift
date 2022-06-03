@@ -10,7 +10,6 @@ import Foundation
 
 protocol CategoriesViewModelProtocol {
     var searchedProductsList: Published<[Product]?>.Publisher {get}
-    var productsList: [Product]? {get set}
     var category: ProductCategory? {get}
     var subCategory: ProductType? {get set}
     

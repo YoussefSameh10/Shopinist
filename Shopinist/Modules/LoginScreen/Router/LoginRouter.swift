@@ -25,9 +25,7 @@ class LoginRouter: LoginRouterProtocol {
     }
     
     func navigateToHome() {
-        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
         viewController?.navigationController?.popViewController(animated: true)
-        viewController?.navigationController?.pushViewController(homeVC, animated: true)
     }
     
     
