@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let cartVC = CartViewController(nibName: "CartViewController", bundle: nil)
 
-        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", viewModel: ProfileViewModel(orderRepo: OrderRepo.getInstance(networkManager: NetworkManager.getInstance())))
         
         
         let tabBarController = UITabBarController()
