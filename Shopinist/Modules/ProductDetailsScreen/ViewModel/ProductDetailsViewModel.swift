@@ -15,6 +15,8 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     var product : Product?
+    var productSize : String?
+    var productColor : String?
     var productRepo : FavouritesProductRepoProtocol
     var cartRepo : CartItemsRepoProtocol
     var favProducts : [Product]?
@@ -34,9 +36,13 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         productRepo.addProductIntoFavouritesDb(product: product!)
     }
     
-    func addToCart(size : String , color : String){
-        print("addToCart: size = \(size), color = \(color)")
-        cartRepo.add(cartItem: product!, size: size, color: color)
+    func addToCart(){
+        
+        print("addToCart: size = \(productSize), color = \(product?.options![0].name)")
+        productColor =  product?.options![1].values![0]
+        if productSize != nil {
+            cartRepo.add(cartItem: product!, size: productSize!, color:(product?.options![1].values![0])!)
+        }
     }
     
     func isInFavourite() -> Bool{
@@ -66,8 +72,8 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         }
     }
     
-//    func removeCartProductFromDb(){
-//        productRepo.removeCartProductFromDb(product: product!)
-//    }
+    //    func removeCartProductFromDb(){
+    //        productRepo.removeCartProductFromDb(product: product!)
+    //    }
     
 }
