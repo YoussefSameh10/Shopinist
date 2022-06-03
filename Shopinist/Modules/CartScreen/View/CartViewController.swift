@@ -22,15 +22,26 @@ class CartViewController: UIViewController {
     @IBOutlet weak var cartTV: UITableView!
     @IBOutlet weak var checkoutBtn: UIButton!
     
+    //MARK:- Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initViewModel()
+        setUpBinding()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        initViewModel()
-        setUpBinding()
+//        self.viewModel?.getCartItems()
         initTableView()
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.viewModel?.updateAll()
+    }
+    //MARK:- Functions
     private func initUI(){
         checkoutBtn.layer.cornerRadius = 25
         applyPromoBtn.layer.cornerRadius = 25

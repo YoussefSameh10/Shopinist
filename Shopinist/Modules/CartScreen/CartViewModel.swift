@@ -26,6 +26,8 @@ class CartViewModel : CartViewModelProtocol{
     
     func getCartItems() {
         _cartProducts = cartRepo.getAllItems()
+        print("I retrieved all items !!")
+        print("_cartProducts.count")
     }
     
     func updateAll() {
