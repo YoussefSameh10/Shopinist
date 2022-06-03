@@ -74,6 +74,7 @@ class NetworkManager : NetworkManagerProtocol{
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.httpBody = httpBody
+            request.httpShouldHandleCookies = false
             session.dataTask(with: request) { (data, response, error) in
                 if let error = error{
                     print(error)

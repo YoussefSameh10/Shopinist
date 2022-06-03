@@ -188,14 +188,8 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        
-        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", viewModel: ProductDetailsViewModel(product: viewModel.getProductAt(index: indexPath.row)!, productRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: appDelegate)) ))
-
-        
-
-        self.navigationController?.pushViewController(productDetailsVC, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {        
+        router.navigateToProductDetailsScreen(appDelegate: appDelegate, product: viewModel.getProductAt(index: indexPath.row)!)
     }
     
 }

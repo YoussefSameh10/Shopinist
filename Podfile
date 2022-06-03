@@ -9,6 +9,7 @@ target 'Shopinist' do
   pod 'Kingfisher', '~> 5.0'
   pod 'Alamofire', '~> 5.5'
   pod 'RESegmentedControl'
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
 
   target 'ShopinistTests' do
     inherit! :search_paths
