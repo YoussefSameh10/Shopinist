@@ -16,6 +16,6 @@ protocol FavouritesProductRepoProtocol {
     
     func isInFavourites(id:Int , customerEmail : String) -> Bool
     
-    func removeFavProductFromDb(product : Product)
+    func removeFavProductFromDb(product : Product , customerEmail : String)
     
 }

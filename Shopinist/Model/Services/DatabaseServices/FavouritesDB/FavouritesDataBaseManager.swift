@@ -128,8 +128,9 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     func getFavItemFromDbWithId(id: Int , customerEMail : String) -> [FavoriteProduct] {
         let fetchRequest = NSFetchRequest<FavoriteProduct>(entityName: "FavoriteProduct")
         let idPredicate = NSPredicate(format: "id == %@ ", NSNumber(integerLiteral: id))
-        let emailPredicate = NSPredicate(format: "email == %@", "")
-        fetchRequest.predicate = NSPredicate(format: "id == %@ ", NSNumber(integerLiteral: id))
+        let emailPredicate = NSPredicate(format: "email == %@", customerEMail)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [idPredicate,emailPredicate])
+        //fetchRequest.predicate = NSPredicate(format: "id == %@ ", NSNumber(integerLiteral: id))
         var products: [FavoriteProduct] = []
         do{
             products = try viewContext.fetch(fetchRequest)
@@ -149,10 +150,10 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     
     // MARK: - Remove Product From DB
     
-    func remove(product : Product){
+    func remove(product : Product , customerEmail : String){
         print(product.id)
         //var productToDelete = productToStoredProduct(product: product)
-        var productToDelete = getFavItemFromDbWithId(id: product.id!, customerEMail: "")
+        var productToDelete = getFavItemFromDbWithId(id: product.id!, customerEMail: customerEmail)
         print(productToDelete[0].title)
         print(productToDelete[0].id)
         self.viewContext.delete(productToDelete[0])

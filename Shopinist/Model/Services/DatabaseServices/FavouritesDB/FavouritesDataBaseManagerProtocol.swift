@@ -13,6 +13,6 @@ protocol FavouritesDataBaseManagerProtocol {
     func getAllFavourites(customerEmail : String) -> [Product]
     func isInFavorites(id: Int , customerEmail : String) -> Bool 
     func addToFavDb(product : Product , customerEmail : String)
-    func remove(product : Product)
+    func remove(product : Product , customerEmail : String)
     func getFavItemFromDbWithId(id: Int , customerEMail : String) -> [FavoriteProduct]
 }

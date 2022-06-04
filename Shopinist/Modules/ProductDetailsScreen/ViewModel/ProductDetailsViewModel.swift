@@ -12,6 +12,8 @@ import UIKit
 
 class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
+    // MARK: - Variables
+    
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     var product : Product?
@@ -23,7 +25,7 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     var favProducts : [Product]?
     var cartProducts : [CartProduct]?
     
-    
+    // MARK: - Init
     
     init(product: Product , productRepo : FavouritesProductRepoProtocol , cartRepo : CartItemsRepoProtocol , customerRepo : CustomerRepoProtocol = CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())) {
         self.product = product
@@ -33,6 +35,7 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         
     }
     
+    // MARK: - Functions
     
     func addToFav(){
         let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
@@ -54,7 +57,8 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     }
     
     func removeFavFromDb(){
-        favRepo.removeFavProductFromDb(product: product!)
+        let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
+        favRepo.removeFavProductFromDb(product: product!, customerEmail: customerEmail ?? "noEmail")
     }
     
     // ************** just for test core data then remove it **********

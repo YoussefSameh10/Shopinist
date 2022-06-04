@@ -44,8 +44,8 @@ class FavouritesProductRepo  : FavouritesProductRepoProtocol{
         return databaseManager.isInFavorites(id: id, customerEmail: customerEmail)
     }
    
-    func removeFavProductFromDb(product : Product){
-        databaseManager.remove(product: product)
+    func removeFavProductFromDb(product : Product , customerEmail : String){
+        databaseManager.remove(product: product, customerEmail: customerEmail)
     }
     
 }

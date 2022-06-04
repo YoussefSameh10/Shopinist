@@ -28,7 +28,8 @@ class FavouritesViewModel : FavouritesViewModelProtocol {
     }
     
     func removeFavouritesItemFromRepo(product : Product){
-        favouritesRepo.removeFavProductFromDb(product: product)
+        let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
+        favouritesRepo.removeFavProductFromDb(product: product, customerEmail: customerEmail ?? "noEmail")
     }
     func getCustomerFromUserDefaults() -> Customer? {
         return customerRepo.getCustomerFromUserDefaults()
