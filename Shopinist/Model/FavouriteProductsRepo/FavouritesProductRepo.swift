@@ -31,17 +31,17 @@ class FavouritesProductRepo  : FavouritesProductRepoProtocol{
     
     // MARK: - Methods
     
-    func addProductIntoFavouritesDb(product : Product){
-        databaseManager.addToFavDb(product: product)
+    func addProductIntoFavouritesDb(product : Product , customerEmail : String){
+        databaseManager.addToFavDb(product: product , customerEmail: customerEmail)
     }
     
 
-    func getAllFavouritesFromDb() -> [Product]{
-        return databaseManager.getAllFavourites()
+    func getAllFavouritesFromDb(customerEmail : String) -> [Product]{
+        return databaseManager.getAllFavourites(customerEmail: customerEmail)
     }
     
-    func isInFavourites(id:Int) -> Bool {
-        return databaseManager.isInFavorites(id: id)
+    func isInFavourites(id:Int , customerEmail : String) -> Bool {
+        return databaseManager.isInFavorites(id: id, customerEmail: customerEmail)
     }
    
     func removeFavProductFromDb(product : Product){

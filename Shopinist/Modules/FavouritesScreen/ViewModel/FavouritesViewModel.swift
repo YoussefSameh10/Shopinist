@@ -22,7 +22,8 @@ class FavouritesViewModel : FavouritesViewModelProtocol {
     
     
     func getFavouritesFromDB() -> [Product]{
-        products = favouritesRepo.getAllFavouritesFromDb()
+        let customerEmail = getCustomerFromUserDefaults()?.email
+        products = favouritesRepo.getAllFavouritesFromDb(customerEmail: customerEmail ?? "noEmail")
         return products!
     }
     
@@ -32,5 +33,7 @@ class FavouritesViewModel : FavouritesViewModelProtocol {
     func getCustomerFromUserDefaults() -> Customer? {
         return customerRepo.getCustomerFromUserDefaults()
     }
+    
+    
     
 }

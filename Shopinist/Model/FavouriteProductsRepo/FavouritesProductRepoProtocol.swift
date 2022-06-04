@@ -10,11 +10,11 @@ import Foundation
 
 protocol FavouritesProductRepoProtocol {
     
-    func addProductIntoFavouritesDb(product : Product)
+    func addProductIntoFavouritesDb(product : Product , customerEmail : String)
         
-    func getAllFavouritesFromDb() -> [Product]
+    func getAllFavouritesFromDb(customerEmail : String) -> [Product]
     
-    func isInFavourites(id:Int) -> Bool
+    func isInFavourites(id:Int , customerEmail : String) -> Bool
     
     func removeFavProductFromDb(product : Product)
     

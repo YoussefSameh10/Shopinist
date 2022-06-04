@@ -10,9 +10,9 @@ import Foundation
 
 protocol FavouritesDataBaseManagerProtocol {
     
-    func getAllFavourites() -> [Product]
-    func isInFavorites(id: Int) -> Bool 
-    func addToFavDb(product : Product)
+    func getAllFavourites(customerEmail : String) -> [Product]
+    func isInFavorites(id: Int , customerEmail : String) -> Bool 
+    func addToFavDb(product : Product , customerEmail : String)
     func remove(product : Product)
-    func getFavItemFromDbWithId(id: Int) -> [FavoriteProduct]
+    func getFavItemFromDbWithId(id: Int , customerEMail : String) -> [FavoriteProduct]
 }

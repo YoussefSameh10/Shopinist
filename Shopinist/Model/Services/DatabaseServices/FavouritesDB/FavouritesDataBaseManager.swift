@@ -39,18 +39,19 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     // MARK: - Add Product To DB
     
     
-    func addToFavDb(product : Product) {
+    func addToFavDb(product : Product , customerEmail : String) {
         
         let favProduct = productToFavouriteProduct(product: product)
+        favProduct.setValue(customerEmail, forKey: "email")
         do
         {
             try self.viewContext.save()
             print("*** product added *** ")
             //print(favProduct)
             
-            print("productc added = \(favProduct.title) **** \(favProduct.sizes)")
-            print("productc added = \(favProduct.title) **** \(favProduct.colors)")
-            print("fav product price = \(favProduct.price)")
+            print("productc added = \(favProduct.title) \(favProduct.sizes)")
+            print("productc added = \(favProduct.title)  \(favProduct.colors)")
+            print("**** fav product email = \(favProduct.email) **** ")
 
         }
         catch
@@ -95,8 +96,8 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     
     // MARK: - Check In fav
     
-    func isInFavorites(id: Int) -> Bool {
-        if getFavItemFromDbWithId(id: id).isEmpty {
+    func isInFavorites(id: Int , customerEmail : String) -> Bool {
+        if getFavItemFromDbWithId(id: id, customerEMail: customerEmail).isEmpty {
             return false
         }
         return true
@@ -104,9 +105,9 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     
     // MARK: - getAllFavourites
     
-    func getAllFavourites() -> [Product] {
+    func getAllFavourites(customerEmail : String) -> [Product] {
         let fetchRequest = NSFetchRequest<FavoriteProduct>(entityName: "FavoriteProduct")
-        
+        fetchRequest.predicate = NSPredicate(format: "email == %@", customerEmail)
         var favouritesProducts : [FavoriteProduct]?
         do{
             favouritesProducts = try viewContext.fetch(fetchRequest)
@@ -124,8 +125,10 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     
     // MARK: - getProductWithId
     
-    func getFavItemFromDbWithId(id: Int) -> [FavoriteProduct] {
+    func getFavItemFromDbWithId(id: Int , customerEMail : String) -> [FavoriteProduct] {
         let fetchRequest = NSFetchRequest<FavoriteProduct>(entityName: "FavoriteProduct")
+        let idPredicate = NSPredicate(format: "id == %@ ", NSNumber(integerLiteral: id))
+        let emailPredicate = NSPredicate(format: "email == %@", "")
         fetchRequest.predicate = NSPredicate(format: "id == %@ ", NSNumber(integerLiteral: id))
         var products: [FavoriteProduct] = []
         do{
@@ -149,7 +152,7 @@ class FavouritesDataBaseManager : FavouritesDataBaseManagerProtocol {
     func remove(product : Product){
         print(product.id)
         //var productToDelete = productToStoredProduct(product: product)
-        var productToDelete = getFavItemFromDbWithId(id: product.id!)
+        var productToDelete = getFavItemFromDbWithId(id: product.id!, customerEMail: "")
         print(productToDelete[0].title)
         print(productToDelete[0].id)
         self.viewContext.delete(productToDelete[0])

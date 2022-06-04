@@ -22,7 +22,7 @@ protocol ProductDetailsViewModelProtocol {
     
     func removeFavFromDb()
         
-    func getFavProducts()
+    //func getFavProducts()
     
     func getCartProducts()
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FavouritesViewController: UIViewController {
     
     
     // MARK: - Outlets
@@ -43,15 +43,17 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         setTableDelegateAndDataSource()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         if viewModel.getCustomerFromUserDefaults() == nil {
             parentView.isHidden = true
         }else{
             parentView.isHidden = false
         }
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         favouritesTableView.reloadData()
     }
     
@@ -64,16 +66,19 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.navigationController?.pushViewController(regitserVC, animated: true)
     }
-    
-    
-    // MARK: - Functionss
+            
+}
+
+// MARK: - Table View Delagte And DS
+
+
+extension FavouritesViewController : UITableViewDelegate, UITableViewDataSource {
     
     func setTableDelegateAndDataSource(){
         favouritesTableView.delegate = self
         favouritesTableView.dataSource = self
         favouritesTableView.register(UINib(nibName: "FavouriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavouritesCell")
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getFavouritesFromDB().count
