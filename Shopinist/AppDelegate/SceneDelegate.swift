@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //Three main tabs
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
 
-        let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", viewModel: FavouritesViewModel(favouritesRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate))))
+        let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", viewModel: FavouritesViewModel(favouritesRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), customerRepo: CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())), router: FavouritesRouter())
 
         let categoriesVC = MainCategoriesViewController(
             nibName: "MainCategoriesViewController",

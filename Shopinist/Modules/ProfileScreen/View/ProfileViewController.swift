@@ -18,11 +18,14 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ProfileOrdersTableView: UITableView!
     @IBOutlet weak var USDButton: UIButton!
     @IBOutlet weak var EGPButton: UIButton!
-    
     @IBOutlet weak var logOutButton: UIButton!
+    
     // MARK: - Variables
+    
     var buttonFlagUSD : Bool = false
     var buttonFlagEGP : Bool = true
+    var egpPrice : String?
+    var usdPrice : String?
     var viewModel : ProfileViewModelProtocol?
     private var observer: AnyCancellable?
     private var cancellables : Set<AnyCancellable> = []
@@ -79,12 +82,13 @@ class ProfileViewController: UIViewController {
     @IBAction func USDButton(_ sender: UIButton) {
         buttonFlagUSD = true ; buttonFlagEGP = false
         setButtonsBackgoroundColor()
-        
+        ProfileOrdersTableView.reloadData()
     }
     
     @IBAction func EGPButton(_ sender: UIButton) {
         buttonFlagUSD = false ; buttonFlagEGP = true
         setButtonsBackgoroundColor()
+        ProfileOrdersTableView.reloadData()
     }
     
     
@@ -114,18 +118,17 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
-        cell.orderPrice = "222 EGP test"
-        cell.orderCreatedAt = "02/02/2020 test "
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
         viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
             guard let orders = orderResponse?[indexPath.row] else { return }
+            
+            // **** check currency in user defaults and set currency flag ****
+            
             if self!.buttonFlagEGP {
                 cell.orderPrice = "\(orders.totalPrice!) EGP" ?? "no price"
-                //self!.ProfileOrdersTableView.reloadData()
             }else{
                 cell.orderPrice = "\(orders.totalPriceUsd!) USD" ?? "no price"
-                //self!.ProfileOrdersTableView.reloadData()
             }
             cell.orderCreatedAt = orders.createdAt ?? "No Date"
         }).store(in: &cancellables)
