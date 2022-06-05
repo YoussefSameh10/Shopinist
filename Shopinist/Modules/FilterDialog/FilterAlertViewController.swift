@@ -38,7 +38,7 @@ class FilterAlertViewController: UIViewController {
         }
     }
     
-
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet private weak var priceSlider: UISlider!
     @IBOutlet private weak var priceLabel: UILabel!
@@ -66,7 +66,7 @@ class FilterAlertViewController: UIViewController {
         setupFilterButtons()
         setupSubmitButton()
     }
-
+    
     private func setupContainerView() {
         containerView.layer.cornerRadius = 25
     }
@@ -80,66 +80,6 @@ class FilterAlertViewController: UIViewController {
     private func setupPriceLabel() {
         priceLabel.text = "\(viewModel.maxPrice)"
     }
-    
-    private func setupFilterButtons() {
-        let buttons = [nameButton, priceButton, ascendingButton, descendingButton]
-        
-        var activeButtons: [UIButton] = []
-        var inActiveButtons: [UIButton] = []
-        
-        classifyButtons(&activeButtons, &inActiveButtons)
-        
-        
-        
-        for button in buttons {
-            button?.layer.borderWidth = 1
-            button?.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
-            button?.layer.cornerRadius = 10
-        }
-        
-        for button in activeButtons {
-            setButtonActivated(button: button)
-        }
-        
-        for button in inActiveButtons {
-            setButtonInActivated(button: button)
-        }
-    }
-    
-    private func classifyButtons(_ activeButtons: inout [UIButton], _ inActiveButtons: inout [UIButton]) {
-        if(viewModel.filterType == .NAME) {
-            activeButtons.append(nameButton)
-            inActiveButtons.append(priceButton)
-        }
-        else {
-            activeButtons.append(priceButton)
-            inActiveButtons.append(nameButton)
-        }
-        
-        if(viewModel.filterDirection == .ASCENDING) {
-            activeButtons.append(ascendingButton)
-            inActiveButtons.append(descendingButton)
-        }
-        else {
-            activeButtons.append(descendingButton)
-            inActiveButtons.append(ascendingButton)
-        }
-    }
-    
-    private func setButtonActivated(button: UIButton?) {
-        button?.backgroundColor = .black
-        button?.setTitleColor(.white, for: .normal)
-    }
-    
-    private func setButtonInActivated(button: UIButton?) {
-        button?.backgroundColor = .white
-        button?.setTitleColor(.black, for: .normal)
-    }
-    
-    private func setupSubmitButton() {
-        submitButton.setTitleColor(.black, for: .normal)
-    }
-    
     
     @IBAction func priceSliderDidChange(_ sender: Any) {
         priceLabel.text = "\(Int(priceSlider.value))"
@@ -169,4 +109,69 @@ class FilterAlertViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension FilterAlertViewController {
+    private func setupFilterButtons() {
+        let buttons = [nameButton, priceButton, ascendingButton, descendingButton]
+        
+        var activeButtons: [UIButton] = []
+        var inActiveButtons: [UIButton] = []
+        
+        classifyButtons(&activeButtons, &inActiveButtons)
+        
+        
+        
+        for button in buttons {
+            button?.layer.borderWidth = 1
+            button?.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+            button?.layer.cornerRadius = 10
+        }
+        
+        for button in activeButtons {
+            setButtonActivated(button: button)
+        }
+        
+        for button in inActiveButtons {
+            setButtonInActivated(button: button)
+        }
+    }
+    
+    private func classifyButtons(_ activeButtons: inout [UIButton], _ inActiveButtons: inout [UIButton]) {
+        if(viewModel.filterType == .NAME) {
+            selectedFilterType = .NAME
+            activeButtons.append(nameButton)
+            inActiveButtons.append(priceButton)
+        }
+        else {
+            selectedFilterType = .PRICE
+            activeButtons.append(priceButton)
+            inActiveButtons.append(nameButton)
+        }
+        
+        if(viewModel.filterDirection == .ASCENDING) {
+            selectedFilterDirection = .ASCENDING
+            activeButtons.append(ascendingButton)
+            inActiveButtons.append(descendingButton)
+        }
+        else {
+            selectedFilterDirection = .DESCENDING
+            activeButtons.append(descendingButton)
+            inActiveButtons.append(ascendingButton)
+        }
+    }
+    
+    private func setButtonActivated(button: UIButton?) {
+        button?.backgroundColor = .black
+        button?.setTitleColor(.white, for: .normal)
+    }
+    
+    private func setButtonInActivated(button: UIButton?) {
+        button?.backgroundColor = .white
+        button?.setTitleColor(.black, for: .normal)
+    }
+    
+    private func setupSubmitButton() {
+        submitButton.setTitleColor(.black, for: .normal)
+    }
 }

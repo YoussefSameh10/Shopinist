@@ -9,8 +9,8 @@
 import Foundation
 
 protocol MainCategoriesViewModelProtocol {
-    var products: [Product]? {get set}
+
+    var brandName: String? {get set}
     var category: ProductCategory? {get set}
     var titles: [String] {get}
-    var filteredProducts: [Product]? {get set}
 }

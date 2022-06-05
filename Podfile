@@ -10,6 +10,8 @@ target 'Shopinist' do
   pod 'Alamofire', '~> 5.5'
   pod 'RESegmentedControl'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'lottie-ios'
+  pod 'NVActivityIndicatorView'
 
   target 'ShopinistTests' do
     inherit! :search_paths

@@ -13,14 +13,14 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
     
     private let productRepo: ProductsRepoProtocol
     
-    private var observer: AnyCancellable?
-    var productsList: [Product]?
+    private var cancellables: Set<AnyCancellable> = []
+    @Published private var productsList: [Product]?
     @Published private var searchedProducts: [Product]?
+    private var brandName: String?
     var searchedProductsList: Published<[Product]?>.Publisher {$searchedProducts}
     var category: ProductCategory?
     var subCategory: ProductType? {
         didSet {
-            //filterProductsForSearchText(searchText: "")
             filterProducts()
         }
     }
@@ -32,19 +32,35 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
 
     init(
         productRepo: ProductsRepoProtocol,
-        products: [Product],
-        category: ProductCategory
+        category: ProductCategory,
+        brandName: String? = nil
     ) {
         self.productRepo = productRepo
         self.category = category
-        productsList = products
-        filterProducts()
-        searchedProducts = products
+        self.brandName = brandName
+        getAllProducts()
     }
   
+    private func getAllProducts() {
+        productRepo.getAllProducts().sink(receiveCompletion: { (completion) in
+            switch completion {
+            case .finished:
+                print("Finished")
+            case .failure(let error):
+                print(error)
+            }
+        }, receiveValue: { (response) in
+            self.productsList = response.products
+            self.searchedProducts = self.productsList
+            self.filterProducts()
+        }
+        ).store(in: &cancellables)
+    }
     
     func filterProducts() {
         var coreProducts: FilterProductsDecorator = ProductsContainer(products: productsList ?? [])
+        coreProducts = MainCategoriesFilter(filterDecorator: coreProducts, mainCategory: category ?? .Men)
+        coreProducts = BrandFilter(filterDecorator: coreProducts, brandName: brandName)
         coreProducts = PriceFilter(filterDecorator: coreProducts, price: maxPrice)
         coreProducts = SortFilter(filterDecorator: coreProducts, filterType: filterType, filterDirection: filterDirection)
         coreProducts = CategoriesFilter(filterDecorator: coreProducts, category: subCategory)
@@ -63,24 +79,4 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
     func getProductAt(index: Int) -> Product? {
         return searchedProducts![index]
     }
-    
-    
-}
-
-extension CategoriesViewModel {
-//    private func filterProductBySubCategory() {
-//        if(subCategory == nil) {
-//            searchedProducts = productsList
-//        }
-//        else {
-//            searchedProducts = []
-//
-//            searchedProducts = productsList?.filter({ product in
-//                if product.productType == subCategory {
-//                    return true
-//                }
-//                return false
-//            })
-//        }
-//    }
 }

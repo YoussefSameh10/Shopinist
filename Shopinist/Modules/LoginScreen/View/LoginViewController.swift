@@ -8,15 +8,25 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import NVActivityIndicatorView
 import Combine
 
 class LoginViewController: UIViewController {
     
+    // MARK: -Variables
     private var viewModel: LoginViewModelProtocol!
     private var router: LoginRouterProtocol!
-    
     private var cancellables: Set<AnyCancellable> = []
+    var indicator: NVActivityIndicatorView!
     
+    
+    // MARK: -Outlets
+    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var signinButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
+    
+    // MARK: -Initializers
     init(
         nibName: String?,
         viewModel: LoginViewModelProtocol = LoginViewModel(),
@@ -32,20 +42,14 @@ class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
-    
-    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
-    
-    @IBOutlet weak var signinButton: UIButton!
-    
-    @IBOutlet weak var signupButton: UIButton!
-    
+    // MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSigninButton()
         listenForResponse()
     }
     
+    // MARK: -Methods
     private func setupSigninButton() {
         signinButton.layer.cornerRadius = 25
         signupButton.titleLabel?.textAlignment = .center
@@ -66,6 +70,7 @@ class LoginViewController: UIViewController {
                 guard let response = response else {
                     return
                 }
+                self.stopActivityIndicator()
                 if response {
                     self.router.navigateToHome()
                 }
@@ -80,10 +85,6 @@ class LoginViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: "Couldn't log in. Please check your credentials", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func textFieldDidChange(_ sender: Any) {
-        validateTextFields()
     }
     
     private func validateTextFields() {
@@ -113,12 +114,30 @@ class LoginViewController: UIViewController {
         
     }
 
+    
+    // MARK: -Actions
+    @IBAction func textFieldDidChange(_ sender: Any) {
+        validateTextFields()
+    }
+    
     @IBAction func signin(_ sender: Any) {
+        startActivityIndicator()
         viewModel.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     @IBAction func navigateToRegister(_ sender: Any) {
         router.navigateToRegister()
     }
-    
+}
 
+extension LoginViewController {
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
+    }
 }

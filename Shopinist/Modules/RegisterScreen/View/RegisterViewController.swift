@@ -8,15 +8,19 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import NVActivityIndicatorView
 import Combine
 
 class RegisterViewController: UIViewController {
     
+    
+    // MARK: - Variables
     var viewModel: RegisterViewModelProtocol?
     var router: RegisterRouterProtocol?
-    
     var cancellables: Set<AnyCancellable> = []
+    var indicator: NVActivityIndicatorView!
     
+    // MARK: - Outlets
     @IBOutlet weak var nameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
@@ -26,6 +30,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var signinButton: UIButton!
     
+    // MARK: - Initializers
     init(
         nibName: String?,
         viewModel: RegisterViewModelProtocol = RegisterViewModel(),
@@ -41,6 +46,7 @@ class RegisterViewController: UIViewController {
         fatalError()
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         hideNavBar()
@@ -48,9 +54,12 @@ class RegisterViewController: UIViewController {
         listenForResponse()
     }
     
+    // MARK: - Methods
     private func hideNavBar() {
         navigationController?.navigationBar.isHidden = true
     }
+    
+    
     
     private func setupButtons() {
         signupButton.layer.cornerRadius = 25
@@ -72,25 +81,6 @@ class RegisterViewController: UIViewController {
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = .init(srgbRed: 0.3, green: 0.3, blue: 0.3, alpha: 1)
         
-    }
-    
-    @IBAction func signup(_ sender: Any) {
-        viewModel?.registerCustomer(
-            name: nameTextField.text!,
-            email: emailTextField.text!,
-            password: passwordTextField.text!,
-            address: addressTextField.text!
-        )
-        
-        
-    }
-    
-    @IBAction func navigateToLogin(_ sender: Any) {
-        router?.navigateToLogin()
-    }
-    
-    @IBAction func textFieldDidChange(_ sender: SkyFloatingLabelTextField) {
-        validateTextFields()
     }
     
     private func validateTextFields() {
@@ -133,6 +123,7 @@ class RegisterViewController: UIViewController {
                     guard let response = response else {
                         return
                     }
+                    self.stopActivityIndicator()
                     if response == true {
                         self.router?.navigateToHome()
                     }
@@ -141,6 +132,44 @@ class RegisterViewController: UIViewController {
                     }
                 }
             ).store(in: &cancellables)
+    }
+    
+    
+    
+    // MARK: - Actions
+    @IBAction func signup(_ sender: Any) {
+        startActivityIndicator()
+        viewModel?.registerCustomer(
+            name: nameTextField.text!,
+            email: emailTextField.text!,
+            password: passwordTextField.text!,
+            address: addressTextField.text!
+        )
+        
+        
+    }
+    
+    @IBAction func navigateToLogin(_ sender: Any) {
+        router?.navigateToLogin()
+    }
+    
+    @IBAction func textFieldDidChange(_ sender: SkyFloatingLabelTextField) {
+        validateTextFields()
+    }
+}
+
+
+extension RegisterViewController {
+    
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
     }
     
     private func showErrorAlert() {

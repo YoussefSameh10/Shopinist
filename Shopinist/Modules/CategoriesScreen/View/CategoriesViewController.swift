@@ -10,9 +10,12 @@ import UIKit
 import Kingfisher
 import Combine
 import RESegmentedControl
+import NVActivityIndicatorView
 
 class CategoriesViewController: UIViewController{
     
+    
+    //MARK: -Variables
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     private var viewModel: CategoriesViewModelProtocol!
@@ -27,11 +30,14 @@ class CategoriesViewController: UIViewController{
         return searchController?.searchBar.text?.isEmpty ?? true
     }
     
+    var indicator: NVActivityIndicatorView!
+    
+    //MARK: -Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var noProductsLabel: UILabel!
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
     
-    
+    //MARK: -Initializers
     init(
         nibName: String?,
         viewModel: CategoriesViewModelProtocol,
@@ -47,18 +53,28 @@ class CategoriesViewController: UIViewController{
         fatalError()
     }
     
+    //MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initView()
     }
     
+    override func viewWillLayoutSubviews() {
+        hideNavBar()
+    }
+    
+    //MARK: -Methods
     private func initView() {
+        startActivityIndicator()
         showNavBar()
         setupCollectionView()
         listenForChangesInProductsList()
         setupSegmentControl()
         setupSearchController()
+    }
+    
+    private func hideNavBar() {
+        navigationController?.navigationBar.isHidden = false
     }
     
     private func showNavBar() {
@@ -110,11 +126,16 @@ class CategoriesViewController: UIViewController{
     
     private func listenForChangesInProductsList() {
         observer = viewModel.searchedProductsList.sink { (productsList) in
-            if(productsList == nil || productsList?.isEmpty ?? true) {
-                self.showEmptyScreen()
+            
+            if let productsList = productsList {
+                self.stopActivityIndicator()
+                if(productsList.isEmpty) {
+                    self.showEmptyScreen()
+                }
+                else {
+                    self.showPopulatedScreen()
+                }
             }
-            else {
-                self.showPopulatedScreen()            }
         }
     }
     
@@ -156,11 +177,10 @@ class CategoriesViewController: UIViewController{
     private func filterProductsForSearchText(_ searchText: String) {
         viewModel.searchString = searchText
         viewModel.filterProducts()
-        //viewModel.filterProductsForSearchText(searchText: searchText)
         collectionView.reloadData()
     }
     
-    
+    //MARK: -Actions
     @IBAction func changeMainCategory(_ sender: Any) {
         
         if mainSegmentedControl.selectedSegmentIndex == 0 {
@@ -212,6 +232,20 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
         router.navigateToProductDetailsScreen(appDelegate: appDelegate, product: viewModel.getProductAt(index: indexPath.row)!)
     }
     
+}
+
+extension CategoriesViewController {
+    
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
+    }
 }
 
 extension CategoriesViewController: UISearchResultsUpdating {
