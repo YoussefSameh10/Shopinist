@@ -14,10 +14,10 @@ import RESegmentedControl
 class CategoriesViewController: UIViewController{
     
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
-
+    
     private var viewModel: CategoriesViewModelProtocol!
     private var router: CategoriesRouterProtocol!
-
+    
     private let networkManager : NetworkManagerProtocol? = nil
     
     private var observer: AnyCancellable?
@@ -58,11 +58,9 @@ class CategoriesViewController: UIViewController{
     }
     
     private func showNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-                barButtonSystemItem: .search,
-                target: self,
-                action: #selector(showSearchBar)
-        )
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(showSearchBar))
+        let filterButton = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(navigateToFilterScreen))
+        navigationItem.rightBarButtonItems = [searchButton, filterButton]
         navigationController?.navigationBar.isHidden = false
         var title = ""
         if(viewModel.category == .Men) {
@@ -85,15 +83,21 @@ class CategoriesViewController: UIViewController{
     }
     
     @objc private func showSearchBar() {
-        navigationItem.searchController?.searchBar.isHidden = false
+        navigationItem.searchController?.searchBar.isHidden = !(navigationItem.searchController?.searchBar.isHidden)!
+    }
+    
+    @objc private func navigateToFilterScreen() {
+        router.navigateToFilterScreen(viewModel: viewModel)
     }
     
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         let itemWidth = collectionView.bounds.width/2 - 8
-        let itemHeight = CGFloat(exactly: 300)!
+        let itemHeight = CGFloat(exactly: 200)!
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumInteritemSpacing = 4
@@ -123,7 +127,7 @@ class CategoriesViewController: UIViewController{
     
     private func setupSegmentControl() {
         let titles = ["All", "SHOES", "T-SHIRTS", "ACCESSORIES"]
-
+        
         var segmentItems: [SegmentModel] {
             return titles.map({ SegmentModel(title: $0) })
         }
@@ -146,7 +150,9 @@ class CategoriesViewController: UIViewController{
     }
     
     private func filterProductsForSearchText(_ searchText: String) {
-        viewModel.filterProductsForSearchText(searchText: searchText)
+        viewModel.searchString = searchText
+        viewModel.filterProducts()
+        //viewModel.filterProductsForSearchText(searchText: searchText)
         collectionView.reloadData()
     }
     
@@ -174,7 +180,7 @@ class CategoriesViewController: UIViewController{
             showPopulatedScreen()
             collectionView.reloadData()
         }
- 
+        
     }
     
     
@@ -192,7 +198,7 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoriesCollectionViewCell
         
         cell.titleLabel.text = Formatter.formatProductName(productTitle: viewModel.getProductAt(index: indexPath.row)?.title ?? "")
-        cell.priceLabel.text = viewModel.getProductAt(index: indexPath.row)?.variants?[0].price ?? "PRICE"
+        cell.priceLabel.text = String(Formatter.getIntPrice(from: viewModel.getProductAt(index: indexPath.row)?.variants?[0].price ?? "PRICE"))
         cell.productImageView.kf.setImage(with: URL(string: (viewModel.getProductAt(index: indexPath.row)?.images![0].src!) ?? ""))
         
         return cell

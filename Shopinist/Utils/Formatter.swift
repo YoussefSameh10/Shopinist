@@ -90,6 +90,10 @@ class Formatter {
         return product
     }
     
+
+    static func getIntPrice(from doubleStr: String) -> Int {
+        return Int(exactly: Double(doubleStr)?.rounded() ?? 0.0) ?? 0
+    }
     enum Currency {
         case USD
         case EGP

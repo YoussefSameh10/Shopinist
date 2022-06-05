@@ -51,7 +51,7 @@ class MainCategoriesViewController: UIViewController {
         collectionView.delegate = self
         
         let itemWidth = collectionView.bounds.width/2 - 4
-        let itemHeight = collectionView.bounds.height/5 - 8
+        let itemHeight = collectionView.bounds.height/2 - 8
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumInteritemSpacing = 4
