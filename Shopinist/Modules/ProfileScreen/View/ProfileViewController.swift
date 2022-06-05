@@ -13,12 +13,10 @@ class ProfileViewController: UIViewController {
     
     
     // MARK: - Outlets
-        
+    
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var ProfileOrdersTableView: UITableView!
-    @IBOutlet weak var USDButton: UIButton!
-    @IBOutlet weak var EGPButton: UIButton!
     @IBOutlet weak var viewMoreButton: UIButton!
     
     
@@ -32,8 +30,9 @@ class ProfileViewController: UIViewController {
     var usdPrice : String?
     var viewModel : ProfileViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
-
-
+    var changeCurrency : (()->())?
+    
+    
     // MARK: - Init
     
     init(nibName : String? , viewModel : ProfileViewModelProtocol , router : ProfileRouterProtocol){
@@ -46,66 +45,56 @@ class ProfileViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     
     // MARK: - LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUI()
+        setWelcomeLabel()
         setDelegateAndDataSourceMethods()
         viewModel?.getCustomerOrdersList()
-        
+        //self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.tintColor = .black
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUI()
+        var selectedCurrency = viewModel?.getSelectedCurrency()
+        ProfileOrdersTableView.reloadData()
+        
+
+    }
+    
    
+    
     // MARK: - Functions
     
     func setUI() {
-        if viewModel?.customerEmail == nil {
-            //parentView.isHidden = true
+        
+        if viewModel?.getCustomerFromUserDefault() == nil {
+            parentView.isHidden = true
+        }else{
+            parentView.isHidden = false
         }
+        
         self.navigationController?.navigationBar.isHidden = true
-
-    }
-    
-    func setButtonsBackgoroundColor(){
-        
-        EGPButton.layer.cornerRadius = 25
-        USDButton.layer.cornerRadius = 25
-        
-        if buttonFlagEGP {
-            EGPButton.backgroundColor = .gray
-            //EGPButton.titleLabel?.textColor = .white
-            USDButton.backgroundColor = .white
-        }
-        else if buttonFlagUSD {
-            EGPButton.backgroundColor = .white
-            USDButton.backgroundColor = .gray
-            //USDButton.titleLabel?.textColor = .white
-            
-        }
-        
         
     }
     
+    func setWelcomeLabel(){
+        profileNameLabel.text = "Welcome, \(viewModel?.getCustmerNameFromUserDefaults() ?? "Geust")"
+    }
+        
     
     // MARK: - Actions
     
     @IBAction func logInButton(_ sender: UIButton) {
         router?.navigateToRegitserScreen()
-    }
-    @IBAction func USDButton(_ sender: UIButton) {
-        buttonFlagUSD = true ; buttonFlagEGP = false
-        setButtonsBackgoroundColor()
-        ProfileOrdersTableView.reloadData()
-    }
-    
-    @IBAction func EGPButton(_ sender: UIButton) {
-        buttonFlagUSD = false ; buttonFlagEGP = true
-        setButtonsBackgoroundColor()
-        ProfileOrdersTableView.reloadData()
+        //parentView.isHidden = false
     }
     
     
@@ -118,7 +107,21 @@ class ProfileViewController: UIViewController {
         router?.navigateToSettingsScreen()
         
     }
-
+    
+    @IBAction func logOutButton(_ sender: UIButton) {
+        
+        let alert  = UIAlertController(title: "Warning", message: "Are You Sure You Want To Logout", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let okAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] action  in
+            self!.viewModel?.logOut()
+            self!.parentView.isHidden = true
+            self!.router?.navigateToRegitserScreen()
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
+        
+    }
     
 }
 
@@ -138,25 +141,28 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
         viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
-            guard let orders = orderResponse?[indexPath.row] else { return }
-            
-            // **** check currency in user defaults and set currency flag ****
-            if orderResponse?.count == 0  {
+            if orderResponse?.count == 0 {
+                
                 self!.ProfileOrdersTableView.isHidden = true
                 self!.viewMoreButton.isEnabled = false
                 self!.viewMoreButton.tintColor = .clear
-            }
-            if self!.buttonFlagEGP {
-                cell.orderPrice = "\(orders.totalPrice!) EGP" ?? "no price"
+                
             }else{
-                cell.orderPrice = "\(orders.totalPriceUsd!) USD" ?? "no price"
+                guard let orders = orderResponse?[indexPath.row] else { return }
+                
+                if self!.viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
+                    //self!.changeCurrency!()
+                    cell.orderPrice = "\(orders.totalPrice!) EGP"
+                    
+                }else{
+                    //self!.changeCurrency!()
+                    cell.orderPrice = "\(orders.totalPriceUsd!) USD"
+                }
+                cell.orderCreatedAt = orders.createdAt ?? "No Date"
             }
-            cell.orderCreatedAt = orders.createdAt ?? "No Date"
         }).store(in: &cancellables)
-        
         return cell
     }
     

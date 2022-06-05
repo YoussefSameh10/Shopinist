@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FFBDFE78-EA2F-4E5F-9467-EF4BBF930BFE"
+            uuid = "435E76AA-BCD4-474F-B38E-AF9801C240AE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Model/Services/DatabaseServices/FavouritesDB/FavouritesDataBaseManager.swift"
+            filePath = "Shopinist/Modules/SettingsScreen/ViewModel/SettingsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "getFavItemFromDbWithId(id:customerEMail:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "getCustomerAddresses()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C8200D6C-1E6F-4A91-B5C9-FBD9D1838FCF"
+            uuid = "63EE3A17-933B-46A8-9B33-59A6D294DCF7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/ProductDetailsScreen/ViewModel/ProductDetailsViewModel.swift"
+            filePath = "Shopinist/Modules/SettingsScreen/ViewModel/SettingsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "isInFavourite()"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "getaddressesCount()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

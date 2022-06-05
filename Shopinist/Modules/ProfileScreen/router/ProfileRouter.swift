@@ -31,7 +31,9 @@ class ProfileRouter : ProfileRouterProtocol {
     func navigateToSettingsScreen(){
         print("navigateToSettingsScreen")
         let settingsVC = SettingsViewController(nibName: "SettingsViewController", viewModel: SettingsViewModel())
-        viewController?.present(settingsVC, animated: true)
+        //viewController?.present(settingsVC, animated: true)
+        viewController?.navigationController?.pushViewController(settingsVC, animated: true)
+        viewController?.navigationController?.navigationBar.isHidden = false
     }
     
     

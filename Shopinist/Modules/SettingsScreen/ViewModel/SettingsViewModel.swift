@@ -56,14 +56,18 @@ class SettingsViewModel  : SettingsViewModelProtocol{
         addressRepo.getAddressesOfCustomer(customerID: customerID!).sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
-                print("address added Finish")
+                print(" %%%%% address retrieved Finish %%%%%")
             case .failure:
-                print("address add Failed")
+                print("%%%%% address retrieved Failed %%%%%")
             }
-        },receiveValue: { (response) in
+        },receiveValue: { [weak self] (response) in
             guard let address = response.addresses else {return}
-            self._customerAddresses? = address
+            self!._customerAddresses? = address
         }).store(in: &cancellables)
+    }
+    
+    func getaddressesCount() -> Int{
+        return _customerAddresses?.count ?? 0
     }
     
     func updateCustomerAddress(address : String){
@@ -81,6 +85,14 @@ class SettingsViewModel  : SettingsViewModelProtocol{
         }).store(in: &cancellables)
     }
     
+    
+    func saveSelectedCurrrency(selectedCurrency : SelectedCurrency){
+        customerRepo.saveSelectedCurrency(currency: selectedCurrency)
+    }
+    
+    func getSelectedCurrency() -> String {
+        return customerRepo.getSelectedCurrency()
+    }
     
     
 }

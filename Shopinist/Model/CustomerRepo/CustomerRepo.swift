@@ -88,4 +88,7 @@ class CustomerRepo : CustomerRepoProtocol , CustomerSettingsRepoProtocol{
     func getSelectedCurrency() -> String {
         return defaults.object(forKey: CURRENCY) as! String
     }
+    func removeCurrencyFromUserDefaults(){
+        defaults.removeObject(forKey: CURRENCY)
+    }
 }

@@ -15,6 +15,9 @@ protocol ProfileViewModelProtocol {
     var customerEmail : String? {get}
     func getCustomerOrdersList()
     func getSelectedCurrency() -> String
+    func getCustomerFromUserDefault() -> String?
+    func getCustmerNameFromUserDefaults() -> String?
+    func logOut()
     
     
 }

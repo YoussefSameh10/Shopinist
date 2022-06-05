@@ -18,7 +18,8 @@ struct Address: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case customerID = "customer_id"
-        case address, city, country
+        case address = "address1"
+        case city, country
     }
     
     init(address: String) {

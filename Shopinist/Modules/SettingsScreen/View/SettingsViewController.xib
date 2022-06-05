@@ -11,8 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
+                <outlet property="EGPButton" destination="2rJ-zQ-2dm" id="PaZ-o6-yhn"/>
+                <outlet property="USDButton" destination="wPh-ZZ-oS0" id="eLP-g7-ZWH"/>
                 <outlet property="addressTableview" destination="dWP-ia-2dR" id="Ocv-hS-4C2"/>
                 <outlet property="addresssLabel" destination="Vzu-dt-4rR" id="T9K-Yk-A96"/>
+                <outlet property="newAddressTextField" destination="3uq-7y-Gld" id="ccr-0s-2zb"/>
+                <outlet property="saveButton" destination="fdL-aJ-aUj" id="pKZ-bw-DyF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,6 +41,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="newAddressTFChanged:" destination="-1" eventType="editingChanged" id="tZs-oM-GCY"/>
+                            </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-aJ-aUj">
                             <rect key="frame" x="16" y="151.5" width="382" height="70"/>
@@ -45,12 +52,12 @@
                             </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Save">
-                                <backgroundConfiguration key="background" cornerRadius="25">
-                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </backgroundConfiguration>
                                 <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
-                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="saveNewAddButton:" destination="-1" eventType="touchUpInside" id="D3H-JN-UrQ"/>
+                            </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="sAa-sK-bbv">
                             <rect key="frame" x="16" y="245.5" width="382" height="70"/>
@@ -59,21 +66,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="171" height="70"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="USD">
-                                        <backgroundConfiguration key="background" cornerRadius="25">
-                                            <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </backgroundConfiguration>
                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </buttonConfiguration>
+                                    <connections>
+                                        <action selector="selectUSDButton:" destination="-1" eventType="touchUpInside" id="Apd-c3-82t"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rJ-zQ-2dm">
                                     <rect key="frame" x="211" y="0.0" width="171" height="70"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="EGP">
-                                        <backgroundConfiguration key="background" cornerRadius="25">
-                                            <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </backgroundConfiguration>
                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </buttonConfiguration>
+                                    <connections>
+                                        <action selector="selectEGPButton:" destination="-1" eventType="touchUpInside" id="1hz-Ik-6Ge"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>

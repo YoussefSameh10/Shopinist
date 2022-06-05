@@ -40,6 +40,7 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        viewModel?.getCustomerOrdersList()
         // Do any additional setup after loading the view.
     }
 
@@ -69,11 +70,9 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
         viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
             guard let orders = orderResponse?[indexPath.row] else { return }
-            
-            cell.orderPrice = "500"
-            //if viewModel?.getSelectedCurrency() ==
+            // **** check currency in user defaults and set currency flag ****
+            cell.orderPrice = "\(orders.totalPrice!) EGP" ?? "no price"
 //            if self!.buttonFlagEGP {
-//                cell.orderPrice = "\(orders.totalPrice!) EGP" ?? "no price"
 //            }else{
 //                cell.orderPrice = "\(orders.totalPriceUsd!) USD" ?? "no price"
 //            }

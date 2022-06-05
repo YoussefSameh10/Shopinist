@@ -33,23 +33,40 @@ class ProfileViewModel : ProfileViewModelProtocol{
     
     // MARK: - Functions
     
+    // 6035824017580
+    
     func getCustomerOrdersList(){
         let customerId = customerRepo.getCustomerFromUserDefaults()?.id
-        orderRepo.getOrdersOfCustomer(customerID: customerId ?? 6232280301803).sink(receiveCompletion: { completion in
+        orderRepo.getOrdersOfCustomer(customerID: 6035824017580 ?? 0).sink(receiveCompletion: { completion in
+            
             switch completion {
-            case .finished :
-                print("order sink finished ")
-            case .failure(let error ):
-                print(error)
+                
+                case .finished :
+                    print("order sink finished ")
+                
+                case .failure(let error ):
+                    print(error)
             }
         }, receiveValue: { [weak self ] orderResponse in
-            self!.customerOrdersList = orderResponse.orders
-            print(orderResponse.orders?.count)
+            
+                self!.customerOrdersList = orderResponse.orders
+                print(orderResponse.orders?.count)
+            
         }).store(in: &cancellables)
     }
     
-    func getCustomerFromUserDefault(){
+    func getCustomerFromUserDefault() -> String?{
         customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
+        return customerEmail
+    }
+    
+    func getCustmerNameFromUserDefaults() -> String? {
+        return customerRepo.getCustomerFromUserDefaults()?.firstName
+    }
+    
+    func logOut(){
+        let customerId = customerRepo.getCustomerFromUserDefaults()?.id
+        customerRepo.removeCustomerFromUserDefaults(id: customerId ?? 0)
     }
     
     func getSelectedCurrency() -> String{
