@@ -45,7 +45,5 @@ class ProductsRepo : ProductsRepoProtocol {
         let networkCall = networkManager.getRequest(fromEndpoint:EndPoints.getProductsOfCategory(categoryId: category.rawValue).endPoint, parameters: nil, ofType: Products.self)
         return networkCall
     }
-    
-    
-    
+   
 }

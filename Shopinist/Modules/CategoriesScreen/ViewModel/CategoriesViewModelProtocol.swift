@@ -8,13 +8,14 @@
 
 import Foundation
 
-protocol CategoriesViewModelProtocol {
+protocol CategoriesViewModelProtocol: CategoriesFilterViewModelProtocol {
     var searchedProductsList: Published<[Product]?>.Publisher {get}
     var category: ProductCategory? {get}
     var subCategory: ProductType? {get set}
+    var searchString: String {get set}
     
     func isProductsListEmpty() -> Bool
-    func filterProductsForSearchText(searchText: String)
+    //func filterProductsForSearchText(searchText: String)
     func getProductsCount() -> Int
     func getProductAt(index: Int) -> Product?
 }
