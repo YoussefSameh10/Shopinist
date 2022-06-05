@@ -9,6 +9,7 @@
 import Foundation
 
 class CategoriesRouter: CategoriesRouterProtocol {
+    
     weak var viewController: CategoriesViewController?
     
     func navigateToProductDetailsScreen(appDelegate: AppDelegate, product: Product) {
@@ -22,6 +23,11 @@ class CategoriesRouter: CategoriesRouterProtocol {
         
         
         viewController?.navigationController?.pushViewController(productDetailsVC, animated: true)
+    }
+    
+    func navigateToFilterScreen(viewModel: CategoriesFilterViewModelProtocol) {
+        let filterVC = FilterAlertViewController(nibName: "FilterAlertViewController", viewModel: viewModel)
+        viewController?.navigationController?.present(filterVC, animated: true, completion: nil)
     }
     
     

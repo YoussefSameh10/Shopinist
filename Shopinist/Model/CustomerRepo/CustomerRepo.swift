@@ -14,6 +14,8 @@ class CustomerRepo : CustomerRepoProtocol{
     private static var instance : CustomerRepoProtocol?
     private var networkManager : NetworkManagerProtocol
     
+    private let defaults = UserDefaults.standard
+    
     private init(networkManager : NetworkManagerProtocol){
         self.networkManager = networkManager
     }
@@ -25,7 +27,7 @@ class CustomerRepo : CustomerRepoProtocol{
         return instance!
     }
     
-    func getAllCustomers(customer: Customer) -> Future<Customers, Error> {
+    func getAllCustomers() -> Future<Customers, Error> {
         return networkManager.getRequest(fromEndpoint: EndPoints.getAllCustomers.endPoint, parameters: nil, ofType: Customers.self)
     }
     
@@ -41,5 +43,32 @@ class CustomerRepo : CustomerRepoProtocol{
             }
         }
         
+    }
+    
+    func saveCustomerToUserDefaults(customer: Customer) {
+        defaults.set(customer.id, forKey: ID)
+        defaults.set(customer.firstName, forKey: NAME)
+        defaults.set(customer.email, forKey: EMAIL)
+        defaults.set(customer.tags, forKey: PASSWORD)
+    }
+    
+    func getCustomerFromUserDefaults() -> Customer? {
+        let id = defaults.integer(forKey: ID)
+        if id == 0 {
+            return nil
+        }
+        return Customer(
+            id: id,
+            name: defaults.object(forKey: NAME) as! String,
+            email: defaults.object(forKey: EMAIL) as! String,
+            password: defaults.object(forKey: PASSWORD) as! String
+        )
+    }
+    
+    func removeCustomerFromUserDefaults(id: Int) {
+        defaults.removeObject(forKey: ID)
+        defaults.removeObject(forKey: NAME)
+        defaults.removeObject(forKey: EMAIL)
+        defaults.removeObject(forKey: PASSWORD)
     }
 }

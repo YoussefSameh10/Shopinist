@@ -9,9 +9,7 @@
 import Foundation
 import Combine
 
-class CategoriesViewModel: CategoriesViewModelProtocol {
-    
-    
+class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewModelProtocol {
     
     private let productRepo: ProductsRepoProtocol
     
@@ -22,27 +20,43 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
     var category: ProductCategory?
     var subCategory: ProductType? {
         didSet {
-            filterProductsForSearchText(searchText: "")
+            //filterProductsForSearchText(searchText: "")
+            filterProducts()
         }
     }
+    var searchString: String = ""
+    
+    var filterType: FilterType = .NAME
+    var filterDirection: FilterDirection = .ASCENDING
+    var maxPrice: Int = 1000
 
     init(productRepo: ProductsRepoProtocol, products: [Product], category: ProductCategory) {
         self.productRepo = productRepo
         self.category = category
         productsList = products
-        filterProductBySubCategory()
+        //filterProductBySubCategory()
+        filterProducts()
         searchedProducts = products
     }
     
-    func filterProductsForSearchText(searchText: String) {
-        
-        filterProductBySubCategory()
-        
-        if !searchText.isEmpty {
-            searchedProducts = searchedProducts?.filter { (product: Product) -> Bool in
-                return product.title!.lowercased().contains(searchText.lowercased())
-            }
-        }
+//    func filterProductsForSearchText(searchText: String) {
+//
+//        filterProductBySubCategory()
+//
+//        if !searchText.isEmpty {
+//            searchedProducts = searchedProducts?.filter { (product: Product) -> Bool in
+//                return product.title!.lowercased().contains(searchText.lowercased())
+//            }
+//        }
+//    }
+    
+    func filterProducts() {
+        var coreProducts: FilterProductsDecorator = ProductsContainer(products: productsList ?? [])
+        coreProducts = PriceFilter(filterDecorator: coreProducts, price: maxPrice)
+        coreProducts = SortFilter(filterDecorator: coreProducts, filterType: filterType, filterDirection: filterDirection)
+        coreProducts = CategoriesFilter(filterDecorator: coreProducts, category: subCategory)
+        coreProducts = SearchFilter(filterDecorator: coreProducts, searchString: searchString)
+        searchedProducts = coreProducts.getProducts()
     }
     
     func isProductsListEmpty() -> Bool {
@@ -61,19 +75,19 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
 }
 
 extension CategoriesViewModel {
-    private func filterProductBySubCategory() {
-        if(subCategory == nil) {
-            searchedProducts = productsList
-        }
-        else {
-            searchedProducts = []
-            
-            searchedProducts = productsList?.filter({ product in
-                if product.productType == subCategory {
-                    return true
-                }
-                return false
-            })
-        }
-    }
+//    private func filterProductBySubCategory() {
+//        if(subCategory == nil) {
+//            searchedProducts = productsList
+//        }
+//        else {
+//            searchedProducts = []
+//
+//            searchedProducts = productsList?.filter({ product in
+//                if product.productType == subCategory {
+//                    return true
+//                }
+//                return false
+//            })
+//        }
+//    }
 }

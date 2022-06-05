@@ -19,4 +19,8 @@ struct Address: Codable {
         case customerID = "customer_id"
         case address, city, country
     }
+    
+    init(address: String) {
+        self.address = address
+    }
 }

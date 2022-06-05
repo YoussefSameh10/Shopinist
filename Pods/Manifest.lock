@@ -4,23 +4,27 @@ PODS:
     - Kingfisher/Core (= 5.15.8)
   - Kingfisher/Core (5.15.8)
   - RESegmentedControl (0.5.1)
+  - SkyFloatingLabelTextField (3.8.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
   - Kingfisher (~> 5.0)
   - RESegmentedControl
+  - SkyFloatingLabelTextField (~> 3.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
     - RESegmentedControl
+    - SkyFloatingLabelTextField
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   RESegmentedControl: 96aa84d861d3715128188c66faf1222d41df756e
+  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: 24a69330983c779819e70e6250ea5be9cc41d97a
+PODFILE CHECKSUM: d1827d362a2f53de9ef1d0579e199d53aa5096d4
 
 COCOAPODS: 1.8.4

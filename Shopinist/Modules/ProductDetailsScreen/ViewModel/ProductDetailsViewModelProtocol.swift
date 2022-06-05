@@ -11,10 +11,12 @@ import Foundation
 protocol ProductDetailsViewModelProtocol {
     
     var product : Product? {get}
+    var productSize : String? {get set}
+    var productColor : String? {get set}
     
     func addToFav()
     
-    func addToCart(size : String , color : String)
+    func addToCart()
     
     func isInFavourite() -> Bool
     

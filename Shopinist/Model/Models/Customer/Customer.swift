@@ -30,5 +30,20 @@ struct Customer: Codable {
         case phone, tags
         case addresses
     }
+    
+    init(name: String, email: String, password: String, address: String) {
+        self.firstName = name
+        self.email = email
+        self.addresses = []
+        self.addresses?.append(Address(address: address))
+        self.tags = password
+    }
+    
+    init(id: Int, name: String, email: String, password: String) {
+        self.id = id
+        self.firstName = name
+        self.email = email
+        self.tags = password
+    }
 }
 

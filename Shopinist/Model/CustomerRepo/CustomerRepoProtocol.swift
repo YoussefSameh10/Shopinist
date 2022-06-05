@@ -10,6 +10,10 @@ import Foundation
 import Combine
 
 protocol CustomerRepoProtocol{
-    func getAllCustomers(customer : Customer) -> Future<Customers, Error>
+    func getAllCustomers() -> Future<Customers, Error>
     func registerCustomer(customer : Customer) -> Future<PostCustomer, Error>
+    
+    func saveCustomerToUserDefaults(customer: Customer)
+    func getCustomerFromUserDefaults() -> Customer?
+    func removeCustomerFromUserDefaults(id: Int)
 }

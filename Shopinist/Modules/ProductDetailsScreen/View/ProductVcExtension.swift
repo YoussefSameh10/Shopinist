@@ -57,7 +57,9 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
         }
         else
         {
+            viewModel.productSize = (viewModel.product?.options![0].values![indexPath.row])!
             
+
         }
     }
     

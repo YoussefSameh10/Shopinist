@@ -10,5 +10,7 @@ import Foundation
 
 protocol CategoriesRouterProtocol {
     var viewController: CategoriesViewController? {get set}
+    
     func navigateToProductDetailsScreen(appDelegate: AppDelegate, product: Product)
+    func navigateToFilterScreen(viewModel: CategoriesFilterViewModelProtocol)
 }
