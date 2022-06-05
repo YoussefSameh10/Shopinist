@@ -26,6 +26,10 @@ struct Address: Codable {
         self.address = address
     }
     
+    init (customerID : Int){
+        self.customerID = customerID
+    }
+    
     init(address: String , customerID : Int) {
         self.address = address
         self.customerID = customerID

@@ -49,7 +49,7 @@ class AddressRepo : AddressRepoProtocol {
         do {
             let postBody = try JSONEncoder().encode(postAddress)
             
-            return self.networkManager.postRequest(fromEndpoint: EndPoints.updateExistingAddress(customerID: customerID).endPoint, httpBody: postBody, httpMethod: .put, ofType: PostAddress.self)
+            return self.networkManager.postRequest(fromEndpoint: EndPoints.updateExistingAddress(customerID: customerID, addressID: address.id ?? 0).endPoint, httpBody: postBody, httpMethod: .put, ofType: PostAddress.self)
         }
         catch let error {
             return Future { promise in

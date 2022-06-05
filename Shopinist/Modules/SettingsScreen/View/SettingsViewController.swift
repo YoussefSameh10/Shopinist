@@ -50,6 +50,7 @@ class SettingsViewController: UIViewController {
         
         setupTableView()
         viewModel?.getCustomerAddresses()
+        sinkOnAddressObserver()
         setupButtonsInWillAppear()
         
     }
@@ -62,6 +63,16 @@ class SettingsViewController: UIViewController {
     
     
     // MARK: - Fucntions
+    
+    func sinkOnAddressObserver(){
+        viewModel?.customerAddresses.receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] addresses in
+            //if addresses != nil{
+                self?.addressTableview.reloadData()
+            //}
+                
+            }).store(in: &cancellables)
+    }
     
     func setupUI(){
         self.navigationController?.navigationBar.isHidden = false
@@ -145,12 +156,14 @@ class SettingsViewController: UIViewController {
         saveButton.layer.borderColor = UIColor.black.cgColor
         saveButton.layer.borderWidth = 1
     }
+    
     // MARK: - Actions
     
     @IBAction func saveNewAddButton(_ sender: UIButton) {
         
         let newAddres = newAddressTextField.text
         viewModel?.createNewAddress(address: newAddres!)
+        
         
     }
     
@@ -184,10 +197,7 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count : Int?
        
-        viewModel?.getCustomerAddresses()
-        print("coooooooouuuuuuunnnnnnntttttttttttt")
         print(viewModel?.getaddressesCount())
         return viewModel?.getaddressesCount() ?? 0
         
@@ -199,28 +209,26 @@ extension SettingsViewController : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressCell", for: indexPath) as! AddressTableViewCell
         
         
-        viewModel?.customerAddresses.sink(receiveValue: { [weak self] addressesResponse in
-            
-            if addressesResponse?.count != 0 {
-                guard let addresses = addressesResponse else {return}
-                cell.cellAddress = addresses[indexPath.row].address!
-            }
-            
-        })
-//        cell.cellAddress = "mokattam"
-//        cell.addressTextField.isEnabled = false
+        cell.cellAddress = (viewModel?.getCustomerAddress(retrievedIndex: indexPath.row).address) ?? ""
+
+        //print(viewModel?.getCustomerAddress(retrievedIndex: indexPath.row).id)
         
+        var add = viewModel?.getCustomerAddress(retrievedIndex: indexPath.row)
+        add?.address! = cell.addressTextField.text!
         cell.updateAddress = {
             print("update add button")
+            print(add)
+            print(cell.addressTextField.text!)
+            print(add?.address!)
+            self.viewModel?.updateCustomerAddress(address: add!)
         }
-        
-        print("*****************")
+        //print("*****************")
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        50
     }
     
     

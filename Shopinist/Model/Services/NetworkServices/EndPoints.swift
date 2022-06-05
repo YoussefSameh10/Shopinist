@@ -23,7 +23,7 @@ enum EndPoints {
     
     case getAddressesOfCustomer(customerID: Int)   // get
     case createNewAddress(customerID: Int)         // post
-    case updateExistingAddress(customerID: Int)     // put
+    case updateExistingAddress(customerID: Int , addressID : Int)     // put
     
     var endPoint : String {
         switch self {
@@ -41,8 +41,8 @@ enum EndPoints {
             return "/admin/api/2022-04/customers/\(customerID)/addresses.json"
         case .createNewAddress(customerID: let customerID):
             return "/admin/api/2022-04/customers/\(customerID)/addresses.json"
-        case .updateExistingAddress(customerID: let customerID):
-            return "/admin/api/2022-04/customers/\(customerID)/addresses/\(customerID).json"
+        case .updateExistingAddress(customerID: let customerID , addressID: let addressID):
+            return "/admin/api/2022-04/customers/\(customerID)/addresses/\(addressID).json"
         }
     }
 

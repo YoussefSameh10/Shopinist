@@ -17,13 +17,15 @@ protocol SettingsViewModelProtocol {
     
     func getCustomerAddresses()
     
-    func updateCustomerAddress(address : String)
+    func updateCustomerAddress(address : Address)
     
     func saveSelectedCurrrency(selectedCurrency : SelectedCurrency)
 
     func getSelectedCurrency() -> String
     
     func getaddressesCount() -> Int
+    
+    func getCustomerAddress(retrievedIndex : Int) -> Address
     
     
 }

@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "435E76AA-BCD4-474F-B38E-AF9801C240AE"
+            uuid = "945963A6-11B1-4392-B1B8-943877884498"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/SettingsScreen/ViewModel/SettingsViewModel.swift"
+            filePath = "Shopinist/Model/Services/NetworkServices/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
             endingLineNumber = "65"
-            landmarkName = "getCustomerAddresses()"
+            landmarkName = "postRequest(fromEndpoint:httpBody:httpMethod:ofType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "63EE3A17-933B-46A8-9B33-59A6D294DCF7"
+            uuid = "18FEF5BF-2293-4F9E-94B9-693413FF10E4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/SettingsScreen/ViewModel/SettingsViewModel.swift"
+            filePath = "Shopinist/Model/AddressRepo/AddressRepo.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "getaddressesCount()"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "updateExistingAddress(address:customerID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -53,6 +53,7 @@ class SettingsViewModel  : SettingsViewModelProtocol{
     
     func getCustomerAddresses(){
         let customerID = customerRepo.getCustomerFromUserDefaults()?.id
+        print(customerID)
         addressRepo.getAddressesOfCustomer(customerID: customerID!).sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
@@ -62,7 +63,7 @@ class SettingsViewModel  : SettingsViewModelProtocol{
             }
         },receiveValue: { [weak self] (response) in
             guard let address = response.addresses else {return}
-            self!._customerAddresses? = address
+            self?._customerAddresses = address
         }).store(in: &cancellables)
     }
     
@@ -70,9 +71,15 @@ class SettingsViewModel  : SettingsViewModelProtocol{
         return _customerAddresses?.count ?? 0
     }
     
-    func updateCustomerAddress(address : String){
+    func getCustomerAddress(retrievedIndex : Int) -> Address{
+        return _customerAddresses![retrievedIndex]
+    }
+    
+    
+    
+    func updateCustomerAddress(address : Address){
         let customerID = customerRepo.getCustomerFromUserDefaults()?.id
-        addressRepo.updateExistingAddress(address: Address(address: address, customerID: customerID!), customerID: customerID!).sink(receiveCompletion: { (completion) in
+        addressRepo.updateExistingAddress(address:address, customerID: customerID!).sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
                 print("address updated Finish")
