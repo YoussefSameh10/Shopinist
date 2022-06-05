@@ -11,15 +11,22 @@ import Foundation
 
 class FavouritesViewModel : FavouritesViewModelProtocol {
     
+    // MARK: - Variables
+    
     var products: [Product]?
     var favouritesRepo : FavouritesProductRepoProtocol
     var customerRepo : CustomerRepoProtocol
+    
+    
+    // MARK: - Init
     
     init(favouritesRepo : FavouritesProductRepoProtocol, customerRepo : CustomerRepoProtocol ) {
         self.favouritesRepo = favouritesRepo
         self.customerRepo = customerRepo
     }
     
+    
+    // MARK: - Fucntions
     
     func getFavouritesFromDB() -> [Product]{
         let customerEmail = getCustomerFromUserDefaults()?.email

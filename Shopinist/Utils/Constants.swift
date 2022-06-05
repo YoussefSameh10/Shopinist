@@ -19,3 +19,9 @@ let ID = "id"
 let EMAIL = "email"
 let NAME = "name"
 let PASSWORD = "password"
+let CURRENCY = "currency"
+
+enum SelectedCurrency : String{
+    case USD
+    case EGP
+}

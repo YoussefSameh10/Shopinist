@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - Address
 struct Address: Codable {
+    
     var id, customerID: Int?
     var address: String?
     var city, country: String?
@@ -22,5 +23,18 @@ struct Address: Codable {
     
     init(address: String) {
         self.address = address
+    }
+    
+    init(address: String , customerID : Int) {
+        self.address = address
+        self.customerID = customerID
+    }
+    
+    init(id: Int? = nil, customerID: Int? = nil, address: String? = nil, city: String? = nil, country: String? = nil) {
+        self.id = id
+        self.customerID = customerID
+        self.address = address
+        self.city = city
+        self.country = country
     }
 }

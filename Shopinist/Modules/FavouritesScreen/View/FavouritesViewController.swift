@@ -14,8 +14,10 @@ class FavouritesViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var favouritesTableView: UITableView!
-    
     @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var notLogedInLabel: UILabel!
+    @IBOutlet weak var noFavouritesLabel: UILabel!
+    @IBOutlet weak var navigateToRegisterButton: UIButton!
     
     // MARK: - Variables
     
@@ -51,8 +53,14 @@ class FavouritesViewController: UIViewController {
         
         if viewModel.getCustomerFromUserDefaults() == nil {
             parentView.isHidden = true
+            noFavouritesLabel.isHidden = true
         }else{
             parentView.isHidden = false
+            if viewModel.getFavouritesFromDB().isEmpty {
+                parentView.isHidden = true
+                notLogedInLabel.isHidden = true
+                navigateToRegisterButton.isHidden = true
+            }
         }
         favouritesTableView.reloadData()
     }
@@ -62,9 +70,8 @@ class FavouritesViewController: UIViewController {
     
     @IBAction func logInButton(_ sender: UIButton) {
         
-        let regitserVC = RegisterViewController(nibName: "RegisterViewController", viewModel: RegisterViewModel(repo: CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())), router: RegisterRouter())
-        
-        self.navigationController?.pushViewController(regitserVC, animated: true)
+        router.navigateToRegisterScreen()
+
     }
             
 }

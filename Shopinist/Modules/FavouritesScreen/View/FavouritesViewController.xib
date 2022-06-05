@@ -12,6 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavouritesViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
                 <outlet property="favouritesTableView" destination="omf-z6-z4L" id="01J-Tt-hZz"/>
+                <outlet property="navigateToRegisterButton" destination="gIh-kp-0sY" id="4SH-1i-Bd3"/>
+                <outlet property="noFavouritesLabel" destination="9Wc-Cy-cXe" id="kDe-jI-0UK"/>
+                <outlet property="notLogedInLabel" destination="D3s-xa-cUJ" id="0wS-ZB-zNO"/>
                 <outlet property="parentView" destination="Ypf-dE-5ng" id="1zN-37-q0R"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,6 +26,12 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data is Available!                    Please Login To View Your Favourite Products" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3s-xa-cUJ">
                     <rect key="frame" x="16" y="244" width="382" height="115"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Some Products In Favourites" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wc-Cy-cXe">
+                    <rect key="frame" x="24" y="403" width="366" height="76.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -72,12 +81,15 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="D3s-xa-cUJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4ag-0q-ucj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9Wc-Cy-cXe" secondAttribute="trailing" constant="24" id="BE6-tr-Qxa"/>
                 <constraint firstItem="Ypf-dE-5ng" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Hec-Vo-BPc"/>
                 <constraint firstItem="gIh-kp-0sY" firstAttribute="top" secondItem="D3s-xa-cUJ" secondAttribute="bottom" constant="150" id="Pop-2W-Fnl"/>
+                <constraint firstItem="9Wc-Cy-cXe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="T3C-Wz-YWP"/>
                 <constraint firstAttribute="bottom" secondItem="Ypf-dE-5ng" secondAttribute="bottom" id="UBy-e8-UCs"/>
                 <constraint firstItem="D3s-xa-cUJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="UhG-Nw-bZ9"/>
                 <constraint firstItem="Ypf-dE-5ng" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Xln-Vh-aQc"/>
                 <constraint firstItem="gIh-kp-0sY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bgL-c2-Sos"/>
+                <constraint firstItem="9Wc-Cy-cXe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="359" id="ckQ-wk-PKq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gIh-kp-0sY" secondAttribute="trailing" constant="16" id="fe2-ay-hKC"/>
                 <constraint firstItem="D3s-xa-cUJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="gBv-p1-qrk"/>
                 <constraint firstItem="gIh-kp-0sY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rjf-8t-BSy"/>

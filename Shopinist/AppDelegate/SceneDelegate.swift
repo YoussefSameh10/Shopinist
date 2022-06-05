@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let cartVC = CartViewController(nibName: "CartViewController", bundle: nil)
 
-        let profileVC = ProfileViewController(nibName: "ProfileViewController", viewModel: ProfileViewModel(orderRepo: OrderRepo.getInstance(networkManager: NetworkManager.getInstance())))
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", viewModel: ProfileViewModel(orderRepo: OrderRepo.getInstance(networkManager: NetworkManager.getInstance())), router: ProfileRouter())
         
         
         let tabBarController = UITabBarController()
@@ -57,10 +57,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navController = UINavigationController(rootViewController: tabBarController)
         let catNavC = UINavigationController(rootViewController: categoriesVC)
+        let profileNavcontroller = UINavigationController(rootViewController: profileVC)
         tabBarController.addChild(homeVC)
         tabBarController.addChild(catNavC)
         tabBarController.addChild(cartVC)
-        tabBarController.addChild(profileVC)
+        tabBarController.addChild(profileNavcontroller)
         tabBarController.addChild(favouritesVC)
         
         window?.rootViewController = navController

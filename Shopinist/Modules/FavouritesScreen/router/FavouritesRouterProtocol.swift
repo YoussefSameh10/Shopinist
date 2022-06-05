@@ -12,5 +12,6 @@ protocol FavouritesRouterProtocol {
     
     var viewController: FavouritesViewController? {get set}
     func navigateToProductDetailsScreen(appDelegate: AppDelegate, product: Product)
+    func navigateToRegisterScreen()
     
 }

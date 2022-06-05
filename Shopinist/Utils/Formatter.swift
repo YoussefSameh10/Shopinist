@@ -90,18 +90,6 @@ class Formatter {
         return product
     }
     
-    enum Currency {
-        case USD
-        case EGP
-    }
     
-    static func convertCurrencyFromTo(from : Currency , to : Currency , amount : Int) -> Int{
-        
-        if to == .EGP {
-            return amount * 18
-        }else{
-            return amount / 18
-        }
-    }
     
 }

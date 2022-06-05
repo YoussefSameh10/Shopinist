@@ -17,20 +17,25 @@ class ProfileViewModel : ProfileViewModelProtocol{
     private var observer : AnyCancellable?
     private var cancellables : Set<AnyCancellable> = []
     var orderRepo : OrderRepoProtocol
+    var customerRepo : CustomerRepoProtocol
     @Published private var customerOrdersList : [Order]?
     var customerOrders: Published<[Order]?>.Publisher{$customerOrdersList}
+    
+    var customerEmail : String?
 
    
     // MARK: - Init
     
-    init(orderRepo : OrderRepoProtocol){
+    init(orderRepo : OrderRepoProtocol = OrderRepo.getInstance(networkManager: NetworkManager.getInstance()) , customerRepo : CustomerRepoProtocol = CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())){
         self.orderRepo = orderRepo
+        self.customerRepo = customerRepo
     }
     
     // MARK: - Functions
     
     func getCustomerOrdersList(){
-        orderRepo.getOrdersOfCustomer(customerID: 6232280301803).sink(receiveCompletion: { completion in
+        let customerId = customerRepo.getCustomerFromUserDefaults()?.id
+        orderRepo.getOrdersOfCustomer(customerID: customerId ?? 6232280301803).sink(receiveCompletion: { completion in
             switch completion {
             case .finished :
                 print("order sink finished ")
@@ -43,12 +48,12 @@ class ProfileViewModel : ProfileViewModelProtocol{
         }).store(in: &cancellables)
     }
     
-    func switchToUSD() {
-        print("USD")
+    func getCustomerFromUserDefault(){
+        customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
     }
     
-    func switchToEGP() {
-        print("EGP")
+    func getSelectedCurrency() -> String{
+        return customerRepo.getSelectedCurrency()
     }
     
     

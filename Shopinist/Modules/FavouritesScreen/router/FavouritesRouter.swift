@@ -25,4 +25,13 @@ class FavouritesRouter : FavouritesRouterProtocol {
     }
     
     
+    func navigateToRegisterScreen(){
+        
+        let regitserVC = RegisterViewController(nibName: "RegisterViewController", viewModel: RegisterViewModel(repo: CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())), router: RegisterRouter())
+        
+        viewController?.navigationController?.pushViewController(regitserVC, animated: true)
+        
+    }
+    
+    
 }
