@@ -43,16 +43,19 @@ class MainCategoriesViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        hideNavBar()
-        showTabBar()
+        manageBars()
     }
     
     // MARK: -Methods
-    private func hideNavBar() {
-        navigationController?.navigationBar.isHidden = true
-    }
-    private func showTabBar() {
-        tabBarController?.tabBar.isHidden = false
+    private func manageBars() {
+        if viewModel.brandName == nil {
+            navigationController?.navigationBar.isHidden = true
+            tabBarController?.tabBar.isHidden = false
+        }
+        else {
+            navigationController?.navigationBar.isHidden = false
+            tabBarController?.tabBar.isHidden = true
+        }
     }
     
     private func setupCollectionView() {

@@ -11,6 +11,7 @@ import Kingfisher
 import Combine
 import RESegmentedControl
 import NVActivityIndicatorView
+import Lottie
 
 class CategoriesViewController: UIViewController{
     
@@ -34,9 +35,10 @@ class CategoriesViewController: UIViewController{
     
     //MARK: -Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var noProductsLabel: UILabel!
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
+    @IBOutlet weak var notFoundAnimationView: AnimationView!
     
+    @IBOutlet weak var notFoundLabel: UILabel!
     //MARK: -Initializers
     init(
         nibName: String?,
@@ -139,16 +141,7 @@ class CategoriesViewController: UIViewController{
         }
     }
     
-    private func showEmptyScreen() {
-        self.collectionView.isHidden = true
-        self.noProductsLabel.isHidden = false
-    }
     
-    private func showPopulatedScreen() {
-        self.collectionView.isHidden = false
-        self.noProductsLabel.isHidden = true
-        self.collectionView.reloadData()
-    }
     
     private func setupSegmentControl() {
         let titles = ["All", "SHOES", "T-SHIRTS", "ACCESSORIES"]
@@ -246,6 +239,25 @@ extension CategoriesViewController {
     private func stopActivityIndicator() {
         indicator.stopAnimating()
     }
+    
+    private func showEmptyScreen() {
+        collectionView.isHidden = true
+        notFoundAnimationView.isHidden = false
+        notFoundLabel.isHidden = false
+        notFoundAnimationView.contentMode = .scaleAspectFit
+        notFoundAnimationView.loopMode = .loop
+        notFoundAnimationView.animationSpeed = 0.5
+        notFoundAnimationView.play()
+    }
+    
+    private func showPopulatedScreen() {
+        collectionView.isHidden = false
+        collectionView.reloadData()
+        notFoundAnimationView.stop()
+        notFoundAnimationView.isHidden = true
+        notFoundLabel.isHidden = true
+    }
+    
 }
 
 extension CategoriesViewController: UISearchResultsUpdating {
