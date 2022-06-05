@@ -19,7 +19,7 @@ class Formatter {
         
         let images = str.split(separator: "|")
         var imagesStr : [String] = []
-//        imagesStr = String(images)
+        //        imagesStr = String(images)
         for image in images {
             imagesStr.append(String(image))
         }
@@ -27,7 +27,7 @@ class Formatter {
     }
     
     
-        
+    
     static func separateStringArray(stringArray : [String]) -> String {
         var str = ""
         for element in stringArray {
@@ -90,8 +90,22 @@ class Formatter {
         return product
     }
     
+
     static func getIntPrice(from doubleStr: String) -> Int {
         return Int(exactly: Double(doubleStr)?.rounded() ?? 0.0) ?? 0
+    }
+    enum Currency {
+        case USD
+        case EGP
+    }
+    
+    static func convertCurrencyFromTo(from : Currency , to : Currency , amount : Int) -> Int{
+        
+        if to == .EGP {
+            return amount * 18
+        }else{
+            return amount / 18
+        }
     }
     
 }

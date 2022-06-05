@@ -15,6 +15,9 @@ struct Order: Codable {
     var orderItems: [OrderItem]?
     var cancelReason: String?
     var currentTotalPrice: String?
+    var createdAt: String?
+    var currency: String?
+    var totalPriceUsd: String?
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var discountCodes: [DiscountCode]?
     var financialStatus: OrderFinancialStatus?
@@ -34,6 +37,9 @@ struct Order: Codable {
         case fulfillmentStatus = "fulfillment_status"
         case totalDiscounts = "total_discounts"
         case totalPrice = "total_price"
+        case createdAt = "created_at"
+        case currency
+        case totalPriceUsd = "total_price_usd"
     }
     
     init(customer: Customer, orderItems: [OrderItem]) {

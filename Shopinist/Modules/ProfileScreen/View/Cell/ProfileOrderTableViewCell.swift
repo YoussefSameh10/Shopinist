@@ -16,6 +16,9 @@ class ProfileOrderTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var orderCreatedAtLabel: UILabel!
     
+    
+    @IBOutlet weak var cellView: CornerView!
+    
     // MARK: - Variables
     
     var orderPrice : String = "" {
@@ -36,6 +39,9 @@ class ProfileOrderTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cellView.layer.borderWidth = 1
+        cellView.layer.borderColor = UIColor.gray.cgColor
+        cellView.layer.cornerRadius = 15
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
