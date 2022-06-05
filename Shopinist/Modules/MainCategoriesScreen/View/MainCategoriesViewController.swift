@@ -17,7 +17,15 @@ class MainCategoriesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    init(nibName: String?, viewModel: MainCategoriesViewModelProtocol, router: MainCategoriesRouterProtocol) {
+    init(
+        nibName: String?,
+        viewModel: MainCategoriesViewModelProtocol = MainCategoriesViewModel(
+            productsRepo: ProductsRepo.getInstance(
+                databseManager: DatabaseManager.getInstance(appDelegate: (UIApplication.shared.delegate as! AppDelegate))
+            )
+        ),
+        router: MainCategoriesRouterProtocol = MainCategoriesRouter()
+    ) {
         super.init(nibName: nibName, bundle: nil)
         self.viewModel = viewModel
         self.router = router

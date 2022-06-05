@@ -17,7 +17,11 @@ class LoginViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    init(nibName: String?, viewModel: LoginViewModelProtocol, router: LoginRouterProtocol) {
+    init(
+        nibName: String?,
+        viewModel: LoginViewModelProtocol = LoginViewModel(),
+        router: LoginRouterProtocol = LoginRouter()
+    ) {
         super.init(nibName: nibName, bundle: nil)
         self.viewModel = viewModel
         self.router = router

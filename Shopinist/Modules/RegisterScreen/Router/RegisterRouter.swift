@@ -16,15 +16,7 @@ class RegisterRouter: RegisterRouterProtocol {
     }
     
     func navigateToLogin() {
-        let loginVC = LoginViewController(
-            nibName: "LoginViewController",
-            viewModel: LoginViewModel(
-                repo: CustomerRepo.getInstance(
-                    networkManager: NetworkManager.getInstance()
-                )
-            ),
-            router: LoginRouter()
-        )
+        let loginVC = LoginViewController(nibName: "LoginViewController")
         viewController?.navigationController?.popViewController(animated: true)
         
         viewController?.navigationController?.pushViewController(loginVC, animated: true)

@@ -26,7 +26,11 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var signinButton: UIButton!
     
-    init(nibName: String?, viewModel: RegisterViewModelProtocol, router: RegisterRouterProtocol) {
+    init(
+        nibName: String?,
+        viewModel: RegisterViewModelProtocol = RegisterViewModel(),
+        router: RegisterRouterProtocol = RegisterRouter()
+    ) {
         super.init(nibName: nibName, bundle: nil)
         self.viewModel = viewModel
         self.router = router

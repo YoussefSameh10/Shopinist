@@ -30,25 +30,18 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
     var filterDirection: FilterDirection = .ASCENDING
     var maxPrice: Int = 1000
 
-    init(productRepo: ProductsRepoProtocol, products: [Product], category: ProductCategory) {
+    init(
+        productRepo: ProductsRepoProtocol,
+        products: [Product],
+        category: ProductCategory
+    ) {
         self.productRepo = productRepo
         self.category = category
         productsList = products
-        //filterProductBySubCategory()
         filterProducts()
         searchedProducts = products
     }
-    
-//    func filterProductsForSearchText(searchText: String) {
-//
-//        filterProductBySubCategory()
-//
-//        if !searchText.isEmpty {
-//            searchedProducts = searchedProducts?.filter { (product: Product) -> Bool in
-//                return product.title!.lowercased().contains(searchText.lowercased())
-//            }
-//        }
-//    }
+  
     
     func filterProducts() {
         var coreProducts: FilterProductsDecorator = ProductsContainer(products: productsList ?? [])

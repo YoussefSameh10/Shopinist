@@ -137,9 +137,6 @@ class FilterAlertViewController: UIViewController {
     }
     
     private func setupSubmitButton() {
-        submitButton.layer.cornerRadius = 10
-        submitButton.layer.borderWidth = 1
-        submitButton.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         submitButton.setTitleColor(.black, for: .normal)
     }
     

@@ -11,9 +11,7 @@ import Foundation
 class MainCategoriesRouter: MainCategoriesRouterProtocol {
     weak var viewController: MainCategoriesViewController?
     
-//    init(viewController: MainCategoriesViewController) {
-//        self.viewController = viewController
-//    }
+
     
     func navigateToCategoriesScreen(appDelegate: AppDelegate, products: [Product], category: ProductCategory) {
         let categoriesVC = CategoriesViewController(
@@ -22,9 +20,9 @@ class MainCategoriesRouter: MainCategoriesRouterProtocol {
                 productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)),
                 products: products,
                 category: category
-            ),
-            router: CategoriesRouter()
+            )
         )
+        
         viewController?.navigationController?.pushViewController(categoriesVC, animated: true)
     }
 }

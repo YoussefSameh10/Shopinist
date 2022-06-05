@@ -20,7 +20,7 @@ class CustomerRepo : CustomerRepoProtocol{
         self.networkManager = networkManager
     }
     
-    static func getInstance(networkManager: NetworkManagerProtocol) -> CustomerRepoProtocol{
+    static func getInstance(networkManager: NetworkManagerProtocol = NetworkManager.getInstance()) -> CustomerRepoProtocol{
         if instance == nil {
             instance = CustomerRepo(networkManager: networkManager)
         }

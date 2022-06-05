@@ -32,7 +32,11 @@ class CategoriesViewController: UIViewController{
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
     
     
-    init(nibName: String?, viewModel: CategoriesViewModelProtocol, router: CategoriesRouterProtocol) {
+    init(
+        nibName: String?,
+        viewModel: CategoriesViewModelProtocol,
+        router: CategoriesRouterProtocol = CategoriesRouter()
+    ) {
         super.init(nibName: nibName, bundle: nil)
         self.viewModel = viewModel
         self.router = router

@@ -18,7 +18,7 @@ class OrderRepo: OrderRepoProtocol {
         self.networkManager = networkManager
     }
     
-    static func getInstance(networkManager: NetworkManagerProtocol) -> OrderRepoProtocol{
+    static func getInstance(networkManager: NetworkManagerProtocol = NetworkManager.getInstance()) -> OrderRepoProtocol{
         if instance == nil {
             instance = OrderRepo(networkManager: networkManager)
         }
