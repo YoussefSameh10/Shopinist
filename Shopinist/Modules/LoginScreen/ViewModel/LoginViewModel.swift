@@ -16,7 +16,7 @@ class LoginViewModel: LoginViewModelProtocol {
     @Published var _isValidLogin: Bool?
     var isValidLogin: Published<Bool?>.Publisher {$_isValidLogin}
     
-    init(repo: CustomerRepoProtocol) {
+    init(repo: CustomerRepoProtocol = CustomerRepo.getInstance()) {
         self.repo = repo
     }
     

@@ -11,7 +11,8 @@
             <connections>
                 <outlet property="collectionView" destination="Jau-LN-O66" id="d7K-Xc-6sd"/>
                 <outlet property="mainSegmentedControl" destination="n3S-jZ-ZOG" id="tRl-4o-MBl"/>
-                <outlet property="noProductsLabel" destination="oOT-Ha-UAK" id="A2A-nj-cYu"/>
+                <outlet property="notFoundAnimationView" destination="8Mk-Jw-eN5" id="esF-UM-gdk"/>
+                <outlet property="notFoundLabel" destination="Ysa-QP-WSV" id="lq8-01-hDX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,12 +35,6 @@
                         <outlet property="delegate" destination="i5M-Pr-FkT" id="evT-UO-iM0"/>
                     </connections>
                 </collectionView>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Available Products" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOT-Ha-UAK">
-                    <rect key="frame" x="16" y="412.5" width="382" height="153"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3S-jZ-ZOG" customClass="RESegmentedControl" customModule="RESegmentedControl">
                     <rect key="frame" x="16" y="60" width="382" height="40"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -50,19 +45,36 @@
                         <action selector="changeMainCategory:" destination="-1" eventType="valueChanged" id="Owf-o8-Qxk"/>
                     </connections>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mk-Jw-eN5" customClass="AnimationView" customModule="Lottie">
+                    <rect key="frame" x="16" y="116" width="382" height="447.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="not-found"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Matches" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysa-QP-WSV">
+                    <rect key="frame" x="16" y="563.5" width="382" height="57.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Jau-LN-O66" secondAttribute="bottom" id="3Ji-O2-xdp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Jau-LN-O66" secondAttribute="trailing" constant="16" id="5qc-qh-DIG"/>
+                <constraint firstItem="8Mk-Jw-eN5" firstAttribute="top" secondItem="Jau-LN-O66" secondAttribute="top" id="Ccf-0F-4mm"/>
+                <constraint firstItem="8Mk-Jw-eN5" firstAttribute="leading" secondItem="Jau-LN-O66" secondAttribute="leading" id="Elz-g0-JlG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="n3S-jZ-ZOG" secondAttribute="trailing" constant="16" id="Emo-Iv-61y"/>
-                <constraint firstItem="oOT-Ha-UAK" firstAttribute="leading" secondItem="Jau-LN-O66" secondAttribute="leading" id="JIK-63-qwW"/>
-                <constraint firstItem="oOT-Ha-UAK" firstAttribute="centerY" secondItem="Jau-LN-O66" secondAttribute="centerY" id="Mm4-xj-Dwi"/>
                 <constraint firstItem="n3S-jZ-ZOG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NeL-9D-r84"/>
+                <constraint firstItem="8Mk-Jw-eN5" firstAttribute="trailing" secondItem="Jau-LN-O66" secondAttribute="trailing" id="OEL-hP-it0"/>
                 <constraint firstItem="Jau-LN-O66" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="PAv-vQ-EZp"/>
                 <constraint firstItem="n3S-jZ-ZOG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="Ta5-3b-HPs"/>
+                <constraint firstItem="8Mk-Jw-eN5" firstAttribute="height" secondItem="Jau-LN-O66" secondAttribute="height" multiplier="0.6" id="cr5-cx-S0V"/>
                 <constraint firstItem="Jau-LN-O66" firstAttribute="top" secondItem="n3S-jZ-ZOG" secondAttribute="bottom" constant="16" id="gsH-BS-Hqt"/>
-                <constraint firstItem="oOT-Ha-UAK" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="hcO-WD-1py"/>
-                <constraint firstItem="oOT-Ha-UAK" firstAttribute="trailing" secondItem="Jau-LN-O66" secondAttribute="trailing" id="tHi-Oq-WBF"/>
+                <constraint firstItem="Ysa-QP-WSV" firstAttribute="leading" secondItem="Jau-LN-O66" secondAttribute="leading" id="juF-KW-j15"/>
+                <constraint firstItem="Ysa-QP-WSV" firstAttribute="trailing" secondItem="Jau-LN-O66" secondAttribute="trailing" id="kTF-sV-hPf"/>
+                <constraint firstItem="Ysa-QP-WSV" firstAttribute="top" secondItem="8Mk-Jw-eN5" secondAttribute="bottom" id="rep-4X-6ia"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>

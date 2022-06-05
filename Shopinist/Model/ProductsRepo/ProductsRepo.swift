@@ -25,7 +25,7 @@ class ProductsRepo : ProductsRepoProtocol {
         self.databaseManager = databseManager
     }
     
-    static func getInstance(networkManager: NetworkManagerProtocol ,  databseManager : DatabaseManagerProtocol) -> ProductsRepo{
+    static func getInstance(networkManager: NetworkManagerProtocol = NetworkManager.getInstance() ,  databseManager : DatabaseManagerProtocol) -> ProductsRepo{
         if instance == nil{
             instance = ProductsRepo(networkManager: networkManager, databseManager: databseManager)
         }

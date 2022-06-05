@@ -13,13 +13,7 @@ class LoginRouter: LoginRouterProtocol {
     weak var viewController: LoginViewController?
     
     func navigateToRegister() {
-        let registerVC = RegisterViewController(
-            nibName: "RegisterViewController",
-            viewModel: RegisterViewModel(
-                repo: CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())
-            ),
-            router: RegisterRouter()
-        )
+        let registerVC = RegisterViewController(nibName: "RegisterViewController")
         viewController?.navigationController?.popViewController(animated: true)
         viewController?.navigationController?.pushViewController(registerVC, animated: true)
     }
