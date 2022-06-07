@@ -27,16 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", viewModel: FavouritesViewModel(favouritesRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate))))
 
-        let categoriesVC = MainCategoriesViewController(
-            nibName: "MainCategoriesViewController",
-            viewModel: MainCategoriesViewModel(
-                productsRepo: ProductsRepo.getInstance(
-                    networkManager: NetworkManager.getInstance(),
-                    databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)
-                )
-            ),
-            router: MainCategoriesRouter()
-        )
+        let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController")
+        
 
         let cartVC = CartViewController(nibName: "CartViewController", bundle: nil)
 
@@ -45,16 +37,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         
-//        let registerVC = RegisterViewController(
-//            nibName: "RegisterViewController",
-//            viewModel: RegisterViewModel(
-//                repo: CustomerRepo.getInstance(
-//                    networkManager: NetworkManager.getInstance()
-//                )
-//            ),
-//            router: RegisterRouter()
-//        )
-//        
+        //let registerVC = RegisterViewController(nibName: "RegisterViewController")
+        
         let navController = UINavigationController(rootViewController: tabBarController)
         let catNavC = UINavigationController(rootViewController: categoriesVC)
         tabBarController.addChild(homeVC)

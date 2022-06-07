@@ -11,5 +11,5 @@ import Foundation
 protocol MainCategoriesRouterProtocol {
     var viewController: MainCategoriesViewController? {get set}
 
-    func navigateToCategoriesScreen(appDelegate: AppDelegate, products: [Product], category: ProductCategory)
+    func navigateToCategoriesScreen(appDelegate: AppDelegate, category: ProductCategory, brandName: String?)
 }

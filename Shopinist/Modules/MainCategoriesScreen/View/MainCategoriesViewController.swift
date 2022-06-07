@@ -7,17 +7,25 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class MainCategoriesViewController: UIViewController {
 
+    // MARK: -Variables
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
-
     var viewModel: MainCategoriesViewModelProtocol!
     var router: MainCategoriesRouterProtocol!
+    var indicator: NVActivityIndicatorView!
     
+    // MARK: -Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
-    init(nibName: String?, viewModel: MainCategoriesViewModelProtocol, router: MainCategoriesRouterProtocol) {
+    // MARK: -Initilaizers
+    init(
+        nibName: String?,
+        viewModel: MainCategoriesViewModelProtocol = MainCategoriesViewModel(),
+        router: MainCategoriesRouterProtocol = MainCategoriesRouter()
+    ) {
         super.init(nibName: nibName, bundle: nil)
         self.viewModel = viewModel
         self.router = router
@@ -28,22 +36,26 @@ class MainCategoriesViewController: UIViewController {
         fatalError()
     }
     
+    // MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        initViewModel()
         setupCollectionView()
     }
     
     override func viewDidLayoutSubviews() {
-        hideNavBar()
+        manageBars()
     }
     
-    private func initViewModel() {
-        viewModel = MainCategoriesViewModel(productsRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)))
-    }
-    
-    private func hideNavBar() {
-        navigationController?.navigationBar.isHidden = true
+    // MARK: -Methods
+    private func manageBars() {
+        if viewModel.brandName == nil {
+            navigationController?.navigationBar.isHidden = true
+            tabBarController?.tabBar.isHidden = false
+        }
+        else {
+            navigationController?.navigationBar.isHidden = false
+            tabBarController?.tabBar.isHidden = true
+        }
     }
     
     private func setupCollectionView() {
@@ -59,6 +71,7 @@ class MainCategoriesViewController: UIViewController {
     }
 }
 
+// MARK: -Delegates Extension
 extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
@@ -95,8 +108,8 @@ extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionVi
         
         router.navigateToCategoriesScreen(
             appDelegate: appDelegate,
-            products: viewModel.filteredProducts ?? [],
-            category: category
+            category: category,
+            brandName: viewModel.brandName
         )
     }
 }

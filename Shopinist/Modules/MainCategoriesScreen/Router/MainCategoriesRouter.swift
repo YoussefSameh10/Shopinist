@@ -10,20 +10,15 @@ import Foundation
 
 class MainCategoriesRouter: MainCategoriesRouterProtocol {
     weak var viewController: MainCategoriesViewController?
-    
-//    init(viewController: MainCategoriesViewController) {
-//        self.viewController = viewController
-//    }
-    
-    func navigateToCategoriesScreen(appDelegate: AppDelegate, products: [Product], category: ProductCategory) {
+
+    func navigateToCategoriesScreen(appDelegate: AppDelegate, category: ProductCategory, brandName: String?) {
         let categoriesVC = CategoriesViewController(
             nibName: "CategoriesViewController",
             viewModel: CategoriesViewModel(
                 productRepo: ProductsRepo.getInstance(networkManager: NetworkManager.getInstance(), databseManager: DatabaseManager.getInstance(appDelegate: appDelegate)),
-                products: products,
-                category: category
-            ),
-            router: CategoriesRouter()
+                category: category,
+                brandName: brandName
+            )
         )
         viewController?.navigationController?.pushViewController(categoriesVC, animated: true)
     }
