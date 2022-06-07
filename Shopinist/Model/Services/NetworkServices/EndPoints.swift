@@ -18,6 +18,7 @@ enum EndPoints {
     case getProductsOfCategory(categoryId : String)
     case createOrder
     case getOrdersOfCustomer(customerID: Int)
+    case getPriceRules
     
     var endPoint : String {
         switch self {
@@ -31,6 +32,8 @@ enum EndPoints {
             return "/admin/api/2022-04/orders.json"
         case .getOrdersOfCustomer(customerID: let customerID):
             return "/admin/api/2022-04/customers/\(customerID)/orders.json"
+        case .getPriceRules:
+            return "/admin/api/2022-04/price_rules.json"
         }
     }
 

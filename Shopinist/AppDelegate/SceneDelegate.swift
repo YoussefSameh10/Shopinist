@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         
-        //let registerVC = RegisterViewController(nibName: "RegisterViewController")
+        let checkoutVC = CheckoutViewController()
         
         let navController = UINavigationController(rootViewController: tabBarController)
         let catNavC = UINavigationController(rootViewController: categoriesVC)
@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.addChild(catNavC)
         tabBarController.addChild(cartVC)
         tabBarController.addChild(profileVC)
-        tabBarController.addChild(favouritesVC)
+        tabBarController.addChild(checkoutVC)
         
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
