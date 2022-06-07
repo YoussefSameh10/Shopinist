@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - DiscountCode
-struct DiscountCode: Codable {
+struct DiscountCodeOLD: Codable {
     var id, priceRuleID: Int?
     var code: String?
     var usageCount: Int?
@@ -19,6 +19,18 @@ struct DiscountCode: Codable {
         case priceRuleID = "price_rule_id"
         case code
         case usageCount = "usage_count"
+    }
+}
+
+struct DiscountCode: Codable {
+    var code: String?
+    var amount: String?
+    var type: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case code
+        case amount
+        case type
     }
 }
 
