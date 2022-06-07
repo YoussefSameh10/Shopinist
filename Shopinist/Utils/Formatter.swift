@@ -12,7 +12,11 @@ class Formatter {
     
     static func formatProductName(productTitle: String) -> String {
         let parts = productTitle.split(separator: "|")
-        return String(parts[parts.count - 1])
+        var ret = String(parts[parts.count - 1])
+        if let index  = ret.firstIndex(of: " ") {
+            ret.remove(at: index)
+        }
+        return ret
     }
     
     static func formatStringToArray(str : String) -> [String]{
