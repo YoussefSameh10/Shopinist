@@ -9,9 +9,10 @@
 import Foundation
 import Combine
 
-class CustomerRepo : CustomerRepoProtocol{
+class CustomerRepo : CustomerRepoProtocol , CustomerSettingsRepoProtocol{
     
     private static var instance : CustomerRepoProtocol?
+    private static var settingsInstance : CustomerSettingsRepoProtocol?
     private var networkManager : NetworkManagerProtocol
     
     private let defaults = UserDefaults.standard
@@ -26,6 +27,14 @@ class CustomerRepo : CustomerRepoProtocol{
         }
         return instance!
     }
+    
+    static func getInstance(networkManager: NetworkManagerProtocol) -> CustomerSettingsRepoProtocol{
+        if settingsInstance == nil {
+            settingsInstance = CustomerRepo(networkManager: networkManager)
+        }
+        return settingsInstance!
+    }
+    
     
     func getAllCustomers() -> Future<Customers, Error> {
         return networkManager.getRequest(fromEndpoint: EndPoints.getAllCustomers.endPoint, parameters: nil, ofType: Customers.self)
@@ -70,5 +79,16 @@ class CustomerRepo : CustomerRepoProtocol{
         defaults.removeObject(forKey: NAME)
         defaults.removeObject(forKey: EMAIL)
         defaults.removeObject(forKey: PASSWORD)
+    }
+    
+    func saveSelectedCurrency(currency : SelectedCurrency){
+        defaults.set(currency.rawValue , forKey: CURRENCY)
+    }
+    
+    func getSelectedCurrency() -> String {
+        return defaults.object(forKey: CURRENCY) as! String
+    }
+    func removeCurrencyFromUserDefaults(){
+        defaults.removeObject(forKey: CURRENCY)
     }
 }

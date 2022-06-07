@@ -90,7 +90,6 @@ class Formatter {
         return product
     }
     
-
     static func getIntPrice(from doubleStr: String) -> Int {
         return Int(exactly: Double(doubleStr)?.rounded() ?? 0.0) ?? 0
     }
@@ -98,14 +97,7 @@ class Formatter {
         case USD
         case EGP
     }
+
     
-    static func convertCurrencyFromTo(from : Currency , to : Currency , amount : Int) -> Int{
-        
-        if to == .EGP {
-            return amount * 18
-        }else{
-            return amount / 18
-        }
-    }
     
 }

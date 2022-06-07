@@ -12,9 +12,12 @@ import Foundation
 protocol ProfileViewModelProtocol {
     
     var customerOrders: Published<[Order]?>.Publisher {get}
-    
+    var customerEmail : String? {get}
     func getCustomerOrdersList()
-    func switchToUSD()
-    func switchToEGP()
+    func getSelectedCurrency() -> String
+    func getCustomerFromUserDefault() -> String?
+    func getCustmerNameFromUserDefaults() -> String?
+    func logOut()
+    
     
 }

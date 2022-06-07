@@ -12,28 +12,34 @@ import UIKit
 
 class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
+    // MARK: - Variables
+    
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     var product : Product?
     var productSize : String?
     var productColor : String?
-    var productRepo : FavouritesProductRepoProtocol
+    var favRepo : FavouritesProductRepoProtocol
     var cartRepo : CartItemsRepoProtocol
+    var customerRepo : CustomerRepoProtocol
     var favProducts : [Product]?
     var cartProducts : [CartProduct]?
     
+    // MARK: - Init
     
-    
-    init(product: Product , productRepo : FavouritesProductRepoProtocol , cartRepo : CartItemsRepoProtocol) {
+    init(product: Product , productRepo : FavouritesProductRepoProtocol , cartRepo : CartItemsRepoProtocol , customerRepo : CustomerRepoProtocol = CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())) {
         self.product = product
-        self.productRepo = productRepo
+        self.favRepo = productRepo
         self.cartRepo = cartRepo
+        self.customerRepo = customerRepo
         
     }
     
+    // MARK: - Functions
     
     func addToFav(){
-        productRepo.addProductIntoFavouritesDb(product: product!)
+        let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
+        favRepo.addProductIntoFavouritesDb(product: product!, customerEmail: customerEmail ?? "noEmail")
     }
     
     func addToCart(){
@@ -46,20 +52,22 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     }
     
     func isInFavourite() -> Bool{
-        return productRepo.isInFavourites(id: (product?.id)!)
+        let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
+        return favRepo.isInFavourites(id: (product?.id)!, customerEmail: customerEmail ?? "noEmail")
     }
     
     func removeFavFromDb(){
-        productRepo.removeFavProductFromDb(product: product!)
+        let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
+        favRepo.removeFavProductFromDb(product: product!, customerEmail: customerEmail ?? "noEmail")
     }
     
     // ************** just for test core data then remove it **********
     
-    func getFavProducts(){
-        favProducts = productRepo.getAllFavouritesFromDb()
-        print("*** fav count = \(favProducts?.count) ***")
-        //print("fav item name = \(favProducts?[0].title)")
-    }
+//    func getFavProducts(){
+//        favProducts = productRepo.getAllFavouritesFromDb()
+//        print("*** fav count = \(favProducts?.count) ***")
+//        //print("fav item name = \(favProducts?[0].title)")
+//    }
     
     func getCartProducts(){
         cartProducts = cartRepo.getAllItems()
