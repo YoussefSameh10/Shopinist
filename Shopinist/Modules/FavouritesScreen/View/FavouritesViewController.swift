@@ -24,6 +24,7 @@ class FavouritesViewController: UIViewController {
     var viewModel : FavouritesViewModelProtocol!
     private var router : FavouritesRouterProtocol!
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
+
     
     // MARK: - Init
     
@@ -64,6 +65,11 @@ class FavouritesViewController: UIViewController {
         }
         favouritesTableView.reloadData()
     }
+    
+    // MARK: - Fucntions
+    
+    
+    
     
     
     // MARK: - Actions:

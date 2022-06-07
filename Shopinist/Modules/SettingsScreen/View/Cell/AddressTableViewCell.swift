@@ -23,7 +23,6 @@ class AddressTableViewCell: UITableViewCell {
         }
     }
     
-    var updateAddress : (() -> ())?
     
     // MARK: - LifeCycle Methods
     
@@ -39,9 +38,5 @@ class AddressTableViewCell: UITableViewCell {
     }
     
     
-    @IBAction func updateAddressButton(_ sender: UIButton) {
-        updateAddress?()
-        
-    }
     
 }

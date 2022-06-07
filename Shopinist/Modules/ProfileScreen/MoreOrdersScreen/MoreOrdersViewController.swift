@@ -8,6 +8,8 @@
 
 import UIKit
 import Combine
+import NVActivityIndicatorView
+
 
 class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource {
     
@@ -22,6 +24,8 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
     var viewModel : ProfileViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
     var count : Int?
+    var indicator: NVActivityIndicatorView!
+
 
     // MARK: Init
     
@@ -39,6 +43,7 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startActivityIndicator()
         setupTableView()
         viewModel?.getCustomerOrdersList()
         // Do any additional setup after loading the view.
@@ -53,6 +58,17 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         moreOrderTableView.register(UINib(nibName: "ProfileOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "profileOrderCell")
     }
     
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
+    }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -62,6 +78,7 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         })
         
         return count ?? 4
+        //return (viewModel?.getOrdersCount())!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,12 +87,8 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
         viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
             guard let orders = orderResponse?[indexPath.row] else { return }
-            // **** check currency in user defaults and set currency flag ****
+            self?.stopActivityIndicator()
             cell.orderPrice = "\(orders.totalPrice!) EGP" ?? "no price"
-//            if self!.buttonFlagEGP {
-//            }else{
-//                cell.orderPrice = "\(orders.totalPriceUsd!) USD" ?? "no price"
-//            }
             cell.orderCreatedAt = orders.createdAt ?? "No Date"
         }).store(in: &cancellables)
         

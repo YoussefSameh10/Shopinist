@@ -20,8 +20,8 @@ class ProfileViewModel : ProfileViewModelProtocol{
     var customerRepo : CustomerRepoProtocol
     @Published private var customerOrdersList : [Order]?
     var customerOrders: Published<[Order]?>.Publisher{$customerOrdersList}
-    
     var customerEmail : String?
+
 
    
     // MARK: - Init
@@ -54,6 +54,15 @@ class ProfileViewModel : ProfileViewModelProtocol{
             
         }).store(in: &cancellables)
     }
+    
+    func getOrdersCount() -> Int{
+        return customerOrdersList?.count ?? 0
+    }
+    
+    func getOrderAtIndex(retrievedIndex : Int) -> Order{
+        return customerOrdersList![retrievedIndex]
+    }
+    
     
     func getCustomerFromUserDefault() -> String?{
         customerEmail = customerRepo.getCustomerFromUserDefaults()?.email

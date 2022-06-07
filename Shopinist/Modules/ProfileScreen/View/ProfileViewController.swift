@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import NVActivityIndicatorView
 
 class ProfileViewController: UIViewController {
     
@@ -23,7 +24,6 @@ class ProfileViewController: UIViewController {
     // MARK: - Variables
     
     var router : ProfileRouterProtocol?
-    
     var buttonFlagUSD : Bool = false
     var buttonFlagEGP : Bool = true
     var egpPrice : String?
@@ -31,6 +31,8 @@ class ProfileViewController: UIViewController {
     var viewModel : ProfileViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
     var changeCurrency : (()->())?
+    var indicator: NVActivityIndicatorView!
+
     
     
     // MARK: - Init
@@ -52,6 +54,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startActivityIndicator()
         setUI()
         setWelcomeLabel()
         setDelegateAndDataSourceMethods()
@@ -87,6 +90,17 @@ class ProfileViewController: UIViewController {
     
     func setWelcomeLabel(){
         profileNameLabel.text = "Welcome, \(viewModel?.getCustmerNameFromUserDefaults() ?? "Geust")"
+    }
+    
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
     }
         
     
@@ -145,6 +159,7 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
         viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
             if orderResponse?.count == 0 {
                 
+                
                 self!.ProfileOrdersTableView.isHidden = true
                 self!.viewMoreButton.isEnabled = false
                 self!.viewMoreButton.tintColor = .clear
@@ -152,6 +167,7 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
             }else{
                 guard let orders = orderResponse?[indexPath.row] else { return }
                 
+                self!.stopActivityIndicator()
                 if self!.viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
                     //self!.changeCurrency!()
                     cell.orderPrice = "\(orders.totalPrice!) EGP"

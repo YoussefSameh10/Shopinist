@@ -19,5 +19,8 @@ protocol ProfileViewModelProtocol {
     func getCustmerNameFromUserDefaults() -> String?
     func logOut()
     
+    func getOrdersCount() -> Int
+    func getOrderAtIndex(retrievedIndex : Int) -> Order
+    
     
 }

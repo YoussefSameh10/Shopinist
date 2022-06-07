@@ -8,6 +8,8 @@
 
 import UIKit
 import Combine
+import NVActivityIndicatorView
+
 
 class SettingsViewController: UIViewController {
     
@@ -18,7 +20,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var addressTableview: UITableView!
     @IBOutlet weak var USDButton: UIButton!
     @IBOutlet weak var EGPButton: UIButton!
-    
     @IBOutlet weak var saveButton: UIButton!
     
     
@@ -28,6 +29,7 @@ class SettingsViewController: UIViewController {
     var buttonFlagUSD : Bool = false
     var buttonFlagEGP : Bool = true
     private var cancellables : Set<AnyCancellable> = []
+    var indicator: NVActivityIndicatorView!
     
     
     // MARK: - Init
@@ -47,7 +49,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        startActivityIndicator()
         setupTableView()
         viewModel?.getCustomerAddresses()
         sinkOnAddressObserver()
@@ -64,10 +66,29 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Fucntions
     
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
+    }
+    
     func sinkOnAddressObserver(){
         viewModel?.customerAddresses.receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] addresses in
+            .sink(receiveCompletion: { (completion) in
+                switch completion {
+                    case .finished:
+                        print("Finished")
+                    case .failure:
+                        print("Failed")
+                }
+            },receiveValue: { [weak self] addresses in
                 //if addresses != nil{
+                self!.stopActivityIndicator()
                 self?.addressTableview.reloadData()
                 //}
                 
@@ -200,6 +221,8 @@ class SettingsViewController: UIViewController {
     
 }
 
+// MARK: - Table View
+
 extension SettingsViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -221,15 +244,6 @@ extension SettingsViewController : UITableViewDelegate , UITableViewDataSource {
         
         var add = viewModel?.getCustomerAddress(retrievedIndex: indexPath.row)
         add?.address! = cell.addressTextField.text!
-        cell.updateAddress = {
-            
-            print("update add button")
-            print(add)
-            print(cell.addressTextField.text!)
-            print(add?.address!)
-            self.viewModel?.deleteCustomerAddress(address: add!)
-        }
-        //print("*****************")
         return cell
         
     }
