@@ -30,7 +30,7 @@ class AddressRepo : AddressRepoProtocol {
         let postAddress = PostAddress(address: address)
         do {
             let postBody = try JSONEncoder().encode(postAddress)
-            
+            print(postBody)
             return self.networkManager.postRequest(fromEndpoint: EndPoints.createNewAddress(customerID: customerID).endPoint, httpBody: postBody, httpMethod: .post, ofType: PostAddress.self)
         }
         catch let error {
@@ -44,12 +44,12 @@ class AddressRepo : AddressRepoProtocol {
         return networkManager.getRequest(fromEndpoint: EndPoints.getAddressesOfCustomer(customerID: customerID).endPoint, parameters: nil, ofType: Addresses.self)
     }
     
-    func updateExistingAddress(address: Address , customerID : Int) -> Future<PostAddress, Error> {
+    func deleteExistingAddress(address: Address , customerID : Int) -> Future<PostAddress, Error> {
         let postAddress = PostAddress(address: address)
         do {
             let postBody = try JSONEncoder().encode(postAddress)
             
-            return self.networkManager.postRequest(fromEndpoint: EndPoints.updateExistingAddress(customerID: customerID, addressID: address.id ?? 0).endPoint, httpBody: postBody, httpMethod: .put, ofType: PostAddress.self)
+            return self.networkManager.postRequest(fromEndpoint: EndPoints.updateExistingAddress(customerID: customerID, addressID: address.id ?? 0).endPoint, httpBody: postBody, httpMethod: .delete, ofType: PostAddress.self)
         }
         catch let error {
             return Future { promise in

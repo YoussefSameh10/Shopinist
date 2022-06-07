@@ -63,10 +63,10 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setUI()
+        setWelcomeLabel()
         var selectedCurrency = viewModel?.getSelectedCurrency()
         ProfileOrdersTableView.reloadData()
         
-
     }
     
    

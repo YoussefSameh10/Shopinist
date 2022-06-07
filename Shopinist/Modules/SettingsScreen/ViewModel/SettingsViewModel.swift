@@ -45,9 +45,15 @@ class SettingsViewModel  : SettingsViewModelProtocol{
             case .failure:
                 print("address add Failed")
             }
-        },receiveValue: { (response) in
-            guard let address = response.address else {return}
-            self._validAddress? = address
+        },receiveValue: { [weak self] (response) in
+            guard let address = response.address else {
+                return
+                
+            }
+            self!.getCustomerAddresses()
+            self!._validAddress? = address
+            print("xxxxxx \(address.address) xxxxxx")
+            //self!._customerAddresses?.append(self!._validAddress!)
         }).store(in: &cancellables)
     }
     
@@ -77,18 +83,18 @@ class SettingsViewModel  : SettingsViewModelProtocol{
     
     
     
-    func updateCustomerAddress(address : Address){
+    func deleteCustomerAddress(address : Address){
         let customerID = customerRepo.getCustomerFromUserDefaults()?.id
-        addressRepo.updateExistingAddress(address:address, customerID: customerID!).sink(receiveCompletion: { (completion) in
+        addressRepo.deleteExistingAddress(address:address, customerID: customerID!).sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
                 print("address updated Finish")
             case .failure:
                 print("address update Failed")
             }
-        },receiveValue: { (response) in
+        },receiveValue: { [weak self](response) in
             guard let address = response.address else {return}
-            self._validAddress? = address
+            self?._validAddress? = address
         }).store(in: &cancellables)
     }
     

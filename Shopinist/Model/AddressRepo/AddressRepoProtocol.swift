@@ -15,7 +15,7 @@ protocol AddressRepoProtocol {
     
     func getAddressesOfCustomer(customerID: Int) -> Future<Addresses, Error>
     
-    func updateExistingAddress(address: Address , customerID : Int) -> Future<PostAddress, Error>
+    func deleteExistingAddress(address: Address , customerID : Int) -> Future<PostAddress, Error>
     
     
 }
