@@ -26,8 +26,6 @@ class CartViewModel : CartViewModelProtocol{
     
     func getCartItems() {
         _cartProducts = cartRepo.getAllItems()
-        print("I retrieved all items !!")
-        print("_cartProducts.count")
     }
     
     func updateAll() {
@@ -42,6 +40,7 @@ class CartViewModel : CartViewModelProtocol{
         if (_cartProducts != nil && _cartProducts?.isEmpty == false){
             let itemToBeDeleted = _cartProducts![index]
             cartRepo.remove(id: Int(itemToBeDeleted.id), size: itemToBeDeleted.size!, color: itemToBeDeleted.color!)
+            _cartProducts?.remove(at: index)
         }
     }
     
@@ -71,5 +70,11 @@ class CartViewModel : CartViewModelProtocol{
     
     func getCartItemsCount() -> Int{
         return _cartProducts?.count ?? 0
+    }
+    
+    func getTotalPrice() -> Double {
+        var ret = _cartProducts?.map({ return (Double($0.price ?? "0"), Double($0.count))
+        })
+        return 0.0
     }
 }
