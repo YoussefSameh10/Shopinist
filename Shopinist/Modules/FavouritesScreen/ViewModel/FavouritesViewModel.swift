@@ -11,22 +11,37 @@ import Foundation
 
 class FavouritesViewModel : FavouritesViewModelProtocol {
     
+    // MARK: - Variables
+    
     var products: [Product]?
-    
     var favouritesRepo : FavouritesProductRepoProtocol
+    var customerRepo : CustomerRepoProtocol
     
-    init(favouritesRepo : FavouritesProductRepoProtocol) {
+    
+    // MARK: - Init
+    
+    init(favouritesRepo : FavouritesProductRepoProtocol, customerRepo : CustomerRepoProtocol ) {
         self.favouritesRepo = favouritesRepo
+        self.customerRepo = customerRepo
     }
     
     
+    // MARK: - Fucntions
+    
     func getFavouritesFromDB() -> [Product]{
-        products = favouritesRepo.getAllFavouritesFromDb()
+        let customerEmail = getCustomerFromUserDefaults()?.email
+        products = favouritesRepo.getAllFavouritesFromDb(customerEmail: customerEmail ?? "noEmail")
         return products!
     }
     
     func removeFavouritesItemFromRepo(product : Product){
-        favouritesRepo.removeFavProductFromDb(product: product)
+        let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
+        favouritesRepo.removeFavProductFromDb(product: product, customerEmail: customerEmail ?? "noEmail")
     }
+    func getCustomerFromUserDefaults() -> Customer? {
+        return customerRepo.getCustomerFromUserDefaults()
+    }
+    
+    
     
 }

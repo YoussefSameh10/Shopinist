@@ -12,7 +12,11 @@ class Formatter {
     
     static func formatProductName(productTitle: String) -> String {
         let parts = productTitle.split(separator: "|")
-        return String(parts[parts.count - 1])
+        var ret = String(parts[parts.count - 1])
+        if let index  = ret.firstIndex(of: " ") {
+            ret.remove(at: index)
+        }
+        return ret
     }
     
     static func formatStringToArray(str : String) -> [String]{
@@ -90,7 +94,6 @@ class Formatter {
         return product
     }
     
-
     static func getIntPrice(from doubleStr: String) -> Int {
         return Int(exactly: Double(doubleStr)?.rounded() ?? 0.0) ?? 0
     }
@@ -98,14 +101,7 @@ class Formatter {
         case USD
         case EGP
     }
+
     
-    static func convertCurrencyFromTo(from : Currency , to : Currency , amount : Int) -> Int{
-        
-        if to == .EGP {
-            return amount * 18
-        }else{
-            return amount / 18
-        }
-    }
     
 }

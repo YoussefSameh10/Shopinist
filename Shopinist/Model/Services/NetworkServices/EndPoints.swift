@@ -20,6 +20,12 @@ enum EndPoints {
     case getOrdersOfCustomer(customerID: Int)
     case getPriceRules
     
+    // MARK: - Address Endpoints
+    
+    case getAddressesOfCustomer(customerID: Int)   // get
+    case createNewAddress(customerID: Int)         // post
+    case updateExistingAddress(customerID: Int , addressID : Int)     // put
+    
     var endPoint : String {
         switch self {
         case .getAllCustomers:
@@ -34,6 +40,12 @@ enum EndPoints {
             return "/admin/api/2022-04/customers/\(customerID)/orders.json"
         case .getPriceRules:
             return "/admin/api/2022-04/price_rules.json"
+        case .getAddressesOfCustomer(customerID: let customerID):
+            return "/admin/api/2022-04/customers/\(customerID)/addresses.json"
+        case .createNewAddress(customerID: let customerID):
+            return "/admin/api/2022-04/customers/\(customerID)/addresses.json"
+        case .updateExistingAddress(customerID: let customerID , addressID: let addressID):
+            return "/admin/api/2022-04/customers/\(customerID)/addresses/\(addressID).json"
         }
     }
 

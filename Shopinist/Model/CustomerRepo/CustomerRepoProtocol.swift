@@ -16,4 +16,6 @@ protocol CustomerRepoProtocol{
     func saveCustomerToUserDefaults(customer: Customer)
     func getCustomerFromUserDefaults() -> Customer?
     func removeCustomerFromUserDefaults(id: Int)
+    
+    func getSelectedCurrency() -> String
 }

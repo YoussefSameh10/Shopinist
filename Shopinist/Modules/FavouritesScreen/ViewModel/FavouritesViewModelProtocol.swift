@@ -16,4 +16,6 @@ protocol FavouritesViewModelProtocol {
     func getFavouritesFromDB() -> [Product]
     
     func removeFavouritesItemFromRepo(product : Product)
+    
+    func getCustomerFromUserDefaults() -> Customer?
 }
