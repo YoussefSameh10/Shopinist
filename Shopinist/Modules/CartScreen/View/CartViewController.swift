@@ -21,6 +21,7 @@ class CartViewController: UIViewController {
     @IBOutlet weak var promoHolder: CornerView!
     @IBOutlet weak var cartTV: UITableView!
     @IBOutlet weak var checkoutBtn: UIButton!
+    @IBOutlet weak var howManyItems: UILabel!
     
     //MARK:- Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +53,18 @@ class CartViewController: UIViewController {
         promoHolder.layer.borderColor = UIColor.gray.cgColor
     }
     
+    private func configureUI(){
+        let count = self.viewModel?.getCartItemsCount() ?? 0
+        var howMany = ""
+        if (count == 1){
+            howMany = "\(count) item"
+        }
+        else{
+            howMany = "\(count) items"
+        }
+        howManyItems.text = howMany
+    }
+    
     private func initTableView(){
         cartTV.register(UINib(nibName: "CartTableViewCell", bundle: nil), forCellReuseIdentifier: "CartTVCell")
         cartTV.delegate = self
@@ -64,8 +77,14 @@ class CartViewController: UIViewController {
     
     private func setUpBinding(){
         self.viewModel?.cartProducts.sink(receiveValue: { (_) in
-            self.cartTV.reloadData()
+            self.updateUI()
             }).store(in: &cancellables)
+    }
+    
+    private func updateUI(){
+        self.cartTV.reloadData()
+        self.initUI()
+        self.configureUI()
     }
     
 }
@@ -77,6 +96,13 @@ extension CartViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel?.getCartItemsCount() ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete){
+            self.viewModel?.removeItemAt(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
