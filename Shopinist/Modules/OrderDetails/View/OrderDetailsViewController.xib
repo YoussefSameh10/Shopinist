@@ -11,8 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailsViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
+                <outlet property="orderID" destination="fJp-dl-hpn" id="ild-Av-3Wu"/>
                 <outlet property="orderNo" destination="u6H-Ib-Hza" id="2wT-Em-bRD"/>
                 <outlet property="orderTV" destination="imf-ur-qdb" id="EAm-md-eaa"/>
+                <outlet property="totalPrice" destination="NlF-gI-dnQ" id="l1s-lM-LP7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="imf-ur-qdb">
-                    <rect key="frame" x="8" y="191.5" width="398" height="662.5"/>
+                    <rect key="frame" x="8" y="207.5" width="398" height="646.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
@@ -52,7 +54,7 @@
                 <constraint firstItem="u6H-Ib-Hza" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="6fa-CK-4iL"/>
                 <constraint firstItem="fJp-dl-hpn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="CZz-8B-UUx"/>
                 <constraint firstItem="NlF-gI-dnQ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="I96-2A-SIm"/>
-                <constraint firstItem="imf-ur-qdb" firstAttribute="top" secondItem="NlF-gI-dnQ" secondAttribute="bottom" constant="16" id="Kih-uy-YcL"/>
+                <constraint firstItem="imf-ur-qdb" firstAttribute="top" secondItem="NlF-gI-dnQ" secondAttribute="bottom" constant="32" id="Kih-uy-YcL"/>
                 <constraint firstItem="NlF-gI-dnQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cAF-SK-sMl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="imf-ur-qdb" secondAttribute="trailing" constant="8" id="ibP-3v-Pvp"/>
                 <constraint firstItem="fJp-dl-hpn" firstAttribute="top" secondItem="u6H-Ib-Hza" secondAttribute="bottom" constant="16" id="kOm-kC-z0e"/>

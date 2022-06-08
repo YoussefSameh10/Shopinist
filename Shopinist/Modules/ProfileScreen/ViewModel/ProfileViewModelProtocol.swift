@@ -17,6 +17,7 @@ protocol ProfileViewModelProtocol {
     func getSelectedCurrency() -> String
     func getCustomerFromUserDefault() -> String?
     func getCustmerNameFromUserDefaults() -> String?
+    func getOrder(index : Int) -> Order
     func logOut()
     
     

@@ -28,10 +28,10 @@ class OrderDetialsCell: UITableViewCell {
     }
     
     //MARK:- Functions
-    func configureCell(itemName : String, itemQty : Int, itemPrice : Double){
-        self.itemName.text  = itemName
-        self.itemQty.text   = "x \(itemQty)"
-        self.itemPrice.text = "\(itemPrice) EGP"
+    func configureCell(orderItem : OrderItem, currency : String){
+        self.itemName.text  = Formatter.formatProductName(productTitle: orderItem.title!)
+        self.itemQty.text   = "x \(orderItem.quantity!)"
+        self.itemPrice.text = "\(orderItem.price ?? "0") \(currency)"
     }
     
 }
