@@ -11,9 +11,8 @@ import Foundation
 class CartRouter: CartRouterProtocol {
     weak var viewController: CartViewController?
     
-    func navigateToCheckout(orderItems: [OrderItem]) {
+    func navigateToCheckout(order: Order) {
         //TODO:- Your view controller
-        //let categoriesVC =
-        //viewController?.navigationController?.pushViewController(categoriesVC, animated: true)
+        
     }
 }

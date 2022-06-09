@@ -19,11 +19,27 @@ class HomeViewController: UIViewController {
     //MARK:- Variables
     private var isThreadOn = true
     private var pageIndex : Int = -1
-    private var viewModel : HomeViewModel?
+    private var viewModel : HomeViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     //MARK:- LifeCycle
+    /*
+    init(
+            nibName: String? = "HomeViewController",
+        viewModel: HomeViewModelProtocol? = HomeViewModel(productsRepo: ),
+            router : CartRouterProtocol? = CartRouter()
+        ) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+        self.router = router
+        self.router?.viewController = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         isThreadOn = true
@@ -36,6 +52,7 @@ class HomeViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         isThreadOn = false
     }
+    
     
     //MARK:- Actions
     @IBAction func redirectToAdvertisment(_ sender: UIButton) {
@@ -51,6 +68,7 @@ class HomeViewController: UIViewController {
         
     }
         
+    
     //MARK:- Functions
     private func initTabBarController(){
         
@@ -126,7 +144,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setUpBinding(){
-        viewModel?.$brands.sink { [weak self] (brand) in
+        viewModel?.brands.sink { [weak self] (brand) in
             self?.brandsCV.reloadData()
         }.store(in: &cancellables)
     }
@@ -135,14 +153,14 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = self.viewModel?.brands?.count ?? 0
+        let count = self.viewModel!.getBrandsCount()
         return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.register(UINib(nibName: "BrandsCell", bundle: nil), forCellWithReuseIdentifier: "BrandsCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCell
-        cell.updateImage(name: self.viewModel?.brands?[indexPath.row] ?? "adidas")
+        cell.updateImage(name: self.viewModel!.getBrand(at: indexPath.row))
         return cell
     }
 }

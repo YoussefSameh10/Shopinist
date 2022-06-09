@@ -20,5 +20,5 @@ protocol CartViewModelProtocol {
     func incrementItemAt(index : Int)
     func getCartItemsCount() -> Int
     func getTotalPrice() -> Double
-    func createOrder() -> [OrderItem]
+    func createOrder() -> Order
 }

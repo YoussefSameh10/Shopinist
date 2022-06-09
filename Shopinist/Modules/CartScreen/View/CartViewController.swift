@@ -65,8 +65,8 @@ class CartViewController: UIViewController {
     
     //MARK:- Actions
     @IBAction func proceedToCheckout(_ sender: UIButton) {
-        let orderItems = self.viewModel?.createOrder()
-        print("MyOrderItems.count = \(orderItems!.count)")
+        let order = self.viewModel?.createOrder()
+        router?.navigateToCheckout(order: order!)
     }
     
     

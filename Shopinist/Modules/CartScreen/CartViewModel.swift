@@ -89,13 +89,13 @@ class CartViewModel : CartViewModelProtocol{
         return ret
     }
     
-    func createOrder() -> [OrderItem] {
-        guard let products = _cartProducts else{
-            return []
-        }
-        let ret = products.map { (item : CartProduct) -> OrderItem in
+    func createOrder() -> Order {
+        let products = _cartProducts!
+        let orderItems = products.map { (item : CartProduct) -> OrderItem in
             OrderItem(id: nil, giftCard: nil, productExists: nil, productID: Int(item.id), quantity: Int(item.count), title: item.title, totalDiscount: nil, variantID: nil, price: item.price)
         }
-        return ret
+        let customer = customerRepo.getCustomerFromUserDefaults();
+        let newOrder = Order(customer: customer!, orderItems: orderItems)
+        return newOrder
     }
 }

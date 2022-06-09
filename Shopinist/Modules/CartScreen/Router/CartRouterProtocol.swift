@@ -11,5 +11,5 @@ import Foundation
 protocol CartRouterProtocol {
     var viewController : CartViewController? {get set}
     
-    func navigateToCheckout(orderItems : [OrderItem])
+    func navigateToCheckout(order : Order)
 }
