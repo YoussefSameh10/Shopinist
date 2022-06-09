@@ -358,8 +358,8 @@
 		F76782152842336C00AC5696 /* BrandsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandsCell.xib; sourceTree = "<group>"; };
 		F7E8E1E62844F961000DAB50 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		F7E8E1E72844F961000DAB50 /* CartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
-		F7F5BF1E2848CFF60042EBE7 /* CartViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewModelProtocol.swift; path = Shopinist/Modules/CartScreen/CartViewModelProtocol.swift; sourceTree = SOURCE_ROOT; };
-		F7F5BF202848E0660042EBE7 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewModel.swift; path = Shopinist/Modules/CartScreen/CartViewModel.swift; sourceTree = SOURCE_ROOT; };
+		F7F5BF1E2848CFF60042EBE7 /* CartViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewModelProtocol.swift; path = Shopinist/Modules/CartScreen/ViewModel/CartViewModelProtocol.swift; sourceTree = SOURCE_ROOT; };
+		F7F5BF202848E0660042EBE7 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewModel.swift; path = Shopinist/Modules/CartScreen/ViewModel/CartViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -795,6 +795,15 @@
 				D4D1E991284E9A780071B183 /* OrderDetialsCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		D4F6FC6B2852247100A51795 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F7F5BF1E2848CFF60042EBE7 /* CartViewModelProtocol.swift */,
+				F7F5BF202848E0660042EBE7 /* CartViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E80F4691283FEDF5000D4826 /* OrderRepo */ = {
@@ -1237,9 +1246,9 @@
 		F7E8E1DE2844D1D8000DAB50 /* CartScreen */ = {
 			isa = PBXGroup;
 			children = (
+				D4F6FC6B2852247100A51795 /* ViewModel */,
 				D46B623E2851264600EFF8AC /* Router */,
 				F7E8E1DF2844D20E000DAB50 /* View */,
-				F7E8E1E02844D214000DAB50 /* ViewModel */,
 			);
 			path = CartScreen;
 			sourceTree = "<group>";
@@ -1252,15 +1261,6 @@
 				F7E8E1E72844F961000DAB50 /* CartViewController.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		F7E8E1E02844D214000DAB50 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F7F5BF1E2848CFF60042EBE7 /* CartViewModelProtocol.swift */,
-				F7F5BF202848E0660042EBE7 /* CartViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F7E8E1E52844D734000DAB50 /* CartItemCell */ = {
