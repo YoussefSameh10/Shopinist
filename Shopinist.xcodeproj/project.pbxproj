@@ -1246,8 +1246,8 @@
 		F7E8E1DE2844D1D8000DAB50 /* CartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				D4F6FC6B2852247100A51795 /* ViewModel */,
 				D46B623E2851264600EFF8AC /* Router */,
+				D4F6FC6B2852247100A51795 /* ViewModel */,
 				F7E8E1DF2844D20E000DAB50 /* View */,
 			);
 			path = CartScreen;

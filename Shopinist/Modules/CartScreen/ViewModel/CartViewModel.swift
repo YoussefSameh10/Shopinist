@@ -95,7 +95,9 @@ class CartViewModel : CartViewModelProtocol{
             OrderItem(id: nil, giftCard: nil, productExists: nil, productID: Int(item.id), quantity: Int(item.count), title: item.title, totalDiscount: nil, variantID: nil, price: item.price)
         }
         let customer = customerRepo.getCustomerFromUserDefaults();
-        let newOrder = Order(customer: customer!, orderItems: orderItems)
+        let totalPrice = String(format: "%.2f", getTotalPrice())
+        
+        let newOrder = Order(customer: customer!, orderItems: orderItems, totalPrice: totalPrice)
         return newOrder
     }
 }

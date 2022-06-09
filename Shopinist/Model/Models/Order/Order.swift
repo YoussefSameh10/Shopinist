@@ -46,5 +46,11 @@ struct Order: Codable {
         self.customer = customer
         self.orderItems = orderItems
     }
+    
+    init(customer: Customer, orderItems: [OrderItem], totalPrice : String) {
+        self.customer = customer
+        self.orderItems = orderItems
+        self.totalPrice = totalPrice
+    }
 }
 
