@@ -45,5 +45,9 @@ struct Customer: Codable {
         self.email = email
         self.tags = password
     }
+    
+    init(id: Int) {
+        self.id = id
+    }
 }
 

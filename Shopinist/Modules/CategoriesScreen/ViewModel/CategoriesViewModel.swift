@@ -42,18 +42,20 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
     }
   
     private func getAllProducts() {
-        productRepo.getAllProducts().sink(receiveCompletion: { (completion) in
-            switch completion {
-            case .finished:
-                print("Finished")
-            case .failure(let error):
-                print(error)
+        productRepo.getAllProducts().sink(
+            receiveCompletion: { (completion) in
+                switch completion {
+                case .finished:
+                    print("Finished")
+                case .failure(let error):
+                    print(error)
+                }
+            },
+            receiveValue: { (response) in
+                self.productsList = response.products
+                self.searchedProducts = self.productsList
+                self.filterProducts()
             }
-        }, receiveValue: { (response) in
-            self.productsList = response.products
-            self.searchedProducts = self.productsList
-            self.filterProducts()
-        }
         ).store(in: &cancellables)
     }
     

@@ -17,6 +17,7 @@ struct OrderItem: Codable {
     var quantity: Int?
     var title, totalDiscount: String?
     var variantID: Int?
+    var price: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -27,5 +28,12 @@ struct OrderItem: Codable {
         case title
         case totalDiscount = "total_discount"
         case variantID = "variant_id"
+        case price
+    }
+    
+    init(variantID: Int, quantity: Int, price: String) {
+        self.variantID = variantID
+        self.quantity = quantity
+        self.price = price
     }
 }
