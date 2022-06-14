@@ -23,7 +23,8 @@ class ProfileRouter : ProfileRouterProtocol {
     func navigateToMoreOrdersScreen() {
         print("add navigation to view more orders")
         let moreOrderScreen = MoreOrdersViewController(nibName: "MoreOrdersViewController", viewModel: ProfileViewModel())
-        viewController?.present(moreOrderScreen, animated: true)
+        viewController?.navigationController?.pushViewController(moreOrderScreen, animated: true)
+        viewController?.navigationController?.navigationBar.isHidden = false
 
     }
     
@@ -36,5 +37,12 @@ class ProfileRouter : ProfileRouterProtocol {
         viewController?.navigationController?.navigationBar.isHidden = false
     }
     
+    
+    func navigateToOrderDetailsScreen(order : Order, index : Int) {
+        let orderDetailsVC = OrderDetailsViewController(viewModel: OrderDetailsViewModel(order: order, index: index))
+        
+        viewController?.navigationController?.pushViewController(orderDetailsVC, animated: true)
+        viewController?.navigationController?.navigationBar.isHidden = false
+    }
     
 }

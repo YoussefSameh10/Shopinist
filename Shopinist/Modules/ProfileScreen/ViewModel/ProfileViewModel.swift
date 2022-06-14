@@ -55,6 +55,10 @@ class ProfileViewModel : ProfileViewModelProtocol{
         }).store(in: &cancellables)
     }
     
+    func getOrder(index : Int) -> Order{
+        return customerOrdersList![index]
+    }
+    
     func getCustomerFromUserDefault() -> String?{
         customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
         return customerEmail
