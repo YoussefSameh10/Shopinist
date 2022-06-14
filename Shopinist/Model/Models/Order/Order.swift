@@ -18,10 +18,10 @@ struct Order: Codable {
     var createdAt: String?
     var currency: String?
     var totalPriceUsd: String?
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var discountCodes: [DiscountCode]?
     var financialStatus: OrderFinancialStatus?
     var fulfillmentStatus: String?
+    var subTotalPrice: Double?
     var totalDiscounts: String?
     var totalPrice: String?
     
@@ -40,6 +40,7 @@ struct Order: Codable {
         case createdAt = "created_at"
         case currency
         case totalPriceUsd = "total_price_usd"
+        case subTotalPrice = "subtotal_price"
     }
     
     init(customer: Customer, orderItems: [OrderItem]) {

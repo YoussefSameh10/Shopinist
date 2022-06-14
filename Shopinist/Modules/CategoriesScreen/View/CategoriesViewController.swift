@@ -24,7 +24,7 @@ class CategoriesViewController: UIViewController{
     
     private let networkManager : NetworkManagerProtocol? = nil
     
-    private var observer: AnyCancellable?
+    private var cancellables: Set<AnyCancellable> = []
     
     private var searchController: UISearchController!
     var isSearchBarEmpty: Bool {
@@ -37,8 +37,8 @@ class CategoriesViewController: UIViewController{
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
     @IBOutlet weak var notFoundAnimationView: AnimationView!
-    
     @IBOutlet weak var notFoundLabel: UILabel!
+    
     //MARK: -Initializers
     init(
         nibName: String?,
@@ -117,17 +117,10 @@ class CategoriesViewController: UIViewController{
         collectionView.delegate = self
         
         self.tabBarController?.tabBar.isHidden = true
-        
-        let itemWidth = collectionView.bounds.width/2 - 8
-        let itemHeight = CGFloat(exactly: 200)!
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumInteritemSpacing = 4
-        collectionView.collectionViewLayout = layout
     }
     
     private func listenForChangesInProductsList() {
-        observer = viewModel.searchedProductsList.sink { (productsList) in
+        viewModel.searchedProductsList.sink { (productsList) in
             
             if let productsList = productsList {
                 self.stopActivityIndicator()
@@ -138,10 +131,8 @@ class CategoriesViewController: UIViewController{
                     self.showPopulatedScreen()
                 }
             }
-        }
+        }.store(in: &cancellables)
     }
-    
-    
     
     private func setupSegmentControl() {
         let titles = ["All", "SHOES", "T-SHIRTS", "ACCESSORIES"]
@@ -174,8 +165,7 @@ class CategoriesViewController: UIViewController{
     }
     
     //MARK: -Actions
-    @IBAction func changeMainCategory(_ sender: Any) {
-        
+    @IBAction func categoryDidChange(_ sender: Any) {
         if mainSegmentedControl.selectedSegmentIndex == 0 {
             viewModel.subCategory = nil
         }
@@ -197,8 +187,8 @@ class CategoriesViewController: UIViewController{
             showPopulatedScreen()
             collectionView.reloadData()
         }
-        
     }
+    
     
     
 }
@@ -223,6 +213,10 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {        
         router.navigateToProductDetailsScreen(appDelegate: appDelegate, product: viewModel.getProductAt(index: indexPath.row)!)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width/2 - 8, height: 200)
     }
     
 }
