@@ -110,9 +110,10 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func AddToCartButton(_ sender: Any) {
-        print("added to cart")
-        if viewModel.productSize != "" {
-            viewModel.addToCart()
+        print("add to cart button")
+        if viewModel.productSize != " " {
+            viewModel.addToCart(variantID: viewModel.productVariantId ?? 0)
+            print(viewModel.productVariantId)
         }else{
             let alert  = UIAlertController(title: "Warning", message: "You Must Choose A Size To Add To Cart ", preferredStyle: .alert)
             let action = UIAlertAction(title: "Dismiss", style: .destructive)

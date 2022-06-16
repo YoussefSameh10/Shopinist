@@ -13,10 +13,11 @@ protocol ProductDetailsViewModelProtocol {
     var product : Product? {get}
     var productSize : String? {get set}
     var productColor : String? {get set}
+    var productVariantId : Int? {get set}
     
     func addToFav()
     
-    func addToCart()
+    func addToCart(variantID : Int)
     
     func isInFavourite() -> Bool
     

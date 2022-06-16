@@ -28,8 +28,8 @@ class CartItemsRepo: CartItemsRepoProtocol {
         return cartItemsManager.getAllItems()
     }
     
-    func add(cartItem: Product, size: String, color: String) {
-        cartItemsManager.add(cartItem: cartItem, size: size, color: color)
+    func add(cartItem: Product, size: String, color: String , variantID : Int) {
+        cartItemsManager.add(cartItem: cartItem, size: size, color: color, variantID: variantID)
     }
     
     func remove(id: Int, size: String, color: String) {
