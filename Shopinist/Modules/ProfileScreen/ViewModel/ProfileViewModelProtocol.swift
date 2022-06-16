@@ -20,7 +20,7 @@ protocol ProfileViewModelProtocol {
     func logOut()
     
     func getOrdersCount() -> Int
-    func getOrderAtIndex(retrievedIndex : Int) -> Order
+    func getOrderAtIndex(retrievedIndex : Int) -> Order?
     
     
 }

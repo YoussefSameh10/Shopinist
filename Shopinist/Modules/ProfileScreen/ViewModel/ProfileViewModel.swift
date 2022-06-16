@@ -34,10 +34,11 @@ class ProfileViewModel : ProfileViewModelProtocol{
     // MARK: - Functions
     
     // 6035824017580
+    //6035824017580 ?? 0
     
     func getCustomerOrdersList(){
         let customerId = customerRepo.getCustomerFromUserDefaults()?.id
-        orderRepo.getOrdersOfCustomer(customerID: 6035824017580 ?? 0).sink(receiveCompletion: { completion in
+        orderRepo.getOrdersOfCustomer(customerID:6035824017580 ?? 0 ).sink(receiveCompletion: { completion in
             
             switch completion {
                 
@@ -59,8 +60,8 @@ class ProfileViewModel : ProfileViewModelProtocol{
         return customerOrdersList?.count ?? 0
     }
     
-    func getOrderAtIndex(retrievedIndex : Int) -> Order{
-        return customerOrdersList![retrievedIndex]
+    func getOrderAtIndex(retrievedIndex : Int) -> Order?{
+        return customerOrdersList?[retrievedIndex] ?? nil
     }
     
     

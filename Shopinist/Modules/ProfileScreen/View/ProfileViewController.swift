@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import NVActivityIndicatorView
+import Lottie
 
 class ProfileViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var ProfileOrdersTableView: UITableView!
     @IBOutlet weak var viewMoreButton: UIButton!
-    
+    @IBOutlet weak var noOrderAnimationView: AnimationView!
     
     // MARK: - Variables
     
@@ -32,7 +33,7 @@ class ProfileViewController: UIViewController {
     private var cancellables : Set<AnyCancellable> = []
     var changeCurrency : (()->())?
     var indicator: NVActivityIndicatorView!
-
+    
     
     
     // MARK: - Init
@@ -55,10 +56,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         startActivityIndicator()
+        //ProfileOrdersTableView.isHidden = true
         setUI()
         setWelcomeLabel()
         setDelegateAndDataSourceMethods()
         viewModel?.getCustomerOrdersList()
+        sinkOnCustomerOrders()
+
         //self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.tintColor = .black
         
@@ -72,7 +76,7 @@ class ProfileViewController: UIViewController {
         
     }
     
-   
+    
     
     // MARK: - Functions
     
@@ -102,12 +106,38 @@ class ProfileViewController: UIViewController {
     private func stopActivityIndicator() {
         indicator.stopAnimating()
     }
+    
+    func startAnimation(){
+        noOrderAnimationView.contentMode = .scaleAspectFit
+        noOrderAnimationView.loopMode = .loop
+        noOrderAnimationView.animationSpeed = 0.5
+        noOrderAnimationView.play()
+    }
         
+    func sinkOnCustomerOrders(){
+        viewModel?.customerOrders.receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+                switch completion {
+                case .finished:
+                    print("Finished")
+                case .failure:
+                    print("Failed")
+                }
+            }, receiveValue:{ [weak self] customerOrders in
+                if customerOrders != nil{
+                self?.stopActivityIndicator()
+                self?.ProfileOrdersTableView.reloadData()
+                }
+
+            }).store(in: &cancellables)
+    }
+    
     
     // MARK: - Actions
     
     @IBAction func logInButton(_ sender: UIButton) {
         router?.navigateToRegitserScreen()
+        print("login pressed")
         //parentView.isHidden = false
     }
     
@@ -163,8 +193,10 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
                 self!.ProfileOrdersTableView.isHidden = true
                 self!.viewMoreButton.isEnabled = false
                 self!.viewMoreButton.tintColor = .clear
+                self?.ProfileOrdersTableView.isHidden = true
                 
             }else{
+                self?.noOrderAnimationView.isHidden = true
                 guard let orders = orderResponse?[indexPath.row] else { return }
                 
                 self!.stopActivityIndicator()
