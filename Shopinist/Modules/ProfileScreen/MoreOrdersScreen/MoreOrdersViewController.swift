@@ -86,5 +86,16 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        let order = viewModel!.getOrder(index: index)
+        
+        let orderDetailsVC = OrderDetailsViewController(viewModel: OrderDetailsViewModel(order: order, index: index))
+        // print("This is the order I am printing: \(order)")
+        print("I am selecting cell #\(index + 1)")
+        self.navigationController?.pushViewController(orderDetailsVC, animated: true)
+        self.navigationController?.navigationBar.isHidden = false
+    }
 
 }

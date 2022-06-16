@@ -9,11 +9,13 @@
 import Foundation
 import Combine
 
-class HomeViewModel{
+class HomeViewModel : HomeViewModelProtocol{
+    
     private let productsRepo : ProductsRepoProtocol
     private var cancellables : Set<AnyCancellable> = []
     
-    @Published var brands : [String]?
+    @Published private var _brands : [String]?
+    var brands: Published<[String]?>.Publisher {$_brands}
     
     init(productsRepo : ProductsRepoProtocol){
         self.productsRepo = productsRepo
@@ -29,9 +31,10 @@ class HomeViewModel{
                 print("Error: \(error)")
             }
         }) { [weak self] (response) in
-            self?.brands = self?.getBrandsFromProductsResponse(products: response.products ?? [])
+            self?._brands = self?.getBrandsFromProductsResponse(products: response.products ?? [])
         }.store(in: &cancellables)
     }
+    
     private func getBrandsFromProductsResponse(products : [Product]) -> [String]{
         var brandsSet : Set<String> = []
         products.forEach{
@@ -41,5 +44,13 @@ class HomeViewModel{
         
         let result : [String] = Array(brandsSet)
         return result
+    }
+    
+    func getBrandsCount() -> Int {
+        return _brands?.count ?? 0
+    }
+    
+    func getBrand(at: Int) -> String {
+        return _brands?[at] ?? "adidas"
     }
 }

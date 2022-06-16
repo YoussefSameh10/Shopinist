@@ -14,6 +14,6 @@ protocol ProfileRouterProtocol {
     func navigateToRegitserScreen()
     func navigateToMoreOrdersScreen()
     func navigateToSettingsScreen()
-    
+    func navigateToOrderDetailsScreen(order : Order, index : Int)
     
 }
