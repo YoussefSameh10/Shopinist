@@ -56,7 +56,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         startActivityIndicator()
-        //ProfileOrdersTableView.isHidden = true
+        ProfileOrdersTableView.isHidden = true
+        noOrderAnimationView.isHidden = true
         setUI()
         setWelcomeLabel()
         setDelegateAndDataSourceMethods()
@@ -87,13 +88,24 @@ class ProfileViewController: UIViewController {
         }else{
             parentView.isHidden = false
         }
-        
+        //initViewMoreButton()
         self.navigationController?.navigationBar.isHidden = true
         
     }
     
     func setWelcomeLabel(){
         profileNameLabel.text = "Welcome, \(viewModel?.getCustmerNameFromUserDefaults() ?? "Geust")"
+    }
+    
+    func initViewMoreButton(){
+        if viewModel?.getOrdersCount() ?? 0 < 2 {
+            disableViewMoreButton()
+        }
+    }
+    
+    func disableViewMoreButton(){
+        viewMoreButton.isEnabled = false
+        viewMoreButton.tintColor = .clear
     }
     
     private func startActivityIndicator() {
@@ -126,6 +138,8 @@ class ProfileViewController: UIViewController {
             }, receiveValue:{ [weak self] customerOrders in
                 if customerOrders != nil{
                 self?.stopActivityIndicator()
+                self?.noOrderAnimationView.isHidden = true
+                self?.ProfileOrdersTableView.isHidden = false
                 self?.ProfileOrdersTableView.reloadData()
                 }
 
@@ -143,6 +157,7 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func viewMoreButton(_ sender: UIButton) {
+        
         router?.navigateToMoreOrdersScreen()
     }
     
@@ -180,37 +195,30 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if viewModel?.getOrdersCount() == 0 {
+            noOrderAnimationView.isHidden = false
+            ProfileOrdersTableView.isHidden = true
+            return 0
+        }else if viewModel?.getOrdersCount() == 1{
+            return 1
+        }else{
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
-        viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
-            if orderResponse?.count == 0 {
-                
-                
-                self!.ProfileOrdersTableView.isHidden = true
-                self!.viewMoreButton.isEnabled = false
-                self!.viewMoreButton.tintColor = .clear
-                self?.ProfileOrdersTableView.isHidden = true
-                
-            }else{
-                self?.noOrderAnimationView.isHidden = true
-                guard let orders = orderResponse?[indexPath.row] else { return }
-                
-                self!.stopActivityIndicator()
-                if self!.viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
-                    //self!.changeCurrency!()
-                    cell.orderPrice = "\(orders.totalPrice!) EGP"
-                    
-                }else{
-                    //self!.changeCurrency!()
-                    cell.orderPrice = "\(orders.totalPriceUsd!) USD"
-                }
-                cell.orderCreatedAt = orders.createdAt ?? "No Date"
-            }
-        }).store(in: &cancellables)
+        
+   
+        if viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
+            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPrice! ?? "") EGP"
+
+        }else{
+            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPriceUsd! ?? "") USD"
+        }
+        cell.orderCreatedAt = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt ?? "No Date"
+          
         return cell
     }
     
