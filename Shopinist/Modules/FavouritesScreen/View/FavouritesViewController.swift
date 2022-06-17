@@ -129,13 +129,11 @@ extension FavouritesViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouritesCell", for: indexPath) as! FavouriteTableViewCell
         cell.favItemTitle = Formatter.formatProductName(productTitle: viewModel.products![indexPath.row].title!)
         cell.favItemImage = viewModel.products![indexPath.row].images![0].src!
-        print("*****************")
-        print(viewModel.getFavouritesFromDB()[0])
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select row")
         let product = viewModel.products![indexPath.row]
         router.navigateToProductDetailsScreen(appDelegate: appDelegate, product: product)
     }

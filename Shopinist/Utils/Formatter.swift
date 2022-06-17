@@ -97,6 +97,17 @@ class Formatter {
     static func getIntPrice(from doubleStr: String) -> Int {
         return Int(exactly: Double(doubleStr)?.rounded() ?? 0.0) ?? 0
     }
+    
+    static func convertPriceCurrency(to : Currency , price : Int) -> String{
+        if to == .USD {
+            return String(price / 18)
+        }
+        else{
+            return String(price * 18)
+        }
+    }
+    
+    
     enum Currency {
         case USD
         case EGP
