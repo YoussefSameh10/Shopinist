@@ -41,7 +41,7 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
         self.ordersRepo = ordersRepo
         self.customerRepo = customerRepo
         self.order = order
-        priceAfterDiscount = Int((order?.totalPrice)!)
+        priceAfterDiscount = Formatter.getIntPrice(from: order?.totalPrice ?? "0.0")
     }
     
     func getOrderPrice() -> String {
