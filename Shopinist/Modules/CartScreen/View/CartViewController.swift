@@ -17,7 +17,7 @@ class CartViewController: UIViewController {
     private var router : CartRouterProtocol?
     private var cancellables : Set<AnyCancellable> = []
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
-    
+    private var currency = "USD"
     
     //MARK:- Outlets
     @IBOutlet weak var cartTV: UITableView!
@@ -46,7 +46,7 @@ class CartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        initViewModel()
+        self.viewModel?.getCartItems()
         setUpBinding()
         navigationController?.navigationBar.isHidden = true
     }
@@ -80,6 +80,11 @@ class CartViewController: UIViewController {
     private func configureUI(){
         let count = self.viewModel?.getCartItemsCount() ?? 0
         
+        let userDefaults = UserDefaults.standard
+        if let currency = userDefaults.value(forKey: CURRENCY) as? String {
+            self.currency = currency
+        }
+        
         if (count == 0){
             checkoutBtn.isUserInteractionEnabled = false
             dataNotFoundAnim.isHidden = false
@@ -91,7 +96,7 @@ class CartViewController: UIViewController {
             checkoutBtn.isUserInteractionEnabled = true
             dataNotFoundAnim.isHidden = true
             let total = self.viewModel?.getTotalPrice() ?? 0
-            totalPrice.text = String(format: "%.2f EGP", total)
+            totalPrice.text = String(format: "%.2f \(currency)", total)
         }
     }
     

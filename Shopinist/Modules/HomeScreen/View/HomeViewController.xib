@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,6 +14,7 @@
                 <outlet property="adBtn" destination="84L-OL-tsm" id="Rmb-lk-qak"/>
                 <outlet property="adPageControl" destination="ru3-nN-0jh" id="JPh-Sk-f0i"/>
                 <outlet property="brandsCV" destination="1nU-Ce-yxU" id="zWr-FC-zTW"/>
+                <outlet property="helloLabel" destination="jR0-Kh-Xsr" id="EGB-Wk-47v"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yhR-Mf-FF3"/>
             </connections>
         </placeholder>
@@ -36,7 +39,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kz8-G2-9iz">
-                    <rect key="frame" x="16" y="410.5" width="382" height="50"/>
+                    <rect key="frame" x="16" y="401" width="382" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="kbi-lT-NGt"/>
                     </constraints>
@@ -45,8 +48,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1nU-Ce-yxU">
-                    <rect key="frame" x="16" y="476.5" width="382" height="377.5"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <rect key="frame" x="16" y="467" width="382" height="387"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gcy-bz-eKj">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -61,7 +64,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ru3-nN-0jh">
-                    <rect key="frame" x="16" y="357.5" width="382" height="37"/>
+                    <rect key="frame" x="16" y="357.5" width="382" height="27.5"/>
                     <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
@@ -69,7 +72,8 @@
                     </connections>
                 </pageControl>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Kz8-G2-9iz" firstAttribute="leading" secondItem="84L-OL-tsm" secondAttribute="leading" id="CSY-9T-lwb"/>
                 <constraint firstItem="aTt-R6-OZL" firstAttribute="trailing" secondItem="1nU-Ce-yxU" secondAttribute="trailing" id="DqK-VI-LMG"/>
@@ -93,8 +97,12 @@
                 <constraint firstItem="ru3-nN-0jh" firstAttribute="leading" secondItem="84L-OL-tsm" secondAttribute="leading" id="yrZ-Fk-XlB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1nU-Ce-yxU" secondAttribute="bottom" constant="8" id="zW0-EE-UhV"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="-310.14492753623193" y="-125.22321428571428"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

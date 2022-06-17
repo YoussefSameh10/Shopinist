@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var adBtn: UIButton!
     @IBOutlet weak var brandsCV: UICollectionView!
     @IBOutlet weak var adPageControl: UIPageControl!
+    @IBOutlet weak var helloLabel: UILabel!
     
     //MARK:- Variables
     private var isThreadOn = true
@@ -55,6 +56,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
+        configureUI()
     }
     
     
@@ -116,12 +118,20 @@ class HomeViewController: UIViewController {
         adBtn.layer.cornerRadius = 25
         adBtn.layer.masksToBounds = true
         adBtn.imageView?.contentMode = .scaleToFill
-        
-        
         initCollectionView(brandsCV, height: Float(brandsCV.bounds.height / 3), width: Float(UIScreen.main.bounds.width / 2 - 24), radius: 25, spacing:4, isHorizontal: false)
         
         initTabBarController()
         
+    }
+    
+    private func configureUI(){
+        let userDefaults = UserDefaults.standard
+        var helloStr = "Hello Guest,"
+        if let username = userDefaults.value(forKey: NAME) as? String {
+            helloStr = "Hello \(String(describing: username)),"
+            print("The condition is true !!")
+        }
+        helloLabel.text = helloStr
     }
     
     private func initCollectionView(_ collectionView : UICollectionView, height: Float, width : Float, radius : Float, spacing : Float, isHorizontal : Bool){

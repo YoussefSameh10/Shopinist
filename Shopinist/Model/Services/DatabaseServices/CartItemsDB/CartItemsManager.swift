@@ -118,7 +118,7 @@ class CartItemsManager : CartItemsManagerProtocol{
             return
         }
         
-        _ = convertProductToCartProduct(product: cartItem, size: size, color: color)
+        _ = convertProductToCartProduct(product: cartItem, size: size, color: color, variantId: variantID)
         do
         {
             try self.viewContext.save()
@@ -179,7 +179,21 @@ class CartItemsManager : CartItemsManagerProtocol{
         }
     }
     
-    private func convertProductToCartProduct(product: Product, size: String, color: String, count: Int = 1) -> CartProduct{
+    func deleteAll() {
+        let products = getAllItems()
+        products?.forEach({
+            self.viewContext.delete($0)
+        })
+        do{
+            try self.viewContext.save()
+        }
+        catch{
+            print("Items didn't delete successfully !!")
+        }
+        print("Items deleted Successfully !!")
+    }
+    
+    private func convertProductToCartProduct(product: Product, size: String, color: String, variantId: Int, count: Int = 1) -> CartProduct{
         let cartProduct = CartProduct(entity: self.entity, insertInto: viewContext)
         
         cartProduct.id = Int64(product.id!)
@@ -194,6 +208,7 @@ class CartItemsManager : CartItemsManagerProtocol{
         cartProduct.details = product.description!
         cartProduct.tags = product.tags!
         cartProduct.price = product.variants![0].price!
+        cartProduct.variantId = Int64(variantId)
         return cartProduct
     }
 }
