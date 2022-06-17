@@ -90,6 +90,7 @@ class ProfileViewController: UIViewController {
         }
         //initViewMoreButton()
         self.navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
         
     }
     

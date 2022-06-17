@@ -36,9 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         let tabBarController = UITabBarController()
-        
-        let checkoutVC = CheckoutViewController()
-        
+                
         let navController = UINavigationController(rootViewController: tabBarController)
         let catNavC = UINavigationController(rootViewController: categoriesVC)
         let profileNavcontroller = UINavigationController(rootViewController: profileVC)

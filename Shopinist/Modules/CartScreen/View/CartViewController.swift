@@ -48,6 +48,7 @@ class CartViewController: UIViewController {
         super.viewWillAppear(animated)
         initViewModel()
         setUpBinding()
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {

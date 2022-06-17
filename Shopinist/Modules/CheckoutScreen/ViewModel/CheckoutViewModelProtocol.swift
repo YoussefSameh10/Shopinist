@@ -15,7 +15,10 @@ protocol CheckoutViewModelProtocol {
     var isValidPriceRule: Published<Bool?>.Publisher {get}
     var validPriceRule: PriceRule? {get set}
     var priceAfterDiscount: Int? {get set}
+    var order: Order? {get set}
+    var address: Address? {get set}
     
+    func getOrderPrice() -> String
     func validatePromoCode()
     func postOrder()
 }

@@ -11,6 +11,7 @@ import Combine
 
 class CheckoutViewModel: CheckoutViewModelProtocol {
     
+    
     var isPaymentCash: Bool = true
     var priceRule: String?
     
@@ -19,6 +20,7 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     private var ordersRepo: OrderRepoProtocol!
     private var customerRepo: CustomerRepoProtocol!
     var order: Order?
+    var address: Address?
     
     private var cancellables: Set<AnyCancellable> = []
     @Published private var priceRules: [PriceRule]?
@@ -32,6 +34,7 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
         priceRulesRepo: PriceRulesRepoProtocol = PriceRulesRepo.getInstance(),
         ordersRepo: OrderRepoProtocol = OrderRepo.getInstance(),
         customerRepo: CustomerRepoProtocol = CustomerRepo.getInstance(),
+        cartItemsManager: CartItemsManagerProtocol,
         order: Order?
     ) {
         self.priceRulesRepo = priceRulesRepo
@@ -39,6 +42,9 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
         self.order = order
     }
     
+    func getOrderPrice() -> String {
+        return (order?.totalPrice)!
+    }
     
     func validatePromoCode() {
         priceRulesRepo.getPriceRules().sink(
@@ -61,9 +67,9 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     }
     
     func postOrder() {
-        let or = Order(customer: Customer(id: 6036407779500), orderItems: [OrderItem(variantID: 41672049819820, quantity: 2, price: "25")])
-        order?.customer = Customer(id: customerRepo.getCustomerFromUserDefaults()?.id ?? 0)
-        ordersRepo.createOrder(order: or)
+        let items = [OrderItem(variantID: 41672049819820, quantity: 2, price: "50"), OrderItem(variantID: 41672049885356, quantity: 1, price: "70")]
+        let ord = Order(customer: Customer(id: 6054746292396), orderItems: items)
+        ordersRepo.createOrder(order: ord)
             .sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
@@ -75,8 +81,6 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
             print(response.order)
         }.store(in: &cancellables)
     }
-    
-    
 }
 
 extension CheckoutViewModel {

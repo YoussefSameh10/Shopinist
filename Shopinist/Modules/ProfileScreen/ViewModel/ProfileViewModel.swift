@@ -13,6 +13,7 @@ import Combine
 class ProfileViewModel : ProfileViewModelProtocol{
     
     
+    
     // MARK: - Variables
     private var observer : AnyCancellable?
     private var cancellables : Set<AnyCancellable> = []
@@ -64,6 +65,9 @@ class ProfileViewModel : ProfileViewModelProtocol{
         return customerOrdersList?[retrievedIndex] ?? nil
     }
     
+    func getOrder(index: Int) -> Order {
+        return customerOrdersList![index]
+    }
 
     func getCustomerFromUserDefault() -> String?{
         customerEmail = customerRepo.getCustomerFromUserDefaults()?.email

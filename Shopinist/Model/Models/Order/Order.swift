@@ -18,12 +18,13 @@ struct Order: Codable {
     var createdAt: String?
     var currency: String?
     var totalPriceUsd: String?
-    var discountCodes: [DiscountCode]?
+    var discountCodes: [DiscountCodeOLD]?
     var financialStatus: OrderFinancialStatus?
     var fulfillmentStatus: String?
-    var subTotalPrice: Double?
+    var subTotalPrice: String?
     var totalDiscounts: String?
     var totalPrice: String?
+    var shippingAddress: Address?
     
 
     enum CodingKeys: String, CodingKey {
@@ -36,11 +37,12 @@ struct Order: Codable {
         case financialStatus = "financial_status"
         case fulfillmentStatus = "fulfillment_status"
         case totalDiscounts = "total_discounts"
-        case totalPrice = "total_price"
+        case totalPrice = "total_line_items_price"
         case createdAt = "created_at"
         case currency
         case totalPriceUsd = "total_price_usd"
         case subTotalPrice = "subtotal_price"
+        case shippingAddress = "shipping_address"
     }
     
     init(customer: Customer, orderItems: [OrderItem]) {

@@ -40,7 +40,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMv-AK-PYo" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                    <rect key="frame" x="16" y="352.5" width="382" height="45.5"/>
+                    <rect key="frame" x="16" y="351.5" width="382" height="46.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                     <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -134,6 +134,14 @@
                         <action selector="textFieldDidChange:" destination="-1" eventType="editingChanged" id="1Oy-MW-8tX"/>
                     </connections>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-MN-fxE">
+                    <rect key="frame" x="80" y="730" width="254" height="37"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                    <state key="normal" title="Continue as a guest"/>
+                    <connections>
+                        <action selector="continueAsGuest:" destination="-1" eventType="touchUpInside" id="SGB-pd-VLR"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -151,6 +159,9 @@
                 <constraint firstItem="RG3-2O-hN0" firstAttribute="top" secondItem="gsb-aK-CGr" secondAttribute="bottom" constant="64" id="Rb0-BQ-QGG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RG3-2O-hN0" secondAttribute="trailing" constant="80" id="Ttb-2B-3jN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gsb-aK-CGr" secondAttribute="trailing" constant="16" id="WMR-MW-aBH"/>
+                <constraint firstItem="tyc-MN-fxE" firstAttribute="trailing" secondItem="Cmt-cy-ATH" secondAttribute="trailing" id="X3c-hn-dpX"/>
+                <constraint firstItem="tyc-MN-fxE" firstAttribute="leading" secondItem="Cmt-cy-ATH" secondAttribute="leading" id="bgt-nP-8NO"/>
+                <constraint firstItem="tyc-MN-fxE" firstAttribute="top" secondItem="Cmt-cy-ATH" secondAttribute="bottom" constant="32" id="lUL-HM-DDc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="B3d-XX-uXA" secondAttribute="trailing" constant="16" id="lxB-9r-mcW"/>
                 <constraint firstItem="B3d-XX-uXA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="rgB-Mb-l5h"/>
                 <constraint firstItem="gsb-aK-CGr" firstAttribute="top" secondItem="ZMv-AK-PYo" secondAttribute="bottom" constant="32" id="sXr-Pf-w0D"/>

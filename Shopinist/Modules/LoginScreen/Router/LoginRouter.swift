@@ -14,8 +14,10 @@ class LoginRouter: LoginRouterProtocol {
     
     func navigateToRegister() {
         let registerVC = RegisterViewController(nibName: "RegisterViewController")
-        viewController?.navigationController?.popViewController(animated: true)
-        viewController?.navigationController?.pushViewController(registerVC, animated: true)
+        guard var viewControllers = viewController?.navigationController?.viewControllers else { return }
+        _ = viewControllers.popLast()
+        viewControllers.append(registerVC)
+        viewController?.navigationController?.setViewControllers(viewControllers, animated: true)
     }
     
     func navigateToHome() {
