@@ -62,7 +62,7 @@ class CheckoutViewController: UIViewController {
     }
     
     private func initPriceLabel() {
-        totalPriceLabel.text = viewModel.getOrderPrice()
+        totalPriceLabel.text = "\(Formatter.getIntPrice(from: viewModel.getOrderPrice()))\(viewModel.getCurrency())"
     }
     
     private func initButtons() {
@@ -179,7 +179,7 @@ extension CheckoutViewController {
     
     private func showPriceAfterDiscount() {
         totalPriceLabel.textColor = .gray
-        self.totalPriceAfterDiscount.text = String(viewModel.priceAfterDiscount ?? 0)
+        self.totalPriceAfterDiscount.text = "\(viewModel.getOrderPriceAfterDiscount())\(viewModel.getCurrency())"
         self.totalPriceAfterDiscount.isHidden = false
         textStrokeView.isHidden = false
         promoCodeTextField.isEnabled = false

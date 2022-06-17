@@ -101,6 +101,12 @@ class Formatter {
         case USD
         case EGP
     }
+    
+    static func getPriceInDollars(egpPrice: String) -> String {
+        let priceEGP = getIntPrice(from: egpPrice)
+        let dollarPrice = priceEGP/18
+        return "\(dollarPrice)"
+    }
 
     
     

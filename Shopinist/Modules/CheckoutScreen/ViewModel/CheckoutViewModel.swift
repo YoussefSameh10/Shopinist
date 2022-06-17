@@ -39,11 +39,36 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     ) {
         self.priceRulesRepo = priceRulesRepo
         self.ordersRepo = ordersRepo
+        self.customerRepo = customerRepo
         self.order = order
+        priceAfterDiscount = Int((order?.totalPrice)!)
     }
     
     func getOrderPrice() -> String {
-        return (order?.totalPrice)!
+        if customerRepo.getSelectedCurrency() == "EGP" {
+            return "\((order?.totalPrice)!)"
+        }
+        else {
+            return "\((Formatter.getPriceInDollars(egpPrice: (order?.totalPrice)!)))"
+        }
+    }
+    
+    func getOrderPriceAfterDiscount() -> String {
+        if customerRepo.getSelectedCurrency() == "EGP" {
+            return "\(priceAfterDiscount!)"
+        }
+        else {
+            return "\((Formatter.getPriceInDollars(egpPrice: String(priceAfterDiscount!))))"
+        }
+    }
+    
+    func getCurrency() -> String {
+        if customerRepo.getSelectedCurrency() == "EGP" {
+            return "EGP"
+        }
+        else {
+            return "$"
+        }
     }
     
     func validatePromoCode() {
@@ -69,6 +94,7 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     func postOrder() {
         let items = [OrderItem(variantID: 41672049819820, quantity: 2, price: "50"), OrderItem(variantID: 41672049885356, quantity: 1, price: "70")]
         let ord = Order(customer: Customer(id: 6054746292396), orderItems: items)
+        order?.subTotalPrice = String(describing: priceAfterDiscount)
         ordersRepo.createOrder(order: ord)
             .sink(receiveCompletion: { (completion) in
             switch completion {
