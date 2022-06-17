@@ -18,4 +18,5 @@ protocol CategoriesViewModelProtocol: CategoriesFilterViewModelProtocol {
     //func filterProductsForSearchText(searchText: String)
     func getProductsCount() -> Int
     func getProductAt(index: Int) -> Product?
+    func getProductPrice(price: String) -> String
 }

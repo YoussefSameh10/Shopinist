@@ -19,6 +19,8 @@ protocol CheckoutViewModelProtocol {
     var address: Address? {get set}
     
     func getOrderPrice() -> String
+    func getOrderPriceAfterDiscount() -> String
+    func getCurrency() -> String
     func validatePromoCode()
     func postOrder()
 }

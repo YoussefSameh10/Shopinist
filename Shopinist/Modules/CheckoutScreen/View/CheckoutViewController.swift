@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import PassKit
 
 class CheckoutViewController: UIViewController {
     
@@ -62,7 +63,7 @@ class CheckoutViewController: UIViewController {
     }
     
     private func initPriceLabel() {
-        totalPriceLabel.text = viewModel.getOrderPrice()
+        totalPriceLabel.text = "\(Formatter.getIntPrice(from: viewModel.getOrderPrice()))\(viewModel.getCurrency())"
     }
     
     private func initButtons() {
@@ -127,6 +128,7 @@ class CheckoutViewController: UIViewController {
         drawWhiteButton(applePayButton)
     }
     @IBAction func applePayPressed(_ sender: Any) {
+        payWithApple()
         viewModel.isPaymentCash = false
         drawBlackButton(applePayButton)
         drawWhiteButton(cashOnDeliveryButton)
@@ -179,7 +181,7 @@ extension CheckoutViewController {
     
     private func showPriceAfterDiscount() {
         totalPriceLabel.textColor = .gray
-        self.totalPriceAfterDiscount.text = String(viewModel.priceAfterDiscount ?? 0)
+        self.totalPriceAfterDiscount.text = "\(viewModel.getOrderPriceAfterDiscount())\(viewModel.getCurrency())"
         self.totalPriceAfterDiscount.isHidden = false
         textStrokeView.isHidden = false
         promoCodeTextField.isEnabled = false
@@ -191,5 +193,34 @@ extension CheckoutViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in self.viewModel.postOrder()}))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+}
+
+//MARK: - Extension Apple Pay
+extension CheckoutViewController :PKPaymentAuthorizationViewControllerDelegate{
+    private func payWithApple(){
+        
+        let paymentItem = PKPaymentSummaryItem.init(label: "Total payment", amount: NSDecimalNumber(value: Int(viewModel.getOrderPriceAfterDiscount()) ?? 0))
+        let paymentNetworks = [PKPaymentNetwork.amex, .discover, .masterCard, .visa]
+        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) {
+            let request = PKPaymentRequest()
+            let currency = viewModel.getCurrency()
+            request.currencyCode = currency == "EGP" ? "EGP" : "USD"
+            request.countryCode = currency == "EGP" ? "EG" : "US"
+            request.merchantIdentifier = "merchant.com.pranavwadhwa.Shoe-Store"
+            request.merchantCapabilities = PKMerchantCapability.capability3DS
+            request.supportedNetworks = paymentNetworks
+            request.paymentSummaryItems = [paymentItem]
+            
+            guard let paymentVC = PKPaymentAuthorizationViewController(paymentRequest: request) else {
+                return
+            }
+            paymentVC.delegate = self
+            self.present(paymentVC, animated: true, completion: nil)
+        }
+    }
+    
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true)
     }
 }

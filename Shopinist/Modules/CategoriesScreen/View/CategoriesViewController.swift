@@ -205,7 +205,7 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoriesCollectionViewCell
         
         cell.titleLabel.text = Formatter.formatProductName(productTitle: viewModel.getProductAt(index: indexPath.row)?.title ?? "")
-        cell.priceLabel.text = String(Formatter.getIntPrice(from: viewModel.getProductAt(index: indexPath.row)?.variants?[0].price ?? "PRICE"))
+        cell.priceLabel.text = viewModel.getProductPrice(price: viewModel.getProductAt(index: indexPath.row)?.variants?[0].price ?? "0")
         cell.productImageView.kf.setImage(with: URL(string: (viewModel.getProductAt(index: indexPath.row)?.images![0].src!) ?? ""))
         
         return cell

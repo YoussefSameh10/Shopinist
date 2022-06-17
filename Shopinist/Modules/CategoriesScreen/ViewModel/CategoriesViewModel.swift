@@ -12,6 +12,7 @@ import Combine
 class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewModelProtocol {
     
     private let productRepo: ProductsRepoProtocol
+    private let customerRepo: CustomerRepoProtocol
     
     private var cancellables: Set<AnyCancellable> = []
     @Published private var productsList: [Product]?
@@ -32,10 +33,12 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
 
     init(
         productRepo: ProductsRepoProtocol,
+        customerRepo: CustomerRepoProtocol = CustomerRepo.getInstance(),
         category: ProductCategory,
         brandName: String? = nil
     ) {
         self.productRepo = productRepo
+        self.customerRepo = customerRepo
         self.category = category
         self.brandName = brandName
         getAllProducts()
@@ -60,10 +63,11 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
     }
     
     func filterProducts() {
+        let maxPriceFactored = customerRepo.getSelectedCurrency() == "EGP" ? maxPrice : maxPrice*18
         var coreProducts: FilterProductsDecorator = ProductsContainer(products: productsList ?? [])
         coreProducts = MainCategoriesFilter(filterDecorator: coreProducts, mainCategory: category ?? .Men)
         coreProducts = BrandFilter(filterDecorator: coreProducts, brandName: brandName)
-        coreProducts = PriceFilter(filterDecorator: coreProducts, price: maxPrice)
+        coreProducts = PriceFilter(filterDecorator: coreProducts, price: maxPriceFactored)
         coreProducts = SortFilter(filterDecorator: coreProducts, filterType: filterType, filterDirection: filterDirection)
         coreProducts = CategoriesFilter(filterDecorator: coreProducts, category: subCategory)
         coreProducts = SearchFilter(filterDecorator: coreProducts, searchString: searchString)
@@ -80,5 +84,14 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
     
     func getProductAt(index: Int) -> Product? {
         return searchedProducts![index]
+    }
+    
+    func getProductPrice(price: String) -> String {
+        if customerRepo.getSelectedCurrency() == "EGP" {
+            return "\(Formatter.getIntPrice(from: price))EGP"
+        }
+        else {
+            return "\(Formatter.getPriceInDollars(egpPrice: price))$"
+        }
     }
 }
