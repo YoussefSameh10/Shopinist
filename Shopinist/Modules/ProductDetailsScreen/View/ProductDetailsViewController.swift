@@ -125,7 +125,7 @@ class ProductDetailsViewController: UIViewController {
             self.present(alert, animated: true)
         }else{
             viewModel.addToCart(variantID: viewModel.productVariantId ?? 0)
-            print(viewModel.productVariantId)
+            //print(viewModel.productVariantId)
         }
         //viewModel.getCartProducts()
     }

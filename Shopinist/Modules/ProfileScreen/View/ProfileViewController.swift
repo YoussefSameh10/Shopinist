@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController {
         setUI()
         setWelcomeLabel()
         setDelegateAndDataSourceMethods()
-        viewModel?.getCustomerOrdersList()
+        
         sinkOnCustomerOrders()
 
         //self.navigationController?.navigationBar.isHidden = false
@@ -67,6 +67,7 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setUI()
         setWelcomeLabel()
+        viewModel?.getCustomerOrdersList()
         var selectedCurrency = viewModel?.getSelectedCurrency()
         ProfileOrdersTableView.reloadData()
         
@@ -221,10 +222,10 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
         
    
         if viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
-            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPrice! ?? "") EGP"
+            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.subTotalPrice! ?? "") EGP"
 
         }else{
-            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPriceUsd! ?? "") USD"
+            cell.orderPrice = "\(Formatter.getPriceInDollars(egpPrice: (viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.subTotalPrice! ?? ""))) USD"
         }
         cell.orderCreatedAt = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt ?? "No Date"
           

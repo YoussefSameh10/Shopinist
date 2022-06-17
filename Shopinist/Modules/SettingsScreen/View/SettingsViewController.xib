@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,50 +32,53 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3uq-7y-Gld">
-                            <rect key="frame" x="8" y="85.5" width="398" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="Ssc-ak-YgU"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="newAddressTFChanged:" destination="-1" eventType="editingChanged" id="tZs-oM-GCY"/>
-                            </connections>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-aJ-aUj">
-                            <rect key="frame" x="16" y="151.5" width="382" height="70"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-aJ-aUj">
+                            <rect key="frame" x="16" y="245.5" width="382" height="70"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="HdS-MH-byK"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Save">
-                                <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
-                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
+                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Add Address"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <integer key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="saveNewAddButton:" destination="-1" eventType="touchUpInside" id="D3H-JN-UrQ"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="sAa-sK-bbv">
-                            <rect key="frame" x="16" y="245.5" width="382" height="70"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="sAa-sK-bbv">
+                            <rect key="frame" x="16" y="77.5" width="382" height="70"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPh-ZZ-oS0">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPh-ZZ-oS0">
                                     <rect key="frame" x="0.0" y="0.0" width="171" height="70"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="USD">
-                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="USD"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <integer key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="selectUSDButton:" destination="-1" eventType="touchUpInside" id="Apd-c3-82t"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rJ-zQ-2dm">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rJ-zQ-2dm">
                                     <rect key="frame" x="211" y="0.0" width="171" height="70"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="EGP">
-                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="EGP"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <integer key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="selectEGPButton:" destination="-1" eventType="touchUpInside" id="1hz-Ik-6Ge"/>
                                     </connections>
@@ -88,52 +89,58 @@
                             </constraints>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzu-dt-4rR">
-                            <rect key="frame" x="16" y="347.5" width="85.5" height="26.5"/>
+                            <rect key="frame" x="16" y="347.5" width="86" height="26.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dWP-ia-2dR">
                             <rect key="frame" x="0.0" y="390" width="414" height="428"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         </tableView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3uq-7y-Gld">
+                            <rect key="frame" x="8" y="179.5" width="398" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Ssc-ak-YgU"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="newAddressTFChanged:" destination="-1" eventType="editingChanged" id="tZs-oM-GCY"/>
+                            </connections>
+                        </textField>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="dWP-ia-2dR" firstAttribute="leading" secondItem="TbV-SY-8gr" secondAttribute="leading" id="0yJ-D1-dcQ"/>
                         <constraint firstItem="Vzu-dt-4rR" firstAttribute="leading" secondItem="TbV-SY-8gr" secondAttribute="leading" constant="16" id="56Q-fj-Szv"/>
                         <constraint firstAttribute="trailing" secondItem="fdL-aJ-aUj" secondAttribute="trailing" constant="16" id="5hV-5y-Bw7"/>
                         <constraint firstItem="sAa-sK-bbv" firstAttribute="leading" secondItem="TbV-SY-8gr" secondAttribute="leading" constant="16" id="98Z-9w-Y74"/>
-                        <constraint firstItem="3uq-7y-Gld" firstAttribute="top" secondItem="VDh-um-XQu" secondAttribute="bottom" constant="24" id="9aP-I9-vX8"/>
-                        <constraint firstItem="Vzu-dt-4rR" firstAttribute="top" secondItem="sAa-sK-bbv" secondAttribute="bottom" constant="32" id="AVt-va-BO9"/>
                         <constraint firstAttribute="trailing" secondItem="dWP-ia-2dR" secondAttribute="trailing" id="BBy-0A-Y28"/>
                         <constraint firstItem="VDh-um-XQu" firstAttribute="leading" secondItem="TbV-SY-8gr" secondAttribute="leading" constant="8" id="CwT-rs-KPD"/>
+                        <constraint firstItem="sAa-sK-bbv" firstAttribute="top" secondItem="VDh-um-XQu" secondAttribute="bottom" constant="16" id="Hhw-Ku-ISN"/>
                         <constraint firstAttribute="trailing" secondItem="sAa-sK-bbv" secondAttribute="trailing" constant="16" id="IVP-zf-mqG"/>
+                        <constraint firstItem="3uq-7y-Gld" firstAttribute="top" secondItem="sAa-sK-bbv" secondAttribute="bottom" constant="32" id="J0T-Qp-Di8"/>
                         <constraint firstItem="dWP-ia-2dR" firstAttribute="top" secondItem="Vzu-dt-4rR" secondAttribute="bottom" constant="16" id="OEn-P6-Knf"/>
+                        <constraint firstItem="Vzu-dt-4rR" firstAttribute="top" secondItem="fdL-aJ-aUj" secondAttribute="bottom" constant="32" id="OV3-TU-s9V"/>
                         <constraint firstItem="3uq-7y-Gld" firstAttribute="leading" secondItem="TbV-SY-8gr" secondAttribute="leading" constant="8" id="QC8-Dl-19E"/>
                         <constraint firstAttribute="trailing" secondItem="3uq-7y-Gld" secondAttribute="trailing" constant="8" id="Te9-4W-Rne"/>
                         <constraint firstItem="fdL-aJ-aUj" firstAttribute="leading" secondItem="TbV-SY-8gr" secondAttribute="leading" constant="16" id="Ufn-uf-dIi"/>
                         <constraint firstItem="fdL-aJ-aUj" firstAttribute="top" secondItem="3uq-7y-Gld" secondAttribute="bottom" constant="16" id="bPe-Z6-0UU"/>
                         <constraint firstAttribute="bottom" secondItem="dWP-ia-2dR" secondAttribute="bottom" id="dV3-Wc-1y4"/>
                         <constraint firstItem="VDh-um-XQu" firstAttribute="top" secondItem="TbV-SY-8gr" secondAttribute="top" constant="16" id="y85-VZ-6TD"/>
-                        <constraint firstItem="sAa-sK-bbv" firstAttribute="top" secondItem="fdL-aJ-aUj" secondAttribute="bottom" constant="24" id="zH0-s5-LOk"/>
                     </constraints>
                 </view>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TbV-SY-8gr" secondAttribute="trailing" id="01o-45-VLe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TbV-SY-8gr" secondAttribute="bottom" id="iAV-W5-Qxp"/>
                 <constraint firstItem="TbV-SY-8gr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="p2g-qi-NjV"/>
                 <constraint firstItem="TbV-SY-8gr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xiM-aj-Qxb"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

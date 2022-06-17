@@ -39,7 +39,7 @@ class ProfileViewModel : ProfileViewModelProtocol{
     
     func getCustomerOrdersList(){
         let customerId = customerRepo.getCustomerFromUserDefaults()?.id
-        orderRepo.getOrdersOfCustomer(customerID:6035824017580 ?? 0 ).sink(receiveCompletion: { completion in
+        orderRepo.getOrdersOfCustomer(customerID:customerId ?? 0 ).sink(receiveCompletion: { completion in
             
             switch completion {
                 

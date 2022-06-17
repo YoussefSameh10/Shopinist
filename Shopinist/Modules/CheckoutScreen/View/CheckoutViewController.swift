@@ -129,9 +129,9 @@ class CheckoutViewController: UIViewController {
     }
     @IBAction func applePayPressed(_ sender: Any) {
         payWithApple()
-        viewModel.isPaymentCash = false
-        drawBlackButton(applePayButton)
-        drawWhiteButton(cashOnDeliveryButton)
+        //viewModel.isPaymentCash = false
+        //drawBlackButton(applePayButton)
+        //drawWhiteButton(cashOnDeliveryButton)
     }
     @IBAction func placeOrder(_ sender: Any) {
         showPlaceOrderAlert()

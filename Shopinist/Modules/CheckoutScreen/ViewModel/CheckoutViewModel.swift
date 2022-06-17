@@ -92,10 +92,17 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     }
     
     func postOrder() {
-        let items = [OrderItem(variantID: 41672049819820, quantity: 2, price: "50"), OrderItem(variantID: 41672049885356, quantity: 1, price: "70")]
-        let ord = Order(customer: Customer(id: 6054746292396), orderItems: items)
-        order?.subTotalPrice = String(describing: priceAfterDiscount)
-        ordersRepo.createOrder(order: ord)
+//        let items = [OrderItem(variantID: 41672049819820, quantity: 2, price: "50"), OrderItem(variantID: 41672049885356, quantity: 1, price: "70")]
+//        let ord = Order(customer: Customer(id: 6054746292396), orderItems: items)
+        order?.subTotalPrice = String(describing: priceAfterDiscount!)
+        
+        print(order?.customer?.id)
+        print(order?.orderItems![0].variantID)
+        print(order?.orderItems![0].quantity)
+        print(order?.orderItems![0].price)
+        print(order?.subTotalPrice)
+        
+        ordersRepo.createOrder(order: order!)
             .sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
