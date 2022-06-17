@@ -8,6 +8,8 @@
 
 import UIKit
 import Combine
+import NVActivityIndicatorView
+import Lottie
 
 class ProfileViewController: UIViewController {
     
@@ -18,12 +20,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var ProfileOrdersTableView: UITableView!
     @IBOutlet weak var viewMoreButton: UIButton!
-    
+    @IBOutlet weak var noOrderAnimationView: AnimationView!
     
     // MARK: - Variables
     
     var router : ProfileRouterProtocol?
-    
     var buttonFlagUSD : Bool = false
     var buttonFlagEGP : Bool = true
     var egpPrice : String?
@@ -31,6 +32,8 @@ class ProfileViewController: UIViewController {
     var viewModel : ProfileViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
     var changeCurrency : (()->())?
+    var indicator: NVActivityIndicatorView!
+    
     
     
     // MARK: - Init
@@ -52,10 +55,15 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startActivityIndicator()
+        ProfileOrdersTableView.isHidden = true
+        noOrderAnimationView.isHidden = true
         setUI()
         setWelcomeLabel()
         setDelegateAndDataSourceMethods()
         viewModel?.getCustomerOrdersList()
+        sinkOnCustomerOrders()
+
         //self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.tintColor = .black
         
@@ -63,13 +71,13 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setUI()
+        setWelcomeLabel()
         var selectedCurrency = viewModel?.getSelectedCurrency()
         ProfileOrdersTableView.reloadData()
         
-
     }
     
-   
+    
     
     // MARK: - Functions
     
@@ -80,7 +88,7 @@ class ProfileViewController: UIViewController {
         }else{
             parentView.isHidden = false
         }
-        
+        //initViewMoreButton()
         self.navigationController?.navigationBar.isHidden = true
         
     }
@@ -88,17 +96,68 @@ class ProfileViewController: UIViewController {
     func setWelcomeLabel(){
         profileNameLabel.text = "Welcome, \(viewModel?.getCustmerNameFromUserDefaults() ?? "Geust")"
     }
+    
+    func initViewMoreButton(){
+        if viewModel?.getOrdersCount() ?? 0 < 2 {
+            disableViewMoreButton()
+        }
+    }
+    
+    func disableViewMoreButton(){
+        viewMoreButton.isEnabled = false
+        viewMoreButton.tintColor = .clear
+    }
+    
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
+    }
+    
+    func startAnimation(){
+        noOrderAnimationView.contentMode = .scaleAspectFit
+        noOrderAnimationView.loopMode = .loop
+        noOrderAnimationView.animationSpeed = 0.5
+        noOrderAnimationView.play()
+    }
         
+    func sinkOnCustomerOrders(){
+        viewModel?.customerOrders.receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+                switch completion {
+                case .finished:
+                    print("Finished")
+                case .failure:
+                    print("Failed")
+                }
+            }, receiveValue:{ [weak self] customerOrders in
+                if customerOrders != nil{
+                self?.stopActivityIndicator()
+                self?.noOrderAnimationView.isHidden = true
+                self?.ProfileOrdersTableView.isHidden = false
+                self?.ProfileOrdersTableView.reloadData()
+                }
+
+            }).store(in: &cancellables)
+    }
+    
     
     // MARK: - Actions
     
     @IBAction func logInButton(_ sender: UIButton) {
         router?.navigateToRegitserScreen()
+        print("login pressed")
         //parentView.isHidden = false
     }
     
     
     @IBAction func viewMoreButton(_ sender: UIButton) {
+        
         router?.navigateToMoreOrdersScreen()
     }
     
@@ -136,33 +195,30 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if viewModel?.getOrdersCount() == 0 {
+            noOrderAnimationView.isHidden = false
+            ProfileOrdersTableView.isHidden = true
+            return 0
+        }else if viewModel?.getOrdersCount() == 1{
+            return 1
+        }else{
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
-        viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
-            if orderResponse?.count == 0 {
-                
-                self!.ProfileOrdersTableView.isHidden = true
-                self!.viewMoreButton.isEnabled = false
-                self!.viewMoreButton.tintColor = .clear
-                
-            }else{
-                guard let orders = orderResponse?[indexPath.row] else { return }
-                
-                if self!.viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
-                    //self!.changeCurrency!()
-                    cell.orderPrice = "\(orders.totalPrice!) EGP"
-                    
-                }else{
-                    //self!.changeCurrency!()
-                    cell.orderPrice = "\(orders.totalPriceUsd!) USD"
-                }
-                cell.orderCreatedAt = orders.createdAt ?? "No Date"
-            }
-        }).store(in: &cancellables)
+        
+   
+        if viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
+            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPrice! ?? "") EGP"
+
+        }else{
+            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPriceUsd! ?? "") USD"
+        }
+        cell.orderCreatedAt = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt ?? "No Date"
+          
         return cell
     }
     

@@ -11,7 +11,7 @@ import Foundation
 protocol CartItemsManagerProtocol{
     func getAllItems() -> [CartProduct]?
     //func getItem(id : Int, size: String, color:String) -> CartProduct?
-    func add(cartItem : Product, size: String, color: String)
+    func add(cartItem : Product, size: String, color: String , variantID : Int)
     func remove(id : Int, size: String, color: String)
     //func check(id : Int, size: String, color: String) -> Bool
     func update(id: Int, size: String, color: String, count: Int)

@@ -8,6 +8,8 @@
 
 import UIKit
 import Combine
+import NVActivityIndicatorView
+
 
 class SettingsViewController: UIViewController {
     
@@ -18,7 +20,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var addressTableview: UITableView!
     @IBOutlet weak var USDButton: UIButton!
     @IBOutlet weak var EGPButton: UIButton!
-    
     @IBOutlet weak var saveButton: UIButton!
     
     
@@ -28,7 +29,8 @@ class SettingsViewController: UIViewController {
     var buttonFlagUSD : Bool = false
     var buttonFlagEGP : Bool = true
     private var cancellables : Set<AnyCancellable> = []
-
+    var indicator: NVActivityIndicatorView!
+    
     
     // MARK: - Init
     
@@ -47,7 +49,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        startActivityIndicator()
         setupTableView()
         viewModel?.getCustomerAddresses()
         sinkOnAddressObserver()
@@ -64,12 +66,31 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Fucntions
     
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
+    }
+    
     func sinkOnAddressObserver(){
         viewModel?.customerAddresses.receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] addresses in
-            //if addresses != nil{
+            .sink(receiveCompletion: { (completion) in
+                switch completion {
+                    case .finished:
+                        print("Finished")
+                    case .failure:
+                        print("Failed")
+                }
+            },receiveValue: { [weak self] addresses in
+                //if addresses != nil{
+                self!.stopActivityIndicator()
                 self?.addressTableview.reloadData()
-            //}
+                //}
                 
             }).store(in: &cancellables)
     }
@@ -89,7 +110,7 @@ class SettingsViewController: UIViewController {
     func setButtonsBackgoroundColor(){
         setButtonsRadius()
         if buttonFlagEGP {
-           setEgpButtonColors()
+            setEgpButtonColors()
         }
         else if buttonFlagUSD {
             setUSdButtonColors()
@@ -113,49 +134,50 @@ class SettingsViewController: UIViewController {
     }
     
     
+        
+        func setEgpButtonColors(){
+            setButtonsRadius()
+            EGPButton.backgroundColor = .gray
+            USDButton.backgroundColor = .white
+            
+            EGPButton.setTitleColor(.black, for: .normal)
+            USDButton.setTitleColor(.black, for: .normal)
+        }
+        
+        func setUSdButtonColors(){
+            setButtonsRadius()
+            EGPButton.backgroundColor = .white
+            USDButton.backgroundColor = .gray
+            
+            EGPButton.setTitleColor(.black, for: .normal)
+            USDButton.setTitleColor(.black, for: .normal)
+        }
+        
+        func setButtonsRadius(){
+            EGPButton.layer.cornerRadius = 25
+            USDButton.layer.cornerRadius = 25
+            EGPButton.layer.borderWidth = 1
+            USDButton.layer.borderWidth = 1
+            EGPButton.layer.borderColor = UIColor.black.cgColor
+            USDButton.layer.borderColor = UIColor.black.cgColor
+        }
+        
+        func enableSaveButton(){
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = .black
+            saveButton.setTitleColor(.white, for: .normal)
+            saveButton.layer.cornerRadius = 25
+        }
+        
+        func disableSaveButton(){
+            saveButton.isEnabled = false
+            saveButton.backgroundColor = .white
+            saveButton.setTitleColor(.black, for: .normal)
+            saveButton.layer.cornerRadius = 25
+            saveButton.layer.borderColor = UIColor.black.cgColor
+            saveButton.layer.borderWidth = 1
+        }
     
-    func setEgpButtonColors(){
-        setButtonsRadius()
-        EGPButton.backgroundColor = .gray
-        USDButton.backgroundColor = .white
-
-        EGPButton.setTitleColor(.black, for: .normal)
-        USDButton.setTitleColor(.black, for: .normal)
-    }
-    
-    func setUSdButtonColors(){
-        setButtonsRadius()
-        EGPButton.backgroundColor = .white
-        USDButton.backgroundColor = .gray
-
-        EGPButton.setTitleColor(.black, for: .normal)
-        USDButton.setTitleColor(.black, for: .normal)
-    }
-    
-    func setButtonsRadius(){
-        EGPButton.layer.cornerRadius = 25
-        USDButton.layer.cornerRadius = 25
-        EGPButton.layer.borderWidth = 1
-        USDButton.layer.borderWidth = 1
-        EGPButton.layer.borderColor = UIColor.black.cgColor
-        USDButton.layer.borderColor = UIColor.black.cgColor
-    }
-    
-    func enableSaveButton(){
-        saveButton.isEnabled = true
-        saveButton.backgroundColor = .black
-        saveButton.setTitleColor(.white, for: .normal)
-        saveButton.layer.cornerRadius = 25
-    }
-    
-    func disableSaveButton(){
-        saveButton.isEnabled = false
-        saveButton.backgroundColor = .white
-        saveButton.setTitleColor(.black, for: .normal)
-        saveButton.layer.cornerRadius = 25
-        saveButton.layer.borderColor = UIColor.black.cgColor
-        saveButton.layer.borderWidth = 1
-    }
     
     // MARK: - Actions
     
@@ -163,6 +185,11 @@ class SettingsViewController: UIViewController {
         
         let newAddres = newAddressTextField.text
         viewModel?.createNewAddress(address: newAddres!)
+        //sinkOnAddressObserver()
+        //viewModel?.getCustomerAddresses()
+        sinkOnAddressObserver()
+        addressTableview.reloadData()
+        //sinkOnAddressObserver()
         
         
     }
@@ -194,10 +221,12 @@ class SettingsViewController: UIViewController {
     
 }
 
+// MARK: - Table View
+
 extension SettingsViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+        
         print(viewModel?.getaddressesCount())
         return viewModel?.getaddressesCount() ?? 0
         
@@ -210,25 +239,27 @@ extension SettingsViewController : UITableViewDelegate , UITableViewDataSource {
         
         
         cell.cellAddress = (viewModel?.getCustomerAddress(retrievedIndex: indexPath.row).address) ?? ""
-
+        
         //print(viewModel?.getCustomerAddress(retrievedIndex: indexPath.row).id)
         
         var add = viewModel?.getCustomerAddress(retrievedIndex: indexPath.row)
         add?.address! = cell.addressTextField.text!
-        cell.updateAddress = {
-            print("update add button")
-            print(add)
-            print(cell.addressTextField.text!)
-            print(add?.address!)
-            self.viewModel?.updateCustomerAddress(address: add!)
-        }
-        //print("*****************")
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         50
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.viewModel?.deleteCustomerAddress(address: (viewModel?.getCustomerAddress(retrievedIndex: indexPath.row))!)
+            viewModel?.getCustomerAddresses()
+            sinkOnAddressObserver()
+            addressTableview.reloadData()
+        }
+        
     }
     
     

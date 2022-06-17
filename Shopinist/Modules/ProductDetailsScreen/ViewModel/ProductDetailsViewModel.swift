@@ -12,6 +12,7 @@ import UIKit
 
 class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     
+    
     // MARK: - Variables
     
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
@@ -19,6 +20,7 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
     var product : Product?
     var productSize : String?
     var productColor : String?
+    var productVariantId: Int?
     var favRepo : FavouritesProductRepoProtocol
     var cartRepo : CartItemsRepoProtocol
     var customerRepo : CustomerRepoProtocol
@@ -42,12 +44,13 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         favRepo.addProductIntoFavouritesDb(product: product!, customerEmail: customerEmail ?? "noEmail")
     }
     
-    func addToCart(){
+    func addToCart(variantID : Int){
         
         print("addToCart: size = \(productSize), color = \(product?.options![0].name)")
         productColor =  product?.options![1].values![0]
         if productSize != nil {
-            cartRepo.add(cartItem: product!, size: productSize!, color:(product?.options![1].values![0])!)
+            cartRepo.add(cartItem: product!, size: productSize!, color:(product?.options![1].values![0])!, variantID: variantID)
+            
         }
     }
     

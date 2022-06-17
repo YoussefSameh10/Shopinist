@@ -8,6 +8,8 @@
 
 import UIKit
 import Combine
+import NVActivityIndicatorView
+
 
 class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource {
     
@@ -22,6 +24,8 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
     var viewModel : ProfileViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
     var count : Int?
+    var indicator: NVActivityIndicatorView!
+
 
     // MARK: Init
     
@@ -39,8 +43,10 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startActivityIndicator()
         setupTableView()
         viewModel?.getCustomerOrdersList()
+        sinkOnCustomerOrders()
         // Do any additional setup after loading the view.
     }
 
@@ -53,31 +59,52 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         moreOrderTableView.register(UINib(nibName: "ProfileOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "profileOrderCell")
     }
     
+    private func startActivityIndicator() {
+        indicator = createActivityIndicator()
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        indicator.stopAnimating()
+    }
+    
+    func sinkOnCustomerOrders(){
+        viewModel?.customerOrders.receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+                switch completion {
+                case .finished:
+                    print("Finished")
+                case .failure:
+                    print("Failed")
+                }
+            }, receiveValue:{ [weak self] customerOrders in
+                if customerOrders != nil{
+                self?.stopActivityIndicator()
+                self?.moreOrderTableView.reloadData()
+                }
+
+            }).store(in: &cancellables)
+    }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
-            guard let orders = orderResponse else { return }
-            self!.count = orders.count
-        })
-        
-        return count ?? 4
+ 
+        return (viewModel?.getOrdersCount())!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileOrderCell", for: indexPath) as! ProfileOrderTableViewCell
-        viewModel?.customerOrders.sink(receiveValue: { [weak self] orderResponse in
-            guard let orders = orderResponse?[indexPath.row] else { return }
-            // **** check currency in user defaults and set currency flag ****
-            cell.orderPrice = "\(orders.totalPrice!) EGP" ?? "no price"
-//            if self!.buttonFlagEGP {
-//            }else{
-//                cell.orderPrice = "\(orders.totalPriceUsd!) USD" ?? "no price"
-//            }
-            cell.orderCreatedAt = orders.createdAt ?? "No Date"
-        }).store(in: &cancellables)
+        if viewModel?.getSelectedCurrency() == SelectedCurrency.EGP.rawValue{
+            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPrice! ?? "") EGP"
+
+        }else{
+            cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPriceUsd! ?? "") USD"
+        }
+        cell.orderCreatedAt = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt ?? "No Date"
         
         return cell
     }

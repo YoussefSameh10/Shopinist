@@ -20,8 +20,8 @@ class ProfileViewModel : ProfileViewModelProtocol{
     var customerRepo : CustomerRepoProtocol
     @Published private var customerOrdersList : [Order]?
     var customerOrders: Published<[Order]?>.Publisher{$customerOrdersList}
-    
     var customerEmail : String?
+
 
    
     // MARK: - Init
@@ -34,10 +34,11 @@ class ProfileViewModel : ProfileViewModelProtocol{
     // MARK: - Functions
     
     // 6035824017580
+    //6035824017580 ?? 0
     
     func getCustomerOrdersList(){
         let customerId = customerRepo.getCustomerFromUserDefaults()?.id
-        orderRepo.getOrdersOfCustomer(customerID: 6035824017580 ?? 0).sink(receiveCompletion: { completion in
+        orderRepo.getOrdersOfCustomer(customerID:6035824017580 ?? 0 ).sink(receiveCompletion: { completion in
             
             switch completion {
                 
@@ -55,10 +56,15 @@ class ProfileViewModel : ProfileViewModelProtocol{
         }).store(in: &cancellables)
     }
     
-    func getOrder(index : Int) -> Order{
-        return customerOrdersList![index]
+    func getOrdersCount() -> Int{
+        return customerOrdersList?.count ?? 0
     }
     
+    func getOrderAtIndex(retrievedIndex : Int) -> Order?{
+        return customerOrdersList?[retrievedIndex] ?? nil
+    }
+    
+
     func getCustomerFromUserDefault() -> String?{
         customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
         return customerEmail

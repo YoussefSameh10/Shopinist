@@ -17,7 +17,7 @@ protocol SettingsViewModelProtocol {
     
     func getCustomerAddresses()
     
-    func updateCustomerAddress(address : Address)
+    func deleteCustomerAddress(address : Address)
     
     func saveSelectedCurrrency(selectedCurrency : SelectedCurrency)
 

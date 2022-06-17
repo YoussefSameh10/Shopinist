@@ -103,7 +103,7 @@ class CartItemsManager : CartItemsManagerProtocol{
         return nil
     }
     
-    func add(cartItem: Product, size:String, color:String) {
+    func add(cartItem: Product, size:String, color:String , variantID : Int) {
         print("========= Add ============")
         let isFound = check(id: cartItem.id ?? 0, size: size, color: color)
 
@@ -114,6 +114,7 @@ class CartItemsManager : CartItemsManagerProtocol{
             print("Old count = \(count - 1), newCount = \(count)")
             update(id: cartItem.id ?? 0, size: size, color: color, count: Int(returnedProduct.count) + 1)
             print("Cart Item updated Successfully !!")
+            print("here cart db \(variantID)")
             return
         }
         

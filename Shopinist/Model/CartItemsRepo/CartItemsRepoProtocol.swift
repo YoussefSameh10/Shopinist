@@ -10,7 +10,7 @@ import Foundation
 
 protocol CartItemsRepoProtocol {
     func getAllItems() -> [CartProduct]?
-    func add(cartItem : Product, size: String, color: String)
+    func add(cartItem : Product, size: String, color: String , variantID: Int)
     func remove(id : Int, size: String, color: String)
     func update(id: Int, size: String, color: String, count: Int)
 }
