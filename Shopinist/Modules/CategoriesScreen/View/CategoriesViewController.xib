@@ -44,7 +44,7 @@
                         <constraint firstAttribute="height" constant="40" id="uFy-nJ-mDM"/>
                     </constraints>
                     <connections>
-                        <action selector="changeMainCategory:" destination="-1" eventType="valueChanged" id="Owf-o8-Qxk"/>
+                        <action selector="categoryDidChange:" destination="-1" eventType="touchUpInside" id="upJ-DH-lir"/>
                     </connections>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mk-Jw-eN5" customClass="AnimationView" customModule="Lottie">
@@ -54,7 +54,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="not-found"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Matches" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysa-QP-WSV">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Matches" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysa-QP-WSV">
                     <rect key="frame" x="16" y="563.5" width="382" height="57.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="48"/>
                     <nil key="textColor"/>

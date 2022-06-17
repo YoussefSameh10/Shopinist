@@ -13,21 +13,21 @@ class CartViewModel : CartViewModelProtocol{
     
     //MARK:- Variables
     let cartRepo : CartItemsRepoProtocol
+    let customerRepo : CustomerRepoProtocol
     
     @Published private var _cartProducts : [CartProduct]?
     var cartProducts: Published<[CartProduct]?>.Publisher {$_cartProducts}
     
     
     //MARK:- Functions
-    init(cartRepo : CartItemsRepoProtocol){
+    init(cartRepo : CartItemsRepoProtocol, custRepo : CustomerRepoProtocol = CustomerRepo.getInstance()){
         self.cartRepo = cartRepo
+        self.customerRepo = custRepo
         getCartItems()
     }
     
     func getCartItems() {
         _cartProducts = cartRepo.getAllItems()
-        print("I retrieved all items !!")
-        print("_cartProducts.count")
     }
     
     func updateAll() {
@@ -42,6 +42,7 @@ class CartViewModel : CartViewModelProtocol{
         if (_cartProducts != nil && _cartProducts?.isEmpty == false){
             let itemToBeDeleted = _cartProducts![index]
             cartRepo.remove(id: Int(itemToBeDeleted.id), size: itemToBeDeleted.size!, color: itemToBeDeleted.color!)
+            _cartProducts?.remove(at: index)
         }
     }
     
@@ -71,5 +72,34 @@ class CartViewModel : CartViewModelProtocol{
     
     func getCartItemsCount() -> Int{
         return _cartProducts?.count ?? 0
+    }
+    
+    func getTotalPrice() -> Double {
+        guard let products = _cartProducts else{
+            return 0.0
+        }
+        var ret = 0.0
+        for product in products {
+            
+            if let price = product.price{
+                let cnt = Int(product.count)
+                ret = ret + (Double(cnt) * Double(price)!)
+            }
+        }
+        return ret
+    }
+    
+    func createOrder() -> Order {
+        let products = _cartProducts!
+//        let orderItems = products.map { (item : CartProduct) -> OrderItem in
+//            OrderItem(id: nil, giftCard: nil, productExists: nil, productID: Int(item.id), quantity: Int(item.count), title: item.title, totalDiscount: nil, variantID: nil, price: item.price)
+//        }
+        
+        let orderItems: [OrderItem] = []
+        let customer = customerRepo.getCustomerFromUserDefaults();
+        let totalPrice = String(format: "%.2f", getTotalPrice())
+        
+        let newOrder = Order(customer: customer!, orderItems: orderItems, totalPrice: totalPrice)
+        return newOrder
     }
 }

@@ -22,7 +22,7 @@ class MainCategoriesViewController: UIViewController {
     
     // MARK: -Initilaizers
     init(
-        nibName: String?,
+        nibName: String? = String(describing: MainCategoriesViewController.self),
         viewModel: MainCategoriesViewModelProtocol = MainCategoriesViewModel(),
         router: MainCategoriesRouterProtocol = MainCategoriesRouter()
     ) {
@@ -61,13 +61,6 @@ class MainCategoriesViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        let itemWidth = collectionView.bounds.width/2 - 4
-        let itemHeight = collectionView.bounds.height/2 - 8
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumInteritemSpacing = 4
-        collectionView.collectionViewLayout = layout
     }
 }
 
@@ -112,4 +105,12 @@ extension MainCategoriesViewController: UICollectionViewDelegate, UICollectionVi
             brandName: viewModel.brandName
         )
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         
+        return CGSize(width: collectionView.bounds.width/2 - 8, height: collectionView.bounds.height/2.5 - 8)
+    }
+    
+
 }
+

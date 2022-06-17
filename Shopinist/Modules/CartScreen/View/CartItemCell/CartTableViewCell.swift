@@ -56,7 +56,8 @@ class CartTableViewCell: UITableViewCell {
         imgHolder.layer.borderWidth = 0.3
         imgHolder.layer.borderColor = UIColor.darkGray.cgColor
         
-        countHolder.layer.borderWidth = 0.3
+        countHolder.layer.cornerRadius = 10
+        countHolder.layer.borderWidth = 0.5
         countHolder.layer.borderColor = UIColor.white.cgColor
         
         minusBtn.layer.cornerRadius = 5
@@ -71,9 +72,9 @@ class CartTableViewCell: UITableViewCell {
         cnt = Int(product.count)
         countLabel.text = "\(cnt)"
         name.text = Formatter.formatProductName(productTitle: product.title!)
-        //price.text =
-        color.text = product.color!
-        size.text = product.size!
+        price.text = product.price
+        color.text = product.color!.capitalized
+        size.text = "Size: \(product.size!)"
     }
     
 }

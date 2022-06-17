@@ -8,21 +8,42 @@
 
 import UIKit
 import Combine
+import Lottie
 
 class CartViewController: UIViewController {
 
     //MARK:- Variables
     private var viewModel : CartViewModelProtocol?
+    private var router : CartRouterProtocol?
     private var cancellables : Set<AnyCancellable> = []
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
+    
     //MARK:- Outlets
-    @IBOutlet weak var applyPromoBtn: UIButton!
-    @IBOutlet weak var promoHolder: CornerView!
     @IBOutlet weak var cartTV: UITableView!
     @IBOutlet weak var checkoutBtn: UIButton!
+    @IBOutlet weak var dataNotFoundAnim: AnimationView!
+    @IBOutlet weak var totalPrice: UILabel!
+    
+    
+    
     
     //MARK:- Life Cycle
+    init(
+        nibName: String? = "CartViewController",
+        viewModel: CartViewModelProtocol? = CartViewModel(cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: (UIApplication.shared.delegate as! AppDelegate)))),
+        router : CartRouterProtocol? = CartRouter()
+    ) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+        self.router = router
+        self.router?.viewController = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initViewModel()
@@ -32,7 +53,7 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-//        self.viewModel?.getCartItems()
+        configureUI()
         initTableView()
         
     }
@@ -41,15 +62,36 @@ class CartViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.viewModel?.updateAll()
     }
+    
+    //MARK:- Actions
+    @IBAction func proceedToCheckout(_ sender: UIButton) {
+        let order = self.viewModel?.createOrder()
+        router?.navigateToCheckout(order: order!)
+    }
+    
+    
     //MARK:- Functions
     private func initUI(){
         checkoutBtn.layer.cornerRadius = 25
-        applyPromoBtn.layer.cornerRadius = 25
         checkoutBtn.layer.cornerRadius = 25
+    }
+    
+    private func configureUI(){
+        let count = self.viewModel?.getCartItemsCount() ?? 0
         
-        promoHolder.layer.masksToBounds = true
-        promoHolder.layer.borderWidth = 0.5
-        promoHolder.layer.borderColor = UIColor.gray.cgColor
+        if (count == 0){
+            checkoutBtn.isUserInteractionEnabled = false
+            dataNotFoundAnim.isHidden = false
+            dataNotFoundAnim.animationSpeed = 1
+            dataNotFoundAnim.loopMode = .loop
+            dataNotFoundAnim.play()
+        }
+        else{
+            checkoutBtn.isUserInteractionEnabled = true
+            dataNotFoundAnim.isHidden = true
+            let total = self.viewModel?.getTotalPrice() ?? 0
+            totalPrice.text = String(format: "%.2f EGP", total)
+        }
     }
     
     private func initTableView(){
@@ -59,13 +101,19 @@ class CartViewController: UIViewController {
     }
     
     private func initViewModel(){
-        self.viewModel = CartViewModel(cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: appDelegate)))
+        self.viewModel = CartViewModel(cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: (UIApplication.shared.delegate as! AppDelegate))))
     }
     
     private func setUpBinding(){
         self.viewModel?.cartProducts.sink(receiveValue: { (_) in
-            self.cartTV.reloadData()
+            self.updateUI()
             }).store(in: &cancellables)
+    }
+    
+    private func updateUI(){
+        self.cartTV.reloadData()
+        self.initUI()
+        self.configureUI()
     }
     
 }
@@ -79,6 +127,14 @@ extension CartViewController : UITableViewDelegate, UITableViewDataSource {
         return self.viewModel?.getCartItemsCount() ?? 0
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete){
+            self.viewModel?.removeItemAt(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            updateUI()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartTVCell", for: indexPath) as! CartTableViewCell
@@ -86,9 +142,11 @@ extension CartViewController : UITableViewDelegate, UITableViewDataSource {
             cell.configureCell(product: (self.viewModel?.getItemAt(index: indexPath.row))!)
             cell.decrementCnt = {
                 self.viewModel?.decrementItemAt(index: indexPath.row)
+                self.configureUI()
             }
             cell.incrementCnt = {
                 self.viewModel?.incrementItemAt(index: indexPath.row)
+                self.configureUI()
             }
         }
         return cell

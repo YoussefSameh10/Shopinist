@@ -18,6 +18,7 @@ enum EndPoints {
     case getProductsOfCategory(categoryId : String)
     case createOrder
     case getOrdersOfCustomer(customerID: Int)
+    case getPriceRules
     
     // MARK: - Address Endpoints
     
@@ -37,6 +38,8 @@ enum EndPoints {
             return "/admin/api/2022-04/orders.json"
         case .getOrdersOfCustomer(customerID: let customerID):
             return "/admin/api/2022-04/customers/\(customerID)/orders.json"
+        case .getPriceRules:
+            return "/admin/api/2022-04/price_rules.json"
         case .getAddressesOfCustomer(customerID: let customerID):
             return "/admin/api/2022-04/customers/\(customerID)/addresses.json"
         case .createNewAddress(customerID: let customerID):

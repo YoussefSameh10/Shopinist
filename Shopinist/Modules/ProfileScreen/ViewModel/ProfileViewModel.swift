@@ -64,7 +64,7 @@ class ProfileViewModel : ProfileViewModelProtocol{
         return customerOrdersList?[retrievedIndex] ?? nil
     }
     
-    
+
     func getCustomerFromUserDefault() -> String?{
         customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
         return customerEmail

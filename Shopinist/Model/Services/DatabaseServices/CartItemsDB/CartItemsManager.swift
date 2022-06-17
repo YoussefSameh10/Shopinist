@@ -11,14 +11,14 @@ import CoreData
 
 class CartItemsManager : CartItemsManagerProtocol{
     
-    
     //MARK:- Variables
     var appDelegate: AppDelegate!
     var viewContext : NSManagedObjectContext!
     var entity : NSEntityDescription!
+    private var customerRepo : CustomerRepoProtocol = CustomerRepo.getInstance()
+    
     
     //MARK:- Functions
-    
     private static var instance : CartItemsManagerProtocol?
     
     private init(appDelegate: AppDelegate){
@@ -89,8 +89,9 @@ class CartItemsManager : CartItemsManagerProtocol{
         
         if (cartProducts.count > 0){
             
+            let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email
             let filteredProducts = cartProducts.filter {
-                (($0.id == id) && ($0.size == size) && ($0.color == color))
+                (($0.id == id) && ($0.size == size) && ($0.color == color) && $0.email == customerEmail)
             }
             if (filteredProducts.count > 0)
             {
@@ -117,7 +118,7 @@ class CartItemsManager : CartItemsManagerProtocol{
             return
         }
         
-        let x = convertProductToCartProduct(product: cartItem, size: size, color: color)
+        _ = convertProductToCartProduct(product: cartItem, size: size, color: color)
         do
         {
             try self.viewContext.save()
@@ -184,7 +185,7 @@ class CartItemsManager : CartItemsManagerProtocol{
         cartProduct.id = Int64(product.id!)
         cartProduct.title = product.title
         cartProduct.vendor = product.vendor
-        cartProduct.email = ""
+        cartProduct.email = customerRepo.getCustomerFromUserDefaults()?.email
         cartProduct.count = Int64(count)
         //print("Product Images = \n\(product.images)")
         cartProduct.image = product.images?[0].src

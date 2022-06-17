@@ -45,11 +45,17 @@ class LoginViewController: UIViewController {
     // MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideBars()
         setupSigninButton()
         listenForResponse()
     }
     
     // MARK: -Methods
+    private func hideBars() {
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     private func setupSigninButton() {
         signinButton.layer.cornerRadius = 25
         signupButton.titleLabel?.textAlignment = .center

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailsViewController" customModule="Shopinist" customModuleProvider="target">
+            <connections>
+                <outlet property="orderID" destination="fJp-dl-hpn" id="ild-Av-3Wu"/>
+                <outlet property="orderNo" destination="u6H-Ib-Hza" id="2wT-Em-bRD"/>
+                <outlet property="orderTV" destination="imf-ur-qdb" id="EAm-md-eaa"/>
+                <outlet property="totalPrice" destination="NlF-gI-dnQ" id="l1s-lM-LP7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order #1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6H-Ib-Hza">
+                    <rect key="frame" x="16" y="60" width="382" height="38.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJp-dl-hpn">
+                    <rect key="frame" x="16" y="114.5" width="382" height="26.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlF-gI-dnQ">
+                    <rect key="frame" x="16" y="149" width="382" height="26.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="imf-ur-qdb">
+                    <rect key="frame" x="8" y="207.5" width="398" height="646.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="u6H-Ib-Hza" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="1I4-2H-HZE"/>
+                <constraint firstItem="u6H-Ib-Hza" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4mv-TB-N2W"/>
+                <constraint firstItem="u6H-Ib-Hza" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="6fa-CK-4iL"/>
+                <constraint firstItem="fJp-dl-hpn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="CZz-8B-UUx"/>
+                <constraint firstItem="NlF-gI-dnQ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="I96-2A-SIm"/>
+                <constraint firstItem="imf-ur-qdb" firstAttribute="top" secondItem="NlF-gI-dnQ" secondAttribute="bottom" constant="32" id="Kih-uy-YcL"/>
+                <constraint firstItem="NlF-gI-dnQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cAF-SK-sMl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="imf-ur-qdb" secondAttribute="trailing" constant="8" id="ibP-3v-Pvp"/>
+                <constraint firstItem="fJp-dl-hpn" firstAttribute="top" secondItem="u6H-Ib-Hza" secondAttribute="bottom" constant="16" id="kOm-kC-z0e"/>
+                <constraint firstItem="imf-ur-qdb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="kSU-Ac-yba"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="imf-ur-qdb" secondAttribute="bottom" constant="8" id="nlf-Fy-C1x"/>
+                <constraint firstItem="fJp-dl-hpn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pJK-oJ-DKL"/>
+                <constraint firstItem="NlF-gI-dnQ" firstAttribute="top" secondItem="fJp-dl-hpn" secondAttribute="bottom" constant="8" id="quL-WA-XNg"/>
+            </constraints>
+            <point key="canvasLocation" x="142" y="106"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
