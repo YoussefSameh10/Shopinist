@@ -25,17 +25,12 @@ class ProfileViewController: UIViewController {
     // MARK: - Variables
     
     var router : ProfileRouterProtocol?
-    var buttonFlagUSD : Bool = false
-    var buttonFlagEGP : Bool = true
     var egpPrice : String?
     var usdPrice : String?
     var viewModel : ProfileViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
-    var changeCurrency : (()->())?
     var indicator: NVActivityIndicatorView!
-    
-    
-    
+        
     // MARK: - Init
     
     init(nibName : String? , viewModel : ProfileViewModelProtocol , router : ProfileRouterProtocol){
@@ -56,7 +51,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         startActivityIndicator()
-        ProfileOrdersTableView.isHidden = true
+        //ProfileOrdersTableView.isHidden = true
         noOrderAnimationView.isHidden = true
         setUI()
         setWelcomeLabel()
@@ -85,17 +80,17 @@ class ProfileViewController: UIViewController {
         
         if viewModel?.getCustomerFromUserDefault() == nil {
             parentView.isHidden = true
+            stopActivityIndicator()
         }else{
             parentView.isHidden = false
         }
-        //initViewMoreButton()
         self.navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         
     }
     
     func setWelcomeLabel(){
-        profileNameLabel.text = "Welcome, \(viewModel?.getCustmerNameFromUserDefaults() ?? "Geust")"
+        profileNameLabel.text = "Hello, \(viewModel?.getCustmerNameFromUserDefaults() ?? "Geust")"
     }
     
     func initViewMoreButton(){
@@ -138,10 +133,11 @@ class ProfileViewController: UIViewController {
                 }
             }, receiveValue:{ [weak self] customerOrders in
                 if customerOrders != nil{
-                self?.stopActivityIndicator()
-                self?.noOrderAnimationView.isHidden = true
-                self?.ProfileOrdersTableView.isHidden = false
-                self?.ProfileOrdersTableView.reloadData()
+                    self?.stopActivityIndicator()
+                    self?.noOrderAnimationView.isHidden = true
+                    self?.ProfileOrdersTableView.isHidden = false
+                    self?.ProfileOrdersTableView.reloadData()
+                    print("**** \(customerOrders?.count)")
                 }
 
             }).store(in: &cancellables)
@@ -199,12 +195,24 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
         if viewModel?.getOrdersCount() == 0 {
             noOrderAnimationView.isHidden = false
             ProfileOrdersTableView.isHidden = true
+            viewMoreButton.isHidden = false
+            startAnimation()
+            stopActivityIndicator()
             return 0
         }else if viewModel?.getOrdersCount() == 1{
+            ProfileOrdersTableView.isHidden = false
+            viewMoreButton.isHidden = false
             return 1
+        }else if viewModel?.getOrdersCount() == 2{
+            ProfileOrdersTableView.isHidden = false
+            viewMoreButton.isHidden = false
+            return 2
         }else{
+            ProfileOrdersTableView.isHidden = false
+            viewMoreButton.isHidden = false
             return 2
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
