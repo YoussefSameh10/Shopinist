@@ -21,7 +21,7 @@ struct Order: Codable {
     var discountCodes: [DiscountCode]?
     var financialStatus: OrderFinancialStatus?
     var fulfillmentStatus: String?
-    var subTotalPrice: Double?
+    var subTotalPrice: String?
     var totalDiscounts: String?
     var totalPrice: String?
     

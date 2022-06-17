@@ -70,12 +70,6 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Orders" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJZ-25-843">
-                            <rect key="frame" x="24" y="183" width="366" height="45.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="38"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0m-lh-WzZ" customClass="AnimationView" customModule="Lottie">
                             <rect key="frame" x="32" y="252.5" width="350" height="205"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -109,8 +103,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Amr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nup-Zi-gb4">
-                            <rect key="frame" x="16" y="66.5" width="233" height="43"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Amr" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nup-Zi-gb4">
+                            <rect key="frame" x="16" y="66.5" width="390" height="43"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -147,12 +141,10 @@
                     <constraints>
                         <constraint firstItem="FeZ-To-x6Q" firstAttribute="top" secondItem="MGN-vZ-2bL" secondAttribute="bottom" constant="24" id="4VI-C0-9jb"/>
                         <constraint firstItem="FeZ-To-x6Q" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="8" id="4so-XS-wh8"/>
-                        <constraint firstItem="SJZ-25-843" firstAttribute="top" secondItem="MGN-vZ-2bL" secondAttribute="bottom" constant="16" id="8uS-xZ-Yet"/>
                         <constraint firstAttribute="trailing" secondItem="mdv-vY-m1E" secondAttribute="trailing" constant="8" id="CH2-dQ-zh2"/>
                         <constraint firstItem="E5n-Bx-Vb4" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="8" id="E5k-95-NWt"/>
                         <constraint firstItem="z0m-lh-WzZ" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="32" id="I4K-qc-6Ng"/>
                         <constraint firstItem="nup-Zi-gb4" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="16" id="Ljs-pq-OKj"/>
-                        <constraint firstAttribute="trailing" secondItem="SJZ-25-843" secondAttribute="trailing" constant="24" id="M7S-vw-fvW"/>
                         <constraint firstItem="nup-Zi-gb4" firstAttribute="top" secondItem="E5n-Bx-Vb4" secondAttribute="bottom" constant="8" id="Od5-gE-hSJ"/>
                         <constraint firstItem="E5n-Bx-Vb4" firstAttribute="top" secondItem="l0l-5g-f8S" secondAttribute="top" constant="8" id="Osw-sO-dm0"/>
                         <constraint firstItem="xDE-pt-e55" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="16" id="QkG-b0-oCl"/>
@@ -163,10 +155,10 @@
                         <constraint firstAttribute="trailing" secondItem="xDE-pt-e55" secondAttribute="trailing" constant="16" id="i7K-Ba-jil"/>
                         <constraint firstItem="MGN-vZ-2bL" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="16" id="kc9-bL-Wlu"/>
                         <constraint firstAttribute="trailing" secondItem="z0m-lh-WzZ" secondAttribute="trailing" constant="32" id="nOz-9L-qvx"/>
+                        <constraint firstAttribute="trailing" secondItem="nup-Zi-gb4" secondAttribute="trailing" constant="8" id="oDb-AJ-KwD"/>
                         <constraint firstAttribute="trailing" secondItem="FeZ-To-x6Q" secondAttribute="trailing" constant="8" id="u9H-u9-Dg4"/>
-                        <constraint firstItem="SJZ-25-843" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="24" id="v6Q-Km-ld5"/>
                         <constraint firstAttribute="trailing" secondItem="wSk-YH-gqJ" secondAttribute="trailing" constant="16" id="vIv-4v-mum"/>
-                        <constraint firstItem="z0m-lh-WzZ" firstAttribute="top" secondItem="SJZ-25-843" secondAttribute="bottom" constant="24" id="vv6-Lf-lLF"/>
+                        <constraint firstItem="z0m-lh-WzZ" firstAttribute="top" secondItem="MGN-vZ-2bL" secondAttribute="bottom" constant="85.5" id="xzh-hQ-Jiu"/>
                     </constraints>
                 </view>
             </subviews>
@@ -185,6 +177,9 @@
             <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
         </view>
     </objects>
+    <designables>
+        <designable name="z0m-lh-WzZ"/>
+    </designables>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <systemColor name="linkColor">
