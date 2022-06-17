@@ -655,13 +655,7 @@
 		8AE32BC4283D42A6003DA57B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E85ED559284F9543008D4C6B /* PriceRulesRepo */,
-				8AC7AD67284BEC070042AA02 /* AddressRepo */,
-				8A29CD022847A1700020AD49 /* FavouriteProductsRepo */,
-				F75C3CDC2847B7CA006E2E43 /* CartItemsRepo */,
-				F76781D72842122800AC5696 /* CustomerRepo */,
-				E80F4691283FEDF5000D4826 /* OrderRepo */,
-				8ADCF80F283EF5AA0017F2F7 /* ProductsRepo */,
+				E85DD7C1285D44A8008C36C5 /* Repos */,
 				8AE9733A283E774D00725A9B /* Services */,
 				8AE32BC5283D42B0003DA57B /* Models */,
 			);
@@ -963,6 +957,20 @@
 				E85DD38D2846B87E003A7723 /* MainCategoriesViewModelProtocol.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E85DD7C1285D44A8008C36C5 /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				E85ED559284F9543008D4C6B /* PriceRulesRepo */,
+				8AC7AD67284BEC070042AA02 /* AddressRepo */,
+				8A29CD022847A1700020AD49 /* FavouriteProductsRepo */,
+				F75C3CDC2847B7CA006E2E43 /* CartItemsRepo */,
+				F76781D72842122800AC5696 /* CustomerRepo */,
+				E80F4691283FEDF5000D4826 /* OrderRepo */,
+				8ADCF80F283EF5AA0017F2F7 /* ProductsRepo */,
+			);
+			path = Repos;
 			sourceTree = "<group>";
 		};
 		E85ED548284F354E008D4C6B /* CheckoutScreen */ = {

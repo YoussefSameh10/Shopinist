@@ -53,7 +53,7 @@ class FavouritesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        navigationController?.navigationBar.isHidden = true
         if viewModel.getCustomerFromUserDefaults() == nil {
             showNotLogedInScreen()
         }else{

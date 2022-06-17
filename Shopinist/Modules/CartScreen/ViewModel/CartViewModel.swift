@@ -93,7 +93,7 @@ class CartViewModel : CartViewModelProtocol{
         let products = _cartProducts!
         let orderItems = products.map { (item : CartProduct) -> OrderItem in
             //OrderItem(id: nil, giftCard: nil, productExists: nil, productID: Int(item.id), quantity: Int(item.count), title: item.title, totalDiscount: nil, variantID: nil, price: item.price)
-            OrderItem(variantID: 0, quantity: Int(item.count), price: item.price!)
+            OrderItem(variantID: Int(item.variantId), quantity: Int(item.count), price: item.price!)
         }
         
         let customer = customerRepo.getCustomerFromUserDefaults();

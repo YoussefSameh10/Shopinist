@@ -137,25 +137,25 @@ class SettingsViewController: UIViewController {
         
         func setEgpButtonColors(){
             setButtonsRadius()
-            EGPButton.backgroundColor = .gray
+            EGPButton.backgroundColor = .black
             USDButton.backgroundColor = .white
             
-            EGPButton.setTitleColor(.black, for: .normal)
+            EGPButton.setTitleColor(.white, for: .normal)
             USDButton.setTitleColor(.black, for: .normal)
         }
         
         func setUSdButtonColors(){
             setButtonsRadius()
             EGPButton.backgroundColor = .white
-            USDButton.backgroundColor = .gray
+            USDButton.backgroundColor = .black
             
             EGPButton.setTitleColor(.black, for: .normal)
-            USDButton.setTitleColor(.black, for: .normal)
+            USDButton.setTitleColor(.white, for: .normal)
         }
         
         func setButtonsRadius(){
-            EGPButton.layer.cornerRadius = 25
-            USDButton.layer.cornerRadius = 25
+//            EGPButton.layer.cornerRadius = 25
+//            USDButton.layer.cornerRadius = 25
             EGPButton.layer.borderWidth = 1
             USDButton.layer.borderWidth = 1
             EGPButton.layer.borderColor = UIColor.black.cgColor
