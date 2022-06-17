@@ -66,6 +66,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setUIDesigns()
         print("*****\(viewModel.isInFavourite())")
         if(viewModel.isInFavourite()){
             favouriteButtonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -83,7 +84,13 @@ class ProductDetailsViewController: UIViewController {
         productTitleLabel.text = viewModel.product?.title
         productDescriptionTextView.text = viewModel.product?.description
         productMainImageView.kf.setImage(with : URL(string: (viewModel.product?.images![0].src!)!), placeholder: UIImage(named: "shoes_photo_.png"))
-        productPriceLabel.text = "\(viewModel.product?.variants![0].price ?? "") EGP"
+        if viewModel.getSelectedCurrency() == SelectedCurrency.EGP.rawValue {
+            productPriceLabel.text = "\(viewModel.product?.variants![0].price ?? "") EGP"
+        }else{
+            let price = viewModel.product?.variants![0].price ?? ""
+            let priceInUsd = Formatter.convertPriceCurrency(to: .USD, price: ((price as NSString).integerValue))
+            productPriceLabel.text = "\(priceInUsd) USD"
+        }
        
         productColorButton.setTitle(viewModel.product?.options![1].values![0], for: .normal)
         productColorButton.layer.borderWidth = 1

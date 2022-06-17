@@ -22,9 +22,9 @@ protocol ProductDetailsViewModelProtocol {
     func isInFavourite() -> Bool
     
     func removeFavFromDb()
-        
-    //func getFavProducts()
-    
+            
     func getCartProducts()
+    
+    func getSelectedCurrency() -> String
     
 }

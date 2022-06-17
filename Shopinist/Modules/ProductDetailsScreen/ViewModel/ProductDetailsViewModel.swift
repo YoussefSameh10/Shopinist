@@ -64,14 +64,7 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         favRepo.removeFavProductFromDb(product: product!, customerEmail: customerEmail ?? "noEmail")
     }
     
-    // ************** just for test core data then remove it **********
-    
-//    func getFavProducts(){
-//        favProducts = productRepo.getAllFavouritesFromDb()
-//        print("*** fav count = \(favProducts?.count) ***")
-//        //print("fav item name = \(favProducts?[0].title)")
-//    }
-    
+
     func getCartProducts(){
         cartProducts = cartRepo.getAllItems()
         if cartProducts != nil {
@@ -83,8 +76,8 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         }
     }
     
-    //    func removeCartProductFromDb(){
-    //        productRepo.removeCartProductFromDb(product: product!)
-    //    }
+    func getSelectedCurrency() -> String {
+        return customerRepo.getSelectedCurrency()
+    }
     
 }
