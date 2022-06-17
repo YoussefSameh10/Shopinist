@@ -12,6 +12,7 @@ import Kingfisher
 class CartTableViewCell: UITableViewCell {
     //MARK:- Variables
     private var cnt : Int = 1
+    private var currency = "USD"
     var decrementCnt : (() -> ())?
     var incrementCnt : (() -> ())?
     
@@ -30,6 +31,10 @@ class CartTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         initUI()
+        let userDefaults = UserDefaults.standard
+        if let currency = userDefaults.value(forKey: CURRENCY) as? String {
+            self.currency = currency
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -72,7 +77,7 @@ class CartTableViewCell: UITableViewCell {
         cnt = Int(product.count)
         countLabel.text = "\(cnt)"
         name.text = Formatter.formatProductName(productTitle: product.title!)
-        price.text = product.price
+        price.text = "\(String(describing: product.price!)) \(currency)"
         color.text = product.color!.capitalized
         size.text = "Size: \(product.size!)"
     }
