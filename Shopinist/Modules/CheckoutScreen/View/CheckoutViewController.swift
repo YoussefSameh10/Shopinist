@@ -22,14 +22,13 @@ class CheckoutViewController: UIViewController {
     @IBOutlet weak var validatePromoCodeButton: UIButton!
     @IBOutlet weak var cashOnDeliveryButton: UIButton!
     @IBOutlet weak var applePayButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var placeOrderButton: UIButton!
-    
     @IBOutlet weak var textStrokeView: UIView!
+    @IBOutlet weak var addressLabel: UILabel!
     
     init(
         nibName: String = String(describing: CheckoutViewController.self),
-        viewModel: CheckoutViewModelProtocol = CheckoutViewModel(order: nil),
+        viewModel: CheckoutViewModelProtocol,
         router: CheckoutRouterProtocol = CheckoutRouter()
     ) {
         super.init(nibName: nibName, bundle: nil)
@@ -48,9 +47,22 @@ class CheckoutViewController: UIViewController {
     }
 
     private func initView() {
+        showNavBar()
+        initPriceLabel()
         initButtons()
+        initPromoCodeTextField()
+        initAddressLabel()
         initTextStrokeView()
         listenForChangesPriceRule()
+    }
+    
+    private func showNavBar() {
+        self.title = "Checkout"
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    private func initPriceLabel() {
+        totalPriceLabel.text = viewModel.getOrderPrice()
     }
     
     private func initButtons() {
@@ -62,6 +74,19 @@ class CheckoutViewController: UIViewController {
         }
         drawWhiteButton(applePayButton)
         disableButton(validatePromoCodeButton)
+    }
+    
+    private func initPromoCodeTextField() {
+        promoCodeTextField.layer.cornerRadius = 25
+        promoCodeTextField.layer.borderWidth = 1.0
+        promoCodeTextField.layer.borderColor = UIColor.black.cgColor
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 20))
+        promoCodeTextField.leftView = paddingView
+        promoCodeTextField.leftViewMode = .always
+    }
+    
+    private func initAddressLabel() {
+        addressLabel.text = viewModel.order?.shippingAddress?.address ?? ""
     }
     
     private func initTextStrokeView() {

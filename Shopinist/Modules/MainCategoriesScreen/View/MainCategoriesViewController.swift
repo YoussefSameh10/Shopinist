@@ -42,7 +42,7 @@ class MainCategoriesViewController: UIViewController {
         setupCollectionView()
     }
     
-    override func viewDidLayoutSubviews() {
+    override func viewWillAppear(_ animated: Bool) {
         manageBars()
     }
     
@@ -53,6 +53,7 @@ class MainCategoriesViewController: UIViewController {
             tabBarController?.tabBar.isHidden = false
         }
         else {
+            self.title = viewModel.brandName?.capitalized
             navigationController?.navigationBar.isHidden = false
             tabBarController?.tabBar.isHidden = true
         }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,25 +31,18 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsz-P8-nI7">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsz-P8-nI7">
                             <rect key="frame" x="8" y="303.5" width="398" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="Ut5-2p-JTk"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Login">
-                                <backgroundConfiguration key="background" cornerRadius="25">
-                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </backgroundConfiguration>
-                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
                             <connections>
                                 <action selector="logInButton:" destination="-1" eventType="touchUpInside" id="cgs-OJ-KnG"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Vsz-P8-nI7" secondAttribute="trailing" constant="8" id="0a3-CI-abR"/>
                         <constraint firstAttribute="trailing" secondItem="WHS-i5-d3F" secondAttribute="trailing" constant="4" id="2xn-Xi-VW7"/>
@@ -65,14 +56,14 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGN-vZ-2bL">
-                            <rect key="frame" x="16" y="133.5" width="178.5" height="33.5"/>
+                            <rect key="frame" x="16" y="133.5" width="178" height="33.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0m-lh-WzZ" customClass="AnimationView" customModule="Lottie">
                             <rect key="frame" x="32" y="252.5" width="350" height="205"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="205" id="qyA-e6-W2X"/>
                             </constraints>
@@ -87,12 +78,9 @@
                             </constraints>
                             <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdv-vY-m1E">
-                            <rect key="frame" x="314" y="135" width="92" height="31"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdv-vY-m1E">
+                            <rect key="frame" x="360" y="135.5" width="46" height="30"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="View More">
-                                <color key="baseForegroundColor" systemColor="linkColor"/>
-                            </buttonConfiguration>
                             <connections>
                                 <action selector="viewMoreButton:" destination="-1" eventType="touchUpInside" id="RIf-4D-qRJ"/>
                             </connections>
@@ -109,35 +97,24 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDE-pt-e55">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDE-pt-e55">
                             <rect key="frame" x="16" y="714" width="382" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="qBg-sJ-aWp"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Logout">
-                                <backgroundConfiguration key="background" cornerRadius="25">
-                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </backgroundConfiguration>
-                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="33"/>
-                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
                             <connections>
                                 <action selector="logOutButton:" destination="-1" eventType="touchUpInside" id="Tez-ve-Xsb"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSk-YH-gqJ">
-                            <rect key="frame" x="353" y="16" width="45" height="31"/>
-                            <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system">
-                                <backgroundConfiguration key="background" cornerRadius="25"/>
-                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
+                            <rect key="frame" x="368" y="16" width="30" height="34"/>
                             <connections>
                                 <action selector="navigateToSettings:" destination="-1" eventType="touchUpInside" id="O29-eu-ddY"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="FeZ-To-x6Q" firstAttribute="top" secondItem="MGN-vZ-2bL" secondAttribute="bottom" constant="24" id="4VI-C0-9jb"/>
                         <constraint firstItem="FeZ-To-x6Q" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="8" id="4so-XS-wh8"/>
@@ -162,8 +139,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="rQU-yR-PBI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="130" id="5Xw-vg-4gZ"/>
                 <constraint firstItem="l0l-5g-f8S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9LB-Y0-gPT"/>
@@ -174,6 +150,7 @@
                 <constraint firstAttribute="trailing" secondItem="rQU-yR-PBI" secondAttribute="trailing" id="ho6-lX-EwT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="l0l-5g-f8S" secondAttribute="bottom" id="xHf-pr-h1C"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
         </view>
     </objects>

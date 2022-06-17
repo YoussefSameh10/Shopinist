@@ -17,9 +17,10 @@ class RegisterRouter: RegisterRouterProtocol {
     
     func navigateToLogin() {
         let loginVC = LoginViewController(nibName: "LoginViewController")
-        viewController?.navigationController?.popViewController(animated: true)
-        
-        viewController?.navigationController?.pushViewController(loginVC, animated: true)
+        guard var viewControllers = viewController?.navigationController?.viewControllers else { return }
+        _ = viewControllers.popLast()
+        viewControllers.append(loginVC)
+        viewController?.navigationController?.setViewControllers(viewControllers, animated: true)
     }
     
     

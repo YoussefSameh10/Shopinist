@@ -153,6 +153,9 @@ class RegisterViewController: UIViewController {
     @IBAction func navigateToLogin(_ sender: Any) {
         router?.navigateToLogin()
     }
+    @IBAction func continueAsGuest(_ sender: Any) {
+        router?.navigateToHome()
+    }
     
     @IBAction func textFieldDidChange(_ sender: SkyFloatingLabelTextField) {
         validateTextFields()

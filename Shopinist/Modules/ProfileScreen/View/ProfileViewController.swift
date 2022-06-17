@@ -85,6 +85,7 @@ class ProfileViewController: UIViewController {
             parentView.isHidden = false
         }
         self.navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
         
     }
     

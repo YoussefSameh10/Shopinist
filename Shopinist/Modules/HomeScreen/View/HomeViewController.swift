@@ -53,6 +53,10 @@ class HomeViewController: UIViewController {
         isThreadOn = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     
     //MARK:- Actions
     @IBAction func redirectToAdvertisment(_ sender: UIButton) {
@@ -72,6 +76,8 @@ class HomeViewController: UIViewController {
     //MARK:- Functions
     private func initTabBarController(){
         
+        
+        tabBarController?.tabBar.isHidden = false
         tabBarController?.tabBar.tintColor = UIColor.black
         tabBarController?.tabBar.items?[0].title = "Home"
         tabBarController?.tabBar.items?[1].title = "Categories"
@@ -159,6 +165,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let brandName = self.viewModel?.getBrand(at: indexPath.row)
+        let mainCategoriesVC = MainCategoriesViewController(viewModel: MainCategoriesViewModel(brandName: brandName))
+        navigationController?.pushViewController(mainCategoriesVC, animated: true)
     }
 
     

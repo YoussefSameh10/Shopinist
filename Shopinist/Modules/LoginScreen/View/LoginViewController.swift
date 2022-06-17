@@ -133,6 +133,9 @@ class LoginViewController: UIViewController {
     @IBAction func navigateToRegister(_ sender: Any) {
         router.navigateToRegister()
     }
+    @IBAction func continueAsGuest(_ sender: Any) {
+        router.navigateToHome()
+    }
 }
 
 extension LoginViewController {

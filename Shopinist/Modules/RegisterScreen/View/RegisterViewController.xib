@@ -34,10 +34,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="694.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="OKb-IP-bnF">
-                                    <rect key="frame" x="16" y="0.0" width="398" height="580"/>
+                                    <rect key="frame" x="16" y="0.0" width="382" height="673"/>
                                     <subviews>
                                         <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mzk-Ih-SZb" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="8" y="0.0" width="382" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="46.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" textContentType="name"/>
@@ -72,7 +72,7 @@
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZPc-62-VAk" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="8" y="83.5" width="382" height="46"/>
+                                            <rect key="frame" x="0.0" y="83.5" width="382" height="46"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -107,7 +107,7 @@
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tSb-av-SrH" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="8" y="166.5" width="382" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="166.5" width="382" height="46.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -142,7 +142,7 @@
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WBZ-ri-HzV" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="8" y="250" width="382" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="250" width="382" height="46.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -177,7 +177,7 @@
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kT2-OX-erA" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                            <rect key="frame" x="8" y="333.5" width="382" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="333.5" width="382" height="46.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" textContentType="street-address"/>
@@ -212,7 +212,7 @@
                                             </connections>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-M5-FUI">
-                                            <rect key="frame" x="95.5" y="417" width="207" height="70"/>
+                                            <rect key="frame" x="87.5" y="417" width="207" height="70"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="c73-KX-eh7"/>
@@ -227,7 +227,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="thm-y3-HSm">
-                                            <rect key="frame" x="47" y="524" width="304" height="56"/>
+                                            <rect key="frame" x="39" y="524" width="304" height="56"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="ERt-Ob-s9Z"/>
@@ -238,6 +238,20 @@
                                             </state>
                                             <connections>
                                                 <action selector="navigateToLogin:" destination="-1" eventType="touchUpInside" id="vWM-mr-lRS"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="BBq-cH-BzQ">
+                                            <rect key="frame" x="101.5" y="617" width="179" height="56"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="56" id="wB7-KN-N6a"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                            <state key="normal" title="Continue as a guest">
+                                                <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="continueAsGuest:" destination="-1" eventType="touchUpInside" id="pwa-bR-wYy"/>
                                             </connections>
                                         </button>
                                     </subviews>
