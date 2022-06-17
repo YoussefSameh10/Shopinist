@@ -49,14 +49,15 @@ class RegisterViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideNavBar()
+        hideBars()
         setupButtons()
         listenForResponse()
     }
     
     // MARK: - Methods
-    private func hideNavBar() {
+    private func hideBars() {
         navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
     }
     
     
