@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import NVActivityIndicatorView
 import Combine
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     // MARK: -Variables
     private var viewModel: LoginViewModelProtocol!

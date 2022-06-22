@@ -13,7 +13,7 @@ import RESegmentedControl
 import NVActivityIndicatorView
 import Lottie
 
-class CategoriesViewController: UIViewController{
+class CategoriesViewController: BaseViewController{
     
     
     //MARK: -Variables

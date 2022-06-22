@@ -51,10 +51,12 @@ class HomeViewController: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         isThreadOn = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         configureUI()
     }

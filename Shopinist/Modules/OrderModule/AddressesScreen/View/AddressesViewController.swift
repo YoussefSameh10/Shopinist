@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-class AddressesViewController: UIViewController {
+class AddressesViewController: BaseViewController {
 
     var addressesViewModel: AddressesViewModelProtocol!
     var router: AddressesRouterProtocol!
@@ -43,6 +43,7 @@ class AddressesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.title = "Delivery Address"
         navigationController?.navigationBar.isHidden = false
     }
