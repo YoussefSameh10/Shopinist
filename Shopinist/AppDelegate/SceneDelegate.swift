@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
+        NetworkReachability.monitorNetwork()
         //Three main tabs
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
 
@@ -30,15 +31,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController")
         
 
-        let cartVC = CartViewController(nibName: "CartViewController", bundle: nil)
+        let cartVC = CartViewController(nibName: "CartViewController", viewModel: CartViewModel(cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: (UIApplication.shared.delegate as! AppDelegate)))), router: CartRouter())
 
         let profileVC = ProfileViewController(nibName: "ProfileViewController", viewModel: ProfileViewModel(orderRepo: OrderRepo.getInstance(networkManager: NetworkManager.getInstance())), router: ProfileRouter())
         
         
         let tabBarController = UITabBarController()
-        
-        let checkoutVC = CheckoutViewController()
-        
+                
         let navController = UINavigationController(rootViewController: tabBarController)
         let catNavC = UINavigationController(rootViewController: categoriesVC)
         let profileNavcontroller = UINavigationController(rootViewController: profileVC)

@@ -7,48 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AF306756-57E3-4EAE-9987-2B4CB70114B8"
+            uuid = "3D3C51EB-7ABB-4D74-A7A3-DD78387B7F8D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/CheckoutScreen/ViewModel/CheckoutViewModel.swift"
+            filePath = "Shopinist/Modules/ProductDetailsScreen/View/ProductDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "postOrder()"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "AddToCartButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D0353057-04F1-4E13-99CD-F9BA60D9EE8B"
+            uuid = "AA9D8B94-A175-4D4B-808E-2D48AB14FB03"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/CheckoutScreen/ViewModel/CheckoutViewModel.swift"
+            filePath = "Shopinist/Model/Services/NetworkServices/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "postOrder()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "postRequest(fromEndpoint:httpBody:httpMethod:ofType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8B747EAB-4E14-40FE-A305-B65312ACACC2"
+            uuid = "12AE6FC4-C951-4557-B37D-AC07A64029AE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/CheckoutScreen/ViewModel/CheckoutViewModel.swift"
+            filePath = "Shopinist/Model/Services/NetworkServices/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "postOrder()"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "postRequest(fromEndpoint:httpBody:httpMethod:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "72D99764-28D6-48F7-AD06-A199D140B0E5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shopinist/Model/Services/NetworkServices/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "postRequest(fromEndpoint:httpBody:httpMethod:ofType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

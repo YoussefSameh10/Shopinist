@@ -7,48 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "945963A6-11B1-4392-B1B8-943877884498"
-            shouldBeEnabled = "Yes"
+            uuid = "ABF5E002-E8F7-40B3-B85B-D5215A6CD95D"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Model/Services/NetworkServices/NetworkManager.swift"
+            filePath = "Shopinist/Modules/ProductDetailsScreen/View/ProductDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "postRequest(fromEndpoint:httpBody:httpMethod:ofType:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "setUIDesigns()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "18FEF5BF-2293-4F9E-94B9-693413FF10E4"
-            shouldBeEnabled = "Yes"
+            uuid = "3D4EAB73-25B3-4947-96F7-C96CF34EE6C2"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopinist/Model/AddressRepo/AddressRepo.swift"
+            filePath = "Shopinist/Modules/ProductDetailsScreen/View/ProductDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "updateExistingAddress(address:customerID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "45D6DCE2-3B0C-4FA2-AF57-E52322340B08"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shopinist/Modules/SettingsScreen/View/SettingsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "setUIDesigns()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -14,6 +14,7 @@
                 <outlet property="favouritesTableView" destination="omf-z6-z4L" id="01J-Tt-hZz"/>
                 <outlet property="navigateToRegisterButton" destination="gIh-kp-0sY" id="4SH-1i-Bd3"/>
                 <outlet property="noFavouritesLabel" destination="9Wc-Cy-cXe" id="kDe-jI-0UK"/>
+                <outlet property="notFavouritesAnimationView" destination="sy8-OQ-jLn" id="j1b-ZR-OOs"/>
                 <outlet property="notLogedInLabel" destination="D3s-xa-cUJ" id="0wS-ZB-zNO"/>
                 <outlet property="parentView" destination="Ypf-dE-5ng" id="1zN-37-q0R"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,19 +26,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data is Available!                    Please Login To View Your Favourite Products" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3s-xa-cUJ">
-                    <rect key="frame" x="16" y="244" width="382" height="115"/>
+                    <rect key="frame" x="16" y="114" width="382" height="115"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Some Products In Favourites" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wc-Cy-cXe">
-                    <rect key="frame" x="24" y="403" width="366" height="76.5"/>
+                    <rect key="frame" x="24" y="124" width="366" height="76.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIh-kp-0sY">
-                    <rect key="frame" x="16" y="509" width="382" height="80"/>
+                    <rect key="frame" x="16" y="510" width="382" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="Nh8-lj-bJO"/>
                     </constraints>
@@ -52,6 +53,16 @@
                         <action selector="logInButton:" destination="-1" eventType="touchUpInside" id="Wdh-r9-Bob"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sy8-OQ-jLn" customClass="AnimationView" customModule="Lottie">
+                    <rect key="frame" x="32" y="286" width="350" height="200"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="0FH-lq-A1w"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="not-found"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ypf-dE-5ng">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
@@ -80,20 +91,23 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="gIh-kp-0sY" firstAttribute="top" secondItem="sy8-OQ-jLn" secondAttribute="bottom" constant="24" id="0is-g1-4f3"/>
                 <constraint firstItem="D3s-xa-cUJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4ag-0q-ucj"/>
+                <constraint firstItem="sy8-OQ-jLn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="9GN-Hv-ybm"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9Wc-Cy-cXe" secondAttribute="trailing" constant="24" id="BE6-tr-Qxa"/>
                 <constraint firstItem="Ypf-dE-5ng" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Hec-Vo-BPc"/>
-                <constraint firstItem="gIh-kp-0sY" firstAttribute="top" secondItem="D3s-xa-cUJ" secondAttribute="bottom" constant="150" id="Pop-2W-Fnl"/>
                 <constraint firstItem="9Wc-Cy-cXe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="T3C-Wz-YWP"/>
                 <constraint firstAttribute="bottom" secondItem="Ypf-dE-5ng" secondAttribute="bottom" id="UBy-e8-UCs"/>
                 <constraint firstItem="D3s-xa-cUJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="UhG-Nw-bZ9"/>
                 <constraint firstItem="Ypf-dE-5ng" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Xln-Vh-aQc"/>
                 <constraint firstItem="gIh-kp-0sY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bgL-c2-Sos"/>
-                <constraint firstItem="9Wc-Cy-cXe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="359" id="ckQ-wk-PKq"/>
+                <constraint firstItem="9Wc-Cy-cXe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="80" id="ckQ-wk-PKq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gIh-kp-0sY" secondAttribute="trailing" constant="16" id="fe2-ay-hKC"/>
-                <constraint firstItem="D3s-xa-cUJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="gBv-p1-qrk"/>
+                <constraint firstItem="D3s-xa-cUJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="70" id="gBv-p1-qrk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sy8-OQ-jLn" secondAttribute="trailing" constant="32" id="gfN-bJ-jbJ"/>
                 <constraint firstItem="gIh-kp-0sY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rjf-8t-BSy"/>
                 <constraint firstAttribute="trailing" secondItem="D3s-xa-cUJ" secondAttribute="trailing" constant="16" id="uIt-mm-Opv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gIh-kp-0sY" secondAttribute="bottom" constant="272" id="yYN-wJ-AEB"/>
                 <constraint firstItem="Ypf-dE-5ng" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zjK-0M-Hjr"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="96.428571428571431"/>

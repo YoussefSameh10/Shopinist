@@ -9,21 +9,38 @@
 import UIKit
 import Combine
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     //MARK:- Outlets
     @IBOutlet weak var adBtn: UIButton!
     @IBOutlet weak var brandsCV: UICollectionView!
     @IBOutlet weak var adPageControl: UIPageControl!
+    @IBOutlet weak var helloLabel: UILabel!
     
     //MARK:- Variables
     private var isThreadOn = true
     private var pageIndex : Int = -1
-    private var viewModel : HomeViewModel?
+    private var viewModel : HomeViewModelProtocol?
     private var cancellables : Set<AnyCancellable> = []
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
     
     //MARK:- LifeCycle
+    /*
+    init(
+            nibName: String? = "HomeViewController",
+        viewModel: HomeViewModelProtocol? = HomeViewModel(productsRepo: ),
+            router : CartRouterProtocol? = CartRouter()
+        ) {
+        super.init(nibName: nibName, bundle: nil)
+        self.viewModel = viewModel
+        self.router = router
+        self.router?.viewController = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         isThreadOn = true
@@ -36,6 +53,12 @@ class HomeViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         isThreadOn = false
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        configureUI()
+    }
+    
     
     //MARK:- Actions
     @IBAction func redirectToAdvertisment(_ sender: UIButton) {
@@ -51,9 +74,12 @@ class HomeViewController: UIViewController {
         
     }
         
+    
     //MARK:- Functions
     private func initTabBarController(){
         
+        
+        tabBarController?.tabBar.isHidden = false
         tabBarController?.tabBar.tintColor = UIColor.black
         tabBarController?.tabBar.items?[0].title = "Home"
         tabBarController?.tabBar.items?[1].title = "Categories"
@@ -92,12 +118,20 @@ class HomeViewController: UIViewController {
         adBtn.layer.cornerRadius = 25
         adBtn.layer.masksToBounds = true
         adBtn.imageView?.contentMode = .scaleToFill
-        
-        
         initCollectionView(brandsCV, height: Float(brandsCV.bounds.height / 3), width: Float(UIScreen.main.bounds.width / 2 - 24), radius: 25, spacing:4, isHorizontal: false)
         
         initTabBarController()
         
+    }
+    
+    private func configureUI(){
+        let userDefaults = UserDefaults.standard
+        var helloStr = "Hello Guest,"
+        if let username = userDefaults.value(forKey: NAME) as? String {
+            helloStr = "Hello \(String(describing: username)),"
+            print("The condition is true !!")
+        }
+        helloLabel.text = helloStr
     }
     
     private func initCollectionView(_ collectionView : UICollectionView, height: Float, width : Float, radius : Float, spacing : Float, isHorizontal : Bool){
@@ -126,7 +160,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setUpBinding(){
-        viewModel?.$brands.sink { [weak self] (brand) in
+        viewModel?.brands.sink { [weak self] (brand) in
             self?.brandsCV.reloadData()
         }.store(in: &cancellables)
     }
@@ -135,14 +169,21 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = self.viewModel?.brands?.count ?? 0
+        let count = self.viewModel!.getBrandsCount()
         return count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let brandName = self.viewModel?.getBrand(at: indexPath.row)
+        let mainCategoriesVC = MainCategoriesViewController(viewModel: MainCategoriesViewModel(brandName: brandName))
+        navigationController?.pushViewController(mainCategoriesVC, animated: true)
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.register(UINib(nibName: "BrandsCell", bundle: nil), forCellWithReuseIdentifier: "BrandsCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCell
-        cell.updateImage(name: self.viewModel?.brands?[indexPath.row] ?? "adidas")
+        cell.updateImage(name: self.viewModel!.getBrand(at: indexPath.row))
         return cell
     }
 }

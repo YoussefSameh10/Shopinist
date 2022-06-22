@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-let BASE_URL = "https://5d028b96729c6d9493e99c6962b8193b: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@MAD-SV20221.myshopify.com"
+let BASE_URL = "https://95b83bddd1008b211ae15f1779d3ab6e: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@mad42-sv-final.myshopify.com"
 
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height

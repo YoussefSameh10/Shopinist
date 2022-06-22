@@ -11,4 +11,8 @@ import Foundation
 
 struct PostAddress : Codable {
     var address : Address?
+    
+    enum CodingKeys: String, CodingKey {
+        case address = "customer_address"
+    }
 }
