@@ -9,9 +9,11 @@
 import Foundation
 
 class CheckoutRouter: CheckoutRouterProtocol {
+    
     var viewController: CheckoutViewController?
     
-    func navigateToHome() {
-        
+    func navigateToOrderCompletedScreen() {
+        let completedOrderVC = CompletedOrderViewController()
+        viewController?.navigationController?.pushViewController(completedOrderVC, animated: true)
     }
 }

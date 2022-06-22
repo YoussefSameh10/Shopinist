@@ -14,4 +14,5 @@ protocol CartItemsManagerProtocol{
     func remove(id : Int, size: String, color: String)
     func update(id: Int, size: String, color: String, count: Int)
     func deleteAll()
+    func deleteAll(email: String)
 }

@@ -19,6 +19,7 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     private var priceRulesRepo: PriceRulesRepoProtocol!
     private var ordersRepo: OrderRepoProtocol!
     private var customerRepo: CustomerRepoProtocol!
+    private var cartItemsRepo: CartItemsRepoProtocol!
     var order: Order?
     var address: Address?
     
@@ -30,16 +31,20 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     var validPriceRule: PriceRule?
     var priceAfterDiscount: Int?
     
+    @Published private var _isOrderPlaced: Bool?
+    var isOrderPlaced: Published<Bool?>.Publisher {$_isOrderPlaced}
+    
     init(
         priceRulesRepo: PriceRulesRepoProtocol = PriceRulesRepo.getInstance(),
         ordersRepo: OrderRepoProtocol = OrderRepo.getInstance(),
         customerRepo: CustomerRepoProtocol = CustomerRepo.getInstance(),
-        cartItemsManager: CartItemsManagerProtocol,
+        cartItemsRepo: CartItemsRepoProtocol,
         order: Order?
     ) {
         self.priceRulesRepo = priceRulesRepo
         self.ordersRepo = ordersRepo
         self.customerRepo = customerRepo
+        self.cartItemsRepo = cartItemsRepo
         self.order = order
         priceAfterDiscount = Formatter.getIntPrice(from: order?.totalPrice ?? "0.0")
     }
@@ -92,23 +97,17 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
     }
     
     func postOrder() {
-//        let items = [OrderItem(variantID: 41672049819820, quantity: 2, price: "50"), OrderItem(variantID: 41672049885356, quantity: 1, price: "70")]
-//        let ord = Order(customer: Customer(id: 6054746292396), orderItems: items)
         order?.subTotalPrice = String(describing: priceAfterDiscount!)
-        
-        print(order?.customer?.id)
-        print(order?.orderItems![0].variantID)
-        print(order?.orderItems![0].quantity)
-        print(order?.orderItems![0].price)
-        print(order?.subTotalPrice)
-        
         ordersRepo.createOrder(order: order!)
-            .sink(receiveCompletion: { (completion) in
+            .sink(receiveCompletion: { [weak self] (completion) in
             switch completion {
             case .finished:
                 print("Finished")
+                self?._isOrderPlaced = true
+                self?.cartItemsRepo.deleteAll(email: (self?.customerRepo.getCustomerFromUserDefaults()?.email)!)
             case .failure:
                 print("Failure")
+                self?._isOrderPlaced = false
             }
         }) { (response) in
             print(response.order)

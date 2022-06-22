@@ -55,6 +55,7 @@ class CheckoutViewController: UIViewController {
         initAddressLabel()
         initTextStrokeView()
         listenForChangesPriceRule()
+        listenForChangesInOrderPlacing()
     }
     
     private func showNavBar() {
@@ -108,6 +109,22 @@ class CheckoutViewController: UIViewController {
         }.store(in: &cancellables)
     }
     
+    private func listenForChangesInOrderPlacing() {
+        viewModel.isOrderPlaced
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (isOrderPlaced) in
+            guard let isOrderPlaced = isOrderPlaced else {
+                return
+            }
+            if isOrderPlaced {
+                self?.router.navigateToOrderCompletedScreen()
+            }
+            else {
+                self?.showOrderFailedAlert()
+            }
+        }.store(in: &cancellables)
+    }
+    
     
     
     @IBAction func promoCodeDidChange(_ sender: Any) {
@@ -134,7 +151,7 @@ class CheckoutViewController: UIViewController {
         //drawWhiteButton(cashOnDeliveryButton)
     }
     @IBAction func placeOrder(_ sender: Any) {
-        showPlaceOrderAlert()
+        showPlaceOrderConfirmationAlert()
     }
 }
 
@@ -188,13 +205,22 @@ extension CheckoutViewController {
         disableButton(validatePromoCodeButton)
     }
     
-    private func showPlaceOrderAlert() {
+    private func showPlaceOrderConfirmationAlert() {
         let alert = UIAlertController(title: "Place Order", message: "Are you sure you want to place this order?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in self.viewModel.postOrder()}))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
+    
+    private func showOrderFailedAlert() {
+        let alert = UIAlertController(title: "Error", message: "An error occured! Please try again.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    
 }
+
 
 //MARK: - Extension Apple Pay
 extension CheckoutViewController :PKPaymentAuthorizationViewControllerDelegate{

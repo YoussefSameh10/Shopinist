@@ -232,6 +232,15 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        //let order = viewModel!.getOrder(index: index)
+        let order = viewModel?.getOrderAtIndex(retrievedIndex: index)
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+        
+        router?.navigateToOrderDetailsScreen(order: order!, index: index)
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100

@@ -122,6 +122,7 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         let orderDetailsVC = OrderDetailsViewController(viewModel: OrderDetailsViewModel(order: order!, index: index))
         // print("This is the order I am printing: \(order)")
         print("I am selecting cell #\(index + 1)")
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         self.navigationController?.pushViewController(orderDetailsVC, animated: true)
         self.navigationController?.navigationBar.isHidden = false
     }

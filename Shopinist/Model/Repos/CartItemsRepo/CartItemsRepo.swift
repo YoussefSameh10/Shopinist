@@ -40,5 +40,9 @@ class CartItemsRepo: CartItemsRepoProtocol {
         cartItemsManager.update(id: id, size: size, color: color, count: count)
     }
     
+    func deleteAll(email: String) {
+        cartItemsManager.deleteAll(email: email)
+    }
+    
     
 }
