@@ -27,13 +27,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created At: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeY-cd-WLb">
-                                <rect key="frame" x="8" y="48" width="329" height="24"/>
+                                <rect key="frame" x="8" y="48" width="111.5" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="i8w-YE-gYD">
-                                <rect key="frame" x="341" y="60" width="0.0" height="0.0"/>
+                                <rect key="frame" x="123.5" y="60" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -46,7 +46,6 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="i8w-YE-gYD" secondAttribute="trailing" constant="8" id="7KN-SK-jNg"/>
                             <constraint firstItem="i8w-YE-gYD" firstAttribute="leading" secondItem="PeY-cd-WLb" secondAttribute="trailing" constant="4" id="DQa-Jy-aCT"/>
                             <constraint firstItem="i8w-YE-gYD" firstAttribute="centerY" secondItem="PeY-cd-WLb" secondAttribute="centerY" id="O7y-LH-Pjl"/>
                             <constraint firstItem="PeY-cd-WLb" firstAttribute="leading" secondItem="9kF-2j-O0p" secondAttribute="leading" constant="8" id="Wza-mA-XLl"/>

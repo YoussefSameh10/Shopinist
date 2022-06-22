@@ -13,13 +13,18 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(displayNetworkAlert), name: Notification.Name.init(rawValue: "DisconnectedFromNetwork"), object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(hideNetworkAlert), name: Notification.Name.init(rawValue: "ConnectedToNetwork"), object: nil)
     }
 
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.init(rawValue: "DisconnectedFromNetwork"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.init(rawValue: "ConnectedToNetwork"), object: nil)
+    }
 
     @objc func hideNetworkAlert(){
         self.navigationController?.popViewController(animated: true)
