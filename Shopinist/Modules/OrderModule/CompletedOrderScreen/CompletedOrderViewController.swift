@@ -9,7 +9,7 @@
 import UIKit
 import Lottie
 
-class CompletedOrderViewController: UIViewController {
+class CompletedOrderViewController: BaseViewController {
 
     @IBOutlet weak var completedAnimationView: AnimationView!
     override func viewDidLoad() {

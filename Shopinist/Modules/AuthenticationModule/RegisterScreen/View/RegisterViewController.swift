@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import NVActivityIndicatorView
 import Combine
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseViewController {
     
     
     // MARK: - Variables
