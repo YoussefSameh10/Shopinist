@@ -193,6 +193,10 @@ class CartItemsManager : CartItemsManagerProtocol{
         print("Items deleted Successfully !!")
     }
     
+    func deleteAll(email: String) {
+        
+    }
+    
     private func convertProductToCartProduct(product: Product, size: String, color: String, variantId: Int, count: Int = 1) -> CartProduct{
         let cartProduct = CartProduct(entity: self.entity, insertInto: viewContext)
         

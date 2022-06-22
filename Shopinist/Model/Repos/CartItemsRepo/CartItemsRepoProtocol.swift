@@ -13,4 +13,5 @@ protocol CartItemsRepoProtocol {
     func add(cartItem : Product, size: String, color: String , variantID: Int)
     func remove(id : Int, size: String, color: String)
     func update(id: Int, size: String, color: String, count: Int)
+    func deleteAll(email: String)
 }

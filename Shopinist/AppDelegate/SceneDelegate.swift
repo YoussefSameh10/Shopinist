@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
+        NetworkReachability.monitorNetwork()
         //Three main tabs
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
 

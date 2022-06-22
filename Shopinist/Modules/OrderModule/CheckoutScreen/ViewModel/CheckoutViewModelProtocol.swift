@@ -17,6 +17,7 @@ protocol CheckoutViewModelProtocol {
     var priceAfterDiscount: Int? {get set}
     var order: Order? {get set}
     var address: Address? {get set}
+    var isOrderPlaced: Published<Bool?>.Publisher {get}
     
     func getOrderPrice() -> String
     func getOrderPriceAfterDiscount() -> String

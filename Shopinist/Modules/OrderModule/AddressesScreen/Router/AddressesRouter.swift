@@ -17,8 +17,10 @@ class AddressesRouter: AddressesRouterProtocol {
         order.shippingAddress = address
         let checkoutVC = CheckoutViewController(
             viewModel: CheckoutViewModel(
-                cartItemsManager: CartItemsManager.getInstance(
-                    appDelegate: UIApplication.shared.delegate as! AppDelegate
+                cartItemsRepo: CartItemsRepo.getInstance(cartItemsManager:
+                    CartItemsManager.getInstance(
+                        appDelegate: UIApplication.shared.delegate as! AppDelegate
+                    )
                 ),
                 order: order
             )

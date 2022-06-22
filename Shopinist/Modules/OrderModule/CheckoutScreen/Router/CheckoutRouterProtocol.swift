@@ -11,6 +11,6 @@ import Foundation
 protocol CheckoutRouterProtocol {
     var viewController: CheckoutViewController? {get set}
     
-    func navigateToHome()
+    func navigateToOrderCompletedScreen()
 }
 

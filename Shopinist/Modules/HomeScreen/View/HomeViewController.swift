@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     //MARK:- Outlets
     @IBOutlet weak var adBtn: UIButton!
