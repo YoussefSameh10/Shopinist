@@ -35,8 +35,9 @@ class CartItemsManager : CartItemsManagerProtocol{
     }
     
     func getAllItems() -> [CartProduct]? {
+        let customerEmail = customerRepo.getCustomerFromUserDefaults()?.email ?? ""
         let fetchRequest = NSFetchRequest<CartProduct>(entityName: "CartProduct")
-        
+        fetchRequest.predicate = NSPredicate(format: "email == %@", customerEmail)
         var cartProducts : [CartProduct]?
         do{
             cartProducts =  try viewContext.fetch(fetchRequest)
@@ -46,40 +47,6 @@ class CartItemsManager : CartItemsManagerProtocol{
         }
         return cartProducts
     }
-    
-//    func getItem(id : Int, size: String, color:String) -> CartProduct? {
-//
-//        let fetchRequest = NSFetchRequest<CartProduct>(entityName: "CartProduct")
-//
-//
-////        var predicates : [NSPredicate] = []
-////        predicates.append(NSPredicate(format: "id == %@", NSNumber(integerLiteral: id)))
-////        predicates.append(NSPredicate(format: "size == %@", size))
-////        predicates.append(NSPredicate(format: "color == %@", color))
-//
-//
-//        //let predicate1 = NSPredicate(format: "id == %@", NSNumber(integerLiteral: id))
-//        //let predicate2 = NSPredicate(format: "size == %@", size)
-//        let predicate3 = NSPredicate(format: "color == %@", color)
-//
-////        let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-//        let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate3])
-//        fetchRequest.predicate = compundPredicate
-//
-//        do{
-//            var returnedProducts = try viewContext.fetch(fetchRequest)
-//            if (returnedProducts.count > 0 ) {
-//                print("****** cartProduct from db \(returnedProducts[0].id)")
-//                print("****** id param \(id)")
-//                return returnedProducts[0]
-//            }
-//            return nil
-//        }
-//        catch let error{
-//            print(error.localizedDescription)
-//            return nil
-//        }
-//    }
     
     func getItem(id: Int, size: String, color:String) -> CartProduct? {
         print("========= getItem ============")
@@ -180,21 +147,29 @@ class CartItemsManager : CartItemsManagerProtocol{
     }
     
     func deleteAll() {
-        let products = getAllItems()
-        products?.forEach({
-            self.viewContext.delete($0)
-        })
-        do{
-            try self.viewContext.save()
+        guard let products : [CartProduct] = getAllItems() else{
+            return
         }
-        catch{
-            print("Items didn't delete successfully !!")
+        for product in products{
+            let id = Int(product.id)
+            let size = product.size ?? ""
+            let color = product.color ?? ""
+            
+            remove(id: id, size: size, color: color)
         }
-        print("Items deleted Successfully !!")
     }
     
     func deleteAll(email: String) {
-        
+        guard let products : [CartProduct] = getAllItems() else{
+            return
+        }
+        for product in products{
+            let id = Int(product.id)
+            let size = product.size ?? ""
+            let color = product.color ?? ""
+            
+            remove(id: id, size: size, color: color)
+        }
     }
     
     private func convertProductToCartProduct(product: Product, size: String, color: String, variantId: Int, count: Int = 1) -> CartProduct{
@@ -205,7 +180,6 @@ class CartItemsManager : CartItemsManagerProtocol{
         cartProduct.vendor = product.vendor
         cartProduct.email = customerRepo.getCustomerFromUserDefaults()?.email
         cartProduct.count = Int64(count)
-        //print("Product Images = \n\(product.images)")
         cartProduct.image = product.images?[0].src
         cartProduct.color = color
         cartProduct.size = size

@@ -43,19 +43,22 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isThreadOn = true
-        pageIndex = -1
         initViewModel()
-        initUI()
-        setUpBinding()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         isThreadOn = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        isThreadOn = true
+        pageIndex = -1
+        self.viewModel?.getBrands()
+        initUI()
+        setUpBinding()
         configureUI()
     }
     

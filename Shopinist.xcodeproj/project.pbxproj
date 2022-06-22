@@ -69,6 +69,7 @@
 		8AF7DFB928474F2900E7FADE /* FavouritesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF7DFB828474F2900E7FADE /* FavouritesViewModelProtocol.swift */; };
 		D413A5E8285221C000524797 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413A5E7285221C000524797 /* HomeViewModelProtocol.swift */; };
 		D413A5ED285221D400524797 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413A5EC285221D400524797 /* HomeViewModel.swift */; };
+		D4288ED92863CE1E009EB269 /* not_registered.json in Resources */ = {isa = PBXBuildFile; fileRef = D4288ED82863CE1E009EB269 /* not_registered.json */; };
 		D4634257284F5171007405A2 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4634256284F5171007405A2 /* OrderDetailsViewModel.swift */; };
 		D463425C284F5182007405A2 /* OrderDetailsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463425B284F5182007405A2 /* OrderDetailsViewModelProtocol.swift */; };
 		D46B6250285126CA00EFF8AC /* CartRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B624F285126CA00EFF8AC /* CartRouterProtocol.swift */; };
@@ -283,6 +284,7 @@
 		D32172CCDEBB31B6428F91C5 /* Pods-Shopinist-ShopinistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopinist-ShopinistUITests.release.xcconfig"; path = "Target Support Files/Pods-Shopinist-ShopinistUITests/Pods-Shopinist-ShopinistUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D413A5E7285221C000524797 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
 		D413A5EC285221D400524797 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D4288ED82863CE1E009EB269 /* not_registered.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = not_registered.json; sourceTree = "<group>"; };
 		D4634256284F5171007405A2 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		D463425B284F5182007405A2 /* OrderDetailsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModelProtocol.swift; sourceTree = "<group>"; };
 		D46B624F285126CA00EFF8AC /* CartRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRouterProtocol.swift; sourceTree = "<group>"; };
@@ -776,9 +778,17 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D4288ED42863C4E1009EB269 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		D4634264284F7A31007405A2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D4288ED82863CE1E009EB269 /* not_registered.json */,
 				E8DF15D3286382EF00DA88B0 /* no-connection.json */,
 				E8DF15C228635E7E00DA88B0 /* check.json */,
 				E8642757284D738300E89D5C /* not-found.json */,
@@ -812,13 +822,6 @@
 				D46B627428521FB900EFF8AC /* HomeRouterProtocol.swift */,
 			);
 			path = Router;
-			sourceTree = "<group>";
-		};
-		D4A28137285CF59600E85E59 /* OnBoarding */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OnBoarding;
 			sourceTree = "<group>";
 		};
 		D4D1E985284E99080071B183 /* OrderDetails */ = {
@@ -1152,8 +1155,8 @@
 		E883F3DA283C3C9D00C19953 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D4288ED42863C4E1009EB269 /* OnBoarding */,
 				E8DF15C828637FCB00DA88B0 /* NoNetworkScreen */,
-				D4A28137285CF59600E85E59 /* OnBoarding */,
 				E8DF15C5286379E800DA88B0 /* AuthenticationModule */,
 				E8DF15C628637A2200DA88B0 /* ProfileModule */,
 				E8DF15C728637A7A00DA88B0 /* ProductsModule */,
@@ -1648,6 +1651,7 @@
 				E80F469B28401387000D4826 /* CategoriesCollectionViewCell.xib in Resources */,
 				E8642758284D738300E89D5C /* not-found.json in Resources */,
 				8A15D9A02846716D006B9C96 /* FavouritesViewController.xib in Resources */,
+				D4288ED92863CE1E009EB269 /* not_registered.json in Resources */,
 				E8DF15D4286382EF00DA88B0 /* no-connection.json in Resources */,
 				8A11C83D283FAC5F0091594D /* ProductDetailsViewController.xib in Resources */,
 				E8DF15D22863804600DA88B0 /* NoNetworkViewController.xib in Resources */,

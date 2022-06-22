@@ -14,6 +14,8 @@
                 <outlet property="cartTV" destination="IWO-8N-EUz" id="zPi-QH-jZw"/>
                 <outlet property="checkoutBtn" destination="nKL-RH-JwO" id="REw-qz-IOe"/>
                 <outlet property="dataNotFoundAnim" destination="Slr-VN-uRi" id="RIX-zB-N0W"/>
+                <outlet property="notRegisteredAnim" destination="K70-XX-Eu9" id="0XF-jV-Qu2"/>
+                <outlet property="notRegisteredHolder" destination="MQz-tp-1Ot" id="0ns-cC-rdn"/>
                 <outlet property="totalPrice" destination="jdk-hw-ZIu" id="Za9-zT-oya"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -60,11 +62,42 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="no_data_found"/>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQz-tp-1Ot">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K70-XX-Eu9" customClass="AnimationView" customModule="Lottie">
+                            <rect key="frame" x="16" y="16" width="382" height="613.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="not_registered"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Log-In or Register to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Yw-Un-grp">
+                            <rect key="frame" x="0.0" y="629.5" width="414" height="188.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="9Yw-Un-grp" firstAttribute="leading" secondItem="MQz-tp-1Ot" secondAttribute="leading" id="2qJ-yN-qwN"/>
+                        <constraint firstItem="K70-XX-Eu9" firstAttribute="leading" secondItem="MQz-tp-1Ot" secondAttribute="leading" constant="16" id="4Aq-xb-2Bw"/>
+                        <constraint firstItem="K70-XX-Eu9" firstAttribute="top" secondItem="MQz-tp-1Ot" secondAttribute="top" constant="16" id="4NV-rE-uC2"/>
+                        <constraint firstItem="9Yw-Un-grp" firstAttribute="top" secondItem="K70-XX-Eu9" secondAttribute="bottom" id="8Df-vE-6YP"/>
+                        <constraint firstItem="K70-XX-Eu9" firstAttribute="height" secondItem="MQz-tp-1Ot" secondAttribute="height" multiplier="0.75" id="LaH-f1-j4T"/>
+                        <constraint firstAttribute="trailing" secondItem="9Yw-Un-grp" secondAttribute="trailing" id="QBe-oa-7Mp"/>
+                        <constraint firstAttribute="bottom" secondItem="9Yw-Un-grp" secondAttribute="bottom" id="hi4-Dx-Cn0"/>
+                        <constraint firstAttribute="trailing" secondItem="K70-XX-Eu9" secondAttribute="trailing" constant="16" id="rGb-Lr-pZ8"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="MQz-tp-1Ot" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="4Vl-WC-O57"/>
                 <constraint firstItem="bDa-ah-Oxm" firstAttribute="top" secondItem="IWO-8N-EUz" secondAttribute="bottom" constant="32" id="4q8-QD-8Bo"/>
+                <constraint firstItem="MQz-tp-1Ot" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Eca-Xn-4vZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nKL-RH-JwO" secondAttribute="trailing" constant="24" id="GYZ-SP-WRz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Slr-VN-uRi" secondAttribute="trailing" constant="8" id="HQ9-IH-qS2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jdk-hw-ZIu" secondAttribute="trailing" constant="24" id="I2F-63-mku"/>
@@ -74,6 +107,8 @@
                 <constraint firstItem="nKL-RH-JwO" firstAttribute="top" secondItem="bDa-ah-Oxm" secondAttribute="bottom" constant="32" id="Pkn-sb-elE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nKL-RH-JwO" secondAttribute="bottom" constant="16" id="TVX-Es-vM3"/>
                 <constraint firstItem="nKL-RH-JwO" firstAttribute="top" secondItem="jdk-hw-ZIu" secondAttribute="bottom" constant="32" id="UyV-6g-Wev"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MQz-tp-1Ot" secondAttribute="bottom" id="WGA-eC-8ZY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MQz-tp-1Ot" secondAttribute="trailing" id="ZqH-eB-I64"/>
                 <constraint firstItem="Slr-VN-uRi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="jP1-uO-TQS"/>
                 <constraint firstItem="Slr-VN-uRi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="n3i-X4-5ep"/>
                 <constraint firstItem="nKL-RH-JwO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="oz7-dK-QUZ"/>
@@ -90,6 +125,7 @@
         </button>
     </objects>
     <designables>
+        <designable name="K70-XX-Eu9"/>
         <designable name="Slr-VN-uRi"/>
     </designables>
     <resources>

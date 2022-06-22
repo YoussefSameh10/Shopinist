@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderDetailsViewController: UIViewController {
+class OrderDetailsViewController: BaseViewController {
     
     //MARK:- Outlets
     @IBOutlet weak var orderNo: UILabel!
