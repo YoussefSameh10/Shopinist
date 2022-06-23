@@ -118,6 +118,14 @@ class Formatter {
         let dollarPrice = priceEGP/18
         return "\(dollarPrice)"
     }
+    
+    static func dataFormatter( date : String){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        let date: NSDate? = dateFormatter.date(from: date) as NSDate?
+        
+    }
 
     
     

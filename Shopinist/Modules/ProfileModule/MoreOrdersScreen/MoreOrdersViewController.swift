@@ -11,7 +11,7 @@ import Combine
 import NVActivityIndicatorView
 
 
-class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource {
+class MoreOrdersViewController: BaseViewController,  UITableViewDelegate, UITableViewDataSource {
     
     
     
@@ -48,6 +48,16 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         viewModel?.getCustomerOrdersList()
         sinkOnCustomerOrders()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.getCustomerOrdersList()
+        sinkOnCustomerOrders()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
 
     
@@ -104,7 +114,9 @@ class MoreOrdersViewController: UIViewController,  UITableViewDelegate, UITableV
         }else{
             cell.orderPrice = "\(viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.totalPriceUsd! ?? "") USD"
         }
-        cell.orderCreatedAt = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt ?? "No Date"
+        let date = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt?.split(separator: "T")
+        let dateStr = String(date?[0] ?? "No Date ")
+        cell.orderCreatedAt = dateStr
         
         return cell
     }

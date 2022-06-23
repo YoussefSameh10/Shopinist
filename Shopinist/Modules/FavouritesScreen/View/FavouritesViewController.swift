@@ -9,7 +9,7 @@
 import UIKit
 import Lottie
 
-class FavouritesViewController: UIViewController {
+class FavouritesViewController: BaseViewController {
     
     
     // MARK: - Outlets
@@ -53,6 +53,7 @@ class FavouritesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         if viewModel.getCustomerFromUserDefaults() == nil {
             showNotLogedInScreen()
@@ -60,6 +61,10 @@ class FavouritesViewController: UIViewController {
             showNoFavouritesScreen()
         }
         favouritesTableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     // MARK: - Fucntions

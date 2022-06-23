@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import Kingfisher
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: BaseViewController {
     
     // MARK: - Vairables
     
@@ -66,6 +66,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUIDesigns()
         print("*****\(viewModel.isInFavourite())")
         if(viewModel.isInFavourite()){
@@ -73,6 +74,10 @@ class ProductDetailsViewController: UIViewController {
         }else{
             favouriteButtonImage.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     
