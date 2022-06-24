@@ -184,7 +184,7 @@ class CartItemsManager : CartItemsManagerProtocol{
         cartProduct.color = color
         cartProduct.size = size
         cartProduct.details = product.description!
-        cartProduct.tags = product.tags!
+        cartProduct.tags = product.tags ?? ""
         cartProduct.price = product.variants![0].price!
         cartProduct.variantId = Int64(variantId)
         return cartProduct
