@@ -20,6 +20,7 @@ let EMAIL = "email"
 let NAME = "name"
 let PASSWORD = "password"
 let CURRENCY = "currency"
+let FIRSTTIME = "ISFIRSTTIME"
 
 enum SelectedCurrency : String{
     case USD

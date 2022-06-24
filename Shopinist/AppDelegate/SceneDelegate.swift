@@ -35,12 +35,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let profileVC = ProfileViewController(nibName: "ProfileViewController", viewModel: ProfileViewModel(orderRepo: OrderRepo.getInstance(networkManager: NetworkManager.getInstance())), router: ProfileRouter())
         
+        let launchVC = LaunchViewController()
         
         let tabBarController = UITabBarController()
                 
-        let navController = UINavigationController(rootViewController: tabBarController)
+        let navController = UINavigationController(rootViewController: launchVC)
         let catNavC = UINavigationController(rootViewController: categoriesVC)
         let profileNavcontroller = UINavigationController(rootViewController: profileVC)
+        
+        
+        
         tabBarController.addChild(homeVC)
         tabBarController.addChild(catNavC)
         tabBarController.addChild(cartVC)
