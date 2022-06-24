@@ -62,6 +62,8 @@ class SettingsViewController: BaseViewController {
         viewModel?.getCustomerAddresses()
         sinkOnAddressObserver()
         setupButtonsInWillAppear()
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -179,9 +181,9 @@ class SettingsViewController: BaseViewController {
     func disableSaveButton(){
         saveButton.isEnabled = false
         saveButton.backgroundColor = .white
-        saveButton.setTitleColor(.black, for: .normal)
+        saveButton.setTitleColor(.lightGray, for: .normal)
         saveButton.layer.cornerRadius = 25
-        saveButton.layer.borderColor = UIColor.black.cgColor
+        saveButton.layer.borderColor = UIColor.lightGray.cgColor
         saveButton.layer.borderWidth = 1
     }
     

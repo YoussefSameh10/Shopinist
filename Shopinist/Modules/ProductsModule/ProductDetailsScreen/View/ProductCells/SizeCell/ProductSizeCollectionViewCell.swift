@@ -13,9 +13,14 @@ class ProductSizeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var productSizeLabel: UILabel!
     
-    var productSize : String  = "" {
+    var productSize : String = "" {
         didSet {
             productSizeLabel.text = productSize
+        }
+    }
+    var textColor: UIColor = .black {
+        didSet {
+            productSizeLabel.textColor = textColor
         }
     }
     
@@ -23,7 +28,7 @@ class ProductSizeCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.lightGray
+        backgroundView.backgroundColor = UIColor.black
         selectedBackgroundView = backgroundView
     }
 

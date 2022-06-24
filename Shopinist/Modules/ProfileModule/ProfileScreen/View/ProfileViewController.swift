@@ -22,6 +22,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var viewMoreButton: UIButton!
     @IBOutlet weak var noOrderAnimationView: AnimationView!
     
+    @IBOutlet weak var notLoggedInAnimationView: AnimationView!
     // MARK: - Variables
     
     var router : ProfileRouterProtocol?
@@ -53,8 +54,8 @@ class ProfileViewController: BaseViewController {
         startActivityIndicator()
         //ProfileOrdersTableView.isHidden = true
         noOrderAnimationView.isHidden = true
-        setUI()
-        setWelcomeLabel()
+        //setUI()
+        //setWelcomeLabel()
         setDelegateAndDataSourceMethods()
         
         sinkOnCustomerOrders()
@@ -86,6 +87,7 @@ class ProfileViewController: BaseViewController {
         if viewModel?.getCustomerFromUserDefault() == nil {
             parentView.isHidden = true
             stopActivityIndicator()
+            startNotLoggedInAnimation()
         }else{
             parentView.isHidden = false
         }
@@ -120,11 +122,18 @@ class ProfileViewController: BaseViewController {
         indicator.stopAnimating()
     }
     
-    func startAnimation(){
+    func startNoOrdersAnimation(){
         noOrderAnimationView.contentMode = .scaleAspectFit
         noOrderAnimationView.loopMode = .loop
         noOrderAnimationView.animationSpeed = 0.5
         noOrderAnimationView.play()
+    }
+    
+    func startNotLoggedInAnimation(){
+        notLoggedInAnimationView.contentMode = .scaleAspectFit
+        notLoggedInAnimationView.loopMode = .loop
+        notLoggedInAnimationView.animationSpeed = 0.5
+        notLoggedInAnimationView.play()
     }
         
     func sinkOnCustomerOrders(){
@@ -201,7 +210,7 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
             noOrderAnimationView.isHidden = false
             ProfileOrdersTableView.isHidden = true
             viewMoreButton.isHidden = true
-            startAnimation()
+            startNoOrdersAnimation()
             stopActivityIndicator()
             return 0
         }else if viewModel?.getOrdersCount() == 1{

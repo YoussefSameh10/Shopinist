@@ -32,16 +32,20 @@ class CategoriesViewController: BaseViewController{
     }
     
     var indicator: NVActivityIndicatorView!
+    var searchButton: UIBarButtonItem!
+    var filterButton: UIBarButtonItem!
+    
+    private var isFirstTime = true
     
     //MARK: -Outlets
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet private weak var mainSegmentedControl: RESegmentedControl!
     @IBOutlet weak var notFoundAnimationView: AnimationView!
     @IBOutlet weak var notFoundLabel: UILabel!
     
     //MARK: -Initializers
     init(
-        nibName: String?,
+        nibName: String = "CategoriesViewController",
         viewModel: CategoriesViewModelProtocol,
         router: CategoriesRouterProtocol = CategoriesRouter()
     ) {
@@ -61,8 +65,18 @@ class CategoriesViewController: BaseViewController{
         initView()
     }
     
+    
     override func viewWillLayoutSubviews() {
-        hideNavBar()
+        showNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     //MARK: -Methods
@@ -75,13 +89,13 @@ class CategoriesViewController: BaseViewController{
         setupSearchController()
     }
     
-    private func hideNavBar() {
+    private func showNavigationBar() {
         navigationController?.navigationBar.isHidden = false
     }
     
     private func showNavBar() {
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(showSearchBar))
-        let filterButton = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(navigateToFilterScreen))
+        searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(showSearchBar))
+        filterButton = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(navigateToFilterScreen))
         navigationItem.rightBarButtonItems = [searchButton, filterButton]
         navigationController?.navigationBar.isHidden = false
         var title = ""
@@ -166,27 +180,32 @@ class CategoriesViewController: BaseViewController{
     
     //MARK: -Actions
     @IBAction func categoryDidChange(_ sender: Any) {
-        if mainSegmentedControl.selectedSegmentIndex == 0 {
-            viewModel.subCategory = nil
+        if !isFirstTime {
+        
+            if mainSegmentedControl.selectedSegmentIndex == 0 {
+                viewModel.subCategory = nil
+            }
+            else if mainSegmentedControl.selectedSegmentIndex == 1 {
+                viewModel.subCategory = .shoes
+            }
+            else if mainSegmentedControl.selectedSegmentIndex == 2 {
+                viewModel.subCategory = .tShirts
+            }
+            else {
+                viewModel.subCategory = .accessories
+            }
+            searchController.searchBar.text = ""
+            filterProductsForSearchText(searchController.searchBar.text ?? "")
+            if viewModel.isProductsListEmpty() {
+                showEmptyScreen()
+            }
+            else {
+                showPopulatedScreen()
+                collectionView.reloadData()
+            }
         }
-        else if mainSegmentedControl.selectedSegmentIndex == 1 {
-            viewModel.subCategory = .shoes
-        }
-        else if mainSegmentedControl.selectedSegmentIndex == 2 {
-            viewModel.subCategory = .tShirts
-        }
-        else {
-            viewModel.subCategory = .accessories
-        }
-        searchController.searchBar.text = ""
-        filterProductsForSearchText(searchController.searchBar.text ?? "")
-        if viewModel.isProductsListEmpty() {
-            showEmptyScreen()
-        }
-        else {
-            showPopulatedScreen()
-            collectionView.reloadData()
-        }
+        
+        isFirstTime = false
     }
     
     

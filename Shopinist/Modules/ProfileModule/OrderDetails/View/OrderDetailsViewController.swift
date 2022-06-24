@@ -26,6 +26,11 @@ class OrderDetailsViewController: BaseViewController {
         initTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     init(
         nibName: String? = "OrderDetailsViewController",
         viewModel: OrderDetailsViewModelProtocol

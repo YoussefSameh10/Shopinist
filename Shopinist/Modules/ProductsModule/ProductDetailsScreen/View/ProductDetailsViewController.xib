@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
+                <outlet property="addToCartButton" destination="fwY-9O-3Br" id="LGi-wT-lg4"/>
                 <outlet property="favouriteButtonImage" destination="LcS-eW-qEZ" id="BwE-EZ-yO8"/>
                 <outlet property="productColorButton" destination="5Rv-5M-cau" id="Hgz-XP-LHm"/>
                 <outlet property="productDescriptionTextView" destination="mdE-wj-HXA" id="4Ue-Rz-VhL"/>
@@ -103,17 +104,17 @@
                                             </collectionViewFlowLayout>
                                         </collectionView>
                                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rv-5M-cau">
-                                            <rect key="frame" x="133" y="412" width="64" height="40"/>
+                                            <rect key="frame" x="117" y="412" width="90" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="Fet-eM-6Lv"/>
-                                                <constraint firstAttribute="width" constant="64" id="XpY-oc-fjo"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="XpY-oc-fjo"/>
                                             </constraints>
                                             <state key="normal" title="Button">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="800 EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04d-vP-qmG">
-                                            <rect key="frame" x="286.5" y="417" width="103.5" height="30.5"/>
+                                            <rect key="frame" x="294.5" y="417" width="103.5" height="30.5"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -184,7 +185,7 @@
                                         <constraint firstItem="mdE-wj-HXA" firstAttribute="leading" secondItem="e9B-vP-v11" secondAttribute="leading" constant="16" id="VG3-oP-sQB"/>
                                         <constraint firstItem="kUO-rf-iVk" firstAttribute="top" secondItem="CjD-cA-cao" secondAttribute="bottom" constant="24" id="Vvq-Oj-EP3"/>
                                         <constraint firstItem="CjD-cA-cao" firstAttribute="leading" secondItem="e9B-vP-v11" secondAttribute="leading" constant="32" id="Y2l-th-usB"/>
-                                        <constraint firstAttribute="trailing" secondItem="04d-vP-qmG" secondAttribute="trailing" constant="24" id="dfz-LJ-b3g"/>
+                                        <constraint firstAttribute="trailing" secondItem="04d-vP-qmG" secondAttribute="trailing" constant="16" id="dfz-LJ-b3g"/>
                                         <constraint firstItem="kUO-rf-iVk" firstAttribute="leading" secondItem="2Me-VP-oiU" secondAttribute="leading" id="fhE-Yf-Y4x"/>
                                         <constraint firstItem="6v8-aQ-JYn" firstAttribute="leading" secondItem="kUO-rf-iVk" secondAttribute="leading" id="gmn-mX-s7t"/>
                                         <constraint firstItem="LcS-eW-qEZ" firstAttribute="centerY" secondItem="2Me-VP-oiU" secondAttribute="centerY" id="hbV-cQ-CXo"/>
@@ -193,7 +194,7 @@
                                         <constraint firstItem="vEW-TB-rdG" firstAttribute="top" secondItem="2Me-VP-oiU" secondAttribute="bottom" constant="16" id="mWg-fR-PJS"/>
                                         <constraint firstItem="2Me-VP-oiU" firstAttribute="top" secondItem="e9B-vP-v11" secondAttribute="top" constant="16" id="s1A-Gr-aUH"/>
                                         <constraint firstAttribute="bottom" secondItem="fwY-9O-3Br" secondAttribute="bottom" constant="16" id="tBK-0f-le7"/>
-                                        <constraint firstItem="5Rv-5M-cau" firstAttribute="leading" secondItem="6v8-aQ-JYn" secondAttribute="trailing" constant="24" id="uH7-Un-p59"/>
+                                        <constraint firstItem="5Rv-5M-cau" firstAttribute="leading" secondItem="6v8-aQ-JYn" secondAttribute="trailing" constant="8" id="uH7-Un-p59"/>
                                     </constraints>
                                 </view>
                             </subviews>
