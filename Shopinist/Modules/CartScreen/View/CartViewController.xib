@@ -56,7 +56,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Slr-VN-uRi" customClass="AnimationView" customModule="Lottie">
-                    <rect key="frame" x="8" y="60" width="398" height="646.5"/>
+                    <rect key="frame" x="8" y="60" width="398" height="802"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="no_data_found"/>
@@ -102,7 +102,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Slr-VN-uRi" secondAttribute="trailing" constant="8" id="HQ9-IH-qS2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jdk-hw-ZIu" secondAttribute="trailing" constant="24" id="I2F-63-mku"/>
                 <constraint firstItem="bDa-ah-Oxm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="NVm-kd-Hm6"/>
-                <constraint firstItem="bDa-ah-Oxm" firstAttribute="top" secondItem="Slr-VN-uRi" secondAttribute="bottom" constant="32" id="OIY-oD-T4L"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IWO-8N-EUz" secondAttribute="trailing" constant="8" id="OV7-cP-JKs"/>
                 <constraint firstItem="nKL-RH-JwO" firstAttribute="top" secondItem="bDa-ah-Oxm" secondAttribute="bottom" constant="32" id="Pkn-sb-elE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nKL-RH-JwO" secondAttribute="bottom" constant="16" id="TVX-Es-vM3"/>
@@ -113,6 +112,7 @@
                 <constraint firstItem="Slr-VN-uRi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="n3i-X4-5ep"/>
                 <constraint firstItem="nKL-RH-JwO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="oz7-dK-QUZ"/>
                 <constraint firstItem="IWO-8N-EUz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="q72-GW-FUP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Slr-VN-uRi" secondAttribute="bottom" id="rLd-Pa-1zj"/>
                 <constraint firstItem="IWO-8N-EUz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="xmO-7R-LqM"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="118.52678571428571"/>
