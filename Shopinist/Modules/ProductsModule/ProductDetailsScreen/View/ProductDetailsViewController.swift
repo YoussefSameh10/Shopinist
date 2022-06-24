@@ -149,6 +149,7 @@ class ProductDetailsViewController: BaseViewController {
         }
         else{
             viewModel.addToCart(variantID: viewModel.productVariantId ?? 0)
+            navigationController?.pushViewController(AddedToCartViewController(), animated: true)
             //print(viewModel.productVariantId)
         }
         //viewModel.getCartProducts()
