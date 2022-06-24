@@ -28,19 +28,22 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="no-connection"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INR-yY-vF3">
-                    <rect key="frame" x="171" y="676" width="72" height="41"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must be connected to the network" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8t-lf-zv2">
+                    <rect key="frame" x="16" y="60" width="382" height="57.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <state key="normal" title="Reload"/>
-                </button>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="INR-yY-vF3" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4Nn-Js-dZ5"/>
+                <constraint firstItem="t8t-lf-zv2" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Bsa-fr-r8r"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gsY-bl-Cx7" secondAttribute="trailing" constant="16" id="CDY-Fo-wqf"/>
-                <constraint firstItem="INR-yY-vF3" firstAttribute="top" secondItem="gsY-bl-Cx7" secondAttribute="bottom" constant="32" id="EPm-9n-TjV"/>
+                <constraint firstItem="t8t-lf-zv2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="VFA-vN-AQS"/>
                 <constraint firstItem="gsY-bl-Cx7" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="u60-iL-gLc"/>
                 <constraint firstItem="gsY-bl-Cx7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="uit-gR-D9W"/>
+                <constraint firstItem="t8t-lf-zv2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="vfm-Nc-Tsi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t8t-lf-zv2" secondAttribute="trailing" constant="16" id="yms-Ds-tLH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="132" y="92"/>

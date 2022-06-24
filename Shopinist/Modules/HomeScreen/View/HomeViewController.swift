@@ -121,7 +121,7 @@ class HomeViewController: BaseViewController {
         adBtn.layer.cornerRadius = 25
         adBtn.layer.masksToBounds = true
         adBtn.imageView?.contentMode = .scaleToFill
-        initCollectionView(brandsCV, height: Float(brandsCV.bounds.height / 3), width: Float(UIScreen.main.bounds.width / 2 - 24), radius: 25, spacing:4, isHorizontal: false)
+        initCollectionView()
         
         initTabBarController()
         
@@ -137,25 +137,9 @@ class HomeViewController: BaseViewController {
         helloLabel.text = helloStr
     }
     
-    private func initCollectionView(_ collectionView : UICollectionView, height: Float, width : Float, radius : Float, spacing : Float, isHorizontal : Bool){
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.layer.cornerRadius = CGFloat(exactly: radius)!
-        collectionView.layer.masksToBounds = true
-        
-        let itemWidth  = CGFloat(width)
-        let itemHeight = CGFloat(height)
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumInteritemSpacing = CGFloat(spacing)
-        if(isHorizontal == true){
-            layout.scrollDirection = .horizontal
-        }
-        else{
-            layout.scrollDirection = .vertical
-        }
-        collectionView.collectionViewLayout = layout
+    private func initCollectionView(){
+        brandsCV.delegate = self
+        brandsCV.dataSource = self
     }
     
     private func initViewModel(){
@@ -188,5 +172,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCell
         cell.updateImage(name: self.viewModel!.getBrand(at: indexPath.row))
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: SCREEN_WIDTH / 2 - 24, height: 100)
     }
 }

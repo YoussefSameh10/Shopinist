@@ -80,4 +80,9 @@ class ProductDetailsViewModel : ProductDetailsViewModelProtocol{
         return customerRepo.getSelectedCurrency()
     }
     
+    func isLoggedIn() -> Bool {
+        return customerRepo.getCustomerFromUserDefaults() != nil
+    }
+
+    
 }

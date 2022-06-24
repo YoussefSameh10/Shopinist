@@ -27,4 +27,6 @@ protocol ProductDetailsViewModelProtocol {
     
     func getSelectedCurrency() -> String
     
+    func isLoggedIn() -> Bool
+    
 }
