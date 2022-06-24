@@ -65,7 +65,7 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        (collectionView.cellForItem(at: indexPath) as! ProductSizeCollectionViewCell).textColor = .black
+        (collectionView.cellForItem(at: indexPath) as? ProductSizeCollectionViewCell)?.textColor = .black
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
