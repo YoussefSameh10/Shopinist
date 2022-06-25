@@ -112,7 +112,7 @@ class Formatter {
             return price / 18
         }
         else{
-            return price * 18
+            return price
         }
     }
     

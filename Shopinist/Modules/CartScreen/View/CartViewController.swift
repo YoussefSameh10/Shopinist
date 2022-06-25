@@ -17,7 +17,7 @@ class CartViewController: BaseViewController {
     private var router : CartRouterProtocol?
     private var cancellables : Set<AnyCancellable> = []
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
-    private var currency = "USD"
+    private var currency = ""
     
     //MARK:- Outlets
     @IBOutlet weak var cartTV: UITableView!
@@ -97,6 +97,7 @@ class CartViewController: BaseViewController {
             else{
                 checkoutBtn.isUserInteractionEnabled = true
                 dataNotFoundAnim.isHidden = true
+                currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "EGP"
                 let total = self.viewModel?.getTotalPrice() ?? 0
                 totalPrice.text = Formatter.formatPriceIntoString(price: total, currency: currency)
             }
@@ -167,6 +168,10 @@ extension CartViewController : UITableViewDelegate, UITableViewDataSource {
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
     }
     
     

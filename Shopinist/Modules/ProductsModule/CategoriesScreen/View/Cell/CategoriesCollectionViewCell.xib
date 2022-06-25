@@ -24,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="425" height="140"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqA-KT-fPj">
-                        <rect key="frame" x="8" y="177" width="409" height="15.5"/>
+                        <rect key="frame" x="12" y="177" width="405" height="15.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                 <constraint firstItem="Mdo-bx-ErA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BMd-Tr-6be"/>
                 <constraint firstItem="Mdo-bx-ErA" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.65" id="CXX-HI-Y4F"/>
                 <constraint firstItem="xnZ-A1-oO0" firstAttribute="leading" secondItem="Mdo-bx-ErA" secondAttribute="leading" constant="8" id="HEu-Gt-kWX"/>
-                <constraint firstItem="fqA-KT-fPj" firstAttribute="leading" secondItem="xnZ-A1-oO0" secondAttribute="leading" id="Md8-fg-fwC"/>
+                <constraint firstItem="fqA-KT-fPj" firstAttribute="leading" secondItem="xnZ-A1-oO0" secondAttribute="leading" constant="4" id="Md8-fg-fwC"/>
                 <constraint firstItem="n91-y9-HxW" firstAttribute="trailing" secondItem="Mdo-bx-ErA" secondAttribute="trailing" id="NQM-TP-dFM"/>
                 <constraint firstItem="n91-y9-HxW" firstAttribute="top" secondItem="Mdo-bx-ErA" secondAttribute="top" id="R1l-Rn-le8"/>
                 <constraint firstAttribute="trailing" secondItem="Mdo-bx-ErA" secondAttribute="trailing" id="Rae-G8-MdC"/>

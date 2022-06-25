@@ -64,7 +64,7 @@ class CheckoutViewController: BaseViewController {
     }
     
     private func initPriceLabel() {
-        totalPriceLabel.text = "\(Formatter.getIntPrice(from: viewModel.getOrderPrice()))\(viewModel.getCurrency())"
+        totalPriceLabel.text = "\(Formatter.getIntPrice(from: viewModel.getOrderPrice())) \(viewModel.getCurrency())"
     }
     
     private func initButtons() {

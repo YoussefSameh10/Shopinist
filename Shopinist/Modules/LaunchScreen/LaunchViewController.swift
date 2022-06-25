@@ -38,10 +38,9 @@ class LaunchViewController: UIViewController {
                         
                 tabBarController.addChild(homeVC)
                 tabBarController.addChild(catNavC)
-                tabBarController.addChild(cartVC)
-
-                tabBarController.addChild(profileNavcontroller)
                 tabBarController.addChild(favouritesVC)
+                tabBarController.addChild(cartVC)
+                tabBarController.addChild(profileNavcontroller)
                 
                 self.navigationController?.viewControllers = [tabBarController]
             }
