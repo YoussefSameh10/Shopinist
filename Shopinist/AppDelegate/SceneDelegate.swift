@@ -23,34 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         NetworkReachability.monitorNetwork()
-        //Three main tabs
-        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-
-        let favouritesVC = FavouritesViewController(nibName: "FavouritesViewController", viewModel: FavouritesViewModel(favouritesRepo:FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), customerRepo: CustomerRepo.getInstance(networkManager: NetworkManager.getInstance())), router: FavouritesRouter())
-
-        let categoriesVC = MainCategoriesViewController(nibName: "MainCategoriesViewController")
-        
-
-        let cartVC = CartViewController(nibName: "CartViewController", viewModel: CartViewModel(cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: (UIApplication.shared.delegate as! AppDelegate)))), router: CartRouter())
-
-        let profileVC = ProfileViewController(nibName: "ProfileViewController", viewModel: ProfileViewModel(orderRepo: OrderRepo.getInstance(networkManager: NetworkManager.getInstance())), router: ProfileRouter())
         
         let launchVC = LaunchViewController()
         
-        let tabBarController = UITabBarController()
                 
         let navController = UINavigationController(rootViewController: launchVC)
-        let catNavC = UINavigationController(rootViewController: categoriesVC)
-        let profileNavcontroller = UINavigationController(rootViewController: profileVC)
-        
-        
-        
-        tabBarController.addChild(homeVC)
-        tabBarController.addChild(catNavC)
-        tabBarController.addChild(cartVC)
-
-        tabBarController.addChild(profileNavcontroller)
-        tabBarController.addChild(favouritesVC)
         
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

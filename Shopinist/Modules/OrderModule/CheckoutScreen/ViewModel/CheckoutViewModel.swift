@@ -72,7 +72,7 @@ class CheckoutViewModel: CheckoutViewModelProtocol {
             return "EGP"
         }
         else {
-            return "$"
+            return "USD"
         }
     }
     

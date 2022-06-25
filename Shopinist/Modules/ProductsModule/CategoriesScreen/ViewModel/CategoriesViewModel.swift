@@ -88,10 +88,10 @@ class CategoriesViewModel: CategoriesViewModelProtocol, CategoriesFilterViewMode
     
     func getProductPrice(price: String) -> String {
         if customerRepo.getSelectedCurrency() == "EGP" {
-            return "\(Formatter.getIntPrice(from: price))EGP"
+            return "\(Formatter.getIntPrice(from: price)) EGP"
         }
         else {
-            return "\(Formatter.getPriceInDollars(egpPrice: price))$"
+            return "\(Formatter.getPriceInDollars(egpPrice: price)) USD"
         }
     }
 }
