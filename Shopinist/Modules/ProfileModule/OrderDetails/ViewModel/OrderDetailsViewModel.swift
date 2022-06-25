@@ -35,8 +35,8 @@ class OrderDetailsViewModel : OrderDetailsViewModelProtocol{
     }
     
     func getTotalPrice() -> String {
-        let currency = self.getCurrency()
-        return "\(order.totalPrice!) \(currency)"
+        let _ = self.getCurrency()
+        return "\(order.totalPrice!)"
     }
     
     func getOrderIndex() -> Int {

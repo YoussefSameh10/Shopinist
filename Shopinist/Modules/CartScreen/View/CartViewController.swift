@@ -98,7 +98,7 @@ class CartViewController: BaseViewController {
                 checkoutBtn.isUserInteractionEnabled = true
                 dataNotFoundAnim.isHidden = true
                 let total = self.viewModel?.getTotalPrice() ?? 0
-                totalPrice.text = String(format: "%.2f \(currency)", total)
+                totalPrice.text = Formatter.formatPriceIntoString(price: total, currency: currency)
             }
         }
         else{
