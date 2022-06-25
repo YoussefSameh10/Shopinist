@@ -18,6 +18,7 @@ class OrderDetailsViewController: BaseViewController {
     
     //MARK:- Variables
     var viewModel : OrderDetailsViewModelProtocol!
+    var currency = ""
     
     //MARK:- Life Cycle
     override func viewDidLoad() {
@@ -48,7 +49,10 @@ class OrderDetailsViewController: BaseViewController {
     private func initUI(){
         orderNo.text = "Order #\(self.viewModel.getOrderIndex())"
         orderID.text = "Order ID: \(self.viewModel.getOrderId())"
-        totalPrice.text = "Total Price: \(self.viewModel.getTotalPrice())"
+        
+        currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "EGP"
+        let res = Formatter.formatPriceIntoString(price: Double(self.viewModel.getTotalPrice())!, currency: currency)
+        totalPrice.text = "Total Price: \(res)"
     }
     
     private func initTableView(){
