@@ -223,30 +223,45 @@ extension CheckoutViewController {
 
 
 //MARK: - Extension Apple Pay
-extension CheckoutViewController :PKPaymentAuthorizationViewControllerDelegate{
-    private func payWithApple(){
-        
+extension CheckoutViewController: PKPaymentAuthorizationViewControllerDelegate {
+    func payWithApple() {
+        let currency = viewModel.getCurrency()
+        let request = PKPaymentRequest()
+        request.merchantIdentifier = "merchant.inStore.app"
+        request.supportedNetworks = [.masterCard, .visa ]
+        request.supportedCountries = ["US", "EG"]
+        request.merchantCapabilities = .capability3DS
+        request.countryCode = "EG"
+        request.currencyCode = currency == "EGP" ? "EGP" : "USD"
         let paymentItem = PKPaymentSummaryItem.init(label: "Total payment", amount: NSDecimalNumber(value: Int(viewModel.getOrderPriceAfterDiscount()) ?? 0))
-        let paymentNetworks = [PKPaymentNetwork.amex, .discover, .masterCard, .visa]
-        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) {
-            let request = PKPaymentRequest()
-            let currency = viewModel.getCurrency()
-            request.currencyCode = currency == "EGP" ? "EGP" : "USD"
-            request.countryCode = currency == "EGP" ? "EG" : "US"
-            request.merchantIdentifier = "merchant.com.pranavwadhwa.Shoe-Store"
-            request.merchantCapabilities = PKMerchantCapability.capability3DS
-            request.supportedNetworks = paymentNetworks
-            request.paymentSummaryItems = [paymentItem]
-            
-            guard let paymentVC = PKPaymentAuthorizationViewController(paymentRequest: request) else {
-                return
-            }
-            paymentVC.delegate = self
-            self.present(paymentVC, animated: true, completion: nil)
+        
+       request.paymentSummaryItems = [paymentItem]
+        
+        let controller = PKPaymentAuthorizationViewController(paymentRequest: request)
+                
+        if controller != nil {
+            controller!.delegate = self
+            present(controller!, animated: true, completion: nil)
         }
     }
     
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-        controller.dismiss(animated: true)
+        controller.dismiss(animated: true, completion: nil)
+
+        self.viewModel.postOrder()
+        
+        
+//        if paymentCompleted {
+//           // showAlret()
+//            self.postOrder()
+//
+//        }
+//
+    }
+        
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        //paymentCompleted = true
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+
     }
 }

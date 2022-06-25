@@ -21,6 +21,8 @@ class FavouritesRouter : FavouritesRouterProtocol {
                 productRepo: FavouritesProductRepo.getInstance(databaseManager: FavouritesDataBaseManager.getInstance(appDelegate: appDelegate)), cartRepo: CartItemsRepo.getInstance(cartItemsManager: CartItemsManager.getInstance(appDelegate: appDelegate))
             )
         )
+        
+        print("here nav to details from fav \(product)")
         viewController?.navigationController?.pushViewController(productDetailsVC, animated: true)
     }
     
