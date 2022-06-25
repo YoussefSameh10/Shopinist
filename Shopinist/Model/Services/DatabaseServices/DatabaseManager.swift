@@ -108,7 +108,7 @@ extension DatabaseManager {
             products = try viewContext.fetch(fetchRequest)
             if products.count > 0 {
                 print("****** get product from db \(products[0].id)")
-                print("****** id param \(id)")
+                print("****** products sizes \(products[0].size)")
                 return products
             }
             return []
@@ -150,8 +150,9 @@ extension DatabaseManager {
         do
         {
             try self.viewContext.save()
-            print("*** product added *** ")
-            print("productc added = \(product.title) **** \(product.id)")
+            print("*** product added to fav *** ")
+            print(storedProduct)
+            
         }
         catch
         {
