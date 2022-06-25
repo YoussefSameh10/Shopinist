@@ -10,7 +10,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Shopinist" customModuleProvider="target">
             <connections>
                 <outlet property="ProfileOrdersTableView" destination="FeZ-To-x6Q" id="DES-H8-72p"/>
-                <outlet property="noOrderAnimationView" destination="z0m-lh-WzZ" id="ght-AN-fUq"/>
+                <outlet property="noOrderAnimationView" destination="z0m-lh-WzZ" id="7XA-9g-uRK"/>
+                <outlet property="notLoggedInAnimationView" destination="Ney-0c-3kA" id="jce-em-r2d"/>
                 <outlet property="parentView" destination="l0l-5g-f8S" id="oCh-bm-fli"/>
                 <outlet property="profileNameLabel" destination="nup-Zi-gb4" id="oAN-7I-yee"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,46 +24,66 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQU-yR-PBI">
-                    <rect key="frame" x="0.0" y="174" width="414" height="415.5"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Login To See Your Profile" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHS-i5-d3F">
-                            <rect key="frame" x="4" y="8" width="406" height="95.5"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                            <rect key="frame" x="4" y="8" width="406" height="76.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsz-P8-nI7">
-                            <rect key="frame" x="8" y="303.5" width="398" height="80"/>
+                            <rect key="frame" x="8" y="738" width="398" height="64"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="80" id="Ut5-2p-JTk"/>
+                                <constraint firstAttribute="height" constant="64" id="Ut5-2p-JTk"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <state key="normal" title="Login">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <integer key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="logInButton:" destination="-1" eventType="touchUpInside" id="cgs-OJ-KnG"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ney-0c-3kA" customClass="AnimationView" customModule="Lottie">
+                            <rect key="frame" x="16" y="100.5" width="382" height="621.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="not_registered"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Vsz-P8-nI7" secondAttribute="trailing" constant="8" id="0a3-CI-abR"/>
                         <constraint firstAttribute="trailing" secondItem="WHS-i5-d3F" secondAttribute="trailing" constant="4" id="2xn-Xi-VW7"/>
-                        <constraint firstItem="Vsz-P8-nI7" firstAttribute="top" secondItem="WHS-i5-d3F" secondAttribute="bottom" constant="200" id="7AX-MH-8Xj"/>
                         <constraint firstItem="WHS-i5-d3F" firstAttribute="leading" secondItem="rQU-yR-PBI" secondAttribute="leading" constant="4" id="NtV-c5-bim"/>
                         <constraint firstItem="WHS-i5-d3F" firstAttribute="top" secondItem="rQU-yR-PBI" secondAttribute="top" constant="8" id="Wr1-Bn-Tmm"/>
                         <constraint firstItem="Vsz-P8-nI7" firstAttribute="leading" secondItem="rQU-yR-PBI" secondAttribute="leading" constant="8" id="Yn4-92-DCR"/>
+                        <constraint firstItem="Ney-0c-3kA" firstAttribute="leading" secondItem="rQU-yR-PBI" secondAttribute="leading" constant="16" id="g3T-4s-ifN"/>
+                        <constraint firstItem="Vsz-P8-nI7" firstAttribute="top" secondItem="Ney-0c-3kA" secondAttribute="bottom" constant="16" id="jd5-ja-hi2"/>
+                        <constraint firstItem="Ney-0c-3kA" firstAttribute="top" secondItem="WHS-i5-d3F" secondAttribute="bottom" constant="16" id="lc0-bL-td0"/>
+                        <constraint firstAttribute="bottom" secondItem="Vsz-P8-nI7" secondAttribute="bottom" constant="16" id="nFf-p2-6OB"/>
+                        <constraint firstAttribute="trailing" secondItem="Ney-0c-3kA" secondAttribute="trailing" constant="16" id="zpy-43-ygD"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0l-5g-f8S">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGN-vZ-2bL">
-                            <rect key="frame" x="16" y="133.5" width="178" height="33.5"/>
+                            <rect key="frame" x="16" y="83" width="178" height="33.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0m-lh-WzZ" customClass="AnimationView" customModule="Lottie">
-                            <rect key="frame" x="32" y="252.5" width="350" height="205"/>
+                            <rect key="frame" x="32" y="202" width="350" height="205"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="205" id="qyA-e6-W2X"/>
@@ -72,27 +93,21 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FeZ-To-x6Q">
-                            <rect key="frame" x="8" y="191" width="398" height="240"/>
+                            <rect key="frame" x="8" y="140.5" width="398" height="240"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="240" id="QD6-64-0cg"/>
                             </constraints>
                             <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdv-vY-m1E">
-                            <rect key="frame" x="340" y="135.5" width="66" height="30"/>
+                            <rect key="frame" x="340" y="85" width="66" height="30"/>
                             <state key="normal" title="See more"/>
                             <connections>
                                 <action selector="viewMoreButton:" destination="-1" eventType="touchUpInside" id="RIf-4D-qRJ"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopinist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-Bx-Vb4">
-                            <rect key="frame" x="8" y="8" width="146" height="50.5"/>
-                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="40"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Amr" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nup-Zi-gb4">
-                            <rect key="frame" x="16" y="66.5" width="390" height="43"/>
+                            <rect key="frame" x="16" y="16" width="390" height="43"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -128,12 +143,10 @@
                     <constraints>
                         <constraint firstItem="FeZ-To-x6Q" firstAttribute="top" secondItem="MGN-vZ-2bL" secondAttribute="bottom" constant="24" id="4VI-C0-9jb"/>
                         <constraint firstItem="FeZ-To-x6Q" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="8" id="4so-XS-wh8"/>
+                        <constraint firstItem="nup-Zi-gb4" firstAttribute="top" secondItem="l0l-5g-f8S" secondAttribute="top" constant="16" id="9X2-fq-DL8"/>
                         <constraint firstAttribute="trailing" secondItem="mdv-vY-m1E" secondAttribute="trailing" constant="8" id="CH2-dQ-zh2"/>
-                        <constraint firstItem="E5n-Bx-Vb4" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="8" id="E5k-95-NWt"/>
                         <constraint firstItem="z0m-lh-WzZ" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="32" id="I4K-qc-6Ng"/>
                         <constraint firstItem="nup-Zi-gb4" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="16" id="Ljs-pq-OKj"/>
-                        <constraint firstItem="nup-Zi-gb4" firstAttribute="top" secondItem="E5n-Bx-Vb4" secondAttribute="bottom" constant="8" id="Od5-gE-hSJ"/>
-                        <constraint firstItem="E5n-Bx-Vb4" firstAttribute="top" secondItem="l0l-5g-f8S" secondAttribute="top" constant="8" id="Osw-sO-dm0"/>
                         <constraint firstItem="xDE-pt-e55" firstAttribute="leading" secondItem="l0l-5g-f8S" secondAttribute="leading" constant="16" id="QkG-b0-oCl"/>
                         <constraint firstItem="mdv-vY-m1E" firstAttribute="centerY" secondItem="MGN-vZ-2bL" secondAttribute="centerY" id="QrF-Dd-cBg"/>
                         <constraint firstAttribute="bottom" secondItem="xDE-pt-e55" secondAttribute="bottom" constant="24" id="SFk-Sc-bpI"/>
@@ -151,12 +164,12 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="rQU-yR-PBI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="130" id="5Xw-vg-4gZ"/>
+                <constraint firstItem="rQU-yR-PBI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5Xw-vg-4gZ"/>
                 <constraint firstItem="l0l-5g-f8S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9LB-Y0-gPT"/>
                 <constraint firstItem="rQU-yR-PBI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CUU-a6-Dtk"/>
                 <constraint firstAttribute="trailing" secondItem="l0l-5g-f8S" secondAttribute="trailing" id="HHe-mL-iYG"/>
                 <constraint firstItem="l0l-5g-f8S" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="QYY-o1-cSA"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rQU-yR-PBI" secondAttribute="bottom" constant="272.5" id="d76-me-kS7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rQU-yR-PBI" secondAttribute="bottom" id="d76-me-kS7"/>
                 <constraint firstAttribute="trailing" secondItem="rQU-yR-PBI" secondAttribute="trailing" id="ho6-lX-EwT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="l0l-5g-f8S" secondAttribute="bottom" id="xHf-pr-h1C"/>
             </constraints>

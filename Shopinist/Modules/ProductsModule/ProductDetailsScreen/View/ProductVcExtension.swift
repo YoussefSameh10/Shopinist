@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Kingfisher
 
-extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
+extension ProductDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     func setCollectionViewDelegateAndDataSource() {
@@ -59,8 +59,17 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
         {
             viewModel.productSize = (viewModel.product?.options![0].values![indexPath.row])!
             viewModel.productVariantId = viewModel.product?.variants?[indexPath.row].id
+            (collectionView.cellForItem(at: indexPath) as! ProductSizeCollectionViewCell).textColor = .white
 
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        (collectionView.cellForItem(at: indexPath) as? ProductSizeCollectionViewCell)?.textColor = .black
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: SCREEN_WIDTH/5, height: 40)
     }
     
     

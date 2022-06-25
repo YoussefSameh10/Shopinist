@@ -9,7 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 
-class MainCategoriesViewController: UIViewController {
+class MainCategoriesViewController: BaseViewController {
 
     // MARK: -Variables
     var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
@@ -43,6 +43,7 @@ class MainCategoriesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         manageBars()
     }
     

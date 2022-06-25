@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import Kingfisher
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: BaseViewController {
     
     // MARK: - Vairables
     
@@ -32,6 +32,7 @@ class ProductDetailsViewController: UIViewController {
     
     @IBOutlet weak var colorView: CornerView!
     @IBOutlet weak var productColorButton: UIButton!
+    @IBOutlet weak var addToCartButton: UIButton!
     
     @IBOutlet weak var productDescriptionTextView: UITextView!
     
@@ -66,6 +67,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUIDesigns()
         print("*****\(viewModel.isInFavourite())")
         if(viewModel.isInFavourite()){
@@ -73,6 +75,10 @@ class ProductDetailsViewController: UIViewController {
         }else{
             favouriteButtonImage.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     
@@ -96,9 +102,26 @@ class ProductDetailsViewController: UIViewController {
         productColorButton.layer.borderWidth = 1
         productColorButton.layer.borderColor = UIColor.gray.cgColor
         productColorButton.layer.cornerRadius = 10
+        
+        if !viewModel.isLoggedIn() {
+            disableAddToCartButton()
+            disableFavoriteButton()
+        }
 
     }
     
+    func disableAddToCartButton() {
+        addToCartButton.isEnabled = false
+        addToCartButton.backgroundColor = .white
+        addToCartButton.setTitleColor(.lightGray, for: .normal)
+        addToCartButton.layer.borderWidth = 1
+        addToCartButton.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    func disableFavoriteButton() {
+        favouriteButtonImage.isEnabled = false
+        favouriteButtonImage.tintColor = .darkGray
+    }
     
     // MARK: - Actions
     
@@ -123,8 +146,10 @@ class ProductDetailsViewController: UIViewController {
             let action = UIAlertAction(title: "Dismiss", style: .destructive)
             alert.addAction(action)
             self.present(alert, animated: true)
-        }else{
+        }
+        else{
             viewModel.addToCart(variantID: viewModel.productVariantId ?? 0)
+            navigationController?.pushViewController(AddedToCartViewController(), animated: true)
             //print(viewModel.productVariantId)
         }
         //viewModel.getCartProducts()

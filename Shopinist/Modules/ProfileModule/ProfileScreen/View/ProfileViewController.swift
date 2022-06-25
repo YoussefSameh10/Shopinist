@@ -11,7 +11,7 @@ import Combine
 import NVActivityIndicatorView
 import Lottie
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
     
     
     // MARK: - Outlets
@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var viewMoreButton: UIButton!
     @IBOutlet weak var noOrderAnimationView: AnimationView!
     
+    @IBOutlet weak var notLoggedInAnimationView: AnimationView!
     // MARK: - Variables
     
     var router : ProfileRouterProtocol?
@@ -53,8 +54,8 @@ class ProfileViewController: UIViewController {
         startActivityIndicator()
         //ProfileOrdersTableView.isHidden = true
         noOrderAnimationView.isHidden = true
-        setUI()
-        setWelcomeLabel()
+        //setUI()
+        //setWelcomeLabel()
         setDelegateAndDataSourceMethods()
         
         sinkOnCustomerOrders()
@@ -65,12 +66,16 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUI()
         setWelcomeLabel()
         viewModel?.getCustomerOrdersList()
         var selectedCurrency = viewModel?.getSelectedCurrency()
         ProfileOrdersTableView.reloadData()
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     
@@ -82,6 +87,7 @@ class ProfileViewController: UIViewController {
         if viewModel?.getCustomerFromUserDefault() == nil {
             parentView.isHidden = true
             stopActivityIndicator()
+            startNotLoggedInAnimation()
         }else{
             parentView.isHidden = false
         }
@@ -116,11 +122,18 @@ class ProfileViewController: UIViewController {
         indicator.stopAnimating()
     }
     
-    func startAnimation(){
+    func startNoOrdersAnimation(){
         noOrderAnimationView.contentMode = .scaleAspectFit
         noOrderAnimationView.loopMode = .loop
         noOrderAnimationView.animationSpeed = 0.5
         noOrderAnimationView.play()
+    }
+    
+    func startNotLoggedInAnimation(){
+        notLoggedInAnimationView.contentMode = .scaleAspectFit
+        notLoggedInAnimationView.loopMode = .loop
+        notLoggedInAnimationView.animationSpeed = 0.5
+        notLoggedInAnimationView.play()
     }
         
     func sinkOnCustomerOrders(){
@@ -196,17 +209,17 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
         if viewModel?.getOrdersCount() == 0 {
             noOrderAnimationView.isHidden = false
             ProfileOrdersTableView.isHidden = true
-            viewMoreButton.isHidden = false
-            startAnimation()
+            viewMoreButton.isHidden = true
+            startNoOrdersAnimation()
             stopActivityIndicator()
             return 0
         }else if viewModel?.getOrdersCount() == 1{
             ProfileOrdersTableView.isHidden = false
-            viewMoreButton.isHidden = false
+            viewMoreButton.isHidden = true
             return 1
         }else if viewModel?.getOrdersCount() == 2{
             ProfileOrdersTableView.isHidden = false
-            viewMoreButton.isHidden = false
+            viewMoreButton.isHidden = true
             return 2
         }else{
             ProfileOrdersTableView.isHidden = false
@@ -227,7 +240,11 @@ extension ProfileViewController :  UITableViewDelegate, UITableViewDataSource {
         }else{
             cell.orderPrice = "\(Formatter.getPriceInDollars(egpPrice: (viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.subTotalPrice! ?? ""))) USD"
         }
-        cell.orderCreatedAt = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt ?? "No Date"
+       
+        let date = viewModel?.getOrderAtIndex(retrievedIndex: indexPath.row)?.createdAt?.split(separator: "T")
+        let dateStr = String(date?[0] ?? "No Date ")
+        cell.orderCreatedAt = dateStr
+
           
         return cell
     }

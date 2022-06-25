@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import NVActivityIndicatorView
 import Combine
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     // MARK: -Variables
     private var viewModel: LoginViewModelProtocol!
@@ -114,9 +114,9 @@ class LoginViewController: UIViewController {
     private func invalidateButton() {
         signinButton.isEnabled = false
         signinButton.backgroundColor = .clear
-        signinButton.setTitleColor(.darkGray, for: .normal)
+        signinButton.setTitleColor(.lightGray, for: .normal)
         signinButton.layer.borderWidth = 1
-        signinButton.layer.borderColor = .init(srgbRed: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+        signinButton.layer.borderColor = .init(srgbRed: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         
     }
 
@@ -140,6 +140,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     private func startActivityIndicator() {
+        invalidateButton()
         indicator = createActivityIndicator()
         indicator.center = view.center
         view.addSubview(indicator)
@@ -147,6 +148,7 @@ extension LoginViewController {
     }
     
     private func stopActivityIndicator() {
+        validateButton()
         indicator.stopAnimating()
     }
 }

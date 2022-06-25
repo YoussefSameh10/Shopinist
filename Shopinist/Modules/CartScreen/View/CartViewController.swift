@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import Lottie
 
-class CartViewController: UIViewController {
+class CartViewController: BaseViewController {
 
     //MARK:- Variables
     private var viewModel : CartViewModelProtocol?
@@ -24,9 +24,9 @@ class CartViewController: UIViewController {
     @IBOutlet weak var checkoutBtn: UIButton!
     @IBOutlet weak var dataNotFoundAnim: AnimationView!
     @IBOutlet weak var totalPrice: UILabel!
+    @IBOutlet weak var notRegisteredHolder: UIView!
     
-    
-    
+    @IBOutlet weak var notRegisteredAnim: AnimationView!
     
     //MARK:- Life Cycle
     init(
@@ -85,19 +85,30 @@ class CartViewController: UIViewController {
             self.currency = currency
         }
         
-        if (count == 0){
-            checkoutBtn.isUserInteractionEnabled = false
-            dataNotFoundAnim.isHidden = false
-            dataNotFoundAnim.animationSpeed = 1
-            dataNotFoundAnim.loopMode = .loop
-            dataNotFoundAnim.play()
+        if let _ = userDefaults.value(forKey: EMAIL) as? String{
+            notRegisteredHolder.isHidden = true
+            if (count == 0){
+                checkoutBtn.isUserInteractionEnabled = false
+                dataNotFoundAnim.isHidden = false
+                dataNotFoundAnim.animationSpeed = 1
+                dataNotFoundAnim.loopMode = .loop
+                dataNotFoundAnim.play()
+            }
+            else{
+                checkoutBtn.isUserInteractionEnabled = true
+                dataNotFoundAnim.isHidden = true
+                let total = self.viewModel?.getTotalPrice() ?? 0
+                totalPrice.text = Formatter.formatPriceIntoString(price: total, currency: currency)
+            }
         }
         else{
-            checkoutBtn.isUserInteractionEnabled = true
-            dataNotFoundAnim.isHidden = true
-            let total = self.viewModel?.getTotalPrice() ?? 0
-            totalPrice.text = String(format: "%.2f \(currency)", total)
+            notRegisteredHolder.isHidden = false
+            notRegisteredAnim.animationSpeed = 1
+            notRegisteredAnim.loopMode = .loop
+            notRegisteredAnim.play()
         }
+        
+        
     }
     
     private func initTableView(){

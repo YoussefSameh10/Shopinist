@@ -11,7 +11,7 @@ import Combine
 import NVActivityIndicatorView
 
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
     
     // MARK: -  Outlets
     
@@ -58,8 +58,16 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
+        viewModel?.getCustomerAddresses()
+        sinkOnAddressObserver()
         setupButtonsInWillAppear()
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     
@@ -81,16 +89,17 @@ class SettingsViewController: UIViewController {
         viewModel?.customerAddresses.receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (completion) in
                 switch completion {
-                    case .finished:
-                        print("Finished")
-                    case .failure:
-                        print("Failed")
+                case .finished:
+                    print("Finished")
+                case .failure:
+                    print("Failed")
                 }
             },receiveValue: { [weak self] addresses in
                 //if addresses != nil{
                 self!.stopActivityIndicator()
                 self?.addressTableview.reloadData()
                 //}
+                print("here is sink on \(addresses?.count)")
                 
             }).store(in: &cancellables)
     }
@@ -134,49 +143,49 @@ class SettingsViewController: UIViewController {
     }
     
     
+    
+    func setEgpButtonColors(){
+        setButtonsRadius()
+        EGPButton.backgroundColor = .black
+        USDButton.backgroundColor = .white
         
-        func setEgpButtonColors(){
-            setButtonsRadius()
-            EGPButton.backgroundColor = .black
-            USDButton.backgroundColor = .white
-            
-            EGPButton.setTitleColor(.white, for: .normal)
-            USDButton.setTitleColor(.black, for: .normal)
-        }
+        EGPButton.setTitleColor(.white, for: .normal)
+        USDButton.setTitleColor(.black, for: .normal)
+    }
+    
+    func setUSdButtonColors(){
+        setButtonsRadius()
+        EGPButton.backgroundColor = .white
+        USDButton.backgroundColor = .black
         
-        func setUSdButtonColors(){
-            setButtonsRadius()
-            EGPButton.backgroundColor = .white
-            USDButton.backgroundColor = .black
-            
-            EGPButton.setTitleColor(.black, for: .normal)
-            USDButton.setTitleColor(.white, for: .normal)
-        }
-        
-        func setButtonsRadius(){
-//            EGPButton.layer.cornerRadius = 25
-//            USDButton.layer.cornerRadius = 25
-            EGPButton.layer.borderWidth = 1
-            USDButton.layer.borderWidth = 1
-            EGPButton.layer.borderColor = UIColor.black.cgColor
-            USDButton.layer.borderColor = UIColor.black.cgColor
-        }
-        
-        func enableSaveButton(){
-            saveButton.isEnabled = true
-            saveButton.backgroundColor = .black
-            saveButton.setTitleColor(.white, for: .normal)
-            saveButton.layer.cornerRadius = 25
-        }
-        
-        func disableSaveButton(){
-            saveButton.isEnabled = false
-            saveButton.backgroundColor = .white
-            saveButton.setTitleColor(.black, for: .normal)
-            saveButton.layer.cornerRadius = 25
-            saveButton.layer.borderColor = UIColor.black.cgColor
-            saveButton.layer.borderWidth = 1
-        }
+        EGPButton.setTitleColor(.black, for: .normal)
+        USDButton.setTitleColor(.white, for: .normal)
+    }
+    
+    func setButtonsRadius(){
+        //            EGPButton.layer.cornerRadius = 25
+        //            USDButton.layer.cornerRadius = 25
+        EGPButton.layer.borderWidth = 1
+        USDButton.layer.borderWidth = 1
+        EGPButton.layer.borderColor = UIColor.black.cgColor
+        USDButton.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func enableSaveButton(){
+        saveButton.isEnabled = true
+        saveButton.backgroundColor = .black
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.layer.cornerRadius = 25
+    }
+    
+    func disableSaveButton(){
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = .white
+        saveButton.setTitleColor(.lightGray, for: .normal)
+        saveButton.layer.cornerRadius = 25
+        saveButton.layer.borderColor = UIColor.lightGray.cgColor
+        saveButton.layer.borderWidth = 1
+    }
     
     
     // MARK: - Actions
@@ -254,10 +263,31 @@ extension SettingsViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.viewModel?.deleteCustomerAddress(address: (viewModel?.getCustomerAddress(retrievedIndex: indexPath.row))!)
-            viewModel?.getCustomerAddresses()
-            sinkOnAddressObserver()
-            addressTableview.reloadData()
+            print("delete \(indexPath.row)")
+            if indexPath.row == 0 {
+                let alert  = UIAlertController(title: "Warning", message: "You Can't Delete Your Fisrt Address", preferredStyle: .alert)
+                let dimissAction = UIAlertAction(title: "Dismiss", style: .cancel)
+                alert.addAction(dimissAction)
+                self.present(alert, animated: true)
+                
+            }else{
+                let alert  = UIAlertController(title: "Warning", message: "Press OK To Delete This Address", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                let okAction = UIAlertAction(title: "OK", style: .destructive) { [weak self] action  in
+                    self?.viewModel?.deleteCustomerAddress(address: (self?.viewModel?.getCustomerAddress(retrievedIndex: indexPath.row))!)
+                    self?.viewModel?.getCustomerAddresses()
+                    self?.sinkOnAddressObserver()
+                    self?.addressTableview.reloadData()
+                }
+                alert.addAction(okAction)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true)
+            }
+            
+//            self.viewModel?.deleteCustomerAddress(address: (viewModel?.getCustomerAddress(retrievedIndex: indexPath.row))!)
+//                        viewModel?.getCustomerAddresses()
+//                        sinkOnAddressObserver()
+//                        addressTableview.reloadData()
         }
         
     }

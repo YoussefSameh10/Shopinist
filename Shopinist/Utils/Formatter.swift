@@ -107,10 +107,18 @@ class Formatter {
         }
     }
     
+    static func convertPriceCurrency(to : Currency , price : Double) -> Double{
+        if to == .USD {
+            return price / 18
+        }
+        else{
+            return price * 18
+        }
+    }
     
-    enum Currency {
-        case USD
-        case EGP
+    enum Currency : String{
+        case USD = "USD"
+        case EGP = "EGP"
     }
     
     static func getPriceInDollars(egpPrice: String) -> String {
@@ -118,7 +126,21 @@ class Formatter {
         let dollarPrice = priceEGP/18
         return "\(dollarPrice)"
     }
+    
+    static func dataFormatter( date : String){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        let date: NSDate? = dateFormatter.date(from: date) as NSDate?
+        
+    }
 
+    static func formatPriceIntoString(price : Double, currency: String) -> String{
+        let currCurrency = (currency == "EGP") ? Currency.EGP : Currency.USD
+        let newPrice = convertPriceCurrency(to: currCurrency, price: price)
+        print("This is new Price = \(newPrice)")
+        return String(format: "%.2f \(currCurrency.rawValue)", newPrice)
+    }
     
     
 }

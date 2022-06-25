@@ -20,6 +20,7 @@ class NoNetworkViewController: BaseViewController {
         noNetworkAnimationView.animationSpeed = 1
         noNetworkAnimationView.play()
 
-        navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
 }

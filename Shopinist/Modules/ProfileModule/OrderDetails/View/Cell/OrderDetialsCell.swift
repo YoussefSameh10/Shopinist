@@ -15,6 +15,7 @@ class OrderDetialsCell: UITableViewCell {
     @IBOutlet weak var itemQty: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     
+    private var currency = ""
     
     //MARK:- Life Cycle
     override func awakeFromNib() {
@@ -31,7 +32,11 @@ class OrderDetialsCell: UITableViewCell {
     func configureCell(orderItem : OrderItem, currency : String){
         self.itemName.text  = Formatter.formatProductName(productTitle: orderItem.title!)
         self.itemQty.text   = "x \(orderItem.quantity!)"
-        self.itemPrice.text = "\(orderItem.price ?? "0") \(currency)"
+        
+        self.currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "EGP"
+        let res = Formatter.formatPriceIntoString(price: Double(orderItem.price ?? "0")!, currency: currency)
+        
+        self.itemPrice.text = res
     }
     
 }

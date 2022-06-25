@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import PassKit
 
-class CheckoutViewController: UIViewController {
+class CheckoutViewController: BaseViewController {
     
     var viewModel: CheckoutViewModelProtocol!
     var router: CheckoutRouterProtocol!

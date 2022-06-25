@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import NVActivityIndicatorView
 import Combine
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseViewController {
     
     
     // MARK: - Variables
@@ -78,9 +78,9 @@ class RegisterViewController: UIViewController {
     private func invalidateButton() {
         signupButton.isEnabled = false
         signupButton.backgroundColor = .clear
-        signupButton.setTitleColor(.darkGray, for: .normal)
+        signupButton.setTitleColor(.lightGray, for: .normal)
         signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = .init(srgbRed: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+        signupButton.layer.borderColor = .init(srgbRed: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         
     }
     
@@ -166,6 +166,7 @@ class RegisterViewController: UIViewController {
 extension RegisterViewController {
     
     private func startActivityIndicator() {
+        invalidateButton()
         indicator = createActivityIndicator()
         indicator.center = view.center
         view.addSubview(indicator)
@@ -173,6 +174,7 @@ extension RegisterViewController {
     }
     
     private func stopActivityIndicator() {
+        validateButton()
         indicator.stopAnimating()
     }
     

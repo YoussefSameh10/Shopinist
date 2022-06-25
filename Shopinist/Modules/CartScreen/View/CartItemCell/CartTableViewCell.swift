@@ -12,7 +12,7 @@ import Kingfisher
 class CartTableViewCell: UITableViewCell {
     //MARK:- Variables
     private var cnt : Int = 1
-    private var currency = "USD"
+    private var currency = ""
     var decrementCnt : (() -> ())?
     var incrementCnt : (() -> ())?
     
@@ -73,11 +73,20 @@ class CartTableViewCell: UITableViewCell {
     }
     
     func configureCell(product: CartProduct){
+        let tmp = UserDefaults.standard.value(forKey: CURRENCY) as? String
+        print("this is tmp = \(tmp)")
+        currency = tmp ?? "EGP"
+        print("this is currency = \(currency)")
+        
+        
         img.kf.setImage(with: URL(string: product.image!))
         cnt = Int(product.count)
         countLabel.text = "\(cnt)"
         name.text = Formatter.formatProductName(productTitle: product.title!)
-        price.text = "\(String(describing: product.price!)) \(currency)"
+        print("This is the price = \(product.price!)")
+        let res = Formatter.formatPriceIntoString(price: Double(product.price!)!, currency: currency)
+        print("this is the result of formatter: \(res)")
+        price.text = Formatter.formatPriceIntoString(price: Double(product.price!)!, currency: currency)
         color.text = product.color!.capitalized
         size.text = "Size: \(product.size!)"
     }

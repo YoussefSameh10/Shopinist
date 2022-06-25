@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnBoarding" customModule="Shopinist" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="Prm-pD-Bz0" id="Z5y-B1-at6"/>
+                <outlet property="nextBtn" destination="uR0-RT-nkW" id="ERe-a8-PDp"/>
+                <outlet property="pageControl" destination="JQN-pv-anJ" id="TT1-rL-gSi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Prm-pD-Bz0">
+                    <rect key="frame" x="0.0" y="44" width="414" height="652"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wfH-tn-X4o">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR0-RT-nkW">
+                    <rect key="frame" x="132" y="740" width="150" height="50"/>
+                    <color key="backgroundColor" systemColor="labelColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="RTE-3o-sH7"/>
+                        <constraint firstAttribute="width" constant="150" id="Y8M-Zb-bmT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <state key="normal" title="Next">
+                        <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="nextBtnClicked:" destination="-1" eventType="touchUpInside" id="m2N-a7-YhI"/>
+                    </connections>
+                </button>
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="JQN-pv-anJ">
+                    <rect key="frame" x="145.5" y="696" width="123" height="28"/>
+                    <color key="pageIndicatorTintColor" systemColor="systemGray5Color"/>
+                    <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
+                </pageControl>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Prm-pD-Bz0" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="5el-eR-I1O"/>
+                <constraint firstItem="Prm-pD-Bz0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="A8k-u4-dYU"/>
+                <constraint firstItem="Prm-pD-Bz0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ILA-OB-lUZ"/>
+                <constraint firstItem="JQN-pv-anJ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="T9J-79-iXa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uR0-RT-nkW" secondAttribute="bottom" constant="72" id="YeT-p0-hk5"/>
+                <constraint firstItem="uR0-RT-nkW" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="kpY-4V-vhS"/>
+                <constraint firstItem="uR0-RT-nkW" firstAttribute="top" secondItem="JQN-pv-anJ" secondAttribute="bottom" constant="16" id="n5i-hM-RD6"/>
+                <constraint firstItem="JQN-pv-anJ" firstAttribute="top" secondItem="Prm-pD-Bz0" secondAttribute="bottom" id="pl4-EC-ZJ9"/>
+            </constraints>
+            <point key="canvasLocation" x="142" y="105"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

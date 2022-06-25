@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderDetailsViewController: UIViewController {
+class OrderDetailsViewController: BaseViewController {
     
     //MARK:- Outlets
     @IBOutlet weak var orderNo: UILabel!
@@ -18,12 +18,18 @@ class OrderDetailsViewController: UIViewController {
     
     //MARK:- Variables
     var viewModel : OrderDetailsViewModelProtocol!
+    var currency = ""
     
     //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
         initTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     init(
@@ -43,7 +49,10 @@ class OrderDetailsViewController: UIViewController {
     private func initUI(){
         orderNo.text = "Order #\(self.viewModel.getOrderIndex())"
         orderID.text = "Order ID: \(self.viewModel.getOrderId())"
-        totalPrice.text = "Total Price: \(self.viewModel.getTotalPrice())"
+        
+        currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "EGP"
+        let res = Formatter.formatPriceIntoString(price: Double(self.viewModel.getTotalPrice())!, currency: currency)
+        totalPrice.text = "Total Price: \(res)"
     }
     
     private func initTableView(){

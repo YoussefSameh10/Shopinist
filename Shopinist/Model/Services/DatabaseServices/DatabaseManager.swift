@@ -77,28 +77,10 @@ class DatabaseManager: DatabaseManagerProtocol {
         }catch let error {
             print(error.localizedDescription)
         }
-        //        var products : [Product]
-        //        products = Formatter.convertStoredProductsToProducts(storedProducts: favouritesProducts!)
         return favouritesProducts!
     }
     
-    // MARK: - getCartProducts
-    
-//    func getCartProduct() -> [StoredProduct] {
-//        
-//        let fetchRequest = NSFetchRequest<StoredProduct>(entityName: "StoredProduct")
-//        fetchRequest.predicate = NSPredicate(format: "isFavorite == %@", "false")
-//        var cartProducts : [StoredProduct]?
-//        do{
-//            cartProducts =  try viewContext.fetch(fetchRequest)
-//        }catch let error {
-//            print(error.localizedDescription)
-//        }
-//        var products : [Product]
-//        products = Formatter.convertStoredProductsToProducts(storedProducts: cartProducts!)
-//        return cartProducts!
-//    }
-    
+ 
 }
 
 // MARK: - Extnesion
