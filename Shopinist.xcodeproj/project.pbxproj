@@ -67,6 +67,7 @@
 		8AE9734A283ED80B00725A9B /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE97349283ED80B00725A9B /* NetworkManagerProtocol.swift */; };
 		8AF7DFB728474F0500E7FADE /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF7DFB628474F0500E7FADE /* FavouritesViewModel.swift */; };
 		8AF7DFB928474F2900E7FADE /* FavouritesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF7DFB828474F2900E7FADE /* FavouritesViewModelProtocol.swift */; };
+		D40D2DFE286797F800774C19 /* no_data_found.json in Resources */ = {isa = PBXBuildFile; fileRef = D40D2DFD286797F800774C19 /* no_data_found.json */; };
 		D413A5E8285221C000524797 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413A5E7285221C000524797 /* HomeViewModelProtocol.swift */; };
 		D413A5ED285221D400524797 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413A5EC285221D400524797 /* HomeViewModel.swift */; };
 		D4288ED92863CE1E009EB269 /* not_registered.json in Resources */ = {isa = PBXBuildFile; fileRef = D4288ED82863CE1E009EB269 /* not_registered.json */; };
@@ -84,7 +85,6 @@
 		D46B6255285126D300EFF8AC /* CartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6254285126D300EFF8AC /* CartRouter.swift */; };
 		D46B626D28521FAC00EFF8AC /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B626C28521FAC00EFF8AC /* HomeRouter.swift */; };
 		D46B627528521FB900EFF8AC /* HomeRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B627428521FB900EFF8AC /* HomeRouterProtocol.swift */; };
-		D4A2812F285CF3C200E85E59 /* no_data_found.json in Resources */ = {isa = PBXBuildFile; fileRef = D4A2812E285CF3C200E85E59 /* no_data_found.json */; };
 		D4D1E98B284E99490071B183 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1E989284E99490071B183 /* OrderDetailsViewController.swift */; };
 		D4D1E98C284E99490071B183 /* OrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D1E98A284E99490071B183 /* OrderDetailsViewController.xib */; };
 		D4D1E992284E9A780071B183 /* OrderDetialsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1E990284E9A780071B183 /* OrderDetialsCell.swift */; };
@@ -301,6 +301,7 @@
 		A898624C9DE6FEA32AEDCFA7 /* Pods-Shopinist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopinist.release.xcconfig"; path = "Target Support Files/Pods-Shopinist/Pods-Shopinist.release.xcconfig"; sourceTree = "<group>"; };
 		CB4752F052018B015C7B81E5 /* Pods-ShopinistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopinistTests.release.xcconfig"; path = "Target Support Files/Pods-ShopinistTests/Pods-ShopinistTests.release.xcconfig"; sourceTree = "<group>"; };
 		D32172CCDEBB31B6428F91C5 /* Pods-Shopinist-ShopinistUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopinist-ShopinistUITests.release.xcconfig"; path = "Target Support Files/Pods-Shopinist-ShopinistUITests/Pods-Shopinist-ShopinistUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D40D2DFD286797F800774C19 /* no_data_found.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_data_found.json; sourceTree = "<group>"; };
 		D413A5E7285221C000524797 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
 		D413A5EC285221D400524797 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D4288ED82863CE1E009EB269 /* not_registered.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = not_registered.json; sourceTree = "<group>"; };
@@ -318,7 +319,6 @@
 		D46B6254285126D300EFF8AC /* CartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRouter.swift; sourceTree = "<group>"; };
 		D46B626C28521FAC00EFF8AC /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		D46B627428521FB900EFF8AC /* HomeRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouterProtocol.swift; sourceTree = "<group>"; };
-		D4A2812E285CF3C200E85E59 /* no_data_found.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_data_found.json; sourceTree = "<group>"; };
 		D4D1E989284E99490071B183 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
 		D4D1E98A284E99490071B183 /* OrderDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsViewController.xib; sourceTree = "<group>"; };
 		D4D1E990284E9A780071B183 /* OrderDetialsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetialsCell.swift; sourceTree = "<group>"; };
@@ -856,6 +856,7 @@
 		D4634264284F7A31007405A2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D40D2DFD286797F800774C19 /* no_data_found.json */,
 				D4FB70D62865E20900351E16 /* delivery.json */,
 				D4FB70D72865E20900351E16 /* discover.json */,
 				D4FB70D52865E20900351E16 /* payment.json */,
@@ -865,7 +866,6 @@
 				E880EE1F28665CD40068F269 /* add-to-cart.json */,
 				E821459A286614770056EB75 /* no-connection.json */,
 				E8642757284D738300E89D5C /* not-found.json */,
-				D4A2812E285CF3C200E85E59 /* no_data_found.json */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -1749,6 +1749,7 @@
 				D42CB7ED2865B7FF00D0DC90 /* onBoardingCell.xib in Resources */,
 				E880EE1E286658740068F269 /* AddedToCartViewController.xib in Resources */,
 				E883F3AE283C20AA00C19953 /* LaunchScreen.storyboard in Resources */,
+				D40D2DFE286797F800774C19 /* no_data_found.json in Resources */,
 				8A15D9A528467511006B9C96 /* FavouriteTableViewCell.xib in Resources */,
 				8AC7AD7F284C30370042AA02 /* MoreOrdersViewController.xib in Resources */,
 				E85DD37C2844A43E003A7723 /* MainCategoriesViewController.xib in Resources */,
@@ -1778,7 +1779,6 @@
 				E8DF15D22863804600DA88B0 /* NoNetworkViewController.xib in Resources */,
 				E8BD5A96285C7DF2006114FD /* AddressesViewController.xib in Resources */,
 				E86281A52847AFD40003B1B8 /* RegisterViewController.xib in Resources */,
-				D4A2812F285CF3C200E85E59 /* no_data_found.json in Resources */,
 				E883F3AB283C20AA00C19953 /* Assets.xcassets in Resources */,
 				8AC7AD66284BEB240042AA02 /* SettingsViewController.xib in Resources */,
 				8A1AD977284154E400A0202B /* ProductSizeCollectionViewCell.xib in Resources */,

@@ -33,7 +33,7 @@ class OrderDetialsCell: UITableViewCell {
         self.itemName.text  = Formatter.formatProductName(productTitle: orderItem.title!)
         self.itemQty.text   = "x \(orderItem.quantity!)"
         
-        self.currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "EGP"
+        self.currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "USD"
         let res = Formatter.formatPriceIntoString(price: Double(orderItem.price ?? "0")!, currency: currency)
         
         self.itemPrice.text = res

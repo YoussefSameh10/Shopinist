@@ -65,9 +65,13 @@ class HomeViewController: BaseViewController {
     
     //MARK:- Actions
     @IBAction func redirectToAdvertisment(_ sender: UIButton) {
-        if let url = URL(string: "https://www.amazon.com") {
-            UIApplication.shared.open(url)
-        }
+        let offer = "summersale10off"
+        UIPasteboard.general.string = offer
+        
+        let alertController = UIAlertController(title: "Congratulations", message: "Promo code saved in Clipboard!", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func pageValueChanged(_ sender: UIPageControl) {
