@@ -75,7 +75,7 @@ class CartTableViewCell: UITableViewCell {
     func configureCell(product: CartProduct){
         let tmp = UserDefaults.standard.value(forKey: CURRENCY) as? String
         print("this is tmp = \(tmp)")
-        currency = tmp ?? "EGP"
+        currency = tmp ?? "USD"
         print("this is currency = \(currency)")
         
         
