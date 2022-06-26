@@ -87,7 +87,7 @@ class CustomerRepo : CustomerRepoProtocol , CustomerSettingsRepoProtocol{
     
     func getSelectedCurrency() -> String {
         guard let currency = defaults.object(forKey: CURRENCY) as? String else {
-            return SelectedCurrency.EGP.rawValue
+            return SelectedCurrency.USD.rawValue
         }
         
         return currency

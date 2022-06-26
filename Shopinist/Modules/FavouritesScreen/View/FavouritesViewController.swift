@@ -140,8 +140,11 @@ extension FavouritesViewController : UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let product = viewModel.products![indexPath.row]
-        router.navigateToProductDetailsScreen(appDelegate: appDelegate, product: product)
+        //router.navigateToProductDetailsScreen(appDelegate: appDelegate, product: product)
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
     }
+    
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
