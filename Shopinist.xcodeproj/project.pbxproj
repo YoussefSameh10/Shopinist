@@ -29,6 +29,8 @@
 		8A512DCF2849169C0012691D /* ProfileOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A512DCD2849169C0012691D /* ProfileOrderTableViewCell.xib */; };
 		8A512DD62849197C0012691D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A512DD52849197C0012691D /* ProfileViewModel.swift */; };
 		8A512DD8284919D10012691D /* ProfileViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A512DD7284919D10012691D /* ProfileViewModelProtocol.swift */; };
+		8A8301D32868B21B001E1E39 /* ProductDetailsViewModelStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8301D22868B21B001E1E39 /* ProductDetailsViewModelStub.swift */; };
+		8A8301D52868B8AA001E1E39 /* CartRepoStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8301D42868B8AA001E1E39 /* CartRepoStub.swift */; };
 		8A9AD5E8284B744700875F61 /* FavouritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AD5E7284B744700875F61 /* FavouritesRouter.swift */; };
 		8A9AD5EA284B745A00875F61 /* FavouritesRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AD5E9284B745A00875F61 /* FavouritesRouterProtocol.swift */; };
 		8AC33DDF28415E2800B80E16 /* ProductVcExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC33DDE28415E2800B80E16 /* ProductVcExtension.swift */; };
@@ -260,6 +262,8 @@
 		8A512DCD2849169C0012691D /* ProfileOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileOrderTableViewCell.xib; sourceTree = "<group>"; };
 		8A512DD52849197C0012691D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		8A512DD7284919D10012691D /* ProfileViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelProtocol.swift; sourceTree = "<group>"; };
+		8A8301D22868B21B001E1E39 /* ProductDetailsViewModelStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModelStub.swift; sourceTree = "<group>"; };
+		8A8301D42868B8AA001E1E39 /* CartRepoStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRepoStub.swift; sourceTree = "<group>"; };
 		8A9AD5E7284B744700875F61 /* FavouritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesRouter.swift; sourceTree = "<group>"; };
 		8A9AD5E9284B745A00875F61 /* FavouritesRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesRouterProtocol.swift; sourceTree = "<group>"; };
 		8AC33DDE28415E2800B80E16 /* ProductVcExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVcExtension.swift; sourceTree = "<group>"; };
@@ -616,6 +620,14 @@
 				8A512DD7284919D10012691D /* ProfileViewModelProtocol.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8A8301D12868B155001E1E39 /* ProductDetailsScreenTest */ = {
+			isa = PBXGroup;
+			children = (
+				8A8301D22868B21B001E1E39 /* ProductDetailsViewModelStub.swift */,
+			);
+			path = ProductDetailsScreenTest;
 			sourceTree = "<group>";
 		};
 		8A9AD5E6284B742A00875F61 /* router */ = {
@@ -1233,6 +1245,7 @@
 				E8F9F4202866258300683500 /* Repos */,
 				E8CB7A022865BC3F00FDC86A /* Network */,
 				E8CB79FF2865BC0300FDC86A /* CategoriesScreenTests */,
+				8A8301D12868B155001E1E39 /* ProductDetailsScreenTest */,
 				E883F3B8283C20AA00C19953 /* ShopinistTests.swift */,
 				E883F3BA283C20AA00C19953 /* Info.plist */,
 			);
@@ -1562,6 +1575,7 @@
 			children = (
 				E8E38A0C2865CAEF000591ED /* ProductRepoStub.swift */,
 				E8E38A0E2865CBBE000591ED /* CustomerRepoStub.swift */,
+				8A8301D42868B8AA001E1E39 /* CartRepoStub.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -2085,7 +2099,9 @@
 				E8CB7A062865BC8300FDC86A /* CategoriesViewControllerTests.swift in Sources */,
 				E8CB7A042865BC5400FDC86A /* NetworkManagerStub.swift in Sources */,
 				D40D2E172868EC3600774C19 /* CartViewModelTests.swift in Sources */,
+				8A8301D52868B8AA001E1E39 /* CartRepoStub.swift in Sources */,
 				E8E38A0F2865CBBE000591ED /* CustomerRepoStub.swift in Sources */,
+				8A8301D32868B21B001E1E39 /* ProductDetailsViewModelStub.swift in Sources */,
 				E8E38A0D2865CAEF000591ED /* ProductRepoStub.swift in Sources */,
 				E883F3B9283C20AA00C19953 /* ShopinistTests.swift in Sources */,
 			);
@@ -2246,6 +2262,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HTUTJ68AQ6;
 				INFOPLIST_FILE = Shopinist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2264,6 +2281,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HTUTJ68AQ6;
 				INFOPLIST_FILE = Shopinist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

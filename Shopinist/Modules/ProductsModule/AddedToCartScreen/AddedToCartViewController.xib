@@ -28,7 +28,7 @@
                         <constraint firstAttribute="width" secondItem="S6l-et-1EK" secondAttribute="height" id="wxj-yj-jXR"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="add-to-cart"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="check"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="70h-jj-Uiw" appends="YES" id="1ec-mf-P3D"/>
@@ -58,9 +58,6 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
-    <designables>
-        <designable name="S6l-et-1EK"/>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

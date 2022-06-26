@@ -27,6 +27,13 @@ struct Product: Codable {
         self.options = []
     }
     
+    init(id : Int , title : String , description : String , vendor : String){
+        self.id = id
+        self.title = title
+        self.description = description
+        self.vendor = vendor
+    }
+    
     enum CodingKeys: String, CodingKey {
         
         case id, title

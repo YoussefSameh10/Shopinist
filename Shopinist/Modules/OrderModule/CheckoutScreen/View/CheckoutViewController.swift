@@ -248,7 +248,7 @@ extension CheckoutViewController: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true, completion: nil)
 
-        self.viewModel.postOrder()
+//        self.viewModel.postOrder()
         
         
 //        if paymentCompleted {
@@ -261,6 +261,8 @@ extension CheckoutViewController: PKPaymentAuthorizationViewControllerDelegate {
         
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         //paymentCompleted = true
+        self.viewModel.postOrder()
+
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
 
     }
