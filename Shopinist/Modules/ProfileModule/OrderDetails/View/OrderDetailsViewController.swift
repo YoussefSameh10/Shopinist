@@ -50,7 +50,7 @@ class OrderDetailsViewController: BaseViewController {
         orderNo.text = "Order #\(self.viewModel.getOrderIndex())"
         orderID.text = "Order ID: \(self.viewModel.getOrderId())"
         
-        currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "EGP"
+        currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "USD"
         let res = Formatter.formatPriceIntoString(price: Double(self.viewModel.getTotalPrice())!, currency: currency)
         totalPrice.text = "Total Price: \(res)"
     }

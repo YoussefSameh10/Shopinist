@@ -60,7 +60,8 @@ extension ProductDetailsViewController : UICollectionViewDelegate , UICollection
             viewModel.productSize = (viewModel.product?.options![0].values![indexPath.row])!
             viewModel.productVariantId = viewModel.product?.variants?[indexPath.row].id
             (collectionView.cellForItem(at: indexPath) as! ProductSizeCollectionViewCell).textColor = .white
-
+            print("#####################################")
+            print(viewModel.product?.variants)
         }
     }
     

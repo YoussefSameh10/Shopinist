@@ -17,7 +17,7 @@ class CartViewController: BaseViewController {
     private var router : CartRouterProtocol?
     private var cancellables : Set<AnyCancellable> = []
     private var appDelegate : AppDelegate =  (UIApplication.shared.delegate as! AppDelegate)
-    private var currency = "USD"
+    private var currency = ""
     
     //MARK:- Outlets
     @IBOutlet weak var cartTV: UITableView!
@@ -97,6 +97,7 @@ class CartViewController: BaseViewController {
             else{
                 checkoutBtn.isUserInteractionEnabled = true
                 dataNotFoundAnim.isHidden = true
+                currency = UserDefaults.standard.value(forKey: CURRENCY) as? String ?? "USD"
                 let total = self.viewModel?.getTotalPrice() ?? 0
                 totalPrice.text = Formatter.formatPriceIntoString(price: total, currency: currency)
             }
@@ -146,9 +147,20 @@ extension CartViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete){
-            self.viewModel?.removeItemAt(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            updateUI()
+            
+            let alertController = UIAlertController(title: "Reminder", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+            
+            let yesAction = UIAlertAction(title: "YES", style: .destructive, handler: { [weak self] (action) in
+                self?.viewModel?.removeItemAt(index: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                self?.updateUI()
+            })
+            alertController.addAction(yesAction)
+            
+            let noAction = UIAlertAction(title: "NO", style: .default, handler: nil)
+            alertController.addAction(noAction)
+            
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -167,6 +179,10 @@ extension CartViewController : UITableViewDelegate, UITableViewDataSource {
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
     }
     
     

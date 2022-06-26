@@ -65,9 +65,13 @@ class HomeViewController: BaseViewController {
     
     //MARK:- Actions
     @IBAction func redirectToAdvertisment(_ sender: UIButton) {
-        if let url = URL(string: "https://www.amazon.com") {
-            UIApplication.shared.open(url)
-        }
+        let offer = "summersale10off"
+        UIPasteboard.general.string = offer
+        
+        let alertController = UIAlertController(title: "Congratulations", message: "Promo code saved in Clipboard!", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func pageValueChanged(_ sender: UIPageControl) {
@@ -86,16 +90,16 @@ class HomeViewController: BaseViewController {
         tabBarController?.tabBar.tintColor = UIColor.black
         tabBarController?.tabBar.items?[0].title = "Home"
         tabBarController?.tabBar.items?[1].title = "Categories"
-        tabBarController?.tabBar.items?[2].title = "Cart"
-        tabBarController?.tabBar.items?[3].title = "Profile"
-        tabBarController?.tabBar.items?[4].title = "Favourites"
+        tabBarController?.tabBar.items?[2].title = "Favorites"
+        tabBarController?.tabBar.items?[3].title = "Cart"
+        tabBarController?.tabBar.items?[4].title = "Profile"
         
         
         tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house.fill")
         tabBarController?.tabBar.items?[1].image = UIImage(systemName: "square.grid.2x2.fill")
-        tabBarController?.tabBar.items?[2].image = UIImage(systemName: "cart.fill")
-        tabBarController?.tabBar.items?[3].image = UIImage(systemName: "person.fill")
-        tabBarController?.tabBar.items?[4].image = UIImage(systemName: "heart.fill")
+        tabBarController?.tabBar.items?[2].image = UIImage(systemName: "heart.fill")
+        tabBarController?.tabBar.items?[3].image = UIImage(systemName: "cart.fill")
+        tabBarController?.tabBar.items?[4].image = UIImage(systemName: "person.fill")
         
         
         self.navigationController?.navigationBar.isHidden = true
